@@ -2,7 +2,8 @@
 // Constants
 // ===========================
 const MOBILE_BREAKPOINT = 768;
-const SCROLL_REVEAL_OFFSET = 150;
+const SCROLL_REVEAL_OFFSET = 100;
+const BACK_TO_TOP_THRESHOLD = 300;
 
 // ===========================
 // Navigation Functionality
@@ -13,6 +14,7 @@ const navToggle = document.getElementById('nav-toggle');
 const navMenu = document.getElementById('nav-menu');
 const navLinks = document.querySelectorAll('.nav-link');
 const navbar = document.getElementById('navbar');
+const backToTopBtn = document.getElementById('back-to-top');
 
 // Toggle mobile menu
 if (navToggle) {
@@ -100,6 +102,28 @@ function handleNavbarScroll() {
     } else {
         navbar.classList.remove('scrolled');
     }
+    
+    // Show/hide back to top button
+    if (backToTopBtn) {
+        if (window.scrollY > BACK_TO_TOP_THRESHOLD) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    }
+}
+
+// ===========================
+// Back to Top Button
+// ===========================
+
+if (backToTopBtn) {
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
 }
 
 // ===========================
@@ -132,24 +156,25 @@ function initializeRevealElements() {
 
 function setupIntersectionObserver() {
     const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
     };
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('reveal', 'active');
-                // Optional: stop observing after animation
-                // observer.unobserve(entry.target);
+                // Optional: stop observing after animation for performance
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
     
-    // Observe elements
+    // Observe elements with staggered animation
     const elementsToObserve = document.querySelectorAll('.timeline-item, .project-card, .skill-category, .education-card, .contact-method');
-    elementsToObserve.forEach(element => {
+    elementsToObserve.forEach((element, index) => {
         element.classList.add('reveal');
+        element.style.transitionDelay = `${index * 0.1}s`;
         observer.observe(element);
     });
 }
