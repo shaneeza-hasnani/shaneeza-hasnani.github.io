@@ -15,6 +15,12 @@
     --secondary-color: #06b6d4;
     --accent-color: #8b5cf6;
     --success-color: #10b981;
+    
+    /* Hero Gradient Colors */
+    --hero-gradient-1: #667eea;
+    --hero-gradient-2: #764ba2;
+    --hero-gradient-3: #f093fb;
+    
     --text-primary: #0f172a;
     --text-secondary: #475569;
     --text-light: #94a3b8;
@@ -271,7 +277,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    background: linear-gradient(135deg, var(--hero-gradient-1) 0%, var(--hero-gradient-2) 50%, var(--hero-gradient-3) 100%);
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
     padding-top: 70px;
