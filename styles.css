@@ -277,6 +277,7 @@ a {
     padding-top: 70px;
     position: relative;
     overflow: hidden;
+    will-change: background-position;
 }
 
 @keyframes gradientShift {
@@ -634,6 +635,7 @@ a {
     justify-content: center;
     position: relative;
     overflow: hidden;
+    transition: transform var(--transition-slow);
 }
 
 .project-image::before {
@@ -647,10 +649,6 @@ a {
 
 .project-card:hover .project-image {
     transform: scale(1.05);
-}
-
-.project-image {
-    transition: transform var(--transition-slow);
 }
 
 .project-image-placeholder {
