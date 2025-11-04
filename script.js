@@ -1,4 +1,10 @@
 // ===========================
+// Constants
+// ===========================
+const MOBILE_BREAKPOINT = 768;
+const SCROLL_REVEAL_OFFSET = 150;
+
+// ===========================
 // Navigation Functionality
 // ===========================
 
@@ -105,9 +111,8 @@ function revealOnScroll() {
     
     reveals.forEach(element => {
         const elementTop = element.getBoundingClientRect().top;
-        const elementVisible = 150;
         
-        if (elementTop < window.innerHeight - elementVisible) {
+        if (elementTop < window.innerHeight - SCROLL_REVEAL_OFFSET) {
             element.classList.add('reveal', 'active');
         }
     });
@@ -173,13 +178,6 @@ function typeWriter(element, text, speed = 100) {
 // ===========================
 
 window.addEventListener('load', () => {
-    // Add fade-in class to body
-    document.body.style.opacity = '0';
-    setTimeout(() => {
-        document.body.style.transition = 'opacity 0.5s ease';
-        document.body.style.opacity = '1';
-    }, 100);
-    
     // Initialize reveal elements
     initializeRevealElements();
     
@@ -215,7 +213,7 @@ window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
         // Close mobile menu on resize to desktop
-        if (window.innerWidth > 768) {
+        if (window.innerWidth > MOBILE_BREAKPOINT) {
             navToggle.classList.remove('active');
             navMenu.classList.remove('active');
         }
