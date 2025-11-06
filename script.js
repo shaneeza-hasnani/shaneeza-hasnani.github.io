@@ -85,17 +85,12 @@ function initCounterAnimation() {
                 hasAnimated = true;
                 counters.forEach(counter => {
                     const target = parseInt(counter.getAttribute('data-target'));
-                    const label = counter.nextElementSibling.textContent;
+                    const label = counter.nextElementSibling.textContent.toLowerCase();
                     
-                    let suffix = '';
-                    if (label.includes('%')) {
-                        suffix = '.96%';
-                        if (target === 99) {
-                            animateCounter(counter, 99, 2000, suffix);
-                        } else {
-                            animateCounter(counter, target, 2000, '%');
-                        }
-                    } else if (label.includes('K+')) {
+                    // Determine suffix based on label content
+                    if (label.includes('accuracy')) {
+                        animateCounter(counter, 99, 2000, '.96%');
+                    } else if (label.includes('k+')) {
                         animateCounter(counter, target, 2000, 'K');
                     } else {
                         animateCounter(counter, target, 2000, '%');
@@ -346,6 +341,8 @@ window.addEventListener('load', () => {
 // ===========================
 // Parallax Effect for Hero Icons
 // ===========================
+let ticking = false;
+
 function handleParallax() {
     const scrolled = window.pageYOffset;
     const parallaxElements = document.querySelectorAll('.floating-icon');
@@ -355,6 +352,15 @@ function handleParallax() {
         const yPos = -(scrolled * speed);
         element.style.transform = `translateY(${yPos}px)`;
     });
+    
+    ticking = false;
+}
+
+function requestParallax() {
+    if (!ticking) {
+        window.requestAnimationFrame(handleParallax);
+        ticking = true;
+    }
 }
 
 // ===========================
@@ -444,7 +450,7 @@ let scrollTimeout;
 window.addEventListener('scroll', () => {
     handleNavbarScroll();
     updateActiveNavLink();
-    handleParallax();
+    requestParallax();
     
     // Debounce scroll reveal for performance
     if (!('IntersectionObserver' in window)) {
