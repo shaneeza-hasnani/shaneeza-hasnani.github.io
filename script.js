@@ -128,12 +128,12 @@ if (hamburgerMenu && cardNav) {
         if (cardNav.classList.contains('open')) {
             // On mobile, cards stack vertically
             if (window.innerWidth <= 768) {
-                cardNav.style.height = '400px';
+                cardNav.style.height = '340px';
             } else {
-                cardNav.style.height = '300px';
+                cardNav.style.height = '260px';
             }
         } else {
-            cardNav.style.height = '60px';
+            cardNav.style.height = '55px';
         }
     });
 }
@@ -144,7 +144,7 @@ navCardLinks.forEach(link => {
         if (hamburgerMenu) hamburgerMenu.classList.remove('open');
         if (cardNav) {
             cardNav.classList.remove('open');
-            cardNav.style.height = '60px';
+            cardNav.style.height = '55px';
         }
     });
 });
@@ -157,7 +157,7 @@ document.addEventListener('click', (e) => {
         if (!isClickInsideNav && !isClickOnHamburger) {
             hamburgerMenu.classList.remove('open');
             cardNav.classList.remove('open');
-            cardNav.style.height = '60px';
+            cardNav.style.height = '55px';
         }
     }
 });
@@ -191,7 +191,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         
         const targetSection = document.querySelector(targetId);
         if (targetSection) {
-            const navHeight = 60; // Fixed height of card navigation
+            const navHeight = 55; // Fixed height of card navigation
             const targetPosition = targetSection.offsetTop - navHeight;
             
             window.scrollTo({
@@ -208,7 +208,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 function updateActiveNavLink() {
     const sections = document.querySelectorAll('section[id]');
-    const scrollPosition = window.scrollY + 60 + 100; // Card nav height is 60px
+    const scrollPosition = window.scrollY + 55 + 100; // Card nav height is 55px
     
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
@@ -503,16 +503,16 @@ window.addEventListener('resize', () => {
             if (hamburgerMenu) hamburgerMenu.classList.remove('open');
             if (cardNav) {
                 cardNav.classList.remove('open');
-                cardNav.style.height = '60px';
+                cardNav.style.height = '55px';
             }
         }
         
         // Update card nav height if open
         if (cardNav && cardNav.classList.contains('open')) {
             if (window.innerWidth <= 768) {
-                cardNav.style.height = '400px';
+                cardNav.style.height = '340px';
             } else {
-                cardNav.style.height = '300px';
+                cardNav.style.height = '260px';
             }
         }
     }, 250);
@@ -527,7 +527,7 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && cardNav && cardNav.classList.contains('open')) {
         if (hamburgerMenu) hamburgerMenu.classList.remove('open');
         cardNav.classList.remove('open');
-        cardNav.style.height = '60px';
+        cardNav.style.height = '55px';
     }
 });
 
