@@ -172,7 +172,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 function updateActiveNavLink() {
     const sections = document.querySelectorAll('section[id]');
-    const scrollPosition = window.scrollY + navbar.offsetHeight + 100;
+    const navHeight = 80; // Match navbar height
+    const scrollPosition = window.scrollY + navHeight + 100;
     
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
