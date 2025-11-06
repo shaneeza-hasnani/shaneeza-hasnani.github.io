@@ -155,7 +155,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         
         const targetSection = document.querySelector(targetId);
         if (targetSection) {
-            const navHeight = navbar.offsetHeight;
+            const navHeight = 80; // Updated to match new navbar height
             const targetPosition = targetSection.offsetTop - navHeight;
             
             window.scrollTo({
