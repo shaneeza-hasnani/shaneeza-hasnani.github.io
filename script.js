@@ -89,10 +89,13 @@ function initCounterAnimation() {
             if (entry.isIntersecting && !hasAnimated) {
                 hasAnimated = true;
                 counters.forEach(counter => {
-                    const target = parseInt(counter.getAttribute('data-target'));
+                    const target = parseInt(counter.getAttribute('data-target'), 10);
                     const suffix = counter.getAttribute('data-suffix') || '';
                     
-                    animateCounter(counter, target, 2000, suffix);
+                    // Validate target is a valid number
+                    if (!isNaN(target) && target >= 0) {
+                        animateCounter(counter, target, 2000, suffix);
+                    }
                 });
                 observer.disconnect();
             }
