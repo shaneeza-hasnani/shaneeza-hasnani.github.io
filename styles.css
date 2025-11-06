@@ -742,7 +742,9 @@ a {
     padding: var(--spacing-lg);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
-    transition: all var(--transition-base);
+    transition: transform var(--transition-base),
+                box-shadow var(--transition-base),
+                border-left-color var(--transition-base);
     border-left: 4px solid var(--primary-color);
 }
 
@@ -814,7 +816,9 @@ a {
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-md);
-    transition: all var(--transition-slow);
+    transition: transform var(--transition-slow), 
+                box-shadow var(--transition-slow),
+                border-color var(--transition-slow);
     border: 1px solid var(--border-color);
     position: relative;
     transform-style: preserve-3d;
@@ -993,7 +997,9 @@ a {
     padding: var(--spacing-lg);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
-    transition: all var(--transition-base);
+    transition: transform var(--transition-base),
+                box-shadow var(--transition-base),
+                border-color var(--transition-base);
     border: 2px solid var(--border-color);
     position: relative;
     overflow: hidden;
@@ -1092,7 +1098,9 @@ a {
     padding: var(--spacing-xl);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
-    transition: all var(--transition-base);
+    transition: transform var(--transition-base),
+                box-shadow var(--transition-base),
+                border-color var(--transition-base);
     border: 2px solid var(--border-color);
     position: relative;
     overflow: hidden;

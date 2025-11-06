@@ -56,18 +56,23 @@ function createParticles() {
 // ===========================
 function animateCounter(element, target, duration = 2000, suffix = '') {
     const start = 0;
-    const increment = target / (duration / 16);
-    let current = start;
+    const startTime = performance.now();
     
-    const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-            element.textContent = target + suffix;
-            clearInterval(timer);
+    function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        const current = Math.floor(progress * target);
+        element.textContent = current + suffix;
+        
+        if (progress < 1) {
+            requestAnimationFrame(update);
         } else {
-            element.textContent = Math.floor(current) + suffix;
+            element.textContent = target + suffix;
         }
-    }, 16);
+    }
+    
+    requestAnimationFrame(update);
 }
 
 function initCounterAnimation() {
