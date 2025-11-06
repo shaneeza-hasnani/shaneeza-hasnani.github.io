@@ -8,35 +8,35 @@
 }
 
 :root {
-    /* Colors - Enhanced Modern Palette */
-    --primary-color: #6366f1;
-    --primary-dark: #4f46e5;
-    --primary-light: #818cf8;
-    --secondary-color: #06b6d4;
-    --accent-color: #8b5cf6;
-    --success-color: #10b981;
+    /* Colors - Sophisticated & Elegant Palette */
+    --primary-color: #9A515C;
+    --primary-dark: #AD4877;
+    --primary-light: #D46A7A;
+    --secondary-color: #2A8C9D;
+    --accent-color: #B1A2B9;
+    --success-color: #81C5BB;
     
     /* Hero Gradient Colors */
-    --hero-gradient-1: #667eea;
-    --hero-gradient-2: #764ba2;
-    --hero-gradient-3: #f093fb;
+    --hero-gradient-1: #B1A2B9;
+    --hero-gradient-2: #9A515C;
+    --hero-gradient-3: #E6A8B1;
     
-    --text-primary: #0f172a;
-    --text-secondary: #475569;
-    --text-light: #94a3b8;
+    --text-primary: #9A515C;
+    --text-secondary: #AD4877;
+    --text-light: #B1A2B9;
     --bg-primary: #ffffff;
-    --bg-secondary: #f8fafc;
-    --bg-accent: #f1f5f9;
-    --border-color: #e2e8f0;
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
+    --bg-secondary: #AEDAD3;
+    --bg-accent: #E6A8B1;
+    --border-color: #B1A2B9;
+    --shadow-sm: 0 1px 2px 0 rgba(154, 81, 92, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(154, 81, 92, 0.1), 0 2px 4px -1px rgba(154, 81, 92, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(154, 81, 92, 0.1), 0 4px 6px -2px rgba(154, 81, 92, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(154, 81, 92, 0.1), 0 10px 10px -5px rgba(154, 81, 92, 0.04);
+    --shadow-glow: 0 0 20px rgba(154, 81, 92, 0.3);
     
     /* Typography */
-    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    --font-family-heading: 'Poppins', 'Inter', sans-serif;
+    --font-family: 'Crimson Text', Georgia, serif;
+    --font-family-heading: 'Unica One', Arial, sans-serif;
     --font-size-base: 16px;
     --line-height-base: 1.7;
     
