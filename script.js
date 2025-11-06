@@ -6,6 +6,113 @@ const SCROLL_REVEAL_OFFSET = 100;
 const BACK_TO_TOP_THRESHOLD = 300;
 
 // ===========================
+// Loading Screen
+// ===========================
+window.addEventListener('load', () => {
+    const loadingScreen = document.getElementById('loading-screen');
+    
+    setTimeout(() => {
+        if (loadingScreen) {
+            loadingScreen.classList.add('hidden');
+            // Remove from DOM after transition
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 500);
+        }
+    }, 1000);
+});
+
+// ===========================
+// Particles Animation
+// ===========================
+function createParticles() {
+    const particlesContainer = document.getElementById('particles-js');
+    if (!particlesContainer) return;
+    
+    const particleCount = window.innerWidth < MOBILE_BREAKPOINT ? 20 : 40;
+    
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        const size = Math.random() * 4 + 2;
+        const duration = Math.random() * 15 + 10;
+        const delay = Math.random() * 5;
+        const drift = (Math.random() - 0.5) * 100;
+        
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.animationDuration = `${duration}s`;
+        particle.style.animationDelay = `${delay}s`;
+        particle.style.setProperty('--drift', `${drift}px`);
+        
+        particlesContainer.appendChild(particle);
+    }
+}
+
+// ===========================
+// Counter Animation
+// ===========================
+function animateCounter(element, target, duration = 2000, suffix = '') {
+    const start = 0;
+    const increment = target / (duration / 16);
+    let current = start;
+    
+    const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+            element.textContent = target + suffix;
+            clearInterval(timer);
+        } else {
+            element.textContent = Math.floor(current) + suffix;
+        }
+    }, 16);
+}
+
+function initCounterAnimation() {
+    const counters = document.querySelectorAll('.stat-number');
+    let hasAnimated = false;
+    
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !hasAnimated) {
+                hasAnimated = true;
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    const label = counter.nextElementSibling.textContent;
+                    
+                    let suffix = '';
+                    if (label.includes('%')) {
+                        suffix = '.96%';
+                        if (target === 99) {
+                            animateCounter(counter, 99, 2000, suffix);
+                        } else {
+                            animateCounter(counter, target, 2000, '%');
+                        }
+                    } else if (label.includes('K+')) {
+                        animateCounter(counter, target, 2000, 'K');
+                    } else {
+                        animateCounter(counter, target, 2000, '%');
+                    }
+                });
+                observer.disconnect();
+            }
+        });
+    }, observerOptions);
+    
+    const statsContainer = document.querySelector('.stats-container');
+    if (statsContainer) {
+        observer.observe(statsContainer);
+    }
+}
+
+// ===========================
 // Navigation Functionality
 // ===========================
 
@@ -111,6 +218,21 @@ function handleNavbarScroll() {
             backToTopBtn.classList.remove('visible');
         }
     }
+    
+    // Update scroll progress bar
+    updateScrollProgress();
+}
+
+// ===========================
+// Scroll Progress Bar
+// ===========================
+function updateScrollProgress() {
+    const scrollProgress = document.getElementById('scroll-progress');
+    if (!scrollProgress) return;
+    
+    const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (window.scrollY / windowHeight) * 100;
+    scrollProgress.style.width = scrolled + '%';
 }
 
 // ===========================
@@ -203,6 +325,12 @@ function typeWriter(element, text, speed = 100) {
 // ===========================
 
 window.addEventListener('load', () => {
+    // Create particles
+    createParticles();
+    
+    // Initialize counter animation
+    initCounterAnimation();
+    
     // Initialize reveal elements
     initializeRevealElements();
     
@@ -216,6 +344,98 @@ window.addEventListener('load', () => {
 });
 
 // ===========================
+// Parallax Effect for Hero Icons
+// ===========================
+function handleParallax() {
+    const scrolled = window.pageYOffset;
+    const parallaxElements = document.querySelectorAll('.floating-icon');
+    
+    parallaxElements.forEach((element, index) => {
+        const speed = 0.5 + (index * 0.1);
+        const yPos = -(scrolled * speed);
+        element.style.transform = `translateY(${yPos}px)`;
+    });
+}
+
+// ===========================
+// Smooth Cursor Follow Effect (Optional)
+// ===========================
+let cursorDot, cursorOutline;
+
+function initCustomCursor() {
+    if (window.innerWidth < MOBILE_BREAKPOINT) return;
+    
+    cursorDot = document.createElement('div');
+    cursorDot.className = 'cursor-dot';
+    cursorOutline = document.createElement('div');
+    cursorOutline.className = 'cursor-outline';
+    
+    document.body.appendChild(cursorDot);
+    document.body.appendChild(cursorOutline);
+    
+    document.addEventListener('mousemove', (e) => {
+        const posX = e.clientX;
+        const posY = e.clientY;
+        
+        cursorDot.style.left = `${posX}px`;
+        cursorDot.style.top = `${posY}px`;
+        
+        cursorOutline.style.left = `${posX}px`;
+        cursorOutline.style.top = `${posY}px`;
+    });
+    
+    // Add hover effects for interactive elements
+    const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-item');
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursorDot.style.transform = 'translate(-50%, -50%) scale(1.5)';
+            cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
+        });
+        el.addEventListener('mouseleave', () => {
+            cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+            cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
+        });
+    });
+}
+
+// ===========================
+// Ripple Effect for Buttons
+// ===========================
+function createRipple(event) {
+    const button = event.currentTarget;
+    const ripple = document.createElement('span');
+    const diameter = Math.max(button.clientWidth, button.clientHeight);
+    const radius = diameter / 2;
+    
+    const rect = button.getBoundingClientRect();
+    ripple.style.width = ripple.style.height = `${diameter}px`;
+    ripple.style.left = `${event.clientX - rect.left - radius}px`;
+    ripple.style.top = `${event.clientY - rect.top - radius}px`;
+    ripple.classList.add('ripple');
+    
+    const rippleElement = button.querySelector('.ripple');
+    if (rippleElement) {
+        rippleElement.remove();
+    }
+    
+    button.appendChild(ripple);
+    
+    setTimeout(() => {
+        ripple.remove();
+    }, 600);
+}
+
+// Add ripple effect to all buttons
+function initRippleEffect() {
+    const buttons = document.querySelectorAll('.btn, .contact-method, .project-card');
+    buttons.forEach(button => {
+        button.style.position = 'relative';
+        button.style.overflow = 'hidden';
+        button.addEventListener('click', createRipple);
+    });
+}
+
+// ===========================
 // Event Listeners
 // ===========================
 
@@ -224,6 +444,7 @@ let scrollTimeout;
 window.addEventListener('scroll', () => {
     handleNavbarScroll();
     updateActiveNavLink();
+    handleParallax();
     
     // Debounce scroll reveal for performance
     if (!('IntersectionObserver' in window)) {
@@ -358,6 +579,14 @@ document.addEventListener('DOMContentLoaded', () => {
     handleNavbarScroll();
     updateActiveNavLink();
     setupContactForm();
+    
+    // Initialize custom cursor (desktop only)
+    if (window.innerWidth >= MOBILE_BREAKPOINT) {
+        initCustomCursor();
+    }
+    
+    // Initialize ripple effects
+    initRippleEffect();
     
     // Add smooth scroll behavior for older browsers
     if (!('scrollBehavior' in document.documentElement.style)) {
