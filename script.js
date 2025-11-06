@@ -90,16 +90,9 @@ function initCounterAnimation() {
                 hasAnimated = true;
                 counters.forEach(counter => {
                     const target = parseInt(counter.getAttribute('data-target'));
-                    const label = counter.nextElementSibling.textContent.toLowerCase();
+                    const suffix = counter.getAttribute('data-suffix') || '';
                     
-                    // Determine suffix based on label content
-                    if (label.includes('accuracy')) {
-                        animateCounter(counter, 99, 2000, '.96%');
-                    } else if (label.includes('k+')) {
-                        animateCounter(counter, target, 2000, 'K');
-                    } else {
-                        animateCounter(counter, target, 2000, '%');
-                    }
+                    animateCounter(counter, target, 2000, suffix);
                 });
                 observer.disconnect();
             }

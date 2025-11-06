@@ -823,6 +823,7 @@ a {
     position: relative;
     transform-style: preserve-3d;
     perspective: 1000px;
+    will-change: transform;
 }
 
 .project-card::before {
