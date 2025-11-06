@@ -109,31 +109,71 @@ function initCounterAnimation() {
 }
 
 // ===========================
-// Navigation Functionality
+// Card Navigation Functionality
 // ===========================
 
-// Get navigation elements
-const navToggle = document.getElementById('nav-toggle');
-const navMenu = document.getElementById('nav-menu');
-const navLinks = document.querySelectorAll('.nav-link');
-const navbar = document.getElementById('navbar');
+// Get card navigation elements
+const hamburgerMenu = document.getElementById('hamburger-menu');
+const cardNav = document.getElementById('card-nav');
+const navCardLinks = document.querySelectorAll('.nav-card-link');
 const backToTopBtn = document.getElementById('back-to-top');
 
-// Toggle mobile menu
-if (navToggle) {
-    navToggle.addEventListener('click', () => {
-        navToggle.classList.toggle('active');
-        navMenu.classList.toggle('active');
+// Toggle card navigation
+if (hamburgerMenu && cardNav) {
+    hamburgerMenu.addEventListener('click', () => {
+        hamburgerMenu.classList.toggle('open');
+        cardNav.classList.toggle('open');
+        
+        // Animate height when opening/closing
+        if (cardNav.classList.contains('open')) {
+            // Calculate dynamic height based on content
+            const cardNavTop = cardNav.querySelector('.card-nav-top');
+            const cardNavContent = cardNav.querySelector('.card-nav-content');
+            const topHeight = cardNavTop ? cardNavTop.offsetHeight : 60;
+            
+            // On mobile, cards stack vertically
+            if (window.innerWidth <= 768) {
+                cardNav.style.height = '400px';
+            } else {
+                cardNav.style.height = '300px';
+            }
+        } else {
+            cardNav.style.height = '60px';
+        }
     });
 }
 
-// Close mobile menu when clicking on a link
-navLinks.forEach(link => {
+// Close card navigation when clicking on a link
+navCardLinks.forEach(link => {
     link.addEventListener('click', () => {
-        navToggle.classList.remove('active');
-        navMenu.classList.remove('active');
+        if (hamburgerMenu) hamburgerMenu.classList.remove('open');
+        if (cardNav) {
+            cardNav.classList.remove('open');
+            cardNav.style.height = '60px';
+        }
     });
 });
+
+// Close card navigation when clicking outside
+document.addEventListener('click', (e) => {
+    if (cardNav && cardNav.classList.contains('open')) {
+        const isClickInsideNav = cardNav.contains(e.target);
+        if (!isClickInsideNav) {
+            hamburgerMenu.classList.remove('open');
+            cardNav.classList.remove('open');
+            cardNav.style.height = '60px';
+        }
+    }
+});
+
+// Handle CTA button click
+const ctaButton = document.querySelector('.card-nav-cta-button');
+if (ctaButton) {
+    ctaButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        window.location.href = '#contact';
+    });
+}
 
 // ===========================
 // Smooth Scrolling
@@ -155,7 +195,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         
         const targetSection = document.querySelector(targetId);
         if (targetSection) {
-            const navHeight = navbar.offsetHeight;
+            const navHeight = 60; // Fixed height of card navigation
             const targetPosition = targetSection.offsetTop - navHeight;
             
             window.scrollTo({
@@ -172,7 +212,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 function updateActiveNavLink() {
     const sections = document.querySelectorAll('section[id]');
-    const scrollPosition = window.scrollY + navbar.offsetHeight + 100;
+    const scrollPosition = window.scrollY + 60 + 100; // Card nav height is 60px
     
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
@@ -180,7 +220,7 @@ function updateActiveNavLink() {
         const sectionId = section.getAttribute('id');
         
         if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-            navLinks.forEach(link => {
+            navCardLinks.forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('href') === `#${sectionId}`) {
                     link.classList.add('active');
@@ -191,7 +231,7 @@ function updateActiveNavLink() {
     
     // Special case for home/hero section
     if (window.scrollY < 100) {
-        navLinks.forEach(link => link.classList.remove('active'));
+        navCardLinks.forEach(link => link.classList.remove('active'));
     }
 }
 
@@ -200,11 +240,8 @@ function updateActiveNavLink() {
 // ===========================
 
 function handleNavbarScroll() {
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
+    // Card nav doesn't need scroll effect for styling changes
+    // but we still need to handle back to top button and scroll progress
     
     // Show/hide back to top button
     if (backToTopBtn) {
@@ -465,10 +502,22 @@ let resizeTimeout;
 window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
-        // Close mobile menu on resize to desktop
+        // Close card nav on resize to desktop
         if (window.innerWidth > MOBILE_BREAKPOINT) {
-            navToggle.classList.remove('active');
-            navMenu.classList.remove('active');
+            if (hamburgerMenu) hamburgerMenu.classList.remove('open');
+            if (cardNav) {
+                cardNav.classList.remove('open');
+                cardNav.style.height = '60px';
+            }
+        }
+        
+        // Update card nav height if open
+        if (cardNav && cardNav.classList.contains('open')) {
+            if (window.innerWidth <= 768) {
+                cardNav.style.height = '400px';
+            } else {
+                cardNav.style.height = '300px';
+            }
         }
     }, 250);
 }, { passive: true });
@@ -477,11 +526,12 @@ window.addEventListener('resize', () => {
 // Keyboard Navigation
 // ===========================
 
-// ESC key to close mobile menu
+// ESC key to close card navigation
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-        navToggle.classList.remove('active');
-        navMenu.classList.remove('active');
+    if (e.key === 'Escape' && cardNav && cardNav.classList.contains('open')) {
+        if (hamburgerMenu) hamburgerMenu.classList.remove('open');
+        cardNav.classList.remove('open');
+        cardNav.style.height = '60px';
     }
 });
 
@@ -489,15 +539,7 @@ document.addEventListener('keydown', (e) => {
 // Click Outside to Close Menu
 // ===========================
 
-document.addEventListener('click', (e) => {
-    if (navMenu.classList.contains('active')) {
-        const isClickInsideNav = navMenu.contains(e.target) || navToggle.contains(e.target);
-        if (!isClickInsideNav) {
-            navToggle.classList.remove('active');
-            navMenu.classList.remove('active');
-        }
-    }
-});
+// Handled above in card navigation section
 
 // ===========================
 // Form Enhancement (if contact form is added later)
@@ -549,7 +591,7 @@ function throttle(func, limit) {
 // ===========================
 
 // Track navigation clicks
-navLinks.forEach(link => {
+navCardLinks.forEach(link => {
     link.addEventListener('click', () => {
         const section = link.getAttribute('href').substring(1);
         // Add analytics tracking here if needed

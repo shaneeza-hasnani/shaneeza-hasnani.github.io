@@ -269,8 +269,9 @@ a {
 }
 
 /* ===========================
-   Navigation Bar
+   Navigation Bar (Legacy - Replaced by Card Nav)
    =========================== */
+/* Keeping styles in case of fallback, but card nav is primary */
 .navbar {
     position: fixed;
     top: 0;
@@ -396,7 +397,7 @@ a {
     background: linear-gradient(135deg, var(--hero-gradient-1) 0%, var(--hero-gradient-2) 50%, var(--hero-gradient-3) 100%);
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
-    padding-top: 70px;
+    padding-top: 0; /* Card nav is absolute, no padding needed */
     position: relative;
     overflow: hidden;
     will-change: background-position;
