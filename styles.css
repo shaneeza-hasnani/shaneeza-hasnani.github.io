@@ -1679,6 +1679,10 @@ a {
   transform: translateY(4px) rotate(45deg);
 }
 
+.hamburger-menu.open .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
 .hamburger-menu.open .hamburger-line:last-child {
   transform: translateY(-4px) rotate(-45deg);
 }
@@ -1706,6 +1710,7 @@ a {
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  display: flex;
   align-items: center;
 }
 
