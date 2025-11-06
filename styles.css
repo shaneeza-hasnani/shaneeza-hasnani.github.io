@@ -1828,3 +1828,33 @@ a {
     font-size: 15px;
   }
 }
+
+/* ===========================
+   Navigation Card Color Themes
+   =========================== */
+.nav-card--about {
+  background-color: #B1A2B9;
+  color: white;
+}
+
+.nav-card--experience {
+  background-color: #9A515C;
+  color: white;
+}
+
+.nav-card--projects {
+  background-color: #E6A8B1;
+  color: white;
+}
+
+.nav-card--skills {
+  background-color: #2A8C9D;
+  color: white;
+}
+
+.nav-card--about .nav-card-link,
+.nav-card--experience .nav-card-link,
+.nav-card--projects .nav-card-link,
+.nav-card--skills .nav-card-link {
+  color: white;
+}

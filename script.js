@@ -126,11 +126,6 @@ if (hamburgerMenu && cardNav) {
         
         // Animate height when opening/closing
         if (cardNav.classList.contains('open')) {
-            // Calculate dynamic height based on content
-            const cardNavTop = cardNav.querySelector('.card-nav-top');
-            const cardNavContent = cardNav.querySelector('.card-nav-content');
-            const topHeight = cardNavTop ? cardNavTop.offsetHeight : 60;
-            
             // On mobile, cards stack vertically
             if (window.innerWidth <= 768) {
                 cardNav.style.height = '400px';
@@ -158,7 +153,8 @@ navCardLinks.forEach(link => {
 document.addEventListener('click', (e) => {
     if (cardNav && cardNav.classList.contains('open')) {
         const isClickInsideNav = cardNav.contains(e.target);
-        if (!isClickInsideNav) {
+        const isClickOnHamburger = hamburgerMenu && hamburgerMenu.contains(e.target);
+        if (!isClickInsideNav && !isClickOnHamburger) {
             hamburgerMenu.classList.remove('open');
             cardNav.classList.remove('open');
             cardNav.style.height = '60px';
