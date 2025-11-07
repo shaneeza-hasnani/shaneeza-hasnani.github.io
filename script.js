@@ -340,31 +340,6 @@ window.addEventListener('load', () => {
 });
 
 // ===========================
-// Parallax Effect for Hero Icons
-// ===========================
-let ticking = false;
-
-function handleParallax() {
-    const scrolled = window.pageYOffset;
-    const parallaxElements = document.querySelectorAll('.floating-icon');
-    
-    parallaxElements.forEach((element, index) => {
-        const speed = 0.5 + (index * 0.1);
-        const yPos = -(scrolled * speed);
-        element.style.transform = `translateY(${yPos}px)`;
-    });
-    
-    ticking = false;
-}
-
-function requestParallax() {
-    if (!ticking) {
-        window.requestAnimationFrame(handleParallax);
-        ticking = true;
-    }
-}
-
-// ===========================
 // Custom Cursor Removed - Using Default Pointer
 // ===========================
 
@@ -414,7 +389,6 @@ let scrollTimeout;
 window.addEventListener('scroll', () => {
     handleNavbarScroll();
     updateActiveNavLink();
-    requestParallax();
     
     // Debounce scroll reveal for performance
     if (!('IntersectionObserver' in window)) {
