@@ -243,6 +243,23 @@ a {
     padding: var(--spacing-2xl) 0;
 }
 
+.section:not(.hero) {
+    position: relative;
+    transition: all var(--transition-base);
+}
+
+.section:not(.hero)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(154, 81, 92, 0.1), transparent);
+    opacity: 0.5;
+}
+
 .section-title {
     text-align: center;
     margin-bottom: var(--spacing-xl);
@@ -259,10 +276,12 @@ a {
 
 .section-title .no-underline {
     text-decoration: none;
-    -webkit-text-fill-color: inherit;
-    background: none;
-    color: var(--text-primary);
-    opacity: 0.6;
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    -webkit-text-fill-color: var(--text-primary) !important;
+    background-clip: initial !important;
+    opacity: 0.5;
+    font-weight: 400;
 }
 
 .section-title::after {
@@ -443,18 +462,6 @@ a {
     will-change: background-position;
 }
 
-@keyframes gradientShift {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
 .hero::before {
     content: '';
     position: absolute;
@@ -477,6 +484,18 @@ a {
     left: 0;
     background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
     pointer-events: none;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .hero-content {
@@ -1638,6 +1657,11 @@ a {
     .hero-buttons {
         flex-wrap: wrap;
         align-items: center;
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .hero-social-links {
+        margin-top: var(--spacing-md);
     }
     
     .btn {
