@@ -70,7 +70,8 @@ html {
 body {
     font-family: var(--font-family);
     color: var(--text-primary);
-    background-color: var(--bg-primary);
+    background: linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 50%, #F8F9FA 100%);
+    background-attachment: fixed;
     line-height: var(--line-height-base);
     overflow-x: hidden;
 }
@@ -256,6 +257,14 @@ a {
     white-space: nowrap;
 }
 
+.section-title .no-underline {
+    text-decoration: none;
+    -webkit-text-fill-color: inherit;
+    background: none;
+    color: var(--text-primary);
+    opacity: 0.6;
+}
+
 .section-title::after {
     content: '';
     position: absolute;
@@ -320,8 +329,8 @@ a {
 
 .nav-link {
     color: var(--text-secondary);
-    font-weight: 500;
-    padding: var(--spacing-xs) calc(var(--spacing-md) / 1.5);
+    font-weight: 600;
+    padding: var(--spacing-xs) var(--spacing-md);
     border-radius: var(--radius-full);
     transition: all var(--transition-base);
     position: relative;
@@ -342,20 +351,22 @@ a {
 
 .nav-link:hover {
     color: var(--primary-color);
-    background-color: var(--bg-accent);
+    background-color: rgba(230, 168, 177, 0.15);
+    transform: translateY(-2px);
 }
 
 .nav-link:hover::after {
-    width: 70%;
+    width: 80%;
 }
 
 .nav-link.active {
     color: var(--primary-color);
-    background-color: var(--bg-accent);
+    background-color: rgba(230, 168, 177, 0.15);
+    font-weight: 700;
 }
 
 .nav-link.active::after {
-    width: 70%;
+    width: 80%;
 }
 
 .nav-social-icons {
@@ -517,6 +528,41 @@ a {
     justify-content: center;
     flex-wrap: nowrap;
     animation: fadeInUp 0.8s ease-out 0.6s backwards;
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Hero Social Icons */
+.hero-social-links {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    animation: fadeInUp 0.8s ease-out 0.8s backwards;
+}
+
+.hero-social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-md);
+    color: white;
+    transition: all var(--transition-base);
+}
+
+.hero-social-icon:hover {
+    background: white;
+    color: var(--primary-color);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.hero-social-icon svg {
+    width: 24px;
+    height: 24px;
 }
 
 /* ===========================
@@ -584,7 +630,7 @@ a {
    About Section
    =========================== */
 .about {
-    background-color: #F5F5F5;
+    background-color: transparent;
 }
 
 .about-content {
@@ -748,7 +794,7 @@ a {
    Experience Section - Improved Layout
    =========================== */
 .experience {
-    background-color: var(--bg-primary);
+    background-color: transparent;
 }
 
 .timeline {
@@ -876,7 +922,7 @@ a {
    Projects Section
    =========================== */
 .projects {
-    background-color: #F5F5F5;
+    background-color: transparent;
 }
 
 .projects-grid {
@@ -1058,7 +1104,7 @@ a {
    Skills Section - Compact & Unique Design
    =========================== */
 .skills {
-    background-color: var(--bg-primary);
+    background-color: transparent;
 }
 
 .skills-grid {
@@ -1132,7 +1178,7 @@ a {
    Education Section - Compact Design
    =========================== */
 .education {
-    background-color: #F5F5F5;
+    background-color: transparent;
 }
 
 .education-grid {
@@ -1222,7 +1268,7 @@ a {
    Certifications & Awards Section
    =========================== */
 .certifications {
-    background-color: var(--bg-primary);
+    background-color: transparent;
 }
 
 .certifications-grid {
@@ -1298,7 +1344,7 @@ a {
    Contact Section
    =========================== */
 .contact {
-    background-color: #F5F5F5;
+    background-color: transparent;
 }
 
 .contact-content {
