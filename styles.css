@@ -253,6 +253,7 @@ a {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    white-space: nowrap;
 }
 
 .section-title::after {
@@ -465,60 +466,6 @@ a {
     left: 0;
     background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
     pointer-events: none;
-}
-
-.hero-decoration {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-}
-
-.floating-icon {
-    animation: float 6s ease-in-out infinite;
-    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
-}
-
-.floating-icon:nth-child(1) {
-    animation-delay: 0s;
-    animation-duration: 7s;
-}
-
-.floating-icon:nth-child(2) {
-    animation-delay: 1s;
-    animation-duration: 6s;
-}
-
-.floating-icon:nth-child(3) {
-    animation-delay: 2s;
-    animation-duration: 8s;
-}
-
-.floating-icon:nth-child(4) {
-    animation-delay: 1.5s;
-    animation-duration: 7.5s;
-}
-
-.floating-icon:nth-child(5) {
-    animation-delay: 0.5s;
-    animation-duration: 6.5s;
-}
-
-.floating-icon:nth-child(6) {
-    animation-delay: 2.5s;
-    animation-duration: 7.2s;
-}
-
-.floating-icon:nth-child(7) {
-    animation-delay: 1.8s;
-    animation-duration: 6.8s;
-}
-
-.floating-icon:nth-child(8) {
-    animation-delay: 0.8s;
-    animation-duration: 8.2s;
 }
 
 .hero-content {
@@ -1639,6 +1586,7 @@ a {
     
     .section-title {
         font-size: 2rem;
+        white-space: normal;
     }
     
     .hero-buttons {
@@ -1680,10 +1628,6 @@ a {
         right: 20px;
         width: 45px;
         height: 45px;
-    }
-    
-    .floating-icon {
-        display: none;
     }
 }
 
