@@ -70,8 +70,9 @@ html {
 body {
     font-family: var(--font-family);
     color: var(--text-primary);
+    /* Subtle gradient background for seamless, cohesive design */
     background: linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 50%, #F8F9FA 100%);
-    background-attachment: fixed;
+    background-attachment: fixed; /* Note: May impact mobile scroll performance */
     line-height: var(--line-height-base);
     overflow-x: hidden;
 }
@@ -276,10 +277,10 @@ a {
 
 .section-title .no-underline {
     text-decoration: none;
-    background: none !important;
-    -webkit-background-clip: initial !important;
-    -webkit-text-fill-color: var(--text-primary) !important;
-    background-clip: initial !important;
+    background: var(--text-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: var(--text-primary);
+    background-clip: text;
     opacity: 0.5;
     font-weight: 400;
 }
@@ -564,12 +565,19 @@ a {
     justify-content: center;
     width: 50px;
     height: 50px;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.25);
     border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: var(--radius-md);
     color: white;
     transition: all var(--transition-base);
+}
+
+/* Modern browsers with backdrop-filter support */
+@supports (backdrop-filter: blur(10px)) {
+    .hero-social-icon {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+    }
 }
 
 .hero-social-icon:hover {
