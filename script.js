@@ -365,45 +365,8 @@ function requestParallax() {
 }
 
 // ===========================
-// Smooth Cursor Follow Effect (Optional)
+// Custom Cursor Removed - Using Default Pointer
 // ===========================
-let cursorDot, cursorOutline;
-
-function initCustomCursor() {
-    if (window.innerWidth < MOBILE_BREAKPOINT) return;
-    
-    cursorDot = document.createElement('div');
-    cursorDot.className = 'cursor-dot';
-    cursorOutline = document.createElement('div');
-    cursorOutline.className = 'cursor-outline';
-    
-    document.body.appendChild(cursorDot);
-    document.body.appendChild(cursorOutline);
-    
-    document.addEventListener('mousemove', (e) => {
-        const posX = e.clientX;
-        const posY = e.clientY;
-        
-        cursorDot.style.left = `${posX}px`;
-        cursorDot.style.top = `${posY}px`;
-        
-        cursorOutline.style.left = `${posX}px`;
-        cursorOutline.style.top = `${posY}px`;
-    });
-    
-    // Add hover effects for interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-item');
-    interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursorDot.style.transform = 'translate(-50%, -50%) scale(1.5)';
-            cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
-        });
-        el.addEventListener('mouseleave', () => {
-            cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
-            cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
-        });
-    });
-}
 
 // ===========================
 // Ripple Effect for Buttons
@@ -586,11 +549,6 @@ document.addEventListener('DOMContentLoaded', () => {
     handleNavbarScroll();
     updateActiveNavLink();
     setupContactForm();
-    
-    // Initialize custom cursor (desktop only)
-    if (window.innerWidth >= MOBILE_BREAKPOINT) {
-        initCustomCursor();
-    }
     
     // Initialize ripple effects
     initRippleEffect();
