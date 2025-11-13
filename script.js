@@ -19,7 +19,7 @@ window.addEventListener('load', () => {
                 loadingScreen.style.display = 'none';
             }, 500);
         }
-    }, 1000);
+    }, 500);
 });
 
 // ===========================
@@ -292,7 +292,7 @@ function setupIntersectionObserver() {
     const elementsToObserve = document.querySelectorAll('.timeline-item, .project-card, .skill-category, .education-card, .contact-method');
     elementsToObserve.forEach((element, index) => {
         element.classList.add('reveal');
-        element.style.transitionDelay = `${index * 0.1}s`;
+        element.style.transitionDelay = `${index * 0.05}s`;
         observer.observe(element);
     });
 }
