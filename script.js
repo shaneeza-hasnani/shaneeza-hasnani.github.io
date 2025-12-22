@@ -536,6 +536,219 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ===========================
+// Project Filtering Functionality
+// ===========================
+function initProjectFilters() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    if (!filterBtns.length || !projectCards.length) return;
+    
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const filter = btn.getAttribute('data-filter');
+            
+            // Update active state
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // Filter projects
+            let visibleCount = 0;
+            projectCards.forEach(card => {
+                const tools = card.getAttribute('data-tools');
+                
+                if (filter === 'all') {
+                    card.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    if (tools && tools.includes(filter)) {
+                        card.classList.remove('hidden');
+                        visibleCount++;
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                }
+            });
+            
+            // Update count on "All Projects" button
+            const allBtn = document.querySelector('.filter-btn[data-filter="all"]');
+            const countSpan = allBtn ? allBtn.querySelector('.filter-count') : null;
+            if (countSpan && filter === 'all') {
+                countSpan.textContent = projectCards.length;
+            }
+            
+            // Trigger animation for visible cards
+            setTimeout(() => {
+                projectCards.forEach(card => {
+                    if (!card.classList.contains('hidden')) {
+                        card.style.animation = 'none';
+                        setTimeout(() => {
+                            card.style.animation = '';
+                            card.classList.add('reveal', 'active');
+                        }, 10);
+                    }
+                });
+            }, 100);
+        });
+    });
+}
+
+// ===========================
+// Contact Form Handling
+// ===========================
+function initContactForm() {
+    const contactForm = document.getElementById('contact-form');
+    
+    if (!contactForm) return;
+    
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = new FormData(contactForm);
+        const data = {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            subject: formData.get('subject'),
+            message: formData.get('message')
+        };
+        
+        // Get submit button
+        const submitBtn = contactForm.querySelector('.btn-submit');
+        const originalText = submitBtn.innerHTML;
+        
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation: spin 1s linear infinite;">
+                <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
+                <path d="M12 2a10 10 0 0 1 10 10" stroke-opacity="0.75"></path>
+            </svg>
+            <span>Sending...</span>
+        `;
+        
+        try {
+            // Simulate sending (replace with actual API call)
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            // Show success message
+            submitBtn.innerHTML = `
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Message Sent!</span>
+            `;
+            submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+            
+            // Reset form
+            contactForm.reset();
+            
+            // Reset button after 3 seconds
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+                submitBtn.style.background = '';
+            }, 3000);
+            
+            // Show alert
+            showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+            
+        } catch (error) {
+            // Show error message
+            submitBtn.innerHTML = `
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="15" y1="9" x2="9" y2="15"></line>
+                    <line x1="9" y1="9" x2="15" y2="15"></line>
+                </svg>
+                <span>Failed to Send</span>
+            `;
+            submitBtn.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+            
+            // Reset button after 3 seconds
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+                submitBtn.style.background = '';
+            }, 3000);
+            
+            showNotification('Failed to send message. Please try again or email directly.', 'error');
+        }
+    });
+}
+
+// Helper function to show notifications
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        background: ${type === 'success' ? '#10b981' : '#ef4444'};
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        z-index: 10000;
+        animation: slideInRight 0.3s ease-out;
+        max-width: 350px;
+    `;
+    notification.textContent = message;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.animation = 'slideOutRight 0.3s ease-out';
+        setTimeout(() => notification.remove(), 300);
+    }, 5000);
+}
+
+// Add CSS animation for notification
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideInRight {
+        from {
+            transform: translateX(400px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideOutRight {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(400px);
+            opacity: 0;
+        }
+    }
+    
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+`;
+document.head.appendChild(style);
+
+// ===========================
+// Initialize New Features
+// ===========================
+document.addEventListener('DOMContentLoaded', () => {
+    initProjectFilters();
+    initContactForm();
+});
+
+// ===========================
 // Service Worker Registration (for PWA - Optional)
 // ===========================
 
