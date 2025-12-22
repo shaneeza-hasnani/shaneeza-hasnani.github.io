@@ -2,7 +2,7 @@
 // Constants
 // ===========================
 const MOBILE_BREAKPOINT = 768;
-const SCROLL_REVEAL_OFFSET = 100;
+const SCROLL_REVEAL_OFFSET = 200;
 const BACK_TO_TOP_THRESHOLD = 300;
 
 // ===========================
@@ -275,7 +275,7 @@ function initializeRevealElements() {
 function setupIntersectionObserver() {
     const observerOptions = {
         threshold: 0.1,
-        rootMargin: '0px 0px 50px 0px'
+        rootMargin: '0px 0px 200px 0px'
     };
     
     const observer = new IntersectionObserver((entries) => {
