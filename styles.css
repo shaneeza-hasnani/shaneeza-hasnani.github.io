@@ -1294,19 +1294,21 @@ a {
 
 .education-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--spacing-lg);
-    max-width: 800px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-xl);
+    max-width: 900px;
     margin: 0 auto;
+    padding: var(--spacing-md);
 }
 
 .education-card {
     background-color: white;
-    padding: var(--spacing-lg);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-    transition: all var(--transition-base);
-    border: 2px solid var(--border-color);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    transition: all var(--transition-slow);
+    border: 3px solid transparent;
+    background-clip: padding-box;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -1318,58 +1320,106 @@ a {
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    bottom: 0;
+    border-radius: var(--radius-xl);
+    padding: 3px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color), var(--primary-light));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.education-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(154, 81, 92, 0.05) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity var(--transition-slow);
+    pointer-events: none;
 }
 
 .education-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-xl);
-    border-color: var(--primary-color);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: var(--shadow-xl), 0 15px 40px rgba(154, 81, 92, 0.2);
+}
+
+.education-card:hover::after {
+    opacity: 1;
 }
 
 .education-icon {
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color), var(--primary-light));
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    margin: 0 auto var(--spacing-sm);
+    margin: 0 auto var(--spacing-md);
+    box-shadow: 0 8px 20px rgba(154, 81, 92, 0.3);
+    position: relative;
+    animation: float 3s ease-in-out infinite;
+}
+
+.education-icon::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    padding: 2px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.3;
+}
+
+.education-card:hover .education-icon {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 12px 30px rgba(154, 81, 92, 0.4);
 }
 
 .education-degree {
-    font-size: 1.25rem;
-    margin-bottom: var(--spacing-xs);
+    font-size: 1.4rem;
+    margin-bottom: var(--spacing-sm);
     color: var(--text-primary);
-    font-weight: 600;
+    font-weight: 700;
+    line-height: 1.3;
 }
 
 .education-school {
     color: var(--primary-color);
     font-weight: 600;
-    font-size: 0.95rem;
-    margin-bottom: var(--spacing-xs);
+    font-size: 1rem;
+    margin-bottom: var(--spacing-md);
+    line-height: 1.5;
 }
 
 .education-date {
     display: inline-block;
-    padding: 0.25rem 0.75rem;
-    background-color: rgba(154, 81, 92, 0.1);
+    padding: 0.5rem 1.25rem;
+    background: linear-gradient(135deg, rgba(154, 81, 92, 0.1), rgba(177, 162, 185, 0.1));
     color: var(--text-secondary);
-    border-radius: var(--radius-sm);
-    font-size: 0.875rem;
-    font-weight: 500;
-    margin-bottom: var(--spacing-xs);
+    border-radius: var(--radius-full);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    border: 2px solid rgba(154, 81, 92, 0.15);
+    box-shadow: 0 2px 8px rgba(154, 81, 92, 0.1);
 }
 
 .education-location {
     color: var(--text-light);
-    font-size: 0.875rem;
+    font-size: 0.95rem;
     margin: 0;
     font-style: italic;
+    font-weight: 500;
 }
 
 /* ===========================
