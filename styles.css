@@ -1603,8 +1603,8 @@ a {
 /* Scroll reveal animation - Enhanced */
 .reveal {
     opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(20px);
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .reveal.active {
