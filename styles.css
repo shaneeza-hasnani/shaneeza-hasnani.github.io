@@ -155,7 +155,6 @@ body {
     color: var(--text-primary);
     /* Subtle gradient background for seamless, cohesive design */
     background: linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 50%, #F8F9FA 100%);
-    background-attachment: fixed; /* Note: May impact mobile scroll performance */
     line-height: var(--line-height-base);
     overflow-x: hidden;
 }
