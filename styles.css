@@ -588,14 +588,6 @@ a {
 }
 
 .hero::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background: none;
-    pointer-events: none;
     display: none;
 }
 
@@ -2067,10 +2059,6 @@ a {
 }
 
 .shape {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0;
-    animation: float 20s ease-in-out infinite;
     display: none;
 }
 
