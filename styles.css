@@ -102,7 +102,7 @@
     
     /* Text Colors */
     --text-primary: #1F2937;         /* Primary text color */
-    --text-secondary: rgba(31, 41, 55, 0.70);  /* Secondary text at 70% opacity */
+    --text-secondary: rgba(31, 41, 55, 0.7);  /* Secondary text at 70% opacity */
     
     /* Accent Color (ONLY accent) */
     --accent: #10B981;               /* Emerald - for CTAs, links, hover, active states */
@@ -2786,7 +2786,7 @@ a {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px var(--accent-light);
+    box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
 .form-group input::placeholder,
