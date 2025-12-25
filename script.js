@@ -288,11 +288,10 @@ function setupIntersectionObserver() {
         });
     }, observerOptions);
     
-    // Observe elements with staggered animation
+    // Observe elements for instant reveal animation (no staggered delay)
     const elementsToObserve = document.querySelectorAll('.timeline-item, .project-card, .skill-category, .education-card, .contact-method');
     elementsToObserve.forEach((element, index) => {
         element.classList.add('reveal');
-        // Removed staggered delay (was index * 0.05s) for instant reveal
         observer.observe(element);
     });
 }
