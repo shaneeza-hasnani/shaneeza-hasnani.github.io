@@ -976,28 +976,35 @@ a {
     position: absolute;
     left: -9px;
     top: 8px;
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
-    background-color: var(--primary);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--data-blue) 100%);
     border: 4px solid var(--surface);
-    box-shadow: 0 0 0 4px var(--bg);
+    box-shadow: 0 0 0 4px var(--bg), 0 4px 12px rgba(44, 62, 80, 0.3);
     z-index: 1;
+    transition: all var(--transition-base);
+}
+
+.timeline-item:hover .timeline-dot {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 4px var(--bg), 0 6px 16px rgba(52, 152, 219, 0.4);
 }
 
 .timeline-content {
     background-color: var(--surface);
     padding: var(--spacing-lg) var(--spacing-xl);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
     transition: all var(--transition-base);
-    border-left: 4px solid var(--primary);
+    border-left: 4px solid transparent;
+    border-image: linear-gradient(180deg, var(--primary) 0%, var(--data-blue) 100%) 1;
 }
 
 .timeline-content:hover {
-    transform: translateX(8px);
-    box-shadow: var(--shadow-lg);
-    border-left-color: var(--primary-hover);
+    transform: translateX(10px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    border-image: linear-gradient(180deg, var(--data-blue) 0%, var(--data-purple) 100%) 1;
 }
 
 .timeline-title {
@@ -1302,7 +1309,7 @@ a {
     background-color: var(--surface);
     padding: var(--spacing-lg);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
     transition: all var(--transition-base);
     border: 1px solid var(--border);
     text-align: center;
@@ -1317,25 +1324,31 @@ a {
     left: 0;
     right: 0;
     height: 4px;
-    background: var(--primary);
+    background: linear-gradient(90deg, var(--primary) 0%, var(--data-purple) 100%);
 }
 
 .education-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-xl);
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
     border-color: var(--primary);
 }
 
 .education-icon {
-    width: 50px;
-    height: 50px;
-    background: var(--primary);
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--data-blue) 100%);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     margin: 0 auto var(--spacing-sm);
+    box-shadow: 0 4px 12px rgba(44, 62, 80, 0.2);
+    transition: transform var(--transition-base);
+}
+
+.education-card:hover .education-icon {
+    transform: scale(1.1) rotate(5deg);
 }
 
 .education-degree {
@@ -1389,29 +1402,35 @@ a {
     background-color: var(--surface);
     padding: var(--spacing-lg);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
     transition: all var(--transition-base);
     border: 1px solid var(--border);
     text-align: center;
 }
 
 .certification-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: var(--shadow-xl);
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
     border-color: var(--secondary);
 }
 
 .cert-icon {
-    width: 60px;
-    height: 60px;
-    background: var(--secondary);
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--data-orange) 100%);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     margin: 0 auto var(--spacing-md);
+    box-shadow: 0 4px 16px rgba(184, 146, 106, 0.3);
     animation: float 3s ease-in-out infinite;
+}
+
+.certification-card:hover .cert-icon {
+    animation: none;
+    transform: scale(1.15);
 }
 
 .cert-title {
@@ -2128,7 +2147,7 @@ a {
 }
 
 .btn-primary-hero {
-    background: var(--primary);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--data-blue) 100%);
     color: white;
     display: inline-flex;
     align-items: center;
@@ -2138,35 +2157,62 @@ a {
     font-weight: 700;
     border-radius: 0.5rem;
     transition: all var(--transition-base);
-    box-shadow: none;
+    box-shadow: 0 4px 12px rgba(44, 62, 80, 0.2);
     border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--data-blue) 0%, var(--data-purple) 100%);
+    transition: left var(--transition-base);
+}
+
+.btn-primary-hero:hover::before {
+    left: 0;
+}
+
+.btn-primary-hero span {
+    position: relative;
+    z-index: 1;
+}
+
+.btn-primary-hero svg {
+    position: relative;
+    z-index: 1;
 }
 
 .btn-primary-hero:hover {
-    background: var(--primary-hover);
     transform: translateY(-2px);
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
 }
 
 .btn-secondary-hero {
     background-color: transparent;
     color: var(--text-secondary);
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     padding: 1rem 2rem;
     font-size: 0.9375rem;
-    font-weight: 500;
+    font-weight: 600;
     border-radius: 0.5rem;
     transition: all var(--transition-base);
 }
 
 .btn-secondary-hero:hover {
-    background-color: var(--surface-muted);
-    color: var(--text);
-    border-color: var(--text-secondary);
-    transform: translateY(-1px);
+    background-color: var(--surface);
+    color: var(--primary);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .scroll-indicator {
@@ -2676,7 +2722,7 @@ a {
     background: var(--surface);
     padding: var(--spacing-lg);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
     transition: all var(--transition-base);
     border: 1px solid var(--border);
     position: relative;
@@ -2690,13 +2736,25 @@ a {
     left: 0;
     width: 100%;
     height: 4px;
-    background: var(--secondary);
+    background: linear-gradient(90deg, var(--data-blue) 0%, var(--data-purple) 100%);
+}
+
+.skill-category:nth-child(2)::before {
+    background: linear-gradient(90deg, var(--data-green) 0%, var(--data-blue) 100%);
+}
+
+.skill-category:nth-child(3)::before {
+    background: linear-gradient(90deg, var(--data-purple) 0%, var(--primary) 100%);
+}
+
+.skill-category:nth-child(4)::before {
+    background: linear-gradient(90deg, var(--data-orange) 0%, var(--data-green) 100%);
 }
 
 .skill-category:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-xl);
-    border-color: var(--secondary);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    border-color: var(--data-blue);
 }
 
 .skill-category-title {
@@ -2729,18 +2787,18 @@ a {
     color: var(--text);
     border-radius: var(--radius-full);
     font-size: 0.875rem;
-    font-weight: 500;
+    font-weight: 600;
     transition: all var(--transition-base);
     border: 1px solid var(--border);
     cursor: pointer;
 }
 
 .skill-item:hover {
-    background: var(--secondary);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--data-blue) 100%);
     color: white;
     border-color: transparent;
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: var(--shadow-sm);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
 }
 
 /* ===========================
@@ -2952,19 +3010,30 @@ a {
 }
 
 .btn-details {
-    background: var(--primary);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--data-blue) 100%);
     color: white;
-    box-shadow: none;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.2);
 }
 
 .btn-details:hover {
-    background: var(--primary-hover);
+    background: linear-gradient(135deg, var(--primary-hover) 0%, var(--primary) 100%);
     transform: translateY(-2px);
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
 }
 
 .btn-code {
-    background: var(--secondary-soft);
+    background: var(--surface-muted);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.btn-code:hover {
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--data-orange) 100%);
+    color: white;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(184, 146, 106, 0.3);
+}
     color: var(--secondary);
     border: 1px solid var(--secondary);
 }
