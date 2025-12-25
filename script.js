@@ -292,7 +292,7 @@ function setupIntersectionObserver() {
     const elementsToObserve = document.querySelectorAll('.timeline-item, .project-card, .skill-category, .education-card, .contact-method');
     elementsToObserve.forEach((element, index) => {
         element.classList.add('reveal');
-        // No delay for instant reveal
+        // Removed staggered delay (was index * 0.05s) for instant reveal
         observer.observe(element);
     });
 }

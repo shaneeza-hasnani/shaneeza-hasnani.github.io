@@ -1825,7 +1825,7 @@ a {
     height: 3px;
     background: var(--primary);
     z-index: 10000;
-    transition: none;
+    transition: width 0s;
     box-shadow: none;
 }
 
