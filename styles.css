@@ -369,6 +369,10 @@ a {
     padding: var(--spacing-2xl) 0;
 }
 
+.section:nth-child(even) {
+    background: linear-gradient(180deg, var(--bg) 0%, rgba(232, 236, 239, 0.3) 100%);
+}
+
 .section:not(.hero) {
     position: relative;
     transition: all var(--transition-base);
@@ -430,16 +434,18 @@ a {
     top: 0;
     left: 0;
     right: 0;
-    background-color: rgba(255, 255, 255, 0.98);
+    background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(20px);
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     z-index: 1000;
     transition: all var(--transition-base);
+    border-bottom: 1px solid rgba(44, 62, 80, 0.05);
 }
 
 .navbar.scrolled {
-    box-shadow: var(--shadow-lg);
-    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 1);
+    border-bottom: 1px solid rgba(44, 62, 80, 0.1);
 }
 
 .nav-container {
@@ -2538,7 +2544,7 @@ a {
     gap: 0.5rem;
     padding: 0.75rem 1.5rem;
     background: var(--surface);
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     border-radius: 0.5rem;
     color: var(--text-secondary);
     font-weight: 600;
@@ -2549,16 +2555,16 @@ a {
 
 .filter-btn:hover {
     border-color: var(--primary);
-    color: var(--text);
+    color: var(--primary);
     transform: translateY(-2px);
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 4px 12px rgba(44, 62, 80, 0.1);
 }
 
 .filter-btn.active {
-    background: var(--primary);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--data-blue) 100%);
     color: white;
     border-color: transparent;
-    box-shadow: none;
+    box-shadow: 0 4px 12px rgba(44, 62, 80, 0.25);
 }
 
 .filter-count {
@@ -2876,7 +2882,7 @@ a {
     justify-content: center;
     gap: 0.5rem;
     padding: 1rem 2rem;
-    background: var(--primary);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--data-blue) 100%);
     color: white;
     border: none;
     border-radius: 0.5rem;
@@ -2884,17 +2890,17 @@ a {
     font-weight: 700;
     cursor: pointer;
     transition: all var(--transition-base);
-    box-shadow: none;
+    box-shadow: 0 4px 12px rgba(44, 62, 80, 0.2);
 }
 
 .btn-submit:hover {
-    background: var(--primary-hover);
+    background: linear-gradient(135deg, var(--data-blue) 0%, var(--data-purple) 100%);
     transform: translateY(-2px);
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
 }
 
 .btn-submit:active {
-    transform: translateY(-1px);
+    transform: translateY(0);
 }
 
 .contact-divider {
