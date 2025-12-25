@@ -4,15 +4,16 @@ Personal portfolio website for Shaneeza Hasnani, CFE - Data Scientist specializi
 
 ## 🎨 Design
 
-This portfolio features a sophisticated, elegant, and timeless design using a Refined Elegance palette:
+This portfolio features a sophisticated, elegant, and timeless design using an enhanced Minimalist Neutral Elegance palette:
 
-- **Deep Navy** (#1A2238) - Primary accent for confidence and authority
-- **Warm Taupe** (#9C8B7A) - Secondary accent for refined elegance
-- **Cream** (#F8F6F3) - Base background, warm and inviting
+- **Sophisticated Charcoal** (#3D3935) - Primary accent for refined professionalism
+- **Refined Taupe** (#B09C8E) - Secondary accent for pretty, sophisticated elegance
+- **Luminous Cream** (#FAF8F5) - Base background, bright and inviting
 - **Pure White** (#FFFFFF) - Card surfaces and crisp elements
-- **Soft Gray** (#E5E3DF) - Soft backgrounds and gentle separation
-- **Warm Gray** (#6B6458) - Muted elements and subtle accents
-- **Rich Charcoal** (#2D2926) - Primary text for strong, warm contrast
+- **Soft Blush** (#F5EBE8) - Delicate rose-tinted cream for pretty accents
+- **Sophisticated Warm Gray** (#8B7D70) - Muted elements and refined accents
+- **Rich Elegant Charcoal** (#2B2622) - Primary text for sophisticated, warm contrast
+- **Antique Gold** (#C9A96E) - Elegant highlights for refined touches
 
 For complete color palette documentation, usage guidelines, and accessibility information, see [COLOR_PALETTE.md](COLOR_PALETTE.md).
 
@@ -47,12 +48,13 @@ For complete color palette documentation, usage guidelines, and accessibility in
 
 ## 🎯 Design Philosophy
 
-The website embodies an elegant, classy, confident, and refined aesthetic:
+The website embodies a pretty, sophisticated, elegant, and refined aesthetic:
 
-- **Elegant**: Sophisticated color choices with warm taupe accents and cream backgrounds
-- **Classy**: Professional deep navy as the primary color conveys authority and timelessness
-- **Confident**: Strong, high-contrast text ensures clarity and confidence
+- **Pretty**: Soft blush and refined taupe add delicate, feminine touches
+- **Sophisticated**: Antique gold and sophisticated charcoal convey refined luxury
+- **Elegant**: Luminous cream and harmonious tones create a polished, classy look
 - **Refined**: Warm neutrals create a cohesive, luxurious atmosphere
+- **Minimalist**: Understated accents maintain a clean, elegant appearance
 - **Professional**: Timeless colors ensure enduring visual appeal
 - **Accessible**: WCAG AA+ compliant contrast ratios, semantic HTML, keyboard navigation
 

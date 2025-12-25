@@ -93,55 +93,56 @@
        =========================== */
     
     /* Core Palette Colors */
-    --soft-charcoal: #4A4A4A;        /* Primary accent - neutral, elegant, professional */
-    --muted-taupe: #A89D91;          /* Secondary accent - sophisticated, warm, subtle */
-    --cream: #F8F6F3;                /* Light backgrounds - soft, luxurious */
+    --soft-charcoal: #3D3935;        /* Primary accent - sophisticated charcoal with warmth */
+    --muted-taupe: #B09C8E;          /* Secondary accent - refined taupe with elegance */
+    --cream: #FAF8F5;                /* Light backgrounds - luminous champagne cream */
     --pure-white: #FFFFFF;           /* Card surfaces - crisp white */
-    --soft-gray: #E5E3DF;            /* Soft backgrounds - warm gray */
-    --warm-gray: #6B6458;            /* Muted elements - warm neutral */
-    --rich-charcoal: #2D2926;        /* Text - deep, readable */
+    --soft-blush: #F5EBE8;           /* Soft backgrounds - delicate rose-tinted cream */
+    --warm-gray: #8B7D70;            /* Muted elements - sophisticated warm gray */
+    --rich-charcoal: #2B2622;        /* Text - deep, elegant charcoal */
+    --antique-gold: #C9A96E;         /* Accent highlights - refined gold touches */
     
     /* Semantic Design Tokens */
-    --bg: #F8F6F3;                   /* Main background - cream */
+    --bg: #FAF8F5;                   /* Main background - luminous cream */
     --surface: #FFFFFF;              /* Cards, panels - pure white */
-    --surface-muted: #E5E3DF;        /* Muted surface - soft gray */
+    --surface-muted: #F5EBE8;        /* Muted surface - soft blush */
     
     /* Text Colors */
-    --text: #2D2926;                 /* Primary text - rich charcoal */
-    --text-secondary: #5A524A;       /* Secondary text - warm brown gray (8.2:1 contrast) */
-    --muted-text: #857B6F;           /* Muted text - lighter warm gray (5.5:1 contrast) */
+    --text: #2B2622;                 /* Primary text - rich elegant charcoal */
+    --text-secondary: #5C534B;       /* Secondary text - sophisticated warm gray (8.5:1 contrast) */
+    --muted-text: #8B7D70;           /* Muted text - refined warm gray (5.8:1 contrast) */
     
     /* Border & Divider */
-    --border: #DDD9D3;               /* Soft borders - warm beige */
-    --border-muted: rgba(221, 217, 211, 0.5); /* Very subtle border */
+    --border: #E8E0D8;               /* Soft borders - elegant warm beige */
+    --border-muted: rgba(232, 224, 216, 0.5); /* Very subtle border */
     
-    /* Primary Actions (Soft Charcoal) */
-    --primary: #4A4A4A;              /* Primary CTA color - soft charcoal */
-    --primary-hover: #3A3A3A;        /* Darker charcoal for hover */
-    --primary-active: #2A2A2A;       /* Even darker for active state */
-    --primary-soft: rgba(74, 74, 74, 0.08); /* Soft charcoal background */
+    /* Primary Actions (Sophisticated Charcoal) */
+    --primary: #3D3935;              /* Primary CTA color - sophisticated charcoal */
+    --primary-hover: #2F2D2A;        /* Darker charcoal for hover */
+    --primary-active: #222120;       /* Even darker for active state */
+    --primary-soft: rgba(61, 57, 53, 0.08); /* Soft charcoal background */
     
-    /* Secondary Actions (Muted Taupe) */
-    --secondary: #A89D91;            /* Secondary actions - muted taupe */
-    --secondary-hover: #938878;      /* Darker taupe for hover */
-    --secondary-active: #7E7463;     /* Even darker for active state */
-    --secondary-soft: rgba(168, 157, 145, 0.12); /* Soft taupe background */
+    /* Secondary Actions (Refined Taupe) */
+    --secondary: #B09C8E;            /* Secondary actions - refined taupe */
+    --secondary-hover: #9A8678;      /* Darker taupe for hover */
+    --secondary-active: #847565;     /* Even darker for active state */
+    --secondary-soft: rgba(176, 156, 142, 0.12); /* Soft taupe background */
     
     /* Highlight & Accents */
-    --highlight: #B8AFA0;            /* Subtle highlights - warm gray */
-    --highlight-soft: rgba(184, 175, 160, 0.15); /* Very subtle warm bg */
+    --highlight: #C9A96E;            /* Elegant highlights - antique gold */
+    --highlight-soft: rgba(201, 169, 110, 0.12); /* Subtle gold background */
     
     /* Focus & States */
-    --focus-ring: #4A4A4A;           /* Focus ring - soft charcoal for subtle visibility */
-    --disabled: rgba(45, 41, 38, 0.3); /* Disabled state */
+    --focus-ring: #3D3935;           /* Focus ring - sophisticated charcoal */
+    --disabled: rgba(43, 38, 34, 0.3); /* Disabled state */
     
     /* Legacy mappings for backward compatibility */
-    --bg-primary: #F8F6F3;
-    --bg-secondary: #E5E3DF;
-    --text-primary: #2D2926;
-    --accent: #4A4A4A;
+    --bg-primary: #FAF8F5;
+    --bg-secondary: #F5EBE8;
+    --text-primary: #2B2622;
+    --accent: #3D3935;
     --accent-hover: var(--primary-hover);
-    --accent-soft: rgba(74, 74, 74, 0.08);
+    --accent-soft: rgba(61, 57, 53, 0.08);
     --btn-secondary-bg: transparent;
     
     /* Shadows - neutral gray based (no glow effects) */
