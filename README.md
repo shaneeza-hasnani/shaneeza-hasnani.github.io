@@ -4,16 +4,16 @@ Personal portfolio website for Shaneeza Hasnani, CFE - Data Scientist specializi
 
 ## 🎨 Design
 
-This portfolio features a sophisticated, elegant, and timeless design using an enhanced Minimalist Neutral Elegance palette:
+This portfolio features a sophisticated, elegant, and vibrant design using an enhanced Minimalist Neutral Elegance palette:
 
-- **Sophisticated Charcoal** (#3D3935) - Primary accent for refined professionalism
-- **Refined Taupe** (#B09C8E) - Secondary accent for pretty, sophisticated elegance
+- **Sophisticated Teal-Charcoal** (#2C4A52) - Primary accent for vibrant professionalism
+- **Vibrant Terracotta** (#C49A6C) - Secondary accent for warm, pretty elegance
 - **Luminous Cream** (#FAF8F5) - Base background, bright and inviting
 - **Pure White** (#FFFFFF) - Card surfaces and crisp elements
-- **Soft Blush** (#F5EBE8) - Delicate rose-tinted cream for pretty accents
+- **Vibrant Peachy Blush** (#FFE9E5) - Delicate peachy cream for pretty accents
 - **Sophisticated Warm Gray** (#8B7D70) - Muted elements and refined accents
 - **Rich Elegant Charcoal** (#2B2622) - Primary text for sophisticated, warm contrast
-- **Antique Gold** (#C9A96E) - Elegant highlights for refined touches
+- **Vibrant Golden Bronze** (#D4A76A) - Elegant highlights for vibrant touches
 
 For complete color palette documentation, usage guidelines, and accessibility information, see [COLOR_PALETTE.md](COLOR_PALETTE.md).
 
@@ -48,10 +48,11 @@ For complete color palette documentation, usage guidelines, and accessibility in
 
 ## 🎯 Design Philosophy
 
-The website embodies a pretty, sophisticated, elegant, and refined aesthetic:
+The website embodies a vibrant, pretty, sophisticated, elegant, and refined aesthetic:
 
-- **Pretty**: Soft blush and refined taupe add delicate, feminine touches
-- **Sophisticated**: Antique gold and sophisticated charcoal convey refined luxury
+- **Vibrant**: Teal and terracotta add lively color that's not overpowering
+- **Pretty**: Peachy blush and warm terracotta add delicate, feminine touches
+- **Sophisticated**: Refined color choices convey luxury and professionalism
 - **Elegant**: Luminous cream and harmonious tones create a polished, classy look
 - **Refined**: Warm neutrals create a cohesive, luxurious atmosphere
 - **Minimalist**: Understated accents maintain a clean, elegant appearance

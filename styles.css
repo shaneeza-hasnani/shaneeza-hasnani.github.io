@@ -93,19 +93,19 @@
        =========================== */
     
     /* Core Palette Colors */
-    --soft-charcoal: #3D3935;        /* Primary accent - sophisticated charcoal with warmth */
-    --muted-taupe: #B09C8E;          /* Secondary accent - refined taupe with elegance */
+    --soft-charcoal: #2C4A52;        /* Primary accent - sophisticated teal-charcoal with vibrancy */
+    --muted-taupe: #C49A6C;          /* Secondary accent - vibrant warm terracotta with elegance */
     --cream: #FAF8F5;                /* Light backgrounds - luminous champagne cream */
     --pure-white: #FFFFFF;           /* Card surfaces - crisp white */
-    --soft-blush: #F5EBE8;           /* Soft backgrounds - delicate rose-tinted cream */
+    --soft-blush: #FFE9E5;           /* Soft backgrounds - vibrant peachy blush */
     --warm-gray: #8B7D70;            /* Muted elements - sophisticated warm gray */
     --rich-charcoal: #2B2622;        /* Text - deep, elegant charcoal */
-    --antique-gold: #C9A96E;         /* Accent highlights - refined gold touches */
+    --antique-gold: #D4A76A;         /* Accent highlights - vibrant golden bronze */
     
     /* Semantic Design Tokens */
     --bg: #FAF8F5;                   /* Main background - luminous cream */
     --surface: #FFFFFF;              /* Cards, panels - pure white */
-    --surface-muted: #F5EBE8;        /* Muted surface - soft blush */
+    --surface-muted: #FFE9E5;        /* Muted surface - vibrant peachy blush */
     
     /* Text Colors */
     --text: #2B2622;                 /* Primary text - rich elegant charcoal */
@@ -113,36 +113,36 @@
     --muted-text: #8B7D70;           /* Muted text - refined warm gray (5.8:1 contrast) */
     
     /* Border & Divider */
-    --border: #E8E0D8;               /* Soft borders - elegant warm beige */
-    --border-muted: rgba(232, 224, 216, 0.5); /* Very subtle border */
+    --border: #E5D5C8;               /* Soft borders - vibrant warm peach-beige */
+    --border-muted: rgba(229, 213, 200, 0.5); /* Very subtle border */
     
-    /* Primary Actions (Sophisticated Charcoal) */
-    --primary: #3D3935;              /* Primary CTA color - sophisticated charcoal */
-    --primary-hover: #2F2D2A;        /* Darker charcoal for hover */
-    --primary-active: #222120;       /* Even darker for active state */
-    --primary-soft: rgba(61, 57, 53, 0.08); /* Soft charcoal background */
+    /* Primary Actions (Sophisticated Teal-Charcoal) */
+    --primary: #2C4A52;              /* Primary CTA color - sophisticated teal-charcoal */
+    --primary-hover: #234049;        /* Darker teal for hover */
+    --primary-active: #1A3238;       /* Even darker for active state */
+    --primary-soft: rgba(44, 74, 82, 0.08); /* Soft teal background */
     
-    /* Secondary Actions (Refined Taupe) */
-    --secondary: #B09C8E;            /* Secondary actions - refined taupe */
-    --secondary-hover: #9A8678;      /* Darker taupe for hover */
-    --secondary-active: #847565;     /* Even darker for active state */
-    --secondary-soft: rgba(176, 156, 142, 0.12); /* Soft taupe background */
+    /* Secondary Actions (Vibrant Terracotta) */
+    --secondary: #C49A6C;            /* Secondary actions - vibrant warm terracotta */
+    --secondary-hover: #B0885D;      /* Darker terracotta for hover */
+    --secondary-active: #9A764F;     /* Even darker for active state */
+    --secondary-soft: rgba(196, 154, 108, 0.12); /* Soft terracotta background */
     
     /* Highlight & Accents */
-    --highlight: #C9A96E;            /* Elegant highlights - antique gold */
-    --highlight-soft: rgba(201, 169, 110, 0.12); /* Subtle gold background */
+    --highlight: #D4A76A;            /* Elegant highlights - vibrant golden bronze */
+    --highlight-soft: rgba(212, 167, 106, 0.12); /* Subtle gold background */
     
     /* Focus & States */
-    --focus-ring: #3D3935;           /* Focus ring - sophisticated charcoal */
+    --focus-ring: #2C4A52;           /* Focus ring - sophisticated teal-charcoal */
     --disabled: rgba(43, 38, 34, 0.3); /* Disabled state */
     
     /* Legacy mappings for backward compatibility */
     --bg-primary: #FAF8F5;
-    --bg-secondary: #F5EBE8;
+    --bg-secondary: #FFE9E5;
     --text-primary: #2B2622;
-    --accent: #3D3935;
+    --accent: #2C4A52;
     --accent-hover: var(--primary-hover);
-    --accent-soft: rgba(61, 57, 53, 0.08);
+    --accent-soft: rgba(44, 74, 82, 0.08);
     --btn-secondary-bg: transparent;
     
     /* Shadows - neutral gray based (no glow effects) */
