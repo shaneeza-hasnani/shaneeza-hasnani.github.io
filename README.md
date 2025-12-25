@@ -4,15 +4,15 @@ Personal portfolio website for Shaneeza Hasnani, CFE - Data Scientist specializi
 
 ## 🎨 Design
 
-This portfolio features a warm, sophisticated, earthy design using a natural elegance palette:
+This portfolio features a sophisticated, elegant, and minimalistic design using a Modern Elegance palette:
 
-- **Light Bronze** (#CB997E) - Primary accent for CTAs and highlights
-- **Powder Petal** (#EDDCD2) - Soft backgrounds and delicate borders
-- **Linen** (#FFF1E6) - Base background, warm cream foundation
-- **Parchment** (#F0EFEB) - Card surfaces and elevated elements
-- **Desert Sand** (#DDBEA9) - Highlight accents and warm touches
-- **Dry Sage** (#A5A58D) - Secondary accent, muted olive-green
-- **Ash Grey** (#B7B7A4) - Muted text and subtle elements
+- **Slate Blue** (#2C3E50) - Primary accent for confidence and professionalism
+- **Muted Gold** (#B8926A) - Secondary accent for refined elegance
+- **Light Gray** (#F5F7FA) - Base background, clean and minimal
+- **Cool White** (#FFFFFF) - Card surfaces and pure elements
+- **Silver Gray** (#E8ECEF) - Soft backgrounds and gentle separation
+- **Steel Gray** (#8A96A3) - Muted elements and subtle accents
+- **Charcoal** (#1A1A1A) - Primary text for strong contrast
 
 For complete color palette documentation, usage guidelines, and accessibility information, see [COLOR_PALETTE.md](COLOR_PALETTE.md).
 
@@ -47,13 +47,14 @@ For complete color palette documentation, usage guidelines, and accessibility in
 
 ## 🎯 Design Philosophy
 
-The website embodies a warm, sophisticated, and naturally elegant aesthetic:
+The website embodies an elegant, classy, confident, and minimalistic aesthetic:
 
-- **Earthy**: Natural tones inspired by earth, sand, and organic elements
-- **Sophisticated**: Subtle metallic bronze accents add refined elegance
-- **Warm**: Inviting color palette creates an approachable yet professional atmosphere
-- **Timeless**: Classic earth tones ensure enduring visual appeal
-- **Accessible**: WCAG-compliant contrast ratios, semantic HTML, keyboard navigation
+- **Elegant**: Sophisticated color choices with refined muted gold accents
+- **Classy**: Professional slate blue as the primary color conveys confidence
+- **Confident**: Strong, high-contrast text ensures clarity and authority
+- **Minimalistic**: Clean neutrals and limited palette create simplicity
+- **Professional**: Timeless colors ensure enduring visual appeal
+- **Accessible**: WCAG AA+ compliant contrast ratios, semantic HTML, keyboard navigation
 
 ## 📧 Contact
 

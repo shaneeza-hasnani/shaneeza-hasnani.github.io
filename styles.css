@@ -88,60 +88,60 @@
 
 :root {
     /* ===========================
-       Earthy Elegance Palette - Warm, Sophisticated Design
-       Natural tones with bronze accents
+       Modern Elegance Palette - Sophisticated, Minimalistic Design
+       Neutral tones with refined accents
        =========================== */
     
     /* Core Palette Colors */
-    --light-bronze: #cb997e;         /* Primary accent - warm metallic */
-    --powder-petal: #eddcd2;         /* Soft backgrounds - subtle pink/beige */
-    --linen: #fff1e6;                /* Light backgrounds - warm cream */
-    --parchment: #f0efeb;            /* Card surfaces - neutral off-white */
-    --desert-sand: #ddbea9;          /* Secondary accent - warm tan */
-    --dry-sage: #a5a58d;             /* Muted accent - olive green */
-    --ash-grey: #b7b7a4;             /* Large text only - warm grey (18px+ or 14px+ bold) */
+    --slate-blue: #2C3E50;           /* Primary accent - confident, professional */
+    --muted-gold: #B8926A;           /* Secondary accent - elegant, refined */
+    --light-gray: #F5F7FA;           /* Light backgrounds - clean, minimal */
+    --cool-white: #FFFFFF;           /* Card surfaces - pure white */
+    --silver-gray: #E8ECEF;          /* Soft backgrounds - subtle gray */
+    --steel-gray: #8A96A3;           /* Muted elements - cool gray */
+    --charcoal: #1A1A1A;             /* Text - strong, readable */
     
     /* Semantic Design Tokens */
-    --bg: #fff1e6;                   /* Main background - linen */
-    --surface: #ffffff;              /* Cards, panels - pure white */
-    --surface-muted: #f0efeb;        /* Muted surface - parchment */
+    --bg: #F5F7FA;                   /* Main background - light gray */
+    --surface: #FFFFFF;              /* Cards, panels - pure white */
+    --surface-muted: #E8ECEF;        /* Muted surface - silver gray */
     
     /* Text Colors */
-    --text: #5a5244;                 /* Primary text - warm dark brown */
-    --text-secondary: #706556;       /* Secondary text - warm brown (5.2:1 contrast) */
-    --muted-text: #8b8072;           /* Muted text - lighter warm brown (4.8:1 contrast) */
+    --text: #1A1A1A;                 /* Primary text - charcoal */
+    --text-secondary: #4A5568;       /* Secondary text - slate gray (7.5:1 contrast) */
+    --muted-text: #718096;           /* Muted text - medium gray (5.2:1 contrast) */
     
     /* Border & Divider */
-    --border: #eddcd2;               /* Soft borders - powder petal */
-    --border-muted: rgba(237, 220, 210, 0.5); /* Very subtle border */
+    --border: #E2E8F0;               /* Soft borders - light slate */
+    --border-muted: rgba(226, 232, 240, 0.5); /* Very subtle border */
     
-    /* Primary Actions (Light Bronze) */
-    --primary: #cb997e;              /* Primary CTA color - light bronze */
-    --primary-hover: #b8856b;        /* Darker bronze for hover */
-    --primary-active: #a67159;       /* Even darker for active state */
-    --primary-soft: rgba(203, 153, 126, 0.12); /* Soft bronze background */
+    /* Primary Actions (Slate Blue) */
+    --primary: #2C3E50;              /* Primary CTA color - slate blue */
+    --primary-hover: #233140;        /* Darker slate for hover */
+    --primary-active: #1A2530;       /* Even darker for active state */
+    --primary-soft: rgba(44, 62, 80, 0.08); /* Soft slate background */
     
-    /* Secondary Actions (Dry Sage) */
-    --secondary: #a5a58d;            /* Secondary actions - dry sage */
-    --secondary-hover: #93937a;      /* Darker sage for hover */
-    --secondary-active: #818168;     /* Even darker for active state */
-    --secondary-soft: rgba(165, 165, 141, 0.12); /* Soft sage background */
+    /* Secondary Actions (Muted Gold) */
+    --secondary: #B8926A;            /* Secondary actions - muted gold */
+    --secondary-hover: #A07F5A;      /* Darker gold for hover */
+    --secondary-active: #8A6D4A;     /* Even darker for active state */
+    --secondary-soft: rgba(184, 146, 106, 0.12); /* Soft gold background */
     
-    /* Highlight & Accents (Desert Sand) */
-    --highlight: #ddbea9;            /* Subtle highlights - desert sand */
-    --highlight-soft: rgba(221, 190, 169, 0.15); /* Very subtle sand bg */
+    /* Highlight & Accents */
+    --highlight: #A5B4C5;            /* Subtle highlights - cool slate */
+    --highlight-soft: rgba(165, 180, 197, 0.15); /* Very subtle slate bg */
     
     /* Focus & States */
-    --focus-ring: #cb997e;           /* Focus ring - light bronze for visibility */
-    --disabled: rgba(90, 82, 68, 0.3); /* Disabled state */
+    --focus-ring: #2C3E50;           /* Focus ring - slate blue for visibility */
+    --disabled: rgba(26, 26, 26, 0.3); /* Disabled state */
     
     /* Legacy mappings for backward compatibility */
-    --bg-primary: #fff1e6;
-    --bg-secondary: #f0efeb;
-    --text-primary: #5a5244;
-    --accent: #cb997e;
+    --bg-primary: #F5F7FA;
+    --bg-secondary: #E8ECEF;
+    --text-primary: #1A1A1A;
+    --accent: #2C3E50;
     --accent-hover: var(--primary-hover);
-    --accent-soft: rgba(203, 153, 126, 0.12);
+    --accent-soft: rgba(44, 62, 80, 0.08);
     --btn-secondary-bg: transparent;
     
     /* Shadows - neutral gray based (no glow effects) */
