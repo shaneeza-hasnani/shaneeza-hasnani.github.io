@@ -88,26 +88,27 @@
 
 :root {
     /* ===========================
-       Minimal Neutral Color Palette with Emerald Accent
+       STRICT Neutral Color Palette with Emerald Accent
+       NO EXCEPTIONS - Follow the problem statement exactly
        =========================== */
     
     /* Background Colors */
-    --bg-primary: #FAFAFA;          /* Primary background */
-    --bg-secondary: #E5E5E5;        /* Secondary sections background */
-    --surface: #FFFFFF;              /* Cards, surfaces */
-    --surface-muted: #F1F5F9;       /* Subtle sections instead of green */
+    --bg-primary: #FAFAFA;          /* Main background - ONLY this */
+    --bg-secondary: #F5F7FA;        /* Muted surface (light sections only) */
+    --surface: #FFFFFF;              /* Cards, surfaces - ONLY this */
+    --surface-muted: #F5F7FA;       /* Same as muted surface */
     
     /* Border & Divider Colors */
-    --border: #CBD5E1;               /* Borders and dividers */
+    --border: #E5E7EB;               /* Borders and dividers - ONLY this */
     
     /* Text Colors */
-    --text-primary: #1F2937;         /* Primary text color */
-    --text-secondary: rgba(31, 41, 55, 0.7);  /* Secondary text at 70% opacity */
+    --text-primary: #1F2937;         /* Primary text color - ONLY this */
+    --text-secondary: rgba(31, 41, 55, 0.65);  /* Secondary text at 65% opacity */
     
-    /* Accent Color (ONLY accent) */
-    --accent: #10B981;               /* Emerald - for CTAs, links, hover, active states */
+    /* Accent Color (ONLY accent allowed) */
+    --accent: #10B981;               /* Emerald - ONLY accent color */
     --accent-hover: #059669;         /* Darker emerald for hover states */
-    --accent-soft: rgba(16, 185, 129, 0.12);  /* Subtle backgrounds only when needed */
+    --accent-soft: rgba(16, 185, 129, 0.1);  /* Subtle backgrounds only when needed */
     
     /* Shadows - neutral gray based */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -170,7 +171,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--bg-secondary);
+    background: var(--bg-primary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -376,7 +377,7 @@ a {
     height: 5px;
     background: var(--accent);
     border-radius: var(--radius-full);
-    box-shadow: 0 2px 10px rgba(16, 185, 129, 0.4);
+    box-shadow: none;
 }
 
 /* ===========================
@@ -536,7 +537,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--bg-secondary);
+    background: var(--bg-primary);
     padding-top: 70px;
     position: relative;
     overflow: hidden;
@@ -651,7 +652,7 @@ a {
     width: 50px;
     height: 50px;
     background: var(--surface);
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius-md);
     color: var(--text-primary);
     transition: all var(--transition-base);
@@ -661,8 +662,8 @@ a {
     background: var(--accent);
     color: white;
     border-color: var(--accent);
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-sm);
 }
 
 .hero-social-icon svg {
@@ -678,7 +679,7 @@ a {
     padding: 1rem 2.5rem;
     font-size: 1rem;
     font-weight: 600;
-    border-radius: var(--radius-full);
+    border-radius: 0.5rem;
     transition: all var(--transition-base);
     cursor: pointer;
     border: none;
@@ -708,28 +709,28 @@ a {
 .btn-primary {
     background: var(--accent);
     color: white;
-    box-shadow: var(--shadow-md);
+    box-shadow: none;
     font-weight: 700;
 }
 
 .btn-primary:hover {
     background: var(--accent-hover);
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
 }
 
 .btn-secondary {
     background-color: var(--surface);
     color: var(--text-primary);
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
 }
 
 .btn-secondary:hover {
-    background-color: var(--surface-muted);
+    background-color: var(--bg-secondary);
     color: var(--text-primary);
     border-color: var(--border);
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
 }
 
 /* ===========================
@@ -1089,9 +1090,8 @@ a {
 }
 
 .project-card:hover {
-    transform: translateY(-15px) rotateX(5deg) rotateY(5deg) scale(1.03);
-    box-shadow: var(--shadow-xl), var(--shadow-glow), 
-                0 30px 60px -12px rgba(16, 185, 129, 0.25);
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
     border-color: var(--accent);
 }
 
@@ -1840,7 +1840,7 @@ a {
     background: var(--accent);
     z-index: 10000;
     transition: width 0.1s ease-out;
-    box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+    box-shadow: none;
 }
 
 /* ===========================
@@ -2112,9 +2112,9 @@ a {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: var(--surface-muted);
+    background: transparent;
     padding: 0.5rem 1.25rem;
-    border-radius: var(--radius-full);
+    border-radius: 0.5rem;
     font-size: 0.875rem;
     font-weight: 600;
     color: var(--text-primary);
@@ -2124,7 +2124,7 @@ a {
 }
 
 .badge-icon {
-    font-size: 1.25rem;
+    font-size: 1rem;
     color: var(--accent);
 }
 
@@ -2151,37 +2151,38 @@ a {
     padding: 1rem 2rem;
     font-size: 1rem;
     font-weight: 700;
-    border-radius: var(--radius-full);
+    border-radius: 0.5rem;
     transition: all var(--transition-base);
-    box-shadow: var(--shadow-md);
+    box-shadow: none;
+    border: none;
 }
 
 .btn-primary-hero:hover {
     background: var(--accent-hover);
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
 }
 
 .btn-secondary-hero {
     background-color: var(--surface);
     color: var(--text-primary);
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     padding: 1rem 2rem;
     font-size: 1rem;
     font-weight: 600;
-    border-radius: var(--radius-full);
+    border-radius: 0.5rem;
     transition: all var(--transition-base);
 }
 
 .btn-secondary-hero:hover {
-    background-color: var(--surface-muted);
+    background-color: var(--bg-secondary);
     color: var(--text-primary);
     border-color: var(--border);
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
 }
 
 .scroll-indicator {
@@ -2249,8 +2250,8 @@ a {
     padding: var(--spacing-lg) var(--spacing-xl);
     background: var(--bg-secondary);
     border: 1px solid var(--border);
-    border-radius: var(--radius-full);
-    box-shadow: var(--shadow-sm);
+    border-radius: 0.75rem;
+    box-shadow: none;
     animation: fadeInUp 0.6s ease-out 0.35s backwards;
     flex-wrap: wrap;
 }
@@ -2290,18 +2291,18 @@ a {
     padding: 0.75rem 1.5rem;
     background: var(--accent);
     color: white;
-    border-radius: var(--radius-full);
+    border-radius: 0.5rem;
     font-size: 0.9375rem;
     font-weight: 700;
     transition: all var(--transition-base);
     text-decoration: none;
-    box-shadow: var(--shadow-sm);
+    box-shadow: none;
 }
 
 .highlight-cta:hover {
     background: var(--accent-hover);
     transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-sm);
 }
 
 .highlight-cta svg {
