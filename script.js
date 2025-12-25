@@ -638,7 +638,7 @@ function initContactForm() {
                 </svg>
                 <span>Message Sent!</span>
             `;
-            submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+            submitBtn.style.background = '#10b981';
             
             // Reset form
             contactForm.reset();
@@ -663,7 +663,7 @@ function initContactForm() {
                 </svg>
                 <span>Failed to Send</span>
             `;
-            submitBtn.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+            submitBtn.style.background = '#ef4444';
             
             // Reset button after 3 seconds
             setTimeout(() => {
