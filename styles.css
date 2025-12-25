@@ -164,10 +164,10 @@
     /* Spacing - Enhanced - Reduced for tidier layout */
     --spacing-xs: 0.5rem;
     --spacing-sm: 0.75rem;
-    --spacing-md: 1.25rem;
-    --spacing-lg: 2rem;
-    --spacing-xl: 2.5rem;
-    --spacing-2xl: 3.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 2.5rem;
     
     /* Transitions */
     --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
@@ -354,13 +354,13 @@ a {
    Utility Classes
    =========================== */
 .container {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
-    padding: 0 var(--spacing-md);
+    padding: 0 var(--spacing-lg);
 }
 
 .section {
-    padding: var(--spacing-2xl) 0;
+    padding: var(--spacing-xl) 0;
 }
 
 .section:not(.hero) {
@@ -382,8 +382,8 @@ a {
 
 .section-title {
     text-align: center;
-    margin-bottom: var(--spacing-xl);
-    font-size: 3.25rem;
+    margin-bottom: var(--spacing-lg);
+    font-size: 3rem;
     position: relative;
     display: inline-block;
     width: 100%;
@@ -613,15 +613,15 @@ a {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius-xl);
-    padding: var(--spacing-xl) var(--spacing-lg);
+    padding: var(--spacing-lg) var(--spacing-lg);
     box-shadow: var(--shadow-md);
     max-width: 900px;
     margin: 0 auto;
 }
 
 .hero-title {
-    font-size: 4.25rem;
-    margin-bottom: var(--spacing-md);
+    font-size: 3.75rem;
+    margin-bottom: var(--spacing-sm);
     color: var(--text);
     text-shadow: none;
     animation: fadeInUp 0.6s ease-out;
@@ -649,7 +649,7 @@ a {
 .hero-description {
     font-size: 1.125rem;
     color: var(--text-secondary);
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
@@ -930,7 +930,7 @@ a {
 }
 
 .timeline {
-    max-width: 900px;
+    max-width: 100%;
     margin: 0 auto;
     position: relative;
     padding-left: 40px;
@@ -948,7 +948,7 @@ a {
 
 .timeline-item {
     position: relative;
-    margin-bottom: var(--spacing-2xl);
+    margin-bottom: var(--spacing-xl);
     padding-left: var(--spacing-lg);
 }
 
@@ -1060,7 +1060,7 @@ a {
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-xl);
+    gap: var(--spacing-lg);
 }
 
 .project-card {
@@ -1206,9 +1206,9 @@ a {
 
 .education-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-    gap: var(--spacing-md);
-    max-width: 1000px;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--spacing-lg);
+    max-width: 100%;
     margin: 0 auto;
 }
 
@@ -1307,9 +1307,9 @@ a {
 
 .certifications-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--spacing-lg);
-    max-width: 900px;
+    max-width: 100%;
     margin: 0 auto;
 }
 
@@ -1388,9 +1388,9 @@ a {
 
 .contact-methods {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--spacing-lg);
-    margin-top: var(--spacing-xl);
+    margin-top: var(--spacing-lg);
 }
 
 .contact-method {
@@ -2156,10 +2156,10 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-lg);
-    margin-bottom: var(--spacing-md);
-    padding: var(--spacing-md) var(--spacing-lg);
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
     background: var(--surface-muted);
     border: 1px solid var(--border);
     border-radius: 0.75rem;
@@ -2275,7 +2275,7 @@ a {
     display: flex;
     align-items: center;
     gap: var(--spacing-lg);
-    padding: var(--spacing-xl);
+    padding: var(--spacing-lg);
     background: var(--surface-muted);
     border-bottom: 1px solid var(--border);
 }
@@ -2313,7 +2313,7 @@ a {
 }
 
 .about-body {
-    padding: var(--spacing-xl);
+    padding: var(--spacing-lg);
 }
 
 .about-highlight {
@@ -2388,15 +2388,15 @@ a {
     text-align: center;
     font-size: 1.125rem;
     color: var(--text-secondary);
-    margin-top: -1.5rem;
-    margin-bottom: var(--spacing-xl);
+    margin-top: -1rem;
+    margin-bottom: var(--spacing-md);
 }
 
 .project-filters {
     display: flex;
     justify-content: center;
     gap: var(--spacing-sm);
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
     flex-wrap: wrap;
 }
 
@@ -2443,8 +2443,8 @@ a {
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: var(--spacing-md);
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
 }
 
 .project-card {
@@ -2573,9 +2573,9 @@ a {
    =========================== */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: var(--spacing-md);
-    max-width: 1000px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    max-width: 100%;
     margin: 0 auto;
 }
 
