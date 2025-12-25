@@ -596,6 +596,7 @@ a {
     left: 0;
     background: none;
     pointer-events: none;
+    display: none;
 }
 
 @keyframes gradientShift {
@@ -617,8 +618,8 @@ a {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius-xl);
-    padding: var(--spacing-2xl) var(--spacing-xl);
-    box-shadow: var(--shadow-lg);
+    padding: var(--spacing-xl) var(--spacing-lg);
+    box-shadow: var(--shadow-md);
     max-width: 900px;
     margin: 0 auto;
 }
@@ -666,7 +667,7 @@ a {
     justify-content: center;
     flex-wrap: nowrap;
     animation: fadeInUp 0.6s ease-out 0.3s backwards;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
 }
 
 /* Hero Social Icons */
@@ -2068,8 +2069,9 @@ a {
 .shape {
     position: absolute;
     border-radius: 50%;
-    opacity: 0.03;
+    opacity: 0;
     animation: float 20s ease-in-out infinite;
+    display: none;
 }
 
 .shape-1 {
@@ -2101,10 +2103,11 @@ a {
 
 .hero-greeting {
     display: block;
-    font-size: 2rem;
+    font-size: 1rem;
     font-weight: 400;
     margin-bottom: 0.5rem;
-    opacity: 0.95;
+    opacity: 0.5;
+    color: var(--text-secondary);
 }
 
 .hero-name {
@@ -2135,25 +2138,24 @@ a {
 }
 
 .btn-secondary-hero {
-    background-color: var(--secondary-soft);
-    color: var(--secondary);
-    border: 1px solid var(--secondary);
+    background-color: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     padding: 1rem 2rem;
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 0.9375rem;
+    font-weight: 500;
     border-radius: 0.5rem;
     transition: all var(--transition-base);
 }
 
 .btn-secondary-hero:hover {
-    background-color: var(--secondary);
-    color: white;
-    border-color: var(--secondary-hover);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-sm);
+    background-color: var(--surface-muted);
+    color: var(--text);
+    border-color: var(--text-secondary);
+    transform: translateY(-1px);
 }
 
 .scroll-indicator {
@@ -2215,10 +2217,10 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--spacing-lg);
-    margin-top: var(--spacing-xl);
-    margin-bottom: var(--spacing-lg);
-    padding: var(--spacing-lg) var(--spacing-xl);
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-lg);
     background: var(--surface-muted);
     border: 1px solid var(--border);
     border-radius: 0.75rem;
