@@ -100,22 +100,22 @@
     --color-sand: #F2CC8F;           /* Highlight/secondary bg - warm touch */
     
     /* Semantic Design Tokens */
-    --bg: #F4F1DE;                   /* Main background - cream */
+    --bg: #EFECE2;                   /* Main background - more neutral cream */
     --surface: #FFFFFF;              /* Cards, panels - clean white */
     --surface-muted: #F9F7F0;       /* Muted surface - cream tint */
     
     /* Text Colors */
     --text: #3D405B;                 /* Primary text - deep slate */
     --text-secondary: rgba(61, 64, 91, 0.7);  /* Secondary text - slate 70% */
-    --muted-text: rgba(61, 64, 91, 0.5);      /* Muted text - slate 50% */
+    --muted-text: #475569;           /* Muted text - lighter slate */
     
     /* Border & Divider */
-    --border: rgba(61, 64, 91, 0.12); /* Subtle slate-based border */
-    --border-muted: rgba(61, 64, 91, 0.06); /* Very subtle border */
+    --border: #E2E8F0;               /* Neutral cool light gray */
+    --border-muted: rgba(226, 232, 240, 0.5); /* Very subtle border */
     
     /* Primary Actions (Terracotta) */
     --primary: #E07A5F;              /* Primary CTA color */
-    --primary-hover: #D16648;        /* Darker terracotta for hover */
+    --primary-hover: #D96A50;        /* Darker terracotta for hover */
     --primary-active: #BF5A3E;       /* Even darker for active state */
     --primary-soft: rgba(224, 122, 95, 0.1); /* Soft terracotta background */
     
@@ -127,18 +127,18 @@
     
     /* Highlight & Accents (Sand) */
     --highlight: #F2CC8F;            /* Subtle highlights, callouts */
-    --highlight-soft: rgba(242, 204, 143, 0.15); /* Very subtle sand bg */
+    --highlight-soft: rgba(242, 204, 143, 0.08); /* Very subtle sand bg - reduced intensity */
     
     /* Focus & States */
     --focus-ring: #E07A5F;           /* Focus ring - terracotta for visibility */
     --disabled: rgba(61, 64, 91, 0.3); /* Disabled state */
     
     /* Legacy mappings for backward compatibility */
-    --bg-primary: #F4F1DE;
+    --bg-primary: #EFECE2;
     --bg-secondary: #F9F7F0;
     --text-primary: #3D405B;
     --accent: #E07A5F;
-    --accent-hover: #D16648;
+    --accent-hover: #D96A50;
     --accent-soft: rgba(224, 122, 95, 0.1);
     --btn-secondary-bg: transparent;
     
@@ -892,7 +892,7 @@ a {
 
 .stat-label {
     font-size: 0.7rem;
-    color: var(--text-secondary);
+    color: var(--muted-text);
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -2099,26 +2099,6 @@ a {
     animation-delay: -10s;
 }
 
-.hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--highlight-soft);
-    padding: 0.5rem 1.25rem;
-    border-radius: 0.5rem;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: var(--spacing-lg);
-    border: 1px solid var(--border);
-    animation: fadeInUp 0.6s ease-out;
-}
-
-.badge-icon {
-    font-size: 1rem;
-    color: var(--primary);
-}
-
 .hero-greeting {
     display: block;
     font-size: 2rem;
@@ -2185,7 +2165,7 @@ a {
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-    color: var(--text-secondary);
+    color: var(--muted-text);
     opacity: 0.8;
     animation: fadeIn 1s ease-out 1s backwards;
 }
@@ -2201,7 +2181,7 @@ a {
 .scroll-wheel {
     width: 3px;
     height: 8px;
-    background: var(--text-secondary);
+    background: var(--muted-text);
     border-radius: 2px;
     position: absolute;
     top: 6px;
@@ -2263,7 +2243,7 @@ a {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: var(--text-secondary);
+    color: var(--muted-text);
     margin-bottom: 0.25rem;
 }
 
@@ -2292,6 +2272,17 @@ a {
 
 .highlight-cta:hover {
     background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.highlight-cta-secondary {
+    background: var(--secondary);
+    color: white;
+}
+
+.highlight-cta-secondary:hover {
+    background: var(--secondary-hover);
     transform: translateY(-2px);
     box-shadow: var(--shadow-sm);
 }
@@ -2835,7 +2826,7 @@ a {
     display: inline-block;
     padding: 0 var(--spacing-md);
     background: var(--bg);
-    color: var(--text-secondary);
+    color: var(--muted-text);
     font-size: 0.875rem;
     font-weight: 600;
     text-transform: uppercase;
