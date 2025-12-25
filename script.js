@@ -760,3 +760,382 @@ if ('serviceWorker' in navigator) {
     //         .catch(error => console.log('SW registration failed:', error));
     // });
 }
+
+// ===========================
+// Project Modal Data
+// ===========================
+const projectDetails = {
+    'fraud-detection': {
+        title: 'Credit Card Fraud Detection',
+        badge: 'Machine Learning',
+        tech: ['Python', 'Random Forest', 'Scikit-learn', 'Pandas', 'NumPy'],
+        githubLink: 'https://github.com/shaneeza-hasnani',
+        sections: [
+            {
+                title: 'Overview',
+                content: `<p>This project develops an advanced machine learning system to detect fraudulent credit card transactions with exceptional accuracy. Using a Random Forest classifier, the model analyzes transaction patterns to identify potentially fraudulent activities in real-time.</p>
+                <p>The system processes thousands of transactions and uses sophisticated algorithms to distinguish between legitimate and fraudulent behavior, helping financial institutions protect their customers.</p>`
+            },
+            {
+                title: 'What We Built',
+                content: `<ul>
+                    <li>A smart detection system that reviews credit card transactions automatically</li>
+                    <li>Advanced pattern recognition to spot unusual spending behavior</li>
+                    <li>Real-time alerts for suspicious activities</li>
+                    <li>User-friendly dashboard showing detection results</li>
+                </ul>`
+            },
+            {
+                title: 'Key Results',
+                content: `<p>The model achieved <strong>99.96% accuracy</strong> in identifying fraudulent transactions across 10,000+ credit card transactions. This means it correctly identifies fraud 9,996 times out of 10,000 attempts.</p>
+                <p>Key metrics include:</p>
+                <ul>
+                    <li>99.96% overall accuracy in fraud detection</li>
+                    <li>Extremely low false positive rate (genuine transactions marked as fraud)</li>
+                    <li>Fast processing time suitable for real-time detection</li>
+                    <li>Ability to learn and adapt to new fraud patterns</li>
+                </ul>`
+            },
+            {
+                title: 'How It Works',
+                content: `<p>The system works in several simple steps:</p>
+                <ul>
+                    <li><strong>Data Collection:</strong> Gathers transaction information like amount, time, location, and merchant details</li>
+                    <li><strong>Pattern Analysis:</strong> Compares each transaction against known patterns of legitimate and fraudulent activity</li>
+                    <li><strong>Risk Scoring:</strong> Assigns a risk score to each transaction based on multiple factors</li>
+                    <li><strong>Decision Making:</strong> Automatically flags high-risk transactions for review or blocking</li>
+                </ul>`
+            }
+        ],
+        chartPlaceholder: true
+    },
+    'fraud-dashboard': {
+        title: 'Automated Fraud Dashboard',
+        badge: 'Dashboard & Visualization',
+        tech: ['Python', 'SQL', 'Power BI', 'Data Visualization'],
+        githubLink: 'https://github.com/shaneeza-hasnani',
+        sections: [
+            {
+                title: 'Overview',
+                content: `<p>An integrated real-time dashboard system that combines Python data processing, SQL database queries, and Power BI visualizations to monitor and detect fraudulent activities across the organization.</p>
+                <p>This comprehensive solution reduced manual review time by 40% while providing fraud analysts with powerful tools to investigate suspicious activities quickly.</p>`
+            },
+            {
+                title: 'Dashboard Features',
+                content: `<ul>
+                    <li>Real-time fraud detection alerts and notifications</li>
+                    <li>Interactive visualizations showing fraud trends and patterns</li>
+                    <li>Automated reporting with customizable time periods</li>
+                    <li>Drill-down capabilities for detailed transaction analysis</li>
+                    <li>Risk scoring dashboard with color-coded alerts</li>
+                </ul>`
+            },
+            {
+                title: 'Impact & Benefits',
+                content: `<p>The automated dashboard transformed how the fraud team operates:</p>
+                <ul>
+                    <li><strong>40% reduction</strong> in manual review time</li>
+                    <li><strong>Real-time visibility</strong> into fraud trends across all channels</li>
+                    <li><strong>Faster response</strong> to emerging fraud patterns</li>
+                    <li><strong>Better collaboration</strong> with shared dashboards across teams</li>
+                    <li><strong>Data-driven decisions</strong> with comprehensive analytics</li>
+                </ul>`
+            },
+            {
+                title: 'Technical Architecture',
+                content: `<p>The system uses a three-tier architecture:</p>
+                <ul>
+                    <li><strong>Data Layer:</strong> SQL databases store transaction and fraud data</li>
+                    <li><strong>Processing Layer:</strong> Python scripts clean, transform, and analyze data</li>
+                    <li><strong>Presentation Layer:</strong> Power BI creates interactive visualizations</li>
+                </ul>`
+            }
+        ],
+        chartPlaceholder: true
+    },
+    'risk-scoring': {
+        title: 'Transaction Risk Scoring',
+        badge: 'Predictive Analytics',
+        tech: ['R', 'Logistic Regression', 'Decision Trees', 'Statistical Analysis'],
+        githubLink: 'https://github.com/shaneeza-hasnani',
+        sections: [
+            {
+                title: 'Overview',
+                content: `<p>A sophisticated risk scoring system that uses predictive analytics to assess the likelihood of fraud for each transaction. The model employs logistic regression and decision trees to calculate risk scores in real-time.</p>
+                <p>This system successfully reduced false positives by 20% while maintaining high detection accuracy, saving time and improving customer experience.</p>`
+            },
+            {
+                title: 'How Risk Scoring Works',
+                content: `<p>The system evaluates multiple factors for each transaction:</p>
+                <ul>
+                    <li>Transaction amount and frequency patterns</li>
+                    <li>Geographic location and device information</li>
+                    <li>Historical customer behavior</li>
+                    <li>Time and velocity of transactions</li>
+                    <li>Merchant category and reputation</li>
+                </ul>
+                <p>Each factor is weighted and combined to produce a final risk score from 0-100, where higher scores indicate higher fraud risk.</p>`
+            },
+            {
+                title: 'Key Achievements',
+                content: `<ul>
+                    <li><strong>20% reduction</strong> in false positives (legitimate transactions incorrectly flagged)</li>
+                    <li><strong>Maintained high accuracy</strong> in detecting actual fraud</li>
+                    <li><strong>Faster transaction processing</strong> with automated risk assessment</li>
+                    <li><strong>Better customer experience</strong> with fewer unnecessary blocks</li>
+                    <li><strong>Adaptive learning</strong> that improves over time</li>
+                </ul>`
+            },
+            {
+                title: 'Business Impact',
+                content: `<p>The risk scoring model provided significant benefits:</p>
+                <ul>
+                    <li>Reduced customer complaints about blocked legitimate transactions</li>
+                    <li>Improved fraud detection rates with more accurate targeting</li>
+                    <li>Decreased operational costs through automation</li>
+                    <li>Enhanced risk management capabilities for the business</li>
+                </ul>`
+            }
+        ],
+        chartPlaceholder: true
+    },
+    'anomaly-detection': {
+        title: 'Anomaly Detection System',
+        badge: 'Real-time Detection',
+        tech: ['Python', 'SQL', 'Pandas', 'Anomaly Detection Algorithms'],
+        githubLink: 'https://github.com/shaneeza-hasnani',
+        sections: [
+            {
+                title: 'Overview',
+                content: `<p>A real-time anomaly detection system that continuously monitors transaction data to identify unusual patterns that may indicate fraud. The system uses advanced algorithms to spot deviations from normal behavior.</p>
+                <p>This solution improved overall fraud detection by 25% by catching sophisticated fraud schemes that traditional rule-based systems might miss.</p>`
+            },
+            {
+                title: 'What Makes It Special',
+                content: `<ul>
+                    <li><strong>Real-time Processing:</strong> Analyzes transactions as they happen, not hours later</li>
+                    <li><strong>Pattern Learning:</strong> Automatically learns what "normal" looks like for each customer</li>
+                    <li><strong>Adaptive Detection:</strong> Adjusts to new fraud techniques without manual reprogramming</li>
+                    <li><strong>Multi-dimensional Analysis:</strong> Considers multiple factors simultaneously</li>
+                </ul>`
+            },
+            {
+                title: 'Types of Anomalies Detected',
+                content: `<p>The system identifies various types of unusual activity:</p>
+                <ul>
+                    <li><strong>Volume Anomalies:</strong> Unusual transaction amounts or frequencies</li>
+                    <li><strong>Behavioral Anomalies:</strong> Actions that don't match customer's typical patterns</li>
+                    <li><strong>Geographic Anomalies:</strong> Transactions from unexpected locations</li>
+                    <li><strong>Temporal Anomalies:</strong> Unusual timing or velocity of transactions</li>
+                </ul>`
+            },
+            {
+                title: 'Results & Impact',
+                content: `<p>The anomaly detection system delivered impressive results:</p>
+                <ul>
+                    <li><strong>25% improvement</strong> in fraud detection rates</li>
+                    <li><strong>Earlier detection</strong> of emerging fraud patterns</li>
+                    <li><strong>Reduced investigation time</strong> with prioritized alerts</li>
+                    <li><strong>Better protection</strong> for high-value accounts</li>
+                </ul>`
+            }
+        ],
+        chartPlaceholder: true
+    },
+    'healthcare-fraud': {
+        title: 'Healthcare Fraud Analytics',
+        badge: 'Statistical Analysis',
+        tech: ['R', 'SQL', 'SPSS', 'Statistical Modeling'],
+        githubLink: 'https://github.com/shaneeza-hasnani',
+        sections: [
+            {
+                title: 'Overview',
+                content: `<p>A comprehensive healthcare fraud analysis project that used statistical methods to examine medical billing data and identify fraudulent claims. The analysis uncovered over $500,000 in fraudulent billing activities.</p>
+                <p>This work involved analyzing patterns in healthcare claims to identify providers submitting false or inflated bills.</p>`
+            },
+            {
+                title: 'What We Analyzed',
+                content: `<p>The project examined various aspects of healthcare billing:</p>
+                <ul>
+                    <li>Medical procedure codes and billing patterns</li>
+                    <li>Provider billing histories and frequencies</li>
+                    <li>Patient diagnosis and treatment correlations</li>
+                    <li>Geographic distribution of claims</li>
+                    <li>Comparative analysis with industry standards</li>
+                </ul>`
+            },
+            {
+                title: 'Key Findings',
+                content: `<p>Statistical analysis revealed several fraud patterns:</p>
+                <ul>
+                    <li><strong>Billing Anomalies:</strong> Over $500,000 in fraudulent claims identified</li>
+                    <li><strong>Upcoding:</strong> Providers billing for more expensive procedures than performed</li>
+                    <li><strong>Phantom Billing:</strong> Charges for services never provided</li>
+                    <li><strong>Duplicate Claims:</strong> Multiple bills for the same service</li>
+                </ul>`
+            },
+            {
+                title: 'Methodology',
+                content: `<p>Our approach combined multiple statistical techniques:</p>
+                <ul>
+                    <li><strong>Descriptive Statistics:</strong> Understanding normal billing patterns</li>
+                    <li><strong>Outlier Detection:</strong> Identifying unusual claims</li>
+                    <li><strong>Correlation Analysis:</strong> Finding relationships between variables</li>
+                    <li><strong>Comparative Analysis:</strong> Benchmarking against industry norms</li>
+                </ul>`
+            }
+        ],
+        chartPlaceholder: true
+    },
+    'neural-network': {
+        title: 'Neural Network Fraud Classifier',
+        badge: 'Deep Learning',
+        tech: ['Python', 'TensorFlow', 'Keras', 'Deep Learning'],
+        githubLink: 'https://github.com/shaneeza-hasnani',
+        sections: [
+            {
+                title: 'Overview',
+                content: `<p>An advanced deep learning neural network designed to classify different types of fraud with high accuracy. This system uses TensorFlow and Keras to build and train sophisticated models that can handle imbalanced datasets effectively.</p>
+                <p>The neural network approach allows the model to learn complex patterns that traditional methods might miss.</p>`
+            },
+            {
+                title: 'How Neural Networks Help',
+                content: `<p>Neural networks offer several advantages for fraud detection:</p>
+                <ul>
+                    <li><strong>Complex Pattern Recognition:</strong> Can identify subtle fraud indicators</li>
+                    <li><strong>Multi-class Classification:</strong> Distinguishes between different fraud types</li>
+                    <li><strong>Handling Imbalanced Data:</strong> Works well even when fraud cases are rare</li>
+                    <li><strong>Continuous Learning:</strong> Improves accuracy as it processes more data</li>
+                </ul>`
+            },
+            {
+                title: 'Model Architecture',
+                content: `<p>The neural network consists of multiple layers:</p>
+                <ul>
+                    <li><strong>Input Layer:</strong> Receives transaction features and characteristics</li>
+                    <li><strong>Hidden Layers:</strong> Process and transform data through multiple stages</li>
+                    <li><strong>Output Layer:</strong> Classifies transactions into fraud categories</li>
+                    <li><strong>Activation Functions:</strong> Add non-linearity for complex pattern learning</li>
+                </ul>`
+            },
+            {
+                title: 'Performance & Applications',
+                content: `<p>The model excels in several areas:</p>
+                <ul>
+                    <li>Superior performance on imbalanced datasets</li>
+                    <li>Accurate classification of multiple fraud types</li>
+                    <li>Fast inference time for real-time applications</li>
+                    <li>Scalable architecture for growing data volumes</li>
+                    <li>Transfer learning capabilities for new fraud types</li>
+                </ul>`
+            }
+        ],
+        chartPlaceholder: true
+    }
+};
+
+// ===========================
+// Project Modal Functions
+// ===========================
+function openProjectModal(projectId) {
+    const modal = document.getElementById('project-modal');
+    const modalContent = document.getElementById('modal-content');
+    const project = projectDetails[projectId];
+    
+    if (!project) return;
+    
+    // Build modal content
+    let contentHTML = `
+        <div class="modal-header">
+            <span class="modal-badge">${project.badge}</span>
+            <h2 class="modal-title">${project.title}</h2>
+            <div class="modal-tech-stack">
+                ${project.tech.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+            </div>
+        </div>
+    `;
+    
+    // Add all sections
+    project.sections.forEach(section => {
+        contentHTML += `
+            <div class="modal-section">
+                <h3 class="modal-section-title">${section.title}</h3>
+                <div class="modal-section-content">
+                    ${section.content}
+                </div>
+            </div>
+        `;
+    });
+    
+    // Add chart placeholder if needed
+    if (project.chartPlaceholder) {
+        contentHTML += `
+            <div class="modal-chart-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="20" x2="18" y2="10"></line>
+                    <line x1="12" y1="20" x2="12" y2="4"></line>
+                    <line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg>
+                <p>Charts, diagrams, and visualizations can be added here to illustrate project results</p>
+            </div>
+        `;
+    }
+    
+    // Add footer with GitHub link
+    contentHTML += `
+        <div class="modal-footer">
+            <a href="${project.githubLink}" target="_blank" rel="noopener noreferrer" class="modal-cta-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                <span>View Code on GitHub</span>
+            </a>
+        </div>
+    `;
+    
+    modalContent.innerHTML = contentHTML;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeProjectModal() {
+    const modal = document.getElementById('project-modal');
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// ===========================
+// Initialize Project Modal Events
+// ===========================
+document.addEventListener('DOMContentLoaded', () => {
+    // Add click handlers to all "View Details" buttons
+    const detailsButtons = document.querySelectorAll('.btn-details');
+    detailsButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const projectId = button.getAttribute('data-project');
+            openProjectModal(projectId);
+        });
+    });
+    
+    // Close modal on close button click
+    const closeButton = document.querySelector('.modal-close');
+    if (closeButton) {
+        closeButton.addEventListener('click', closeProjectModal);
+    }
+    
+    // Close modal on overlay click
+    const overlay = document.querySelector('.modal-overlay');
+    if (overlay) {
+        overlay.addEventListener('click', closeProjectModal);
+    }
+    
+    // Close modal on ESC key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const modal = document.getElementById('project-modal');
+            if (modal && modal.classList.contains('active')) {
+                closeProjectModal();
+            }
+        }
+    });
+});
