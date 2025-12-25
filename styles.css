@@ -2508,9 +2508,7 @@ a {
     color: var(--primary); /* Fallback for browsers without gradient support */
     background: linear-gradient(135deg, var(--primary) 0%, var(--data-blue) 100%);
     -webkit-background-clip: text;
-    -moz-background-clip: text;
     -webkit-text-fill-color: transparent;
-    -moz-text-fill-color: transparent;
     background-clip: text;
     margin-bottom: 0.25rem;
 }
