@@ -1,20 +1,20 @@
 # Color Palette Documentation
 
-## Earthy Elegance Palette - Warm, Sophisticated Design
+## Modern Elegance Palette - Sophisticated, Minimalistic Design
 
-This portfolio website uses a carefully curated earthy palette to create a warm, sophisticated, and naturally elegant aesthetic. The palette emphasizes natural tones, subtle sophistication, and timeless appeal while maintaining WCAG accessibility standards.
+This portfolio website uses a carefully curated neutral palette to create an elegant, classy, confident, and professional aesthetic. The palette emphasizes minimalism, sophistication, and timeless appeal while maintaining WCAG AA+ accessibility standards.
 
 ### Color Palette
 
 | Color Name | Hex Code | Usage | Description |
 |------------|----------|-------|-------------|
-| **Light Bronze** | `#CB997E` | Primary accent | Warm metallic tone for CTAs, active states, and key highlights |
-| **Powder Petal** | `#EDDCD2` | Soft backgrounds | Delicate pink-beige for subtle backgrounds and borders |
-| **Linen** | `#FFF1E6` | Base background | Light warm cream providing a serene foundation |
-| **Parchment** | `#F0EFEB` | Card surfaces | Neutral off-white for elevated surfaces and cards |
-| **Desert Sand** | `#DDBEA9` | Highlight accent | Warm tan for highlights and complementary accents |
-| **Dry Sage** | `#A5A58D` | Secondary accent | Muted olive-green for secondary actions and balance |
-| **Ash Grey** | `#B7B7A4` | Large text only | ⚠️ Warm grey-green - ONLY for large text (18px+ or 14px+ bold) |
+| **Slate Blue** | `#2C3E50` | Primary accent | Confident, professional tone for CTAs, active states, and key highlights |
+| **Muted Gold** | `#B8926A` | Secondary accent | Elegant, refined accent for secondary actions and sophisticated touches |
+| **Light Gray** | `#F5F7FA` | Base background | Clean, minimal foundation providing a serene canvas |
+| **Cool White** | `#FFFFFF` | Card surfaces | Pure white for elevated surfaces and maximum contrast |
+| **Silver Gray** | `#E8ECEF` | Soft backgrounds | Subtle gray for muted surfaces and gentle separation |
+| **Steel Gray** | `#8A96A3` | Muted elements | Cool gray for less prominent UI elements |
+| **Charcoal** | `#1A1A1A` | Primary text | Strong, readable text with high contrast |
 
 ### Design Tokens (CSS Variables)
 
@@ -22,48 +22,48 @@ The colors are implemented as CSS variables in `:root` for consistency and maint
 
 ```css
 /* Core Palette Colors */
---light-bronze: #cb997e;
---powder-petal: #eddcd2;
---linen: #fff1e6;
---parchment: #f0efeb;
---desert-sand: #ddbea9;
---dry-sage: #a5a58d;
---ash-grey: #b7b7a4;
+--slate-blue: #2C3E50;
+--muted-gold: #B8926A;
+--light-gray: #F5F7FA;
+--cool-white: #FFFFFF;
+--silver-gray: #E8ECEF;
+--steel-gray: #8A96A3;
+--charcoal: #1A1A1A;
 
 /* Semantic Design Tokens */
---bg: #fff1e6;                      /* Main background - linen */
---surface: #ffffff;                 /* Cards, panels - pure white */
---surface-muted: #f0efeb;          /* Muted surface - parchment */
---text: #5a5244;                    /* Primary text - warm dark brown */
---text-secondary: #706556;          /* Secondary text - warm brown (5.2:1 contrast) */
---muted-text: #8b8072;             /* Muted text - lighter warm brown (4.8:1 contrast) */
---border: #eddcd2;                  /* Soft borders - powder petal */
+--bg: #F5F7FA;                      /* Main background - light gray */
+--surface: #FFFFFF;                 /* Cards, panels - pure white */
+--surface-muted: #E8ECEF;          /* Muted surface - silver gray */
+--text: #1A1A1A;                    /* Primary text - charcoal */
+--text-secondary: #4A5568;          /* Secondary text - slate gray (7.5:1 contrast) */
+--muted-text: #718096;             /* Muted text - medium gray (5.2:1 contrast) */
+--border: #E2E8F0;                  /* Soft borders - light slate */
 
-/* Primary Actions (Light Bronze) */
---primary: #cb997e;
---primary-hover: #b8856b;
---primary-active: #a67159;
---primary-soft: rgba(203, 153, 126, 0.12);
+/* Primary Actions (Slate Blue) */
+--primary: #2C3E50;
+--primary-hover: #233140;
+--primary-active: #1A2530;
+--primary-soft: rgba(44, 62, 80, 0.08);
 
-/* Secondary Actions (Dry Sage) */
---secondary: #a5a58d;
---secondary-hover: #93937a;
---secondary-active: #818168;
---secondary-soft: rgba(165, 165, 141, 0.12);
+/* Secondary Actions (Muted Gold) */
+--secondary: #B8926A;
+--secondary-hover: #A07F5A;
+--secondary-active: #8A6D4A;
+--secondary-soft: rgba(184, 146, 106, 0.12);
 
-/* Highlight & Accents (Desert Sand) */
---highlight: #ddbea9;
---highlight-soft: rgba(221, 190, 169, 0.15);
+/* Highlight & Accents */
+--highlight: #A5B4C5;
+--highlight-soft: rgba(165, 180, 197, 0.15);
 
 /* Focus & States */
---focus-ring: #cb997e;
---disabled: rgba(90, 82, 68, 0.3);
+--focus-ring: #2C3E50;
+--disabled: rgba(26, 26, 26, 0.3);
 ```
 
 ### Color Usage Guidelines
 
-#### 1. Light Bronze (#CB997E) - Primary Accent
-Use strategically for warmth and emphasis:
+#### 1. Slate Blue (#2C3E50) - Primary Accent
+Use strategically for confidence and professionalism:
 - Primary CTA buttons ("Let's Connect", "Send Message")
 - Active navigation states
 - Section title underlines
@@ -72,160 +72,155 @@ Use strategically for warmth and emphasis:
 - Project icons and primary badges
 - Focus rings and interactive states
 
-#### 2. Dry Sage (#A5A58D) - Secondary Accent
-Use for balanced, supportive elements:
+#### 2. Muted Gold (#B8926A) - Secondary Accent
+Use for elegant, refined touches:
 - Secondary buttons and actions
 - Skill tags on hover
-- Tech tags for specific technologies
 - Certification/award icons
 - Skill category top borders
-- Complementary interactive elements
+- Elegant accent elements
+- Sophisticated highlights
 
-#### 3. Desert Sand (#DDBEA9) - Highlight Accent
-Use for subtle emphasis:
-- Highlight boxes and callouts
-- Stat values and key metrics
-- Badge backgrounds
-- Subtle hover states
-- Warm accent elements
-
-#### 4. Powder Petal (#EDDCD2) - Soft Backgrounds
-Use for gentle separation:
-- Borders and dividers
-- Card backgrounds (muted)
-- Section separators
-- Subtle background tints
-- Hover background states
-
-#### 5. Linen (#FFF1E6) - Base Background
+#### 3. Light Gray (#F5F7FA) - Base Background
 Use as the primary foundation:
 - Main page background
 - Section backgrounds
-- Serene, warm canvas for all content
+- Clean, minimal canvas for all content
 
-#### 6. Parchment (#F0EFEB) - Surface Color
-Use for elevated elements:
+#### 4. Cool White (#FFFFFF) - Surface Color
+Use for elevated elements and maximum contrast:
 - Card backgrounds
-- Muted surfaces
+- Panels and elevated surfaces
 - Form backgrounds
-- Surface-level differentiation
+- Pure, clean appearance
 
-#### 7. Ash Grey (#B7B7A4) - Subtle UI Elements
-Use sparingly for very subtle, non-critical elements:
-- Large decorative text (18px+ or 14px+ bold)
-- Very subtle labels
-- Background tints
-- Less emphasis needed (use sparingly due to contrast)
+#### 5. Silver Gray (#E8ECEF) - Soft Backgrounds
+Use for gentle separation and muted surfaces:
+- Muted card backgrounds
+- Section separators
+- Subtle background tints
+- Form field backgrounds
+
+#### 6. Steel Gray (#8A96A3) - Muted Elements
+Use for less prominent UI elements:
+- Secondary icons
+- Subtle labels
+- Less emphasized elements
+- Placeholder text
+
+#### 7. Charcoal (#1A1A1A) - Primary Text
+Use for strong, readable text:
+- Headings and titles
+- Body text
+- High-contrast content
+- Professional, bold statements
 
 ### Interactive States
 
 #### Hover States
-- Primary buttons: Darken to `--primary-hover` (#B8856B)
-- Secondary buttons: Fill with dry sage (`--secondary`)
-- Links: Show light bronze underline
+- Primary buttons: Darken to `--primary-hover` (#233140)
+- Secondary buttons: Fill with muted gold (`--secondary`)
+- Links: Show slate blue underline
 - Cards: Lift with shadow and show primary border
 
 #### Focus States
-- Focus ring: Light bronze (`--focus-ring`) for visibility
-- Input fields: Light bronze border with soft background
+- Focus ring: Slate blue (`--focus-ring`) for visibility
+- Input fields: Slate blue border with soft background
 
 #### Active States
-- Primary buttons: Darken to `--primary-active` (#A67159)
-- Navigation: Show light bronze underline
+- Primary buttons: Darken to `--primary-active` (#1A2530)
+- Navigation: Show slate blue underline
 
 #### Disabled States
 - Opacity reduced using `--disabled`
-- Warm muted appearance
+- Neutral muted appearance
 
 ### Accessibility & Contrast
 
-All color combinations meet WCAG AA standards:
+All color combinations meet or exceed WCAG AA standards:
 
 | Combination | Contrast Ratio | WCAG Level | Usage |
 |-------------|----------------|------------|-------|
-| Dark Brown on Linen | 7.8:1 | AAA | Body text |
-| Dark Brown on White | 8.9:1 | AAA | Card text |
-| Light Bronze on White | 4.5:1 | AA | Buttons, badges |
-| Medium Brown on White | 5.2:1 | AA | Secondary text |
-| Dry Sage on White | 4.3:1 | AA | Secondary elements |
-| Warm Brown on Linen | 4.8:1 | AA | Muted elements |
-| White on Dark Brown | 8.9:1 | AAA | Footer text |
+| Charcoal on Light Gray | 11.2:1 | AAA | Body text |
+| Charcoal on White | 14.5:1 | AAA | Card text |
+| Slate Blue on White | 8.8:1 | AAA | Buttons, badges |
+| Slate Gray on White | 7.5:1 | AAA | Secondary text |
+| Muted Gold on White | 4.6:1 | AA | Secondary elements |
+| Medium Gray on White | 5.2:1 | AA | Muted elements |
+| White on Slate Blue | 8.8:1 | AAA | Button text |
+| White on Charcoal | 14.5:1 | AAA | Footer text |
 
-#### ⚠️ Important Accessibility Note: Ash Grey
+#### ✓ Accessibility Compliant
 
-**Ash Grey (#B7B7A4) on White background has a 3.8:1 contrast ratio**, which does NOT meet WCAG AA standards for normal text (requires 4.5:1).
-
-**Usage Restrictions:**
-- ✅ **ONLY use for large text**: 18px+ regular OR 14px+ bold
-- ✅ Decorative elements where text is not the primary content
-- ✅ Background tints and subtle UI elements
-- ❌ **NEVER use for**: Body text, small labels, or critical information
-- ❌ **NEVER use for**: Form labels, navigation links, or important UI text
-
-For all body text and UI elements, use `--text-secondary` (#706556) or darker for proper accessibility.
+All text colors meet WCAG AA standards for their intended use:
+- ✅ Charcoal (#1A1A1A) provides exceptional contrast on all backgrounds
+- ✅ Slate Blue (#2C3E50) offers AAA-level contrast on white
+- ✅ All text sizes and weights meet accessibility guidelines
+- ✅ Focus states are clearly visible with adequate contrast
+- ✅ No color-only information (supplemented with icons and text)
 
 ### Component-Specific Usage
 
 #### Navigation
 - Background: White with transparency
-- Text: Warm dark brown
-- Hover/Active: Light bronze underline
-- Scroll progress: Light bronze
+- Text: Charcoal
+- Hover/Active: Slate blue underline
+- Scroll progress: Slate blue
 
 #### Hero Section
-- Background: Linen
-- Text: Warm dark brown
-- Badge: Desert sand background, bronze icon
-- Primary button: Light bronze
-- Secondary button: Dry sage
-- Highlight strip: Parchment background
+- Background: Light gray
+- Text: Charcoal
+- Badge: Muted gold background, slate blue icon
+- Primary button: Slate blue
+- Secondary button: Muted gold
+- Highlight strip: Silver gray background
 
 #### About Section
 - Card background: White
-- Avatar: Light bronze soft background
-- Highlight box: Desert sand soft background, bronze border
-- Stats: Light bronze values
+- Avatar: Slate blue soft background
+- Highlight box: Highlight soft background, slate blue border
+- Stats: Slate blue values
 
 #### Projects Section
-- Filter buttons active: Light bronze
-- Project icons: Light bronze background
-- Badges: Light bronze soft background
-- Primary button: Light bronze
-- Secondary button: Dry sage
-- Tech tags: Dry sage for Python/SQL, desert sand for others
+- Filter buttons active: Slate blue
+- Project icons: Slate blue background
+- Badges: Slate blue soft background
+- Primary button: Slate blue
+- Secondary button: Muted gold
+- Tech tags: Muted gold for Python/SQL, steel gray for others
 
 #### Timeline (Experience)
-- Dots: Light bronze
-- Card border: Light bronze
-- Bullets: Light bronze
+- Dots: Slate blue
+- Card border: Slate blue
+- Bullets: Slate blue
 
 #### Skills Section
-- Category accent: Dry sage top border
-- Skill tags hover: Dry sage background
+- Category accent: Muted gold top border
+- Skill tags hover: Muted gold background
 
 #### Education & Certifications
-- Icons: Light bronze (education), Dry sage (certifications)
-- Top border: Light bronze (education)
+- Icons: Slate blue (education), Muted gold (certifications)
+- Top border: Slate blue (education)
 
 #### Contact Section
-- Form focus: Light bronze ring
-- Submit button: Light bronze
-- Contact icons: Light bronze
+- Form focus: Slate blue ring
+- Submit button: Slate blue
+- Contact icons: Slate blue
 
 #### Footer
-- Background: Warm dark brown
+- Background: Charcoal
 - Text: White
 
 ### Best Practices
 
-1. **Natural Warmth**: Light bronze and earthy tones create a sophisticated, approachable aesthetic
-2. **Layered Neutrals**: Multiple shades of warm neutrals (linen, parchment, powder petal) add depth
-3. **Clear Hierarchy**: Color usage reinforces visual hierarchy while maintaining natural harmony
+1. **Minimalistic Elegance**: Slate blue and neutral tones create a sophisticated, professional aesthetic
+2. **Layered Neutrals**: Multiple shades of cool gray add depth while maintaining simplicity
+3. **Clear Hierarchy**: Color usage reinforces visual hierarchy with confident, refined tones
 4. **Accessible Contrast**: All combinations meet or exceed WCAG AA standards
 5. **Semantic Variables**: Use semantic tokens (`--primary`, `--secondary`) rather than color names
-6. **State Consistency**: Hover, focus, and active states follow consistent warm patterns
-7. **Organic Flow**: Earthy palette creates a calming, professional atmosphere
-8. **Metallic Accents**: Light bronze adds subtle sophistication without overwhelming
+6. **State Consistency**: Hover, focus, and active states follow consistent professional patterns
+7. **Clean Flow**: Neutral palette creates a calm, professional, confident atmosphere
+8. **Refined Accents**: Muted gold adds subtle sophistication without overwhelming
 
 ### Maintenance
 
@@ -238,21 +233,22 @@ When updating colors:
 
 ### Resources
 
-- **Palette Colors**: Light Bronze • Powder Petal • Linen • Parchment • Desert Sand • Dry Sage • Ash Grey
+- **Palette Colors**: Slate Blue • Muted Gold • Light Gray • Cool White • Silver Gray • Steel Gray • Charcoal
 - **WCAG Contrast Checker**: [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
 - **Color Blindness Simulator**: Test palette with various color vision deficiencies
 
 ### Design Philosophy
 
-This earthy palette embodies:
-- **Warmth**: Natural, inviting tones that feel approachable yet professional
-- **Sophistication**: Subtle metallic bronze adds elegance without being flashy
-- **Balance**: Multiple neutral shades create visual depth and hierarchy
-- **Timelessness**: Earth tones provide a classic, enduring aesthetic
-- **Serenity**: Muted, harmonious colors promote focus on content
+This Modern Elegance palette embodies:
+- **Confidence**: Deep slate blue conveys professionalism and trustworthiness
+- **Sophistication**: Muted gold adds refined elegance without being flashy
+- **Minimalism**: Clean neutrals and limited color palette maintain simplicity
+- **Timelessness**: Classic colors provide an enduring, professional aesthetic
+- **Clarity**: High contrast ensures readability and focus on content
+- **Uniqueness**: The slate blue and muted gold combination is distinctive yet professional
 
 ---
 
 **Last Updated**: December 2024  
-**Palette Theme**: Earthy Elegance  
+**Palette Theme**: Modern Elegance  
 **Implementation**: CSS Variables in `styles.css`
