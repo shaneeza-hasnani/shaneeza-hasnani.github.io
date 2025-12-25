@@ -110,6 +110,9 @@
     --accent-hover: #111827;         /* Slightly darker charcoal for hover */
     --accent-soft: rgba(31, 41, 55, 0.05);  /* Very subtle backgrounds */
     
+    /* Button backgrounds */
+    --btn-secondary-bg: transparent; /* Secondary button background */
+    
     /* Shadows - neutral gray based (no glow effects) */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -720,7 +723,7 @@ a {
 }
 
 .btn-secondary {
-    background-color: transparent;
+    background-color: var(--btn-secondary-bg);
     color: var(--text-primary);
     border: 1px solid var(--border);
 }
@@ -2070,7 +2073,7 @@ a {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: transparent;
+    background: var(--btn-secondary-bg);
     padding: 0.5rem 1.25rem;
     border-radius: 0.5rem;
     font-size: 0.875rem;
@@ -2122,7 +2125,7 @@ a {
 }
 
 .btn-secondary-hero {
-    background-color: transparent;
+    background-color: var(--btn-secondary-bg);
     color: var(--text-primary);
     border: 1px solid var(--border);
     display: inline-flex;
@@ -2893,7 +2896,7 @@ a {
 }
 
 .btn-code {
-    background: transparent;
+    background: var(--btn-secondary-bg);
     color: var(--text-primary);
     border: 1px solid var(--border);
 }
