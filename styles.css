@@ -88,27 +88,27 @@
 
 :root {
     /* ===========================
-       STRICT Neutral Beige/Stone Color Palette
-       NO saturated colors - minimal, calm, editorial
+       Modern Color Palette
+       Off-white, Warm Gray, Charcoal, with Indigo Accent
        =========================== */
     
     /* Background Colors */
-    --bg-primary: #FAFAF8;          /* Soft off-white, slightly warm */
-    --bg-secondary: #F3F1EC;        /* Light beige for muted sections */
+    --bg-primary: #FAFAFA;          /* Off-white */
+    --bg-secondary: #E5E5E5;        /* Warm gray for sections */
     --surface: #FFFFFF;              /* Cards, surfaces - pure white */
-    --surface-muted: #F3F1EC;       /* Same as muted sections */
+    --surface-muted: #E5E5E5;       /* Same as warm gray */
     
     /* Border & Divider Colors */
-    --border: #E6E1D8;               /* Warm neutral border */
+    --border: #E5E5E5;               /* Warm gray border */
     
     /* Text Colors */
     --text-primary: #1F2937;         /* Charcoal for readability */
     --text-secondary: rgba(31, 41, 55, 0.65);  /* Secondary text at 65% opacity */
     
-    /* Accent - Use Charcoal for Emphasis (NO color accents) */
-    --accent: #1F2937;               /* Charcoal - for buttons and emphasis */
-    --accent-hover: #111827;         /* Slightly darker charcoal for hover */
-    --accent-soft: rgba(31, 41, 55, 0.05);  /* Very subtle backgrounds */
+    /* Accent - Bold Indigo */
+    --accent: #6366F1;               /* Indigo - for buttons and emphasis */
+    --accent-hover: #4F46E5;         /* Darker indigo for hover */
+    --accent-soft: rgba(99, 102, 241, 0.1);  /* Light indigo backgrounds */
     
     /* Button backgrounds */
     --btn-secondary-bg: transparent; /* Secondary button background */
