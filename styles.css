@@ -88,58 +88,60 @@
 
 :root {
     /* ===========================
-       Coolors Palette - Minimal Neutral-Warm Design
-       Confident, calm, WCAG-friendly
+       Earthy Elegance Palette - Warm, Sophisticated Design
+       Natural tones with bronze accents
        =========================== */
     
     /* Core Palette Colors */
-    --color-cream: #F4F1DE;          /* Base background - warm, neutral */
-    --color-terracotta: #E07A5F;     /* Primary accent - use sparingly */
-    --color-slate: #3D405B;          /* Primary text/nav - deep, readable */
-    --color-sage: #81B29A;           /* Secondary accent - calm, subtle */
-    --color-sand: #F2CC8F;           /* Highlight/secondary bg - warm touch */
+    --light-bronze: #cb997e;         /* Primary accent - warm metallic */
+    --powder-petal: #eddcd2;         /* Soft backgrounds - subtle pink/beige */
+    --linen: #fff1e6;                /* Light backgrounds - warm cream */
+    --parchment: #f0efeb;            /* Card surfaces - neutral off-white */
+    --desert-sand: #ddbea9;          /* Secondary accent - warm tan */
+    --dry-sage: #a5a58d;             /* Muted accent - olive green */
+    --ash-grey: #b7b7a4;             /* Text secondary - warm grey */
     
     /* Semantic Design Tokens */
-    --bg: #EFECE2;                   /* Main background - more neutral cream */
-    --surface: #FFFFFF;              /* Cards, panels - clean white */
-    --surface-muted: #F9F7F0;       /* Muted surface - cream tint */
+    --bg: #fff1e6;                   /* Main background - linen */
+    --surface: #ffffff;              /* Cards, panels - pure white */
+    --surface-muted: #f0efeb;        /* Muted surface - parchment */
     
     /* Text Colors */
-    --text: #3D405B;                 /* Primary text - deep slate */
-    --text-secondary: rgba(61, 64, 91, 0.7);  /* Secondary text - slate 70% */
-    --muted-text: #475569;           /* Muted text - lighter slate */
+    --text: #5a5244;                 /* Primary text - warm dark brown */
+    --text-secondary: #8b8072;       /* Secondary text - warm medium brown */
+    --muted-text: #b7b7a4;           /* Muted text - ash grey */
     
     /* Border & Divider */
-    --border: #E2E8F0;               /* Neutral cool light gray */
-    --border-muted: rgba(226, 232, 240, 0.5); /* Very subtle border */
+    --border: #eddcd2;               /* Soft borders - powder petal */
+    --border-muted: rgba(237, 220, 210, 0.5); /* Very subtle border */
     
-    /* Primary Actions (Terracotta) */
-    --primary: #E07A5F;              /* Primary CTA color */
-    --primary-hover: #C96548;        /* Darker terracotta for hover */
-    --primary-active: #BF5A3E;       /* Even darker for active state */
-    --primary-soft: rgba(224, 122, 95, 0.1); /* Soft terracotta background */
+    /* Primary Actions (Light Bronze) */
+    --primary: #cb997e;              /* Primary CTA color - light bronze */
+    --primary-hover: #b8856b;        /* Darker bronze for hover */
+    --primary-active: #a67159;       /* Even darker for active state */
+    --primary-soft: rgba(203, 153, 126, 0.12); /* Soft bronze background */
     
-    /* Secondary Actions (Sage) */
-    --secondary: #81B29A;            /* Secondary actions, tags */
-    --secondary-hover: #6FA188;      /* Darker sage for hover */
-    --secondary-active: #5D8F76;     /* Even darker for active state */
-    --secondary-soft: rgba(129, 178, 154, 0.1); /* Soft sage background */
+    /* Secondary Actions (Desert Sand) */
+    --secondary: #a5a58d;            /* Secondary actions - dry sage */
+    --secondary-hover: #93937a;      /* Darker sage for hover */
+    --secondary-active: #818168;     /* Even darker for active state */
+    --secondary-soft: rgba(165, 165, 141, 0.12); /* Soft sage background */
     
-    /* Highlight & Accents (Sand) */
-    --highlight: #F2CC8F;            /* Subtle highlights, callouts */
-    --highlight-soft: rgba(242, 204, 143, 0.08); /* Very subtle sand bg - reduced intensity */
+    /* Highlight & Accents (Powder Petal) */
+    --highlight: #ddbea9;            /* Subtle highlights - desert sand */
+    --highlight-soft: rgba(221, 190, 169, 0.15); /* Very subtle sand bg */
     
     /* Focus & States */
-    --focus-ring: #E07A5F;           /* Focus ring - terracotta for visibility */
-    --disabled: rgba(61, 64, 91, 0.3); /* Disabled state */
+    --focus-ring: #cb997e;           /* Focus ring - light bronze for visibility */
+    --disabled: rgba(90, 82, 68, 0.3); /* Disabled state */
     
     /* Legacy mappings for backward compatibility */
-    --bg-primary: #EFECE2;
-    --bg-secondary: #F9F7F0;
-    --text-primary: #3D405B;
-    --accent: #E07A5F;
+    --bg-primary: #fff1e6;
+    --bg-secondary: #f0efeb;
+    --text-primary: #5a5244;
+    --accent: #cb997e;
     --accent-hover: var(--primary-hover);
-    --accent-soft: rgba(224, 122, 95, 0.1);
+    --accent-soft: rgba(203, 153, 126, 0.12);
     --btn-secondary-bg: transparent;
     
     /* Shadows - neutral gray based (no glow effects) */
