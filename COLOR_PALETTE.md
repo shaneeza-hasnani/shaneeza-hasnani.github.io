@@ -14,7 +14,7 @@ This portfolio website uses a carefully curated earthy palette to create a warm,
 | **Parchment** | `#F0EFEB` | Card surfaces | Neutral off-white for elevated surfaces and cards |
 | **Desert Sand** | `#DDBEA9` | Highlight accent | Warm tan for highlights and complementary accents |
 | **Dry Sage** | `#A5A58D` | Secondary accent | Muted olive-green for secondary actions and balance |
-| **Ash Grey** | `#B7B7A4` | Muted text | Warm grey-green for less prominent text and elements |
+| **Ash Grey** | `#B7B7A4` | Large text only | ⚠️ Warm grey-green - ONLY for large text (18px+ or 14px+ bold) |
 
 ### Design Tokens (CSS Variables)
 
@@ -35,8 +35,8 @@ The colors are implemented as CSS variables in `:root` for consistency and maint
 --surface: #ffffff;                 /* Cards, panels - pure white */
 --surface-muted: #f0efeb;          /* Muted surface - parchment */
 --text: #5a5244;                    /* Primary text - warm dark brown */
---text-secondary: #8b8072;          /* Secondary text - warm medium brown */
---muted-text: #b7b7a4;             /* Muted text - ash grey */
+--text-secondary: #706556;          /* Secondary text - warm brown (5.2:1 contrast) */
+--muted-text: #8b8072;             /* Muted text - lighter warm brown (4.8:1 contrast) */
 --border: #eddcd2;                  /* Soft borders - powder petal */
 
 /* Primary Actions (Light Bronze) */
@@ -150,7 +150,19 @@ All color combinations meet WCAG AA standards:
 | Dry Sage on White | 4.3:1 | AA | Secondary elements |
 | Warm Brown on Linen | 4.8:1 | AA | Muted elements |
 | White on Dark Brown | 8.9:1 | AAA | Footer text |
-| Ash Grey on White | 3.8:1 | AA (Large Text Only) | Large text, subtle UI (18px+ or 14px+ bold) |
+
+#### ⚠️ Important Accessibility Note: Ash Grey
+
+**Ash Grey (#B7B7A4) on White background has a 3.8:1 contrast ratio**, which does NOT meet WCAG AA standards for normal text (requires 4.5:1).
+
+**Usage Restrictions:**
+- ✅ **ONLY use for large text**: 18px+ regular OR 14px+ bold
+- ✅ Decorative elements where text is not the primary content
+- ✅ Background tints and subtle UI elements
+- ❌ **NEVER use for**: Body text, small labels, or critical information
+- ❌ **NEVER use for**: Form labels, navigation links, or important UI text
+
+For all body text and UI elements, use `--text-secondary` (#706556) or darker for proper accessibility.
 
 ### Component-Specific Usage
 

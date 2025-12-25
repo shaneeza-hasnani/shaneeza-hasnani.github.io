@@ -108,8 +108,8 @@
     
     /* Text Colors */
     --text: #5a5244;                 /* Primary text - warm dark brown */
-    --text-secondary: #706556;       /* Secondary text - improved warm brown */
-    --muted-text: #8b8072;           /* Muted text - warm medium brown */
+    --text-secondary: #706556;       /* Secondary text - warm brown (5.2:1 contrast) */
+    --muted-text: #8b8072;           /* Muted text - lighter warm brown (4.8:1 contrast) */
     
     /* Border & Divider */
     --border: #eddcd2;               /* Soft borders - powder petal */
