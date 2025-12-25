@@ -115,7 +115,7 @@
     
     /* Primary Actions (Terracotta) */
     --primary: #E07A5F;              /* Primary CTA color */
-    --primary-hover: #D96A50;        /* Darker terracotta for hover */
+    --primary-hover: #C96548;        /* Darker terracotta for hover */
     --primary-active: #BF5A3E;       /* Even darker for active state */
     --primary-soft: rgba(224, 122, 95, 0.1); /* Soft terracotta background */
     
@@ -138,7 +138,7 @@
     --bg-secondary: #F9F7F0;
     --text-primary: #3D405B;
     --accent: #E07A5F;
-    --accent-hover: #D96A50;
+    --accent-hover: var(--primary-hover);
     --accent-soft: rgba(224, 122, 95, 0.1);
     --btn-secondary-bg: transparent;
     
