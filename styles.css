@@ -121,13 +121,13 @@
     --primary-active: #a67159;       /* Even darker for active state */
     --primary-soft: rgba(203, 153, 126, 0.12); /* Soft bronze background */
     
-    /* Secondary Actions (Desert Sand) */
+    /* Secondary Actions (Dry Sage) */
     --secondary: #a5a58d;            /* Secondary actions - dry sage */
     --secondary-hover: #93937a;      /* Darker sage for hover */
     --secondary-active: #818168;     /* Even darker for active state */
     --secondary-soft: rgba(165, 165, 141, 0.12); /* Soft sage background */
     
-    /* Highlight & Accents (Powder Petal) */
+    /* Highlight & Accents (Desert Sand) */
     --highlight: #ddbea9;            /* Subtle highlights - desert sand */
     --highlight-soft: rgba(221, 190, 169, 0.15); /* Very subtle sand bg */
     
