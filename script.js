@@ -638,7 +638,7 @@ function initContactForm() {
                 </svg>
                 <span>Message Sent!</span>
             `;
-            submitBtn.style.background = '#10b981';
+            submitBtn.style.background = '#1F2937';
             
             // Reset form
             contactForm.reset();
@@ -685,7 +685,7 @@ function showNotification(message, type = 'info') {
         position: fixed;
         top: 100px;
         right: 20px;
-        background: ${type === 'success' ? '#10b981' : '#ef4444'};
+        background: ${type === 'success' ? '#1F2937' : '#ef4444'};
         color: white;
         padding: 1rem 1.5rem;
         border-radius: 0.5rem;
