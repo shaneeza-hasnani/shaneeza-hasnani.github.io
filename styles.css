@@ -99,7 +99,7 @@
     --parchment: #f0efeb;            /* Card surfaces - neutral off-white */
     --desert-sand: #ddbea9;          /* Secondary accent - warm tan */
     --dry-sage: #a5a58d;             /* Muted accent - olive green */
-    --ash-grey: #b7b7a4;             /* Text secondary - warm grey */
+    --ash-grey: #b7b7a4;             /* Large text only - warm grey (18px+ or 14px+ bold) */
     
     /* Semantic Design Tokens */
     --bg: #fff1e6;                   /* Main background - linen */
