@@ -90,6 +90,7 @@
     /* ===========================
        Modern Elegance Palette - Sophisticated, Minimalistic Design
        Neutral tones with refined accents
+       Enhanced for Data Science Portfolio
        =========================== */
     
     /* Core Palette Colors */
@@ -100,6 +101,12 @@
     --silver-gray: #E8ECEF;          /* Soft backgrounds - subtle gray */
     --steel-gray: #8A96A3;           /* Muted elements - cool gray */
     --charcoal: #1A1A1A;             /* Text - strong, readable */
+    
+    /* Data Science Accent Colors */
+    --data-blue: #3498db;            /* For data visualization accents */
+    --data-green: #2ecc71;           /* For success/positive metrics */
+    --data-purple: #9b59b6;          /* For ML/AI accents */
+    --data-orange: #e67e22;          /* For alert/important data */
     
     /* Semantic Design Tokens */
     --bg: #F5F7FA;                   /* Main background - light gray */
@@ -388,6 +395,8 @@ a {
     width: 100%;
     color: var(--text);
     white-space: nowrap;
+    font-weight: 700;
+    letter-spacing: -0.02em;
 }
 
 .section-title .no-underline {
@@ -408,9 +417,9 @@ a {
     transform: translateX(-50%);
     width: 80px;
     height: 5px;
-    background: var(--primary);
+    background: linear-gradient(90deg, var(--primary) 0%, var(--data-blue) 100%);
     border-radius: var(--radius-full);
-    box-shadow: none;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.2);
 }
 
 /* ===========================
@@ -571,7 +580,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--bg);
+    background: linear-gradient(135deg, var(--bg) 0%, #e8f0f7 100%);
     padding-top: 70px;
     position: relative;
     overflow: hidden;
@@ -585,12 +594,23 @@ a {
     right: 0;
     bottom: 0;
     background: 
+        radial-gradient(circle at 20% 50%, rgba(44, 62, 80, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(52, 152, 219, 0.03) 0%, transparent 50%),
         url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.02"/></svg>');
     pointer-events: none;
 }
 
 .hero::after {
-    display: none;
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(52, 152, 219, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: float 20s ease-in-out infinite;
 }
 
 @keyframes gradientShift {
@@ -609,11 +629,12 @@ a {
     text-align: center;
     position: relative;
     z-index: 1;
-    background: var(--surface);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
     border: 1px solid var(--border);
     border-radius: var(--radius-xl);
     padding: var(--spacing-xl) var(--spacing-lg);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08), 0 8px 20px rgba(0, 0, 0, 0.04);
     max-width: 900px;
     margin: 0 auto;
 }
@@ -2317,9 +2338,15 @@ a {
 .about-card {
     background: var(--surface);
     border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
     overflow: hidden;
     border: 1px solid var(--border);
+    transition: all var(--transition-base);
+}
+
+.about-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.12), 0 8px 20px rgba(0, 0, 0, 0.06);
 }
 
 .about-header {
@@ -2415,13 +2442,21 @@ a {
 
 .stat-inline-item {
     text-align: center;
+    transition: transform var(--transition-base);
+}
+
+.stat-inline-item:hover {
+    transform: translateY(-4px);
 }
 
 .stat-inline-value {
     display: block;
-    font-size: 2rem;
+    font-size: 2.25rem;
     font-weight: 800;
-    color: var(--primary);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--data-blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin-bottom: 0.25rem;
 }
 
@@ -2501,12 +2536,13 @@ a {
 .project-card {
     background: var(--surface);
     border-radius: var(--radius-lg);
-    padding: var(--spacing-md);
-    box-shadow: var(--shadow-md);
+    padding: var(--spacing-lg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.04);
     border: 1px solid var(--border);
     transition: all var(--transition-base);
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 .project-card.hidden {
@@ -2514,9 +2550,9 @@ a {
 }
 
 .project-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-xl);
-    border-color: var(--text-primary);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12), 0 8px 16px rgba(0, 0, 0, 0.08);
+    border-color: var(--primary);
 }
 
 .project-header {
@@ -2527,14 +2563,20 @@ a {
 }
 
 .project-icon {
-    width: 40px;
-    height: 40px;
-    background: var(--primary);
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--data-blue) 100%);
     border-radius: var(--radius-md);
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
+    box-shadow: 0 4px 12px rgba(44, 62, 80, 0.2);
+    transition: transform var(--transition-base);
+}
+
+.project-card:hover .project-icon {
+    transform: scale(1.1) rotate(5deg);
 }
 
 .project-badge {
