@@ -1040,53 +1040,11 @@ a {
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-md);
-    transition: transform var(--transition-slow), 
-                box-shadow var(--transition-slow),
-                border-color var(--transition-slow);
+    transition: transform var(--transition-base), 
+                box-shadow var(--transition-base),
+                border-color var(--transition-base);
     border: 1px solid var(--border);
     position: relative;
-    transform-style: preserve-3d;
-    perspective: 1000px;
-    will-change: transform;
-}
-
-.project-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--accent-soft);
-    opacity: 0;
-    transition: opacity var(--transition-base);
-    pointer-events: none;
-}
-
-.project-card::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-        45deg,
-        transparent 30%,
-        rgba(255, 255, 255, 0.1) 50%,
-        transparent 70%
-    );
-    transform: rotate(45deg);
-    transition: all 0.6s;
-    pointer-events: none;
-}
-
-.project-card:hover::after {
-    left: 100%;
-}
-
-.project-card:hover::before {
-    opacity: 1;
 }
 
 .project-card:hover {
@@ -1298,7 +1256,7 @@ a {
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
     transition: all var(--transition-base);
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -1385,7 +1343,7 @@ a {
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
     transition: all var(--transition-base);
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     text-align: center;
 }
 
@@ -1469,7 +1427,7 @@ a {
     box-shadow: var(--shadow-md);
     transition: all var(--transition-base);
     text-align: left;
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     position: relative;
     overflow: hidden;
 }
@@ -2354,7 +2312,7 @@ a {
     gap: var(--spacing-lg);
     padding: var(--spacing-xl);
     background: var(--bg-secondary);
-    border-bottom: 2px solid var(--border);
+    border-bottom: 1px solid var(--border);
 }
 
 .about-avatar {
@@ -2436,7 +2394,7 @@ a {
     gap: var(--spacing-lg);
     justify-content: space-around;
     padding-top: var(--spacing-lg);
-    border-top: 2px solid var(--border);
+    border-top: 1px solid var(--border);
 }
 
 .stat-inline-item {
@@ -2483,8 +2441,8 @@ a {
     gap: 0.5rem;
     padding: 0.75rem 1.5rem;
     background: var(--surface);
-    border: 2px solid var(--border);
-    border-radius: var(--radius-full);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
     color: var(--text-secondary);
     font-weight: 600;
     font-size: 0.9375rem;
@@ -2503,7 +2461,7 @@ a {
     background: var(--accent);
     color: white;
     border-color: transparent;
-    box-shadow: var(--shadow-md);
+    box-shadow: none;
 }
 
 .filter-count {
@@ -2529,7 +2487,7 @@ a {
     border-radius: var(--radius-lg);
     padding: var(--spacing-md);
     box-shadow: var(--shadow-md);
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     transition: all var(--transition-base);
     display: flex;
     flex-direction: column;
@@ -2667,7 +2625,7 @@ a {
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
     transition: all var(--transition-base);
-    border: 2px solid transparent;
+    border: 1px solid var(--border);
     position: relative;
     overflow: hidden;
 }
@@ -2745,7 +2703,7 @@ a {
     padding: var(--spacing-xl);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
 }
 
 .form-row {
@@ -2774,7 +2732,7 @@ a {
 .form-group textarea {
     width: 100%;
     padding: 0.875rem 1.125rem;
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius-md);
     font-family: var(--font-family);
     font-size: 1rem;
@@ -2810,18 +2768,18 @@ a {
     background: var(--accent);
     color: white;
     border: none;
-    border-radius: var(--radius-md);
+    border-radius: 0.5rem;
     font-size: 1rem;
     font-weight: 700;
     cursor: pointer;
     transition: all var(--transition-base);
-    box-shadow: var(--shadow-md);
+    box-shadow: none;
 }
 
 .btn-submit:hover {
     background: var(--accent-hover);
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-xl);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
 }
 
 .btn-submit:active {
@@ -2943,19 +2901,19 @@ a {
 .btn-details {
     background: var(--accent);
     color: white;
-    box-shadow: var(--shadow-sm);
+    box-shadow: none;
 }
 
 .btn-details:hover {
     background: var(--accent-hover);
     transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-sm);
 }
 
 .btn-code {
     background: var(--surface);
     color: var(--accent);
-    border: 2px solid var(--accent);
+    border: 1px solid var(--accent);
 }
 
 .btn-code:hover {
@@ -3030,7 +2988,7 @@ a {
     width: 40px;
     height: 40px;
     background: var(--surface);
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -3157,7 +3115,7 @@ a {
 .modal-footer {
     margin-top: var(--spacing-2xl);
     padding-top: var(--spacing-lg);
-    border-top: 2px solid var(--border);
+    border-top: 1px solid var(--border);
     text-align: center;
 }
 
@@ -3170,19 +3128,19 @@ a {
     background: var(--accent);
     color: white;
     border: none;
-    border-radius: var(--radius-full);
+    border-radius: 0.5rem;
     font-size: 1.0625rem;
     font-weight: 700;
     cursor: pointer;
     transition: all var(--transition-base);
-    box-shadow: var(--shadow-md);
+    box-shadow: none;
     text-decoration: none;
 }
 
 .modal-cta-btn:hover {
     background: var(--accent-hover);
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-xl);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
 }
 
 .modal-cta-btn svg {
