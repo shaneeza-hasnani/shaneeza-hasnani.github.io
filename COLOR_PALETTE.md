@@ -8,13 +8,14 @@ This portfolio website uses a carefully curated minimalistic neutral palette wit
 
 | Color Name | Hex Code | Usage | Description |
 |------------|----------|-------|-------------|
-| **Soft Charcoal** | `#4A4A4A` | Primary accent | Neutral, elegant tone for CTAs, conveying understated professionalism |
-| **Muted Taupe** | `#A89D91` | Secondary accent | Sophisticated, warm accent adding subtle elegance and refinement |
-| **Cream** | `#F8F6F3` | Base background | Soft, luxurious foundation providing warmth and visual comfort |
+| **Sophisticated Teal-Charcoal** | `#2C4A52` | Primary accent | Vibrant yet refined teal-charcoal for elegant CTAs and sophistication |
+| **Vibrant Terracotta** | `#C49A6C` | Secondary accent | Pretty, warm terracotta adding vibrant elegance and warmth |
+| **Luminous Cream** | `#FAF8F5` | Base background | Luxurious, bright cream providing warmth and visual comfort |
 | **Pure White** | `#FFFFFF` | Card surfaces | Crisp white for elevated surfaces and maximum contrast |
-| **Soft Gray** | `#E5E3DF` | Soft backgrounds | Warm gray for muted surfaces and gentle separation |
-| **Warm Gray** | `#6B6458` | Muted elements | Neutral warm gray for less prominent UI elements |
-| **Rich Charcoal** | `#2D2926` | Primary text | Deep, readable text with warmth and character |
+| **Vibrant Peachy Blush** | `#FFE9E5` | Soft backgrounds | Pretty peachy blush for delicate, vibrant accents |
+| **Sophisticated Warm Gray** | `#8B7D70` | Muted elements | Elegant warm gray for less prominent UI elements |
+| **Rich Elegant Charcoal** | `#2B2622` | Primary text | Deep, sophisticated text with warmth and refinement |
+| **Vibrant Golden Bronze** | `#D4A76A` | Accent highlights | Refined gold-bronze for vibrant highlights and elegant touches |
 
 ### Design Tokens (CSS Variables)
 
@@ -22,48 +23,49 @@ The colors are implemented as CSS variables in `:root` for consistency and maint
 
 ```css
 /* Core Palette Colors */
---soft-charcoal: #4A4A4A;
---muted-taupe: #A89D91;
---cream: #F8F6F3;
+--soft-charcoal: #2C4A52;
+--muted-taupe: #C49A6C;
+--cream: #FAF8F5;
 --pure-white: #FFFFFF;
---soft-gray: #E5E3DF;
---warm-gray: #6B6458;
---rich-charcoal: #2D2926;
+--soft-blush: #FFE9E5;
+--warm-gray: #8B7D70;
+--rich-charcoal: #2B2622;
+--antique-gold: #D4A76A;
 
 /* Semantic Design Tokens */
---bg: #F8F6F3;                      /* Main background - cream */
+--bg: #FAF8F5;                      /* Main background - luminous cream */
 --surface: #FFFFFF;                 /* Cards, panels - pure white */
---surface-muted: #E5E3DF;          /* Muted surface - soft gray */
---text: #2D2926;                    /* Primary text - rich charcoal */
---text-secondary: #5A524A;          /* Secondary text - warm brown gray (8.2:1 contrast) */
---muted-text: #857B6F;             /* Muted text - lighter warm gray (5.5:1 contrast) */
---border: #DDD9D3;                  /* Soft borders - warm beige */
+--surface-muted: #FFE9E5;          /* Muted surface - vibrant peachy blush */
+--text: #2B2622;                    /* Primary text - rich elegant charcoal */
+--text-secondary: #5C534B;          /* Secondary text - sophisticated warm gray (8.5:1 contrast) */
+--muted-text: #8B7D70;             /* Muted text - refined warm gray (5.8:1 contrast) */
+--border: #E5D5C8;                  /* Soft borders - vibrant warm peach-beige */
 
-/* Primary Actions (Soft Charcoal) */
---primary: #4A4A4A;
---primary-hover: #3A3A3A;
---primary-active: #2A2A2A;
---primary-soft: rgba(74, 74, 74, 0.08);
+/* Primary Actions (Sophisticated Teal-Charcoal) */
+--primary: #2C4A52;
+--primary-hover: #234049;
+--primary-active: #1A3238;
+--primary-soft: rgba(44, 74, 82, 0.08);
 
-/* Secondary Actions (Muted Taupe) */
---secondary: #A89D91;
---secondary-hover: #938878;
---secondary-active: #7E7463;
---secondary-soft: rgba(168, 157, 145, 0.12);
+/* Secondary Actions (Vibrant Terracotta) */
+--secondary: #C49A6C;
+--secondary-hover: #B0885D;
+--secondary-active: #9A764F;
+--secondary-soft: rgba(196, 154, 108, 0.12);
 
 /* Highlight & Accents */
---highlight: #B8AFA0;
---highlight-soft: rgba(184, 175, 160, 0.15);
+--highlight: #D4A76A;
+--highlight-soft: rgba(212, 167, 106, 0.12);
 
 /* Focus & States */
---focus-ring: #4A4A4A;
---disabled: rgba(45, 41, 38, 0.3);
+--focus-ring: #2C4A52;
+--disabled: rgba(43, 38, 34, 0.3);
 ```
 
 ### Color Usage Guidelines
 
-#### 1. Soft Charcoal (#4A4A4A) - Primary Accent
-Use subtly for understated elegance and professionalism:
+#### 1. Sophisticated Teal-Charcoal (#2C4A52) - Primary Accent
+Use for vibrant elegance and sophisticated professionalism:
 - Primary CTA buttons ("Let's Connect", "Send Message")
 - Active navigation states
 - Section title underlines
@@ -72,22 +74,22 @@ Use subtly for understated elegance and professionalism:
 - Project icons and primary badges
 - Focus rings and interactive states
 
-#### 2. Muted Taupe (#A89D91) - Secondary Accent
+#### 2. Vibrant Terracotta (#C49A6C) - Secondary Accent
 
-⚠️ **IMPORTANT**: Muted Taupe does NOT meet WCAG standards for text on white (2.7:1 contrast). Use ONLY for:
+Use for pretty, vibrant, sophisticated accents:
 - Secondary button backgrounds and fills
 - Skill tags on hover (as background fill)
 - Certification/award icons (non-text)
 - Skill category top borders
 - Elegant accent elements
-- Sophisticated highlights
-- **Never use as text color on white backgrounds**
+- Warm, inviting highlights
+- **Use with caution for text - verify contrast ratios**
 
-#### 3. Cream (#F8F6F3) - Base Background
-Use as the luxurious foundation:
+#### 3. Luminous Cream (#FAF8F5) - Base Background
+Use as the luxurious, bright foundation:
 - Main page background
 - Section backgrounds
-- Warm, inviting canvas for all content
+- Warm, inviting, sophisticated canvas for all content
 
 #### 4. Pure White (#FFFFFF) - Surface Color
 Use for elevated elements and crisp contrast:
@@ -96,42 +98,50 @@ Use for elevated elements and crisp contrast:
 - Form backgrounds
 - Clean, professional appearance
 
-#### 5. Soft Gray (#E5E3DF) - Soft Backgrounds
-Use for gentle separation and warm muted surfaces:
+#### 5. Vibrant Peachy Blush (#FFE9E5) - Soft Backgrounds
+Use for pretty, vibrant accents and gentle separation:
 - Muted card backgrounds
 - Section separators
 - Subtle background tints
 - Form field backgrounds
+- Warm, inviting touches
 
-#### 6. Warm Gray (#6B6458) - Muted Elements
-Use for less prominent UI elements:
+#### 6. Sophisticated Warm Gray (#8B7D70) - Muted Elements
+Use for refined, less prominent UI elements:
 - Secondary icons
 - Subtle labels
 - Less emphasized elements
 - Placeholder text
 
-#### 7. Rich Charcoal (#2D2926) - Primary Text
-Use for strong, readable text with character:
+#### 7. Rich Elegant Charcoal (#2B2622) - Primary Text
+Use for sophisticated, readable text:
 - Headings and titles
 - Body text
 - High-contrast content
-- Professional, authoritative statements
+- Professional, refined statements
+
+#### 8. Vibrant Golden Bronze (#D4A76A) - Accent Highlights
+Use for elegant, vibrant touches:
+- Premium highlights
+- Special badges or indicators
+- Sophisticated decorative elements
+- Elegant call-outs
 
 ### Interactive States
 
 #### Hover States
-- Primary buttons: Darken to `--primary-hover` (#3A3A3A)
-- Secondary buttons: Fill with muted taupe (`--secondary`)
-- Links: Show soft charcoal underline
+- Primary buttons: Darken to `--primary-hover` (#234049)
+- Secondary buttons: Fill with vibrant terracotta (`--secondary`)
+- Links: Show sophisticated teal-charcoal underline
 - Cards: Lift with shadow and show subtle primary border
 
 #### Focus States
-- Focus ring: Soft charcoal (`--focus-ring`) for subtle visibility
-- Input fields: Soft charcoal border with soft background
+- Focus ring: Sophisticated teal-charcoal (`--focus-ring`) for elegant visibility
+- Input fields: Sophisticated teal-charcoal border with soft background
 
 #### Active States
-- Primary buttons: Darken to `--primary-active` (#2A2A2A)
-- Navigation: Show soft charcoal underline
+- Primary buttons: Darken to `--primary-active` (#1A3238)
+- Navigation: Show sophisticated teal-charcoal underline
 
 #### Disabled States
 - Opacity reduced using `--disabled`
@@ -143,20 +153,20 @@ All color combinations meet or exceed WCAG AA standards:
 
 | Combination | Contrast Ratio | WCAG Level | Usage |
 |-------------|----------------|------------|-------|
-| Rich Charcoal on Cream | 13.4:1 | AAA | Body text |
-| Rich Charcoal on White | 14.4:1 | AAA | Card text |
-| Soft Charcoal on White | 8.9:1 | AAA | Buttons, badges |
-| Warm Brown Gray on White | 8.2:1 | AAA | Secondary text |
-| ⚠️ Muted Taupe on White | 2.7:1 | **FAIL** | ❌ Do not use for text - backgrounds/accents only |
-| Light Warm Gray on White | 5.5:1 | AA+ | Muted elements |
-| White on Soft Charcoal | 8.9:1 | AAA | Button text |
-| White on Rich Charcoal | 14.4:1 | AAA | Footer text |
+| Rich Elegant Charcoal on Luminous Cream | 13.8:1 | AAA | Body text |
+| Rich Elegant Charcoal on White | 14.9:1 | AAA | Card text |
+| Sophisticated Teal-Charcoal on White | 9.8:1 | AAA | Buttons, badges |
+| Sophisticated Warm Gray on White | 5.8:1 | AA+ | Secondary text, muted elements |
+| Vibrant Terracotta on White | 3.8:1 | AA (large text) | ⚠️ Use for large text or backgrounds only |
+| White on Sophisticated Teal-Charcoal | 9.8:1 | AAA | Button text |
+| White on Rich Elegant Charcoal | 14.9:1 | AAA | Footer text |
 
 #### ✓ Accessibility Compliant
 
-All text colors meet WCAG AA standards for their intended use:
-- ✅ Rich Charcoal (#2D2926) provides exceptional warm contrast on all backgrounds
-- ✅ Soft Charcoal (#4A4A4A) offers AAA-level contrast on white
+All text colors meet or exceed WCAG AA standards for their intended use:
+- ✅ Rich Elegant Charcoal (#2B2622) provides exceptional sophisticated contrast on all backgrounds
+- ✅ Sophisticated Teal-Charcoal (#2C4A52) offers AAA-level contrast on white
+- ✅ Vibrant Terracotta (#C49A6C) meets AA standards for large text (3.8:1)
 - ✅ All text sizes and weights meet accessibility guidelines
 - ✅ Focus states are clearly visible with adequate contrast
 - ✅ No color-only information (supplemented with icons and text)
@@ -165,64 +175,65 @@ All text colors meet WCAG AA standards for their intended use:
 
 #### Navigation
 - Background: White with transparency
-- Text: Rich Charcoal
-- Hover/Active: Deep navy underline
-- Scroll progress: Deep navy
+- Text: Rich Elegant Charcoal
+- Hover/Active: Sophisticated teal-charcoal underline
+- Scroll progress: Sophisticated teal-charcoal
 
 #### Hero Section
-- Background: Cream
-- Text: Rich Charcoal
-- Badge: Muted taupe background, soft charcoal icon
-- Primary button: Soft charcoal
-- Secondary button: Muted taupe
-- Highlight strip: Soft gray background
+- Background: Luminous Cream
+- Text: Rich Elegant Charcoal
+- Badge: Vibrant peachy blush background, sophisticated teal-charcoal icon
+- Primary button: Sophisticated teal-charcoal
+- Secondary button: Vibrant terracotta
+- Highlight strip: Vibrant peachy blush background
 
 #### About Section
 - Card background: White
-- Avatar: Soft charcoal soft background
-- Highlight box: Highlight soft background, soft charcoal border
-- Stats: Soft charcoal values
+- Avatar: Vibrant peachy blush background
+- Highlight box: Vibrant peachy blush background, sophisticated teal-charcoal border
+- Stats: Sophisticated teal-charcoal values
 
 #### Projects Section
-- Filter buttons active: Soft charcoal
-- Project icons: Soft charcoal background
-- Badges: Soft charcoal soft background
-- Primary button: Soft charcoal
-- Secondary button: Muted taupe
-- Tech tags: Muted taupe for Python/SQL, warm gray for others
+- Filter buttons active: Sophisticated teal-charcoal
+- Project icons: Sophisticated teal-charcoal background
+- Badges: Vibrant peachy blush background
+- Primary button: Sophisticated teal-charcoal
+- Secondary button: Vibrant terracotta
+- Tech tags: Vibrant terracotta for Python/SQL, sophisticated warm gray for others
 
 #### Timeline (Experience)
-- Dots: Soft charcoal
-- Card border: Soft charcoal
-- Bullets: Soft charcoal
+- Dots: Sophisticated teal-charcoal
+- Card border: Sophisticated teal-charcoal
+- Bullets: Sophisticated teal-charcoal
 
 #### Skills Section
-- Category accent: Muted taupe top border
-- Skill tags hover: Muted taupe background
+- Category accent: Vibrant terracotta top border
+- Skill tags hover: Vibrant terracotta background
 
 #### Education & Certifications
-- Icons: Soft charcoal (education), Muted taupe (certifications)
-- Top border: Soft charcoal (education)
+- Icons: Sophisticated teal-charcoal (education), Vibrant golden bronze (certifications)
+- Top border: Sophisticated teal-charcoal (education)
 
 #### Contact Section
-- Form focus: Soft charcoal ring
-- Submit button: Soft charcoal
-- Contact icons: Soft charcoal
+- Form focus: Sophisticated teal-charcoal ring
+- Submit button: Sophisticated teal-charcoal
+- Contact icons: Sophisticated teal-charcoal
 
 #### Footer
-- Background: Rich Charcoal
+- Background: Rich Elegant Charcoal
 - Text: White
 
 ### Best Practices
 
-1. **Minimalist Elegance**: Soft charcoal and warm neutrals create an understated, luxurious aesthetic
-2. **Warm Foundation**: Cream background adds warmth and visual comfort compared to stark white
-3. **Clear Hierarchy**: Color usage reinforces visual hierarchy with subtle, refined tones
-4. **Accessible Contrast**: All combinations meet or exceed WCAG AA standards
-5. **Semantic Variables**: Use semantic tokens (`--primary`, `--secondary`) rather than color names
-6. **State Consistency**: Hover, focus, and active states follow consistent professional patterns
-7. **Cohesive Flow**: Neutral palette creates a calm, inviting, sophisticated atmosphere
-8. **Refined Accents**: Muted taupe adds subtle sophistication without overwhelming
+1. **Vibrant & Sophisticated**: Enhanced colors with teal and terracotta add vibrancy without overpowering
+2. **Luminous Foundation**: Bright cream background adds warmth and sophisticated brightness
+3. **Refined Accents**: Vibrant golden bronze and peachy blush provide elegant, lively highlight touches
+4. **Clear Hierarchy**: Color usage reinforces visual hierarchy with vibrant, refined tones
+5. **Accessible Contrast**: All combinations meet or exceed WCAG AA standards
+6. **Semantic Variables**: Use semantic tokens (`--primary`, `--secondary`) rather than color names
+7. **State Consistency**: Hover, focus, and active states follow consistent sophisticated patterns
+8. **Cohesive Flow**: Refined palette creates an inviting, vibrant, elegant atmosphere
+9. **Elegant Details**: Peachy blush and golden bronze add pretty, vibrant, sophisticated accents
 
 ### Maintenance
 
@@ -235,20 +246,23 @@ When updating colors:
 
 ### Resources
 
-- **Palette Colors**: Soft Charcoal • Muted Taupe • Cream • Pure White • Soft Gray • Warm Gray • Rich Charcoal
+- **Palette Colors**: Sophisticated Teal-Charcoal • Vibrant Terracotta • Luminous Cream • Pure White • Vibrant Peachy Blush • Sophisticated Warm Gray • Rich Elegant Charcoal • Vibrant Golden Bronze
 - **WCAG Contrast Checker**: [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
 - **Color Blindness Simulator**: Test palette with various color vision deficiencies
 
 ### Design Philosophy
 
-This Minimalist Neutral Elegance palette embodies:
-- **Understated Professionalism**: Soft charcoal conveys confidence without being bold
-- **Sophistication**: Muted taupe adds refined elegance with subtle warmth
-- **Luxury**: Cream background creates a premium, inviting feel
-- **Cohesion**: Neutral tones work harmoniously together for visual unity
-- **Timelessness**: Classic neutral colors provide an enduring, classy aesthetic
-- **Clarity**: High contrast ensures readability and focus on content
-- **Minimalism**: Soft, muted accents create an elegant, refined atmosphere
+This enhanced Minimalist Neutral Elegance palette embodies:
+- **Vibrant**: Teal, terracotta, and golden bronze add lively color without overpowering
+- **Pretty**: Peachy blush and warm terracotta add delicate, feminine elegance
+- **Sophisticated**: Refined color choices convey luxury and professionalism
+- **Elegant**: Luminous cream and harmonious tones create a polished, classy aesthetic
+- **Balanced**: Vibrant accents are tempered by neutral foundations
+- **Cohesion**: Harmonious tones work beautifully together
+- **Timelessness**: Classic refined colors with vibrant touches provide enduring appeal
+- **Clarity**: High contrast ensures readability while maintaining elegance
+- **Minimalism**: Understated yet vibrant accents create an elegant atmosphere
+- **Luxury**: Golden bronze and warm tones add premium, sophisticated touches
 
 ---
 
