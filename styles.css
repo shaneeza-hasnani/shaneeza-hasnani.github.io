@@ -88,13 +88,13 @@
 
 :root {
     /* ===========================
-       Refined Elegance Palette - Timeless, Sophisticated, Confident
-       Deep navy with warm neutrals for a luxurious, professional aesthetic
+       Minimalist Neutral Elegance - Understated, Professional, Refined
+       Soft charcoal with warm neutrals for a sophisticated, classy aesthetic
        =========================== */
     
     /* Core Palette Colors */
-    --deep-navy: #1A2238;            /* Primary accent - confident, timeless, authoritative */
-    --warm-taupe: #9C8B7A;           /* Secondary accent - sophisticated, warm, elegant */
+    --soft-charcoal: #4A4A4A;        /* Primary accent - neutral, elegant, professional */
+    --muted-taupe: #A89D91;          /* Secondary accent - sophisticated, warm, subtle */
     --cream: #F8F6F3;                /* Light backgrounds - soft, luxurious */
     --pure-white: #FFFFFF;           /* Card surfaces - crisp white */
     --soft-gray: #E5E3DF;            /* Soft backgrounds - warm gray */
@@ -115,33 +115,33 @@
     --border: #DDD9D3;               /* Soft borders - warm beige */
     --border-muted: rgba(221, 217, 211, 0.5); /* Very subtle border */
     
-    /* Primary Actions (Deep Navy) */
-    --primary: #1A2238;              /* Primary CTA color - deep navy */
-    --primary-hover: #0F1724;        /* Darker navy for hover */
-    --primary-active: #090E16;       /* Even darker for active state */
-    --primary-soft: rgba(26, 34, 56, 0.08); /* Soft navy background */
+    /* Primary Actions (Soft Charcoal) */
+    --primary: #4A4A4A;              /* Primary CTA color - soft charcoal */
+    --primary-hover: #3A3A3A;        /* Darker charcoal for hover */
+    --primary-active: #2A2A2A;       /* Even darker for active state */
+    --primary-soft: rgba(74, 74, 74, 0.08); /* Soft charcoal background */
     
-    /* Secondary Actions (Warm Taupe) */
-    --secondary: #9C8B7A;            /* Secondary actions - warm taupe */
-    --secondary-hover: #867660;      /* Darker taupe for hover */
-    --secondary-active: #70624F;     /* Even darker for active state */
-    --secondary-soft: rgba(156, 139, 122, 0.12); /* Soft taupe background */
+    /* Secondary Actions (Muted Taupe) */
+    --secondary: #A89D91;            /* Secondary actions - muted taupe */
+    --secondary-hover: #938878;      /* Darker taupe for hover */
+    --secondary-active: #7E7463;     /* Even darker for active state */
+    --secondary-soft: rgba(168, 157, 145, 0.12); /* Soft taupe background */
     
     /* Highlight & Accents */
     --highlight: #B8AFA0;            /* Subtle highlights - warm gray */
     --highlight-soft: rgba(184, 175, 160, 0.15); /* Very subtle warm bg */
     
     /* Focus & States */
-    --focus-ring: #1A2238;           /* Focus ring - deep navy for visibility */
+    --focus-ring: #4A4A4A;           /* Focus ring - soft charcoal for subtle visibility */
     --disabled: rgba(45, 41, 38, 0.3); /* Disabled state */
     
     /* Legacy mappings for backward compatibility */
     --bg-primary: #F8F6F3;
     --bg-secondary: #E5E3DF;
     --text-primary: #2D2926;
-    --accent: #1A2238;
+    --accent: #4A4A4A;
     --accent-hover: var(--primary-hover);
-    --accent-soft: rgba(26, 34, 56, 0.08);
+    --accent-soft: rgba(74, 74, 74, 0.08);
     --btn-secondary-bg: transparent;
     
     /* Shadows - neutral gray based (no glow effects) */

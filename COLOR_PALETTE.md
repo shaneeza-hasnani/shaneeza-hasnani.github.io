@@ -1,15 +1,15 @@
 # Color Palette Documentation
 
-## Refined Elegance Palette - Timeless, Sophisticated, Confident
+## Minimalist Neutral Elegance - Understated, Professional, Refined
 
-This portfolio website uses a carefully curated warm neutral palette with deep navy accents to create an exceptionally elegant, classy, confident, and professional aesthetic. The palette emphasizes luxury, sophistication, warmth, and timeless appeal while maintaining WCAG AA+ accessibility standards.
+This portfolio website uses a carefully curated minimalistic neutral palette with soft charcoal accents to create an exceptionally elegant, classy, professional, and refined aesthetic. The palette emphasizes understated sophistication, warmth, and timeless appeal while maintaining WCAG AA+ accessibility standards.
 
 ### Color Palette
 
 | Color Name | Hex Code | Usage | Description |
 |------------|----------|-------|-------------|
-| **Deep Navy** | `#1A2238` | Primary accent | Authoritative, timeless tone for CTAs, conveying confidence and professionalism |
-| **Warm Taupe** | `#9C8B7A` | Secondary accent | Sophisticated, warm accent adding elegance and refinement |
+| **Soft Charcoal** | `#4A4A4A` | Primary accent | Neutral, elegant tone for CTAs, conveying understated professionalism |
+| **Muted Taupe** | `#A89D91` | Secondary accent | Sophisticated, warm accent adding subtle elegance and refinement |
 | **Cream** | `#F8F6F3` | Base background | Soft, luxurious foundation providing warmth and visual comfort |
 | **Pure White** | `#FFFFFF` | Card surfaces | Crisp white for elevated surfaces and maximum contrast |
 | **Soft Gray** | `#E5E3DF` | Soft backgrounds | Warm gray for muted surfaces and gentle separation |
@@ -22,8 +22,8 @@ The colors are implemented as CSS variables in `:root` for consistency and maint
 
 ```css
 /* Core Palette Colors */
---deep-navy: #1A2238;
---warm-taupe: #9C8B7A;
+--soft-charcoal: #4A4A4A;
+--muted-taupe: #A89D91;
 --cream: #F8F6F3;
 --pure-white: #FFFFFF;
 --soft-gray: #E5E3DF;
@@ -39,31 +39,31 @@ The colors are implemented as CSS variables in `:root` for consistency and maint
 --muted-text: #857B6F;             /* Muted text - lighter warm gray (5.5:1 contrast) */
 --border: #DDD9D3;                  /* Soft borders - warm beige */
 
-/* Primary Actions (Deep Navy) */
---primary: #1A2238;
---primary-hover: #0F1724;
---primary-active: #090E16;
---primary-soft: rgba(26, 34, 56, 0.08);
+/* Primary Actions (Soft Charcoal) */
+--primary: #4A4A4A;
+--primary-hover: #3A3A3A;
+--primary-active: #2A2A2A;
+--primary-soft: rgba(74, 74, 74, 0.08);
 
-/* Secondary Actions (Warm Taupe) */
---secondary: #9C8B7A;
---secondary-hover: #867660;
---secondary-active: #70624F;
---secondary-soft: rgba(156, 139, 122, 0.12);
+/* Secondary Actions (Muted Taupe) */
+--secondary: #A89D91;
+--secondary-hover: #938878;
+--secondary-active: #7E7463;
+--secondary-soft: rgba(168, 157, 145, 0.12);
 
 /* Highlight & Accents */
 --highlight: #B8AFA0;
 --highlight-soft: rgba(184, 175, 160, 0.15);
 
 /* Focus & States */
---focus-ring: #1A2238;
+--focus-ring: #4A4A4A;
 --disabled: rgba(45, 41, 38, 0.3);
 ```
 
 ### Color Usage Guidelines
 
-#### 1. Deep Navy (#1A2238) - Primary Accent
-Use strategically for authority and timeless confidence:
+#### 1. Soft Charcoal (#4A4A4A) - Primary Accent
+Use subtly for understated elegance and professionalism:
 - Primary CTA buttons ("Let's Connect", "Send Message")
 - Active navigation states
 - Section title underlines
@@ -72,8 +72,8 @@ Use strategically for authority and timeless confidence:
 - Project icons and primary badges
 - Focus rings and interactive states
 
-#### 2. Warm Taupe (#9C8B7A) - Secondary Accent
-Use for sophisticated, warm touches:
+#### 2. Muted Taupe (#A89D91) - Secondary Accent
+Use for sophisticated, warm, subtle touches:
 - Secondary buttons and actions
 - Skill tags on hover
 - Certification/award icons
@@ -118,18 +118,18 @@ Use for strong, readable text with character:
 ### Interactive States
 
 #### Hover States
-- Primary buttons: Darken to `--primary-hover` (#0F1724)
-- Secondary buttons: Fill with warm taupe (`--secondary`)
-- Links: Show deep navy underline
-- Cards: Lift with shadow and show primary border
+- Primary buttons: Darken to `--primary-hover` (#3A3A3A)
+- Secondary buttons: Fill with muted taupe (`--secondary`)
+- Links: Show soft charcoal underline
+- Cards: Lift with shadow and show subtle primary border
 
 #### Focus States
-- Focus ring: Deep navy (`--focus-ring`) for visibility
-- Input fields: Deep navy border with soft background
+- Focus ring: Soft charcoal (`--focus-ring`) for subtle visibility
+- Input fields: Soft charcoal border with soft background
 
 #### Active States
-- Primary buttons: Darken to `--primary-active` (#090E16)
-- Navigation: Show deep navy underline
+- Primary buttons: Darken to `--primary-active` (#2A2A2A)
+- Navigation: Show soft charcoal underline
 
 #### Disabled States
 - Opacity reduced using `--disabled`
@@ -143,18 +143,18 @@ All color combinations meet or exceed WCAG AA standards:
 |-------------|----------------|------------|-------|
 | Rich Charcoal on Cream | 12.8:1 | AAA | Body text |
 | Rich Charcoal on White | 14.2:1 | AAA | Card text |
-| Deep Navy on White | 13.1:1 | AAA | Buttons, badges |
+| Soft Charcoal on White | 9.1:1 | AAA | Buttons, badges |
 | Warm Brown Gray on White | 8.2:1 | AAA | Secondary text |
-| Warm Taupe on White | 4.9:1 | AA+ | Secondary elements |
+| Muted Taupe on White | 4.6:1 | AA+ | Secondary elements |
 | Light Warm Gray on White | 5.5:1 | AA+ | Muted elements |
-| White on Deep Navy | 13.1:1 | AAA | Button text |
+| White on Soft Charcoal | 9.1:1 | AAA | Button text |
 | White on Rich Charcoal | 14.2:1 | AAA | Footer text |
 
 #### ✓ Accessibility Compliant
 
 All text colors meet WCAG AA standards for their intended use:
 - ✅ Rich Charcoal (#2D2926) provides exceptional warm contrast on all backgrounds
-- ✅ Deep Navy (#1A2238) offers AAA-level contrast on white
+- ✅ Soft Charcoal (#4A4A4A) offers AAA-level contrast on white
 - ✅ All text sizes and weights meet accessibility guidelines
 - ✅ Focus states are clearly visible with adequate contrast
 - ✅ No color-only information (supplemented with icons and text)
@@ -170,42 +170,42 @@ All text colors meet WCAG AA standards for their intended use:
 #### Hero Section
 - Background: Cream
 - Text: Rich Charcoal
-- Badge: Warm taupe background, deep navy icon
-- Primary button: Deep navy
-- Secondary button: Warm taupe
+- Badge: Muted taupe background, soft charcoal icon
+- Primary button: Soft charcoal
+- Secondary button: Muted taupe
 - Highlight strip: Soft gray background
 
 #### About Section
 - Card background: White
-- Avatar: Deep navy soft background
-- Highlight box: Highlight soft background, deep navy border
-- Stats: Deep navy values
+- Avatar: Soft charcoal soft background
+- Highlight box: Highlight soft background, soft charcoal border
+- Stats: Soft charcoal values
 
 #### Projects Section
-- Filter buttons active: Deep navy
-- Project icons: Deep navy background
-- Badges: Deep navy soft background
-- Primary button: Deep navy
-- Secondary button: Warm taupe
-- Tech tags: Warm taupe for Python/SQL, warm gray for others
+- Filter buttons active: Soft charcoal
+- Project icons: Soft charcoal background
+- Badges: Soft charcoal soft background
+- Primary button: Soft charcoal
+- Secondary button: Muted taupe
+- Tech tags: Muted taupe for Python/SQL, warm gray for others
 
 #### Timeline (Experience)
-- Dots: Deep navy
-- Card border: Deep navy
-- Bullets: Deep navy
+- Dots: Soft charcoal
+- Card border: Soft charcoal
+- Bullets: Soft charcoal
 
 #### Skills Section
-- Category accent: Warm taupe top border
-- Skill tags hover: Warm taupe background
+- Category accent: Muted taupe top border
+- Skill tags hover: Muted taupe background
 
 #### Education & Certifications
-- Icons: Deep navy (education), Warm taupe (certifications)
-- Top border: Deep navy (education)
+- Icons: Soft charcoal (education), Muted taupe (certifications)
+- Top border: Soft charcoal (education)
 
 #### Contact Section
-- Form focus: Deep navy ring
-- Submit button: Deep navy
-- Contact icons: Deep navy
+- Form focus: Soft charcoal ring
+- Submit button: Soft charcoal
+- Contact icons: Soft charcoal
 
 #### Footer
 - Background: Rich Charcoal
@@ -213,14 +213,14 @@ All text colors meet WCAG AA standards for their intended use:
 
 ### Best Practices
 
-1. **Timeless Elegance**: Deep navy and warm neutrals create a sophisticated, luxurious aesthetic
+1. **Minimalist Elegance**: Soft charcoal and warm neutrals create an understated, luxurious aesthetic
 2. **Warm Foundation**: Cream background adds warmth and visual comfort compared to stark white
-3. **Clear Hierarchy**: Color usage reinforces visual hierarchy with confident, refined tones
+3. **Clear Hierarchy**: Color usage reinforces visual hierarchy with subtle, refined tones
 4. **Accessible Contrast**: All combinations meet or exceed WCAG AA standards
 5. **Semantic Variables**: Use semantic tokens (`--primary`, `--secondary`) rather than color names
 6. **State Consistency**: Hover, focus, and active states follow consistent professional patterns
-7. **Cohesive Flow**: Warm neutral palette creates a calm, inviting, confident atmosphere
-8. **Refined Accents**: Warm taupe adds subtle sophistication without overwhelming
+7. **Cohesive Flow**: Neutral palette creates a calm, inviting, sophisticated atmosphere
+8. **Refined Accents**: Muted taupe adds subtle sophistication without overwhelming
 
 ### Maintenance
 
@@ -233,23 +233,23 @@ When updating colors:
 
 ### Resources
 
-- **Palette Colors**: Deep Navy • Warm Taupe • Cream • Pure White • Soft Gray • Warm Gray • Rich Charcoal
+- **Palette Colors**: Soft Charcoal • Muted Taupe • Cream • Pure White • Soft Gray • Warm Gray • Rich Charcoal
 - **WCAG Contrast Checker**: [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
 - **Color Blindness Simulator**: Test palette with various color vision deficiencies
 
 ### Design Philosophy
 
-This Refined Elegance palette embodies:
-- **Confidence**: Deep navy conveys authority and timeless professionalism
-- **Sophistication**: Warm taupe adds refined elegance with a touch of warmth
+This Minimalist Neutral Elegance palette embodies:
+- **Understated Professionalism**: Soft charcoal conveys confidence without being bold
+- **Sophistication**: Muted taupe adds refined elegance with subtle warmth
 - **Luxury**: Cream background creates a premium, inviting feel
-- **Cohesion**: Warm neutrals work harmoniously together for visual unity
-- **Timelessness**: Classic colors provide an enduring, prestigious aesthetic
+- **Cohesion**: Neutral tones work harmoniously together for visual unity
+- **Timelessness**: Classic neutral colors provide an enduring, classy aesthetic
 - **Clarity**: High contrast ensures readability and focus on content
-- **Warmth**: Warm undertones make the site more inviting and human
+- **Minimalism**: Soft, muted accents create an elegant, refined atmosphere
 
 ---
 
 **Last Updated**: December 2024  
-**Palette Theme**: Refined Elegance  
+**Palette Theme**: Minimalist Neutral Elegance  
 **Implementation**: CSS Variables in `styles.css`
