@@ -136,7 +136,7 @@ navLinks.forEach(link => {
 });
 
 // ===========================
-// Smooth Scrolling
+// Smooth Scrolling with sticky nav offset
 // ===========================
 
 // Smooth scroll to sections
@@ -148,19 +148,19 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         if (targetId === '#' || targetId === '#home') {
             window.scrollTo({
                 top: 0,
-                behavior: 'auto'
+                behavior: 'smooth'
             });
             return;
         }
         
         const targetSection = document.querySelector(targetId);
         if (targetSection) {
-            const navHeight = navbar.offsetHeight;
-            const targetPosition = targetSection.offsetTop - navHeight;
+            const navHeight = navbar ? navbar.offsetHeight : 70;
+            const targetPosition = targetSection.offsetTop - navHeight - 20; // Extra 20px padding
             
             window.scrollTo({
                 top: targetPosition,
-                behavior: 'auto'
+                behavior: 'smooth'
             });
         }
     });
@@ -239,7 +239,7 @@ if (backToTopBtn) {
     backToTopBtn.addEventListener('click', () => {
         window.scrollTo({
             top: 0,
-            behavior: 'auto'
+            behavior: 'smooth'
         });
     });
 }
