@@ -110,12 +110,12 @@ Use for elevated elements:
 - Form backgrounds
 - Surface-level differentiation
 
-#### 7. Ash Grey (#B7B7A4) - Muted Text
-Use for de-emphasized content:
-- Subtle labels
-- Secondary information
-- Placeholder text
-- Less prominent UI elements
+#### 7. Ash Grey (#B7B7A4) - Subtle UI Elements
+Use sparingly for very subtle, non-critical elements:
+- Large decorative text (18px+ or 14px+ bold)
+- Very subtle labels
+- Background tints
+- Less emphasis needed (use sparingly due to contrast)
 
 ### Interactive States
 
@@ -146,9 +146,11 @@ All color combinations meet WCAG AA standards:
 | Dark Brown on Linen | 7.8:1 | AAA | Body text |
 | Dark Brown on White | 8.9:1 | AAA | Card text |
 | Light Bronze on White | 4.5:1 | AA | Buttons, badges |
+| Medium Brown on White | 5.2:1 | AA | Secondary text |
 | Dry Sage on White | 4.3:1 | AA | Secondary elements |
+| Warm Brown on Linen | 4.8:1 | AA | Muted elements |
 | White on Dark Brown | 8.9:1 | AAA | Footer text |
-| Ash Grey on White | 3.8:1 | AA- | Muted elements |
+| Ash Grey on White | 3.8:1 | AA (Large Text Only) | Large text, subtle UI (18px+ or 14px+ bold) |
 
 ### Component-Specific Usage
 
