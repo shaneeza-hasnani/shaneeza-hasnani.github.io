@@ -1272,7 +1272,7 @@ a {
 
 .education-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
     gap: var(--spacing-md);
     max-width: 1000px;
     margin: 0 auto;
@@ -1758,10 +1758,6 @@ a {
     }
     
     .skills-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .education-grid {
         grid-template-columns: 1fr;
     }
     
