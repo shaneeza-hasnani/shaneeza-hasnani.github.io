@@ -148,7 +148,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         if (targetId === '#' || targetId === '#home') {
             window.scrollTo({
                 top: 0,
-                behavior: 'smooth'
+                behavior: 'auto'
             });
             return;
         }
@@ -160,7 +160,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             
             window.scrollTo({
                 top: targetPosition,
-                behavior: 'smooth'
+                behavior: 'auto'
             });
         }
     });
@@ -239,7 +239,7 @@ if (backToTopBtn) {
     backToTopBtn.addEventListener('click', () => {
         window.scrollTo({
             top: 0,
-            behavior: 'smooth'
+            behavior: 'auto'
         });
     });
 }
@@ -292,7 +292,7 @@ function setupIntersectionObserver() {
     const elementsToObserve = document.querySelectorAll('.timeline-item, .project-card, .skill-category, .education-card, .contact-method');
     elementsToObserve.forEach((element, index) => {
         element.classList.add('reveal');
-        element.style.transitionDelay = `${index * 0.05}s`;
+        // No delay for instant reveal
         observer.observe(element);
     });
 }

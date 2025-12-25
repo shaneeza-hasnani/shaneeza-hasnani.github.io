@@ -183,7 +183,7 @@
 }
 
 html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
     font-size: var(--font-size-base);
 }
 
@@ -1582,7 +1582,7 @@ a {
 .reveal {
     opacity: 0;
     transform: translateY(20px);
-    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.05s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .reveal.active {
@@ -1825,7 +1825,7 @@ a {
     height: 3px;
     background: var(--primary);
     z-index: 10000;
-    transition: width 0.1s ease-out;
+    transition: none;
     box-shadow: none;
 }
 
