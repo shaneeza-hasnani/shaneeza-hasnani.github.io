@@ -88,60 +88,60 @@
 
 :root {
     /* ===========================
-       Modern Elegance Palette - Sophisticated, Minimalistic Design
-       Neutral tones with refined accents
+       Refined Elegance Palette - Timeless, Sophisticated, Confident
+       Deep navy with warm neutrals for a luxurious, professional aesthetic
        =========================== */
     
     /* Core Palette Colors */
-    --slate-blue: #2C3E50;           /* Primary accent - confident, professional */
-    --muted-gold: #B8926A;           /* Secondary accent - elegant, refined */
-    --light-gray: #F5F7FA;           /* Light backgrounds - clean, minimal */
-    --cool-white: #FFFFFF;           /* Card surfaces - pure white */
-    --silver-gray: #E8ECEF;          /* Soft backgrounds - subtle gray */
-    --steel-gray: #8A96A3;           /* Muted elements - cool gray */
-    --charcoal: #1A1A1A;             /* Text - strong, readable */
+    --deep-navy: #1A2238;            /* Primary accent - confident, timeless, authoritative */
+    --warm-taupe: #9C8B7A;           /* Secondary accent - sophisticated, warm, elegant */
+    --cream: #F8F6F3;                /* Light backgrounds - soft, luxurious */
+    --pure-white: #FFFFFF;           /* Card surfaces - crisp white */
+    --soft-gray: #E5E3DF;            /* Soft backgrounds - warm gray */
+    --warm-gray: #6B6458;            /* Muted elements - warm neutral */
+    --rich-charcoal: #2D2926;        /* Text - deep, readable */
     
     /* Semantic Design Tokens */
-    --bg: #F5F7FA;                   /* Main background - light gray */
+    --bg: #F8F6F3;                   /* Main background - cream */
     --surface: #FFFFFF;              /* Cards, panels - pure white */
-    --surface-muted: #E8ECEF;        /* Muted surface - silver gray */
+    --surface-muted: #E5E3DF;        /* Muted surface - soft gray */
     
     /* Text Colors */
-    --text: #1A1A1A;                 /* Primary text - charcoal */
-    --text-secondary: #4A5568;       /* Secondary text - slate gray (7.5:1 contrast) */
-    --muted-text: #718096;           /* Muted text - medium gray (5.2:1 contrast) */
+    --text: #2D2926;                 /* Primary text - rich charcoal */
+    --text-secondary: #5A524A;       /* Secondary text - warm brown gray (8.2:1 contrast) */
+    --muted-text: #857B6F;           /* Muted text - lighter warm gray (5.5:1 contrast) */
     
     /* Border & Divider */
-    --border: #E2E8F0;               /* Soft borders - light slate */
-    --border-muted: rgba(226, 232, 240, 0.5); /* Very subtle border */
+    --border: #DDD9D3;               /* Soft borders - warm beige */
+    --border-muted: rgba(221, 217, 211, 0.5); /* Very subtle border */
     
-    /* Primary Actions (Slate Blue) */
-    --primary: #2C3E50;              /* Primary CTA color - slate blue */
-    --primary-hover: #233140;        /* Darker slate for hover */
-    --primary-active: #1A2530;       /* Even darker for active state */
-    --primary-soft: rgba(44, 62, 80, 0.08); /* Soft slate background */
+    /* Primary Actions (Deep Navy) */
+    --primary: #1A2238;              /* Primary CTA color - deep navy */
+    --primary-hover: #0F1724;        /* Darker navy for hover */
+    --primary-active: #090E16;       /* Even darker for active state */
+    --primary-soft: rgba(26, 34, 56, 0.08); /* Soft navy background */
     
-    /* Secondary Actions (Muted Gold) */
-    --secondary: #B8926A;            /* Secondary actions - muted gold */
-    --secondary-hover: #A07F5A;      /* Darker gold for hover */
-    --secondary-active: #8A6D4A;     /* Even darker for active state */
-    --secondary-soft: rgba(184, 146, 106, 0.12); /* Soft gold background */
+    /* Secondary Actions (Warm Taupe) */
+    --secondary: #9C8B7A;            /* Secondary actions - warm taupe */
+    --secondary-hover: #867660;      /* Darker taupe for hover */
+    --secondary-active: #70624F;     /* Even darker for active state */
+    --secondary-soft: rgba(156, 139, 122, 0.12); /* Soft taupe background */
     
     /* Highlight & Accents */
-    --highlight: #A5B4C5;            /* Subtle highlights - cool slate */
-    --highlight-soft: rgba(165, 180, 197, 0.15); /* Very subtle slate bg */
+    --highlight: #B8AFA0;            /* Subtle highlights - warm gray */
+    --highlight-soft: rgba(184, 175, 160, 0.15); /* Very subtle warm bg */
     
     /* Focus & States */
-    --focus-ring: #2C3E50;           /* Focus ring - slate blue for visibility */
-    --disabled: rgba(26, 26, 26, 0.3); /* Disabled state */
+    --focus-ring: #1A2238;           /* Focus ring - deep navy for visibility */
+    --disabled: rgba(45, 41, 38, 0.3); /* Disabled state */
     
     /* Legacy mappings for backward compatibility */
-    --bg-primary: #F5F7FA;
-    --bg-secondary: #E8ECEF;
-    --text-primary: #1A1A1A;
-    --accent: #2C3E50;
+    --bg-primary: #F8F6F3;
+    --bg-secondary: #E5E3DF;
+    --text-primary: #2D2926;
+    --accent: #1A2238;
     --accent-hover: var(--primary-hover);
-    --accent-soft: rgba(44, 62, 80, 0.08);
+    --accent-soft: rgba(26, 34, 56, 0.08);
     --btn-secondary-bg: transparent;
     
     /* Shadows - neutral gray based (no glow effects) */

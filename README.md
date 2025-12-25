@@ -4,15 +4,15 @@ Personal portfolio website for Shaneeza Hasnani, CFE - Data Scientist specializi
 
 ## 🎨 Design
 
-This portfolio features a sophisticated, elegant, and minimalistic design using a Modern Elegance palette:
+This portfolio features a sophisticated, elegant, and timeless design using a Refined Elegance palette:
 
-- **Slate Blue** (#2C3E50) - Primary accent for confidence and professionalism
-- **Muted Gold** (#B8926A) - Secondary accent for refined elegance
-- **Light Gray** (#F5F7FA) - Base background, clean and minimal
-- **Cool White** (#FFFFFF) - Card surfaces and pure elements
-- **Silver Gray** (#E8ECEF) - Soft backgrounds and gentle separation
-- **Steel Gray** (#8A96A3) - Muted elements and subtle accents
-- **Charcoal** (#1A1A1A) - Primary text for strong contrast
+- **Deep Navy** (#1A2238) - Primary accent for confidence and authority
+- **Warm Taupe** (#9C8B7A) - Secondary accent for refined elegance
+- **Cream** (#F8F6F3) - Base background, warm and inviting
+- **Pure White** (#FFFFFF) - Card surfaces and crisp elements
+- **Soft Gray** (#E5E3DF) - Soft backgrounds and gentle separation
+- **Warm Gray** (#6B6458) - Muted elements and subtle accents
+- **Rich Charcoal** (#2D2926) - Primary text for strong, warm contrast
 
 For complete color palette documentation, usage guidelines, and accessibility information, see [COLOR_PALETTE.md](COLOR_PALETTE.md).
 
@@ -47,12 +47,12 @@ For complete color palette documentation, usage guidelines, and accessibility in
 
 ## 🎯 Design Philosophy
 
-The website embodies an elegant, classy, confident, and minimalistic aesthetic:
+The website embodies an elegant, classy, confident, and refined aesthetic:
 
-- **Elegant**: Sophisticated color choices with refined muted gold accents
-- **Classy**: Professional slate blue as the primary color conveys confidence
-- **Confident**: Strong, high-contrast text ensures clarity and authority
-- **Minimalistic**: Clean neutrals and limited palette create simplicity
+- **Elegant**: Sophisticated color choices with warm taupe accents and cream backgrounds
+- **Classy**: Professional deep navy as the primary color conveys authority and timelessness
+- **Confident**: Strong, high-contrast text ensures clarity and confidence
+- **Refined**: Warm neutrals create a cohesive, luxurious atmosphere
 - **Professional**: Timeless colors ensure enduring visual appeal
 - **Accessible**: WCAG AA+ compliant contrast ratios, semantic HTML, keyboard navigation
 
