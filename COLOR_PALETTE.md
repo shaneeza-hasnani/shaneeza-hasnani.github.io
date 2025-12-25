@@ -73,13 +73,14 @@ Use subtly for understated elegance and professionalism:
 - Focus rings and interactive states
 
 #### 2. Muted Taupe (#A89D91) - Secondary Accent
-Use for sophisticated, warm, subtle touches:
-- Secondary buttons and actions
-- Skill tags on hover
+Use for sophisticated, warm, subtle touches (not for text on white backgrounds):
+- Secondary button backgrounds and fills
+- Skill tags on hover (as background)
 - Certification/award icons
 - Skill category top borders
 - Elegant accent elements
 - Sophisticated highlights
+- Always used as background or icon color, never for text on white
 
 #### 3. Cream (#F8F6F3) - Base Background
 Use as the luxurious foundation:
@@ -141,14 +142,14 @@ All color combinations meet or exceed WCAG AA standards:
 
 | Combination | Contrast Ratio | WCAG Level | Usage |
 |-------------|----------------|------------|-------|
-| Rich Charcoal on Cream | 12.8:1 | AAA | Body text |
-| Rich Charcoal on White | 14.2:1 | AAA | Card text |
-| Soft Charcoal on White | 9.1:1 | AAA | Buttons, badges |
+| Rich Charcoal on Cream | 13.4:1 | AAA | Body text |
+| Rich Charcoal on White | 14.4:1 | AAA | Card text |
+| Soft Charcoal on White | 8.9:1 | AAA | Buttons, badges |
 | Warm Brown Gray on White | 8.2:1 | AAA | Secondary text |
-| Muted Taupe on White | 4.6:1 | AA+ | Secondary elements |
+| Muted Taupe on White | 2.7:1 | N/A | Not used for text - backgrounds/accents only |
 | Light Warm Gray on White | 5.5:1 | AA+ | Muted elements |
-| White on Soft Charcoal | 9.1:1 | AAA | Button text |
-| White on Rich Charcoal | 14.2:1 | AAA | Footer text |
+| White on Soft Charcoal | 8.9:1 | AAA | Button text |
+| White on Rich Charcoal | 14.4:1 | AAA | Footer text |
 
 #### ✓ Accessibility Compliant
 
