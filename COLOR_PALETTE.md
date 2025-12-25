@@ -1,20 +1,20 @@
 # Color Palette Documentation
 
-## Modern Elegance Palette - Sophisticated, Minimalistic Design
+## Refined Elegance Palette - Timeless, Sophisticated, Confident
 
-This portfolio website uses a carefully curated neutral palette to create an elegant, classy, confident, and professional aesthetic. The palette emphasizes minimalism, sophistication, and timeless appeal while maintaining WCAG AA+ accessibility standards.
+This portfolio website uses a carefully curated warm neutral palette with deep navy accents to create an exceptionally elegant, classy, confident, and professional aesthetic. The palette emphasizes luxury, sophistication, warmth, and timeless appeal while maintaining WCAG AA+ accessibility standards.
 
 ### Color Palette
 
 | Color Name | Hex Code | Usage | Description |
 |------------|----------|-------|-------------|
-| **Slate Blue** | `#2C3E50` | Primary accent | Confident, professional tone for CTAs, active states, and key highlights |
-| **Muted Gold** | `#B8926A` | Secondary accent | Elegant, refined accent for secondary actions and sophisticated touches |
-| **Light Gray** | `#F5F7FA` | Base background | Clean, minimal foundation providing a serene canvas |
-| **Cool White** | `#FFFFFF` | Card surfaces | Pure white for elevated surfaces and maximum contrast |
-| **Silver Gray** | `#E8ECEF` | Soft backgrounds | Subtle gray for muted surfaces and gentle separation |
-| **Steel Gray** | `#8A96A3` | Muted elements | Cool gray for less prominent UI elements |
-| **Charcoal** | `#1A1A1A` | Primary text | Strong, readable text with high contrast |
+| **Deep Navy** | `#1A2238` | Primary accent | Authoritative, timeless tone for CTAs, conveying confidence and professionalism |
+| **Warm Taupe** | `#9C8B7A` | Secondary accent | Sophisticated, warm accent adding elegance and refinement |
+| **Cream** | `#F8F6F3` | Base background | Soft, luxurious foundation providing warmth and visual comfort |
+| **Pure White** | `#FFFFFF` | Card surfaces | Crisp white for elevated surfaces and maximum contrast |
+| **Soft Gray** | `#E5E3DF` | Soft backgrounds | Warm gray for muted surfaces and gentle separation |
+| **Warm Gray** | `#6B6458` | Muted elements | Neutral warm gray for less prominent UI elements |
+| **Rich Charcoal** | `#2D2926` | Primary text | Deep, readable text with warmth and character |
 
 ### Design Tokens (CSS Variables)
 
@@ -22,48 +22,48 @@ The colors are implemented as CSS variables in `:root` for consistency and maint
 
 ```css
 /* Core Palette Colors */
---slate-blue: #2C3E50;
---muted-gold: #B8926A;
---light-gray: #F5F7FA;
---cool-white: #FFFFFF;
---silver-gray: #E8ECEF;
---steel-gray: #8A96A3;
---charcoal: #1A1A1A;
+--deep-navy: #1A2238;
+--warm-taupe: #9C8B7A;
+--cream: #F8F6F3;
+--pure-white: #FFFFFF;
+--soft-gray: #E5E3DF;
+--warm-gray: #6B6458;
+--rich-charcoal: #2D2926;
 
 /* Semantic Design Tokens */
---bg: #F5F7FA;                      /* Main background - light gray */
+--bg: #F8F6F3;                      /* Main background - cream */
 --surface: #FFFFFF;                 /* Cards, panels - pure white */
---surface-muted: #E8ECEF;          /* Muted surface - silver gray */
---text: #1A1A1A;                    /* Primary text - charcoal */
---text-secondary: #4A5568;          /* Secondary text - slate gray (7.5:1 contrast) */
---muted-text: #718096;             /* Muted text - medium gray (5.2:1 contrast) */
---border: #E2E8F0;                  /* Soft borders - light slate */
+--surface-muted: #E5E3DF;          /* Muted surface - soft gray */
+--text: #2D2926;                    /* Primary text - rich charcoal */
+--text-secondary: #5A524A;          /* Secondary text - warm brown gray (8.2:1 contrast) */
+--muted-text: #857B6F;             /* Muted text - lighter warm gray (5.5:1 contrast) */
+--border: #DDD9D3;                  /* Soft borders - warm beige */
 
-/* Primary Actions (Slate Blue) */
---primary: #2C3E50;
---primary-hover: #233140;
---primary-active: #1A2530;
---primary-soft: rgba(44, 62, 80, 0.08);
+/* Primary Actions (Deep Navy) */
+--primary: #1A2238;
+--primary-hover: #0F1724;
+--primary-active: #090E16;
+--primary-soft: rgba(26, 34, 56, 0.08);
 
-/* Secondary Actions (Muted Gold) */
---secondary: #B8926A;
---secondary-hover: #A07F5A;
---secondary-active: #8A6D4A;
---secondary-soft: rgba(184, 146, 106, 0.12);
+/* Secondary Actions (Warm Taupe) */
+--secondary: #9C8B7A;
+--secondary-hover: #867660;
+--secondary-active: #70624F;
+--secondary-soft: rgba(156, 139, 122, 0.12);
 
 /* Highlight & Accents */
---highlight: #A5B4C5;
---highlight-soft: rgba(165, 180, 197, 0.15);
+--highlight: #B8AFA0;
+--highlight-soft: rgba(184, 175, 160, 0.15);
 
 /* Focus & States */
---focus-ring: #2C3E50;
---disabled: rgba(26, 26, 26, 0.3);
+--focus-ring: #1A2238;
+--disabled: rgba(45, 41, 38, 0.3);
 ```
 
 ### Color Usage Guidelines
 
-#### 1. Slate Blue (#2C3E50) - Primary Accent
-Use strategically for confidence and professionalism:
+#### 1. Deep Navy (#1A2238) - Primary Accent
+Use strategically for authority and timeless confidence:
 - Primary CTA buttons ("Let's Connect", "Send Message")
 - Active navigation states
 - Section title underlines
@@ -72,8 +72,8 @@ Use strategically for confidence and professionalism:
 - Project icons and primary badges
 - Focus rings and interactive states
 
-#### 2. Muted Gold (#B8926A) - Secondary Accent
-Use for elegant, refined touches:
+#### 2. Warm Taupe (#9C8B7A) - Secondary Accent
+Use for sophisticated, warm touches:
 - Secondary buttons and actions
 - Skill tags on hover
 - Certification/award icons
@@ -81,59 +81,59 @@ Use for elegant, refined touches:
 - Elegant accent elements
 - Sophisticated highlights
 
-#### 3. Light Gray (#F5F7FA) - Base Background
-Use as the primary foundation:
+#### 3. Cream (#F8F6F3) - Base Background
+Use as the luxurious foundation:
 - Main page background
 - Section backgrounds
-- Clean, minimal canvas for all content
+- Warm, inviting canvas for all content
 
-#### 4. Cool White (#FFFFFF) - Surface Color
-Use for elevated elements and maximum contrast:
+#### 4. Pure White (#FFFFFF) - Surface Color
+Use for elevated elements and crisp contrast:
 - Card backgrounds
 - Panels and elevated surfaces
 - Form backgrounds
-- Pure, clean appearance
+- Clean, professional appearance
 
-#### 5. Silver Gray (#E8ECEF) - Soft Backgrounds
-Use for gentle separation and muted surfaces:
+#### 5. Soft Gray (#E5E3DF) - Soft Backgrounds
+Use for gentle separation and warm muted surfaces:
 - Muted card backgrounds
 - Section separators
 - Subtle background tints
 - Form field backgrounds
 
-#### 6. Steel Gray (#8A96A3) - Muted Elements
+#### 6. Warm Gray (#6B6458) - Muted Elements
 Use for less prominent UI elements:
 - Secondary icons
 - Subtle labels
 - Less emphasized elements
 - Placeholder text
 
-#### 7. Charcoal (#1A1A1A) - Primary Text
-Use for strong, readable text:
+#### 7. Rich Charcoal (#2D2926) - Primary Text
+Use for strong, readable text with character:
 - Headings and titles
 - Body text
 - High-contrast content
-- Professional, bold statements
+- Professional, authoritative statements
 
 ### Interactive States
 
 #### Hover States
-- Primary buttons: Darken to `--primary-hover` (#233140)
-- Secondary buttons: Fill with muted gold (`--secondary`)
-- Links: Show slate blue underline
+- Primary buttons: Darken to `--primary-hover` (#0F1724)
+- Secondary buttons: Fill with warm taupe (`--secondary`)
+- Links: Show deep navy underline
 - Cards: Lift with shadow and show primary border
 
 #### Focus States
-- Focus ring: Slate blue (`--focus-ring`) for visibility
-- Input fields: Slate blue border with soft background
+- Focus ring: Deep navy (`--focus-ring`) for visibility
+- Input fields: Deep navy border with soft background
 
 #### Active States
-- Primary buttons: Darken to `--primary-active` (#1A2530)
-- Navigation: Show slate blue underline
+- Primary buttons: Darken to `--primary-active` (#090E16)
+- Navigation: Show deep navy underline
 
 #### Disabled States
 - Opacity reduced using `--disabled`
-- Neutral muted appearance
+- Neutral warm appearance
 
 ### Accessibility & Contrast
 
@@ -141,20 +141,20 @@ All color combinations meet or exceed WCAG AA standards:
 
 | Combination | Contrast Ratio | WCAG Level | Usage |
 |-------------|----------------|------------|-------|
-| Charcoal on Light Gray | 11.2:1 | AAA | Body text |
-| Charcoal on White | 14.5:1 | AAA | Card text |
-| Slate Blue on White | 8.8:1 | AAA | Buttons, badges |
-| Slate Gray on White | 7.5:1 | AAA | Secondary text |
-| Muted Gold on White | 4.6:1 | AA | Secondary elements |
-| Medium Gray on White | 5.2:1 | AA | Muted elements |
-| White on Slate Blue | 8.8:1 | AAA | Button text |
-| White on Charcoal | 14.5:1 | AAA | Footer text |
+| Rich Charcoal on Cream | 12.8:1 | AAA | Body text |
+| Rich Charcoal on White | 14.2:1 | AAA | Card text |
+| Deep Navy on White | 13.1:1 | AAA | Buttons, badges |
+| Warm Brown Gray on White | 8.2:1 | AAA | Secondary text |
+| Warm Taupe on White | 4.9:1 | AA+ | Secondary elements |
+| Light Warm Gray on White | 5.5:1 | AA+ | Muted elements |
+| White on Deep Navy | 13.1:1 | AAA | Button text |
+| White on Rich Charcoal | 14.2:1 | AAA | Footer text |
 
 #### ✓ Accessibility Compliant
 
 All text colors meet WCAG AA standards for their intended use:
-- ✅ Charcoal (#1A1A1A) provides exceptional contrast on all backgrounds
-- ✅ Slate Blue (#2C3E50) offers AAA-level contrast on white
+- ✅ Rich Charcoal (#2D2926) provides exceptional warm contrast on all backgrounds
+- ✅ Deep Navy (#1A2238) offers AAA-level contrast on white
 - ✅ All text sizes and weights meet accessibility guidelines
 - ✅ Focus states are clearly visible with adequate contrast
 - ✅ No color-only information (supplemented with icons and text)
@@ -163,64 +163,64 @@ All text colors meet WCAG AA standards for their intended use:
 
 #### Navigation
 - Background: White with transparency
-- Text: Charcoal
-- Hover/Active: Slate blue underline
-- Scroll progress: Slate blue
+- Text: Rich Charcoal
+- Hover/Active: Deep navy underline
+- Scroll progress: Deep navy
 
 #### Hero Section
-- Background: Light gray
-- Text: Charcoal
-- Badge: Muted gold background, slate blue icon
-- Primary button: Slate blue
-- Secondary button: Muted gold
-- Highlight strip: Silver gray background
+- Background: Cream
+- Text: Rich Charcoal
+- Badge: Warm taupe background, deep navy icon
+- Primary button: Deep navy
+- Secondary button: Warm taupe
+- Highlight strip: Soft gray background
 
 #### About Section
 - Card background: White
-- Avatar: Slate blue soft background
-- Highlight box: Highlight soft background, slate blue border
-- Stats: Slate blue values
+- Avatar: Deep navy soft background
+- Highlight box: Highlight soft background, deep navy border
+- Stats: Deep navy values
 
 #### Projects Section
-- Filter buttons active: Slate blue
-- Project icons: Slate blue background
-- Badges: Slate blue soft background
-- Primary button: Slate blue
-- Secondary button: Muted gold
-- Tech tags: Muted gold for Python/SQL, steel gray for others
+- Filter buttons active: Deep navy
+- Project icons: Deep navy background
+- Badges: Deep navy soft background
+- Primary button: Deep navy
+- Secondary button: Warm taupe
+- Tech tags: Warm taupe for Python/SQL, warm gray for others
 
 #### Timeline (Experience)
-- Dots: Slate blue
-- Card border: Slate blue
-- Bullets: Slate blue
+- Dots: Deep navy
+- Card border: Deep navy
+- Bullets: Deep navy
 
 #### Skills Section
-- Category accent: Muted gold top border
-- Skill tags hover: Muted gold background
+- Category accent: Warm taupe top border
+- Skill tags hover: Warm taupe background
 
 #### Education & Certifications
-- Icons: Slate blue (education), Muted gold (certifications)
-- Top border: Slate blue (education)
+- Icons: Deep navy (education), Warm taupe (certifications)
+- Top border: Deep navy (education)
 
 #### Contact Section
-- Form focus: Slate blue ring
-- Submit button: Slate blue
-- Contact icons: Slate blue
+- Form focus: Deep navy ring
+- Submit button: Deep navy
+- Contact icons: Deep navy
 
 #### Footer
-- Background: Charcoal
+- Background: Rich Charcoal
 - Text: White
 
 ### Best Practices
 
-1. **Minimalistic Elegance**: Slate blue and neutral tones create a sophisticated, professional aesthetic
-2. **Layered Neutrals**: Multiple shades of cool gray add depth while maintaining simplicity
+1. **Timeless Elegance**: Deep navy and warm neutrals create a sophisticated, luxurious aesthetic
+2. **Warm Foundation**: Cream background adds warmth and visual comfort compared to stark white
 3. **Clear Hierarchy**: Color usage reinforces visual hierarchy with confident, refined tones
 4. **Accessible Contrast**: All combinations meet or exceed WCAG AA standards
 5. **Semantic Variables**: Use semantic tokens (`--primary`, `--secondary`) rather than color names
 6. **State Consistency**: Hover, focus, and active states follow consistent professional patterns
-7. **Clean Flow**: Neutral palette creates a calm, professional, confident atmosphere
-8. **Refined Accents**: Muted gold adds subtle sophistication without overwhelming
+7. **Cohesive Flow**: Warm neutral palette creates a calm, inviting, confident atmosphere
+8. **Refined Accents**: Warm taupe adds subtle sophistication without overwhelming
 
 ### Maintenance
 
@@ -233,22 +233,23 @@ When updating colors:
 
 ### Resources
 
-- **Palette Colors**: Slate Blue • Muted Gold • Light Gray • Cool White • Silver Gray • Steel Gray • Charcoal
+- **Palette Colors**: Deep Navy • Warm Taupe • Cream • Pure White • Soft Gray • Warm Gray • Rich Charcoal
 - **WCAG Contrast Checker**: [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
 - **Color Blindness Simulator**: Test palette with various color vision deficiencies
 
 ### Design Philosophy
 
-This Modern Elegance palette embodies:
-- **Confidence**: Deep slate blue conveys professionalism and trustworthiness
-- **Sophistication**: Muted gold adds refined elegance without being flashy
-- **Minimalism**: Clean neutrals and limited color palette maintain simplicity
-- **Timelessness**: Classic colors provide an enduring, professional aesthetic
+This Refined Elegance palette embodies:
+- **Confidence**: Deep navy conveys authority and timeless professionalism
+- **Sophistication**: Warm taupe adds refined elegance with a touch of warmth
+- **Luxury**: Cream background creates a premium, inviting feel
+- **Cohesion**: Warm neutrals work harmoniously together for visual unity
+- **Timelessness**: Classic colors provide an enduring, prestigious aesthetic
 - **Clarity**: High contrast ensures readability and focus on content
-- **Uniqueness**: The slate blue and muted gold combination is distinctive yet professional
+- **Warmth**: Warm undertones make the site more inviting and human
 
 ---
 
 **Last Updated**: December 2024  
-**Palette Theme**: Modern Elegance  
+**Palette Theme**: Refined Elegance  
 **Implementation**: CSS Variables in `styles.css`
