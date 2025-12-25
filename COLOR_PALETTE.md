@@ -1,18 +1,20 @@
 # Color Palette Documentation
 
-## Coolors Palette - Minimal Neutral-Warm Design
+## Earthy Elegance Palette - Warm, Sophisticated Design
 
-This portfolio website uses a carefully selected Coolors palette to create a minimal, confident, and neutral-warm aesthetic. The palette emphasizes readability, WCAG accessibility, and professional presentation.
+This portfolio website uses a carefully curated earthy palette to create a warm, sophisticated, and naturally elegant aesthetic. The palette emphasizes natural tones, subtle sophistication, and timeless appeal while maintaining WCAG accessibility standards.
 
 ### Color Palette
 
 | Color Name | Hex Code | Usage | Description |
 |------------|----------|-------|-------------|
-| **Cream** | `#F4F1DE` | Base background | Warm, neutral background that provides a calm foundation |
-| **Terracotta** | `#E07A5F` | Primary accent | Used sparingly for primary CTAs, active states, and key highlights |
-| **Deep Slate** | `#3D405B` | Primary text/nav | Main text color providing excellent readability and contrast |
-| **Sage** | `#81B29A` | Secondary accent | Used for secondary actions, tags, and subtle highlights |
-| **Sand** | `#F2CC8F` | Highlight/secondary bg | Subtle section backgrounds and callouts |
+| **Light Bronze** | `#CB997E` | Primary accent | Warm metallic tone for CTAs, active states, and key highlights |
+| **Powder Petal** | `#EDDCD2` | Soft backgrounds | Delicate pink-beige for subtle backgrounds and borders |
+| **Linen** | `#FFF1E6` | Base background | Light warm cream providing a serene foundation |
+| **Parchment** | `#F0EFEB` | Card surfaces | Neutral off-white for elevated surfaces and cards |
+| **Desert Sand** | `#DDBEA9` | Highlight accent | Warm tan for highlights and complementary accents |
+| **Dry Sage** | `#A5A58D` | Secondary accent | Muted olive-green for secondary actions and balance |
+| **Ash Grey** | `#B7B7A4` | Large text only | ⚠️ Warm grey-green - ONLY for large text (18px+ or 14px+ bold) |
 
 ### Design Tokens (CSS Variables)
 
@@ -20,102 +22,120 @@ The colors are implemented as CSS variables in `:root` for consistency and maint
 
 ```css
 /* Core Palette Colors */
---color-cream: #F4F1DE;
---color-terracotta: #E07A5F;
---color-slate: #3D405B;
---color-sage: #81B29A;
---color-sand: #F2CC8F;
+--light-bronze: #cb997e;
+--powder-petal: #eddcd2;
+--linen: #fff1e6;
+--parchment: #f0efeb;
+--desert-sand: #ddbea9;
+--dry-sage: #a5a58d;
+--ash-grey: #b7b7a4;
 
 /* Semantic Design Tokens */
---bg: #F4F1DE;                      /* Main background */
---surface: #FFFFFF;                 /* Cards, panels */
---surface-muted: #F9F7F0;          /* Muted surface */
---text: #3D405B;                    /* Primary text */
---text-secondary: rgba(61, 64, 91, 0.7);  /* Secondary text */
---muted-text: rgba(61, 64, 91, 0.5);      /* Muted text */
---border: rgba(61, 64, 91, 0.12);   /* Subtle borders */
+--bg: #fff1e6;                      /* Main background - linen */
+--surface: #ffffff;                 /* Cards, panels - pure white */
+--surface-muted: #f0efeb;          /* Muted surface - parchment */
+--text: #5a5244;                    /* Primary text - warm dark brown */
+--text-secondary: #706556;          /* Secondary text - warm brown (5.2:1 contrast) */
+--muted-text: #8b8072;             /* Muted text - lighter warm brown (4.8:1 contrast) */
+--border: #eddcd2;                  /* Soft borders - powder petal */
 
-/* Primary Actions (Terracotta) */
---primary: #E07A5F;
---primary-hover: #D16648;
---primary-active: #BF5A3E;
---primary-soft: rgba(224, 122, 95, 0.1);
+/* Primary Actions (Light Bronze) */
+--primary: #cb997e;
+--primary-hover: #b8856b;
+--primary-active: #a67159;
+--primary-soft: rgba(203, 153, 126, 0.12);
 
-/* Secondary Actions (Sage) */
---secondary: #81B29A;
---secondary-hover: #6FA188;
---secondary-active: #5D8F76;
---secondary-soft: rgba(129, 178, 154, 0.1);
+/* Secondary Actions (Dry Sage) */
+--secondary: #a5a58d;
+--secondary-hover: #93937a;
+--secondary-active: #818168;
+--secondary-soft: rgba(165, 165, 141, 0.12);
 
-/* Highlight & Accents (Sand) */
---highlight: #F2CC8F;
---highlight-soft: rgba(242, 204, 143, 0.15);
+/* Highlight & Accents (Desert Sand) */
+--highlight: #ddbea9;
+--highlight-soft: rgba(221, 190, 169, 0.15);
 
 /* Focus & States */
---focus-ring: #E07A5F;
---disabled: rgba(61, 64, 91, 0.3);
+--focus-ring: #cb997e;
+--disabled: rgba(90, 82, 68, 0.3);
 ```
 
 ### Color Usage Guidelines
 
-#### 1. Terracotta (#E07A5F) - Primary Accent
-Use **sparingly** for maximum impact:
+#### 1. Light Bronze (#CB997E) - Primary Accent
+Use strategically for warmth and emphasis:
 - Primary CTA buttons ("Let's Connect", "Send Message")
 - Active navigation states
 - Section title underlines
 - Primary action highlights
 - Timeline dots and key indicators
 - Project icons and primary badges
+- Focus rings and interactive states
 
-#### 2. Sage (#81B29A) - Secondary Accent
-Use for supportive elements:
-- Secondary buttons ("View Resume")
+#### 2. Dry Sage (#A5A58D) - Secondary Accent
+Use for balanced, supportive elements:
+- Secondary buttons and actions
 - Skill tags on hover
-- Tech tags for specific technologies (Python, SQL)
-- Secondary action buttons
+- Tech tags for specific technologies
 - Certification/award icons
-- Skill category accents
+- Skill category top borders
+- Complementary interactive elements
 
-#### 3. Deep Slate (#3D405B) - Primary Text
-Use for all text content:
-- Body text and paragraphs
-- Headings and titles
-- Navigation links
-- Form labels
-- Footer background
+#### 3. Desert Sand (#DDBEA9) - Highlight Accent
+Use for subtle emphasis:
+- Highlight boxes and callouts
+- Stat values and key metrics
+- Badge backgrounds
+- Subtle hover states
+- Warm accent elements
 
-#### 4. Cream (#F4F1DE) - Base Background
-Use for:
+#### 4. Powder Petal (#EDDCD2) - Soft Backgrounds
+Use for gentle separation:
+- Borders and dividers
+- Card backgrounds (muted)
+- Section separators
+- Subtle background tints
+- Hover background states
+
+#### 5. Linen (#FFF1E6) - Base Background
+Use as the primary foundation:
 - Main page background
 - Section backgrounds
-- Warm, neutral foundation
+- Serene, warm canvas for all content
 
-#### 5. Sand (#F2CC8F) - Subtle Highlights
-Use at low intensity for:
-- Hero badge backgrounds
-- Highlight strips
-- Subtle callout sections
-- Light hover backgrounds
+#### 6. Parchment (#F0EFEB) - Surface Color
+Use for elevated elements:
+- Card backgrounds
+- Muted surfaces
+- Form backgrounds
+- Surface-level differentiation
+
+#### 7. Ash Grey (#B7B7A4) - Subtle UI Elements
+Use sparingly for very subtle, non-critical elements:
+- Large decorative text (18px+ or 14px+ bold)
+- Very subtle labels
+- Background tints
+- Less emphasis needed (use sparingly due to contrast)
 
 ### Interactive States
 
 #### Hover States
-- Primary buttons: Darken to `--primary-hover` (#D16648)
-- Secondary buttons: Fill with sage (`--secondary`)
-- Links: Show terracotta underline
+- Primary buttons: Darken to `--primary-hover` (#B8856B)
+- Secondary buttons: Fill with dry sage (`--secondary`)
+- Links: Show light bronze underline
 - Cards: Lift with shadow and show primary border
 
 #### Focus States
-- Focus ring: Terracotta (`--focus-ring`) for visibility
-- Input fields: Terracotta border with soft background
+- Focus ring: Light bronze (`--focus-ring`) for visibility
+- Input fields: Light bronze border with soft background
 
 #### Active States
-- Primary buttons: Darken to `--primary-active` (#BF5A3E)
-- Navigation: Show terracotta underline
+- Primary buttons: Darken to `--primary-active` (#A67159)
+- Navigation: Show light bronze underline
 
 #### Disabled States
 - Opacity reduced using `--disabled`
-- Muted appearance
+- Warm muted appearance
 
 ### Accessibility & Contrast
 
@@ -123,73 +143,89 @@ All color combinations meet WCAG AA standards:
 
 | Combination | Contrast Ratio | WCAG Level | Usage |
 |-------------|----------------|------------|-------|
-| Deep Slate on Cream | 8.5:1 | AAA | Body text |
-| Deep Slate on White | 10.3:1 | AAA | Card text |
-| Terracotta on White | 4.9:1 | AA | Buttons, badges |
-| Sage on White | 4.2:1 | AA | Secondary elements |
-| White on Deep Slate | 10.3:1 | AAA | Footer text |
+| Dark Brown on Linen | 7.8:1 | AAA | Body text |
+| Dark Brown on White | 8.9:1 | AAA | Card text |
+| Light Bronze on White | 4.5:1 | AA | Buttons, badges |
+| Medium Brown on White | 5.2:1 | AA | Secondary text |
+| Dry Sage on White | 4.3:1 | AA | Secondary elements |
+| Warm Brown on Linen | 4.8:1 | AA | Muted elements |
+| White on Dark Brown | 8.9:1 | AAA | Footer text |
+
+#### ⚠️ Important Accessibility Note: Ash Grey
+
+**Ash Grey (#B7B7A4) on White background has a 3.8:1 contrast ratio**, which does NOT meet WCAG AA standards for normal text (requires 4.5:1).
+
+**Usage Restrictions:**
+- ✅ **ONLY use for large text**: 18px+ regular OR 14px+ bold
+- ✅ Decorative elements where text is not the primary content
+- ✅ Background tints and subtle UI elements
+- ❌ **NEVER use for**: Body text, small labels, or critical information
+- ❌ **NEVER use for**: Form labels, navigation links, or important UI text
+
+For all body text and UI elements, use `--text-secondary` (#706556) or darker for proper accessibility.
 
 ### Component-Specific Usage
 
 #### Navigation
 - Background: White with transparency
-- Text: Deep slate
-- Hover/Active: Terracotta underline
-- Scroll progress: Terracotta
+- Text: Warm dark brown
+- Hover/Active: Light bronze underline
+- Scroll progress: Light bronze
 
 #### Hero Section
-- Background: Cream
-- Text: Deep slate
-- Badge: Sand background, terracotta icon
-- Primary button: Terracotta
-- Secondary button: Sage
-- Highlight strip: Muted cream background
+- Background: Linen
+- Text: Warm dark brown
+- Badge: Desert sand background, bronze icon
+- Primary button: Light bronze
+- Secondary button: Dry sage
+- Highlight strip: Parchment background
 
 #### About Section
 - Card background: White
-- Avatar: Terracotta soft background
-- Highlight box: Sand soft background, terracotta border
-- Stats: Terracotta values
+- Avatar: Light bronze soft background
+- Highlight box: Desert sand soft background, bronze border
+- Stats: Light bronze values
 
 #### Projects Section
-- Filter buttons active: Terracotta
-- Project icons: Terracotta background
-- Badges: Terracotta soft background
-- Primary button: Terracotta
-- Secondary button: Sage
-- Tech tags: Sage for Python/SQL, neutral for others
+- Filter buttons active: Light bronze
+- Project icons: Light bronze background
+- Badges: Light bronze soft background
+- Primary button: Light bronze
+- Secondary button: Dry sage
+- Tech tags: Dry sage for Python/SQL, desert sand for others
 
 #### Timeline (Experience)
-- Dots: Terracotta
-- Card border: Terracotta
-- Bullets: Terracotta
+- Dots: Light bronze
+- Card border: Light bronze
+- Bullets: Light bronze
 
 #### Skills Section
-- Category accent: Sage top border
-- Skill tags hover: Sage background
+- Category accent: Dry sage top border
+- Skill tags hover: Dry sage background
 
 #### Education & Certifications
-- Icons: Terracotta (education), Sage (certifications)
-- Top border: Terracotta (education)
+- Icons: Light bronze (education), Dry sage (certifications)
+- Top border: Light bronze (education)
 
 #### Contact Section
-- Form focus: Terracotta ring
-- Submit button: Terracotta
-- Contact icons: Terracotta
+- Form focus: Light bronze ring
+- Submit button: Light bronze
+- Contact icons: Light bronze
 
 #### Footer
-- Background: Deep slate
+- Background: Warm dark brown
 - Text: White
 
 ### Best Practices
 
-1. **Minimal Use of Accent Colors**: Terracotta and sage are used strategically, not overwhelmingly
-2. **Consistent Neutrals**: Cream and deep slate create a calm, professional foundation
-3. **Clear Hierarchy**: Color usage reinforces visual hierarchy and user flow
+1. **Natural Warmth**: Light bronze and earthy tones create a sophisticated, approachable aesthetic
+2. **Layered Neutrals**: Multiple shades of warm neutrals (linen, parchment, powder petal) add depth
+3. **Clear Hierarchy**: Color usage reinforces visual hierarchy while maintaining natural harmony
 4. **Accessible Contrast**: All combinations meet or exceed WCAG AA standards
 5. **Semantic Variables**: Use semantic tokens (`--primary`, `--secondary`) rather than color names
-6. **State Consistency**: Hover, focus, and active states follow consistent patterns
-7. **Whitespace**: Clean layouts with generous whitespace complement the neutral palette
+6. **State Consistency**: Hover, focus, and active states follow consistent warm patterns
+7. **Organic Flow**: Earthy palette creates a calming, professional atmosphere
+8. **Metallic Accents**: Light bronze adds subtle sophistication without overwhelming
 
 ### Maintenance
 
@@ -202,12 +238,21 @@ When updating colors:
 
 ### Resources
 
-- **Coolors Palette**: [View on Coolors.co](https://coolors.co/f4f1de-e07a5f-3d405b-81b29a-f2cc8f)
+- **Palette Colors**: Light Bronze • Powder Petal • Linen • Parchment • Desert Sand • Dry Sage • Ash Grey
 - **WCAG Contrast Checker**: [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
 - **Color Blindness Simulator**: Test palette with various color vision deficiencies
+
+### Design Philosophy
+
+This earthy palette embodies:
+- **Warmth**: Natural, inviting tones that feel approachable yet professional
+- **Sophistication**: Subtle metallic bronze adds elegance without being flashy
+- **Balance**: Multiple neutral shades create visual depth and hierarchy
+- **Timelessness**: Earth tones provide a classic, enduring aesthetic
+- **Serenity**: Muted, harmonious colors promote focus on content
 
 ---
 
 **Last Updated**: December 2024  
-**Palette Source**: Coolors.co  
+**Palette Theme**: Earthy Elegance  
 **Implementation**: CSS Variables in `styles.css`

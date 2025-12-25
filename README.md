@@ -4,13 +4,15 @@ Personal portfolio website for Shaneeza Hasnani, CFE - Data Scientist specializi
 
 ## 🎨 Design
 
-This portfolio features a minimal, confident, neutral-warm design using a carefully selected Coolors palette:
+This portfolio features a warm, sophisticated, earthy design using a natural elegance palette:
 
-- **Cream** (#F4F1DE) - Base background
-- **Terracotta** (#E07A5F) - Primary accent for CTAs and highlights
-- **Deep Slate** (#3D405B) - Primary text and navigation
-- **Sage** (#81B29A) - Secondary accent for tags and actions
-- **Sand** (#F2CC8F) - Subtle highlights and backgrounds
+- **Light Bronze** (#CB997E) - Primary accent for CTAs and highlights
+- **Powder Petal** (#EDDCD2) - Soft backgrounds and delicate borders
+- **Linen** (#FFF1E6) - Base background, warm cream foundation
+- **Parchment** (#F0EFEB) - Card surfaces and elevated elements
+- **Desert Sand** (#DDBEA9) - Highlight accents and warm touches
+- **Dry Sage** (#A5A58D) - Secondary accent, muted olive-green
+- **Ash Grey** (#B7B7A4) - Muted text and subtle elements
 
 For complete color palette documentation, usage guidelines, and accessibility information, see [COLOR_PALETTE.md](COLOR_PALETTE.md).
 
@@ -45,11 +47,12 @@ For complete color palette documentation, usage guidelines, and accessibility in
 
 ## 🎯 Design Philosophy
 
-The website embodies a minimal, confident, and neutral-warm aesthetic:
+The website embodies a warm, sophisticated, and naturally elegant aesthetic:
 
-- **Minimal**: Clean whitespace, focused content, no unnecessary elements
-- **Confident**: Strong typography, clear hierarchy, professional presentation
-- **Neutral-Warm**: Cream and slate foundation with strategic terracotta and sage accents
+- **Earthy**: Natural tones inspired by earth, sand, and organic elements
+- **Sophisticated**: Subtle metallic bronze accents add refined elegance
+- **Warm**: Inviting color palette creates an approachable yet professional atmosphere
+- **Timeless**: Classic earth tones ensure enduring visual appeal
 - **Accessible**: WCAG-compliant contrast ratios, semantic HTML, keyboard navigation
 
 ## 📧 Contact
