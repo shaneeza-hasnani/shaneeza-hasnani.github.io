@@ -2505,6 +2505,7 @@ a {
     display: block;
     font-size: 2.25rem;
     font-weight: 800;
+    color: var(--primary); /* Fallback for browsers without gradient support */
     background: linear-gradient(135deg, var(--primary) 0%, var(--data-blue) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -3039,9 +3040,6 @@ a {
     border-color: transparent;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(184, 146, 106, 0.3);
-}
-    color: var(--secondary);
-    border: 1px solid var(--secondary);
 }
 
 .btn-code:hover {
