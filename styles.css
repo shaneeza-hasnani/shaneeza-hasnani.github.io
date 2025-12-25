@@ -2595,7 +2595,7 @@ a {
 }
 
 .project-badge {
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     font-weight: 600;
     padding: 0.25rem 0.625rem;
     background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
@@ -2963,7 +2963,7 @@ a {
     border: none;
     border-radius: var(--radius-md);
     font-weight: 600;
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
     cursor: pointer;
     transition: all var(--transition-base);
     text-decoration: none;
