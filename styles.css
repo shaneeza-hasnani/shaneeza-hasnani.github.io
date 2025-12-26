@@ -187,6 +187,13 @@
     --radius-lg: 1rem;
     --radius-xl: 1.5rem;
     --radius-full: 9999px;
+    
+    /* Timeline specific */
+    --timeline-line-fade-start: 10%;
+    --timeline-gradient-start: 15%;
+    --timeline-gradient-end: 85%;
+    --timeline-node-size: 20px;
+    --timeline-node-border: 3px;
 }
 
 html {
@@ -2924,14 +2931,14 @@ button:focus:not(:focus-visible) {
 .timeline-line {
     position: absolute;
     top: calc(var(--spacing-xl) + var(--spacing-sm));
-    left: 10%;
-    right: 10%;
+    left: var(--timeline-line-fade-start);
+    right: var(--timeline-line-fade-start);
     height: 2px;
     background: linear-gradient(90deg, 
         transparent 0%,
-        var(--primary) 15%, 
+        var(--primary) var(--timeline-gradient-start), 
         var(--secondary) 50%,
-        var(--primary) 85%,
+        var(--primary) var(--timeline-gradient-end),
         transparent 100%);
     box-shadow: 0 1px 4px rgba(26, 77, 92, 0.15);
     border-radius: var(--radius-full);
@@ -2975,11 +2982,11 @@ button:focus:not(:focus-visible) {
 }
 
 .timeline-node {
-    width: 20px;
-    height: 20px;
+    width: var(--timeline-node-size);
+    height: var(--timeline-node-size);
     border-radius: 50%;
     background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-    border: 3px solid var(--surface);
+    border: var(--timeline-node-border) solid var(--surface);
     box-shadow: 0 0 0 2px rgba(44, 74, 82, 0.15), 0 2px 8px rgba(44, 74, 82, 0.2);
     margin-bottom: var(--spacing-sm);
     animation: pulse-dot 3s ease-in-out infinite;
@@ -3059,15 +3066,15 @@ button:focus:not(:focus-visible) {
     
     .timeline-line {
         width: 2px;
-        height: calc(100% - 30px);
-        top: 15px;
+        height: calc(100% - calc(var(--spacing-md) + var(--spacing-sm)));
+        top: calc(var(--spacing-sm) + var(--spacing-xs));
         left: 50%;
         transform: translateX(-50%);
         background: linear-gradient(180deg, 
             transparent 0%,
-            var(--primary) 15%, 
+            var(--primary) var(--timeline-gradient-start), 
             var(--secondary) 50%,
-            var(--primary) 85%,
+            var(--primary) var(--timeline-gradient-end),
             transparent 100%);
     }
     
