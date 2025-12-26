@@ -669,7 +669,7 @@ button:focus:not(:focus-visible) {
 }
 
 .hero-content {
-    text-align: left;
+    text-align: center;
     position: relative;
     z-index: 1;
     background: var(--surface);
@@ -722,7 +722,7 @@ button:focus:not(:focus-visible) {
 .hero-buttons {
     display: flex;
     gap: var(--spacing-md);
-    justify-content: flex-start;
+    justify-content: center;
     flex-wrap: nowrap;
     animation: fadeInUp 0.6s ease-out 0.5s backwards;
     margin-bottom: var(--spacing-md);
@@ -731,7 +731,7 @@ button:focus:not(:focus-visible) {
 /* Hero Social Icons */
 .hero-social-links {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     gap: var(--spacing-sm);
     animation: fadeInUp 0.8s ease-out 0.7s backwards;
     padding: var(--spacing-sm) var(--spacing-md);
@@ -740,6 +740,7 @@ button:focus:not(:focus-visible) {
     border-radius: var(--radius-full);
     width: fit-content;
     box-shadow: var(--shadow-sm);
+    margin: 0 auto;
 }
 
 .hero-social-icon {
@@ -2458,7 +2459,7 @@ button:focus:not(:focus-visible) {
 .hero-highlight-strip {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     gap: var(--spacing-lg);
     margin-top: var(--spacing-lg);
     margin-bottom: var(--spacing-md);
@@ -2470,19 +2471,16 @@ button:focus:not(:focus-visible) {
     animation: fadeInUp 0.8s ease-out 0.6s backwards;
     flex-wrap: wrap;
     backdrop-filter: blur(5px);
-    position: relative;
-    width: calc(100% + var(--spacing-xl));
-    left: calc(-0.5 * var(--spacing-xl));
 }
 
 .highlight-item {
-    text-align: left;
+    text-align: center;
     padding: 0 var(--spacing-sm);
     border-right: 1px solid rgba(42, 40, 38, 0.12);
 }
 
 .highlight-item:first-of-type {
-    padding-left: 0;
+    padding-left: var(--spacing-sm);
 }
 
 .highlight-item:last-of-type {
@@ -2548,7 +2546,6 @@ button:focus:not(:focus-visible) {
     box-shadow: 0 6px 16px rgba(212, 165, 116, 0.3);
     padding: 0.875rem 1.75rem;
     font-size: 1rem;
-    margin-left: auto;
     position: relative;
     z-index: 2;
     transform: translateY(-4px);
