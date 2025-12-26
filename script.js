@@ -129,10 +129,10 @@ function initNetworkAnimation() {
         }
         
         draw() {
-            // Draw subtle dot
+            // Draw subtle dot - slightly darker for better visibility
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(26, 77, 92, 0.15)'; // Subtle light gray
+            ctx.fillStyle = 'rgba(26, 77, 92, 0.25)'; // Increased from 0.15 to 0.25
             ctx.fill();
         }
     }
@@ -154,8 +154,8 @@ function initNetworkAnimation() {
                 const distance = Math.sqrt(dx * dx + dy * dy);
                 
                 if (distance < maxDistance) {
-                    // Line opacity based on distance (closer = more opaque)
-                    const opacity = (1 - distance / maxDistance) * 0.15; // Very subtle
+                    // Line opacity based on distance (closer = more opaque) - slightly darker
+                    const opacity = (1 - distance / maxDistance) * 0.25; // Increased from 0.15 to 0.25
                     ctx.beginPath();
                     ctx.strokeStyle = `rgba(26, 77, 92, ${opacity})`;
                     ctx.lineWidth = 1;
