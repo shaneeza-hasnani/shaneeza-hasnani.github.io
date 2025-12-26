@@ -23,32 +23,161 @@ window.addEventListener('load', () => {
 });
 
 // ===========================
-// Particles Animation
+// Network Animation (Canvas)
+// =========================== 
+/**
+ * Custom canvas-based network animation for the hero section.
+ * Features:
+ * - Animated particles (dots) with connecting lines
+ * - Performance optimized for 60fps
+ * - Reduced particle count on mobile devices
+ * - Pauses animation when tab is hidden
+ * - Respects prefers-reduced-motion accessibility setting
+ * - pointer-events: none on canvas (doesn't interfere with clicks)
+ */
+function initNetworkAnimation() {
+    const canvas = document.getElementById('hero-network-canvas');
+    if (!canvas) return;
+    
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+        canvas.style.display = 'none';
+        return;
+    }
+    
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let animationId;
+    let isTabVisible = true;
+    
+    // Configuration
+    // Particle count: desktop 50, mobile 25 for performance
+    const isMobile = window.innerWidth < 768;
+    const particleCount = isMobile ? 25 : 50;
+    const maxDistance = 150; // Max distance for line connections
+    const particleSpeed = 0.3; // Slow movement
+    
+    // Resize canvas to match container
+    function resizeCanvas() {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+    }
+    
+    // Particle class
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.vx = (Math.random() - 0.5) * particleSpeed;
+            this.vy = (Math.random() - 0.5) * particleSpeed;
+            this.radius = Math.random() * 2 + 1;
+        }
+        
+        update() {
+            // Move particle
+            this.x += this.vx;
+            this.y += this.vy;
+            
+            // Bounce off edges
+            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            
+            // Keep within bounds
+            this.x = Math.max(0, Math.min(canvas.width, this.x));
+            this.y = Math.max(0, Math.min(canvas.height, this.y));
+        }
+        
+        draw() {
+            // Draw subtle dot
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(26, 77, 92, 0.15)'; // Subtle light gray
+            ctx.fill();
+        }
+    }
+    
+    // Initialize particles
+    function init() {
+        particles = [];
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+    }
+    
+    // Draw connecting lines between nearby particles
+    function drawConnections() {
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < maxDistance) {
+                    // Line opacity based on distance (closer = more opaque)
+                    const opacity = (1 - distance / maxDistance) * 0.15; // Very subtle
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(26, 77, 92, ${opacity})`;
+                    ctx.lineWidth = 1;
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+    }
+    
+    // Animation loop
+    function animate() {
+        if (!isTabVisible) {
+            // Pause animation when tab is not visible
+            return;
+        }
+        
+        // Clear canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Update and draw particles
+        particles.forEach(particle => {
+            particle.update();
+            particle.draw();
+        });
+        
+        // Draw connections
+        drawConnections();
+        
+        // Request next frame (60fps target)
+        animationId = requestAnimationFrame(animate);
+    }
+    
+    // Handle visibility change (pause when tab is hidden)
+    document.addEventListener('visibilitychange', () => {
+        isTabVisible = !document.hidden;
+        if (isTabVisible) {
+            animate(); // Resume animation
+        } else {
+            cancelAnimationFrame(animationId); // Pause animation
+        }
+    });
+    
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        resizeCanvas();
+        init(); // Reinitialize particles on resize
+    });
+    
+    // Initialize
+    resizeCanvas();
+    init();
+    animate();
+}
+
+// ===========================
+// Particles Animation (Legacy - Removed)
 // ===========================
 function createParticles() {
-    const particlesContainer = document.getElementById('particles-js');
-    if (!particlesContainer) return;
-    
-    const particleCount = window.innerWidth < MOBILE_BREAKPOINT ? 20 : 40;
-    
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        
-        const size = Math.random() * 4 + 2;
-        const duration = Math.random() * 15 + 10;
-        const delay = Math.random() * 5;
-        const drift = (Math.random() - 0.5) * 100;
-        
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        particle.style.left = `${Math.random() * 100}%`;
-        particle.style.animationDuration = `${duration}s`;
-        particle.style.animationDelay = `${delay}s`;
-        particle.style.setProperty('--drift', `${drift}px`);
-        
-        particlesContainer.appendChild(particle);
-    }
+    // Legacy particle function - no longer used
+    // Network animation replaced this
 }
 
 // ===========================
@@ -320,8 +449,8 @@ function typeWriter(element, text, speed = 100) {
 // ===========================
 
 window.addEventListener('load', () => {
-    // Create particles
-    createParticles();
+    // Initialize network animation
+    initNetworkAnimation();
     
     // Initialize counter animation
     initCounterAnimation();

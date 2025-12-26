@@ -280,41 +280,22 @@ body {
 }
 
 /* ===========================
-   Particles Background
+   Network Canvas Background
    =========================== */
-.particles-container {
+.hero-network-canvas {
     position: absolute;
-    width: 100%;
-    height: 100%;
     top: 0;
     left: 0;
-    overflow: hidden;
-    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allow clicking through canvas */
+    z-index: 0;
 }
 
-.particle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    animation: particleFloat linear infinite;
-}
-
-@keyframes particleFloat {
-    0% {
-        transform: translateY(0) translateX(0) scale(1);
-        opacity: 0;
-    }
-    10% {
-        opacity: 1;
-    }
-    90% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-100vh) translateX(var(--drift)) scale(0);
-        opacity: 0;
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .hero-network-canvas {
+        display: none;
     }
 }
 
@@ -678,13 +659,25 @@ button:focus:not(:focus-visible) {
 }
 
 .hero-name-primary {
-    font-size: 3.5rem;
+    font-size: clamp(2.5rem, 6vw, 4rem);
     font-weight: 900;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     color: var(--text);
     letter-spacing: -0.02em;
     animation: fadeInUp 0.6s ease-out;
     line-height: 1.1;
+}
+
+.hero-positioning {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    line-height: 1.4;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeInUp 0.6s ease-out 0.1s backwards;
 }
 
 .hero-tagline {
@@ -741,22 +734,22 @@ button:focus:not(:focus-visible) {
     display: flex;
     justify-content: center;
     gap: var(--spacing-md);
-    animation: fadeInUp 0.6s ease-out 0.5s backwards;
-    margin-top: var(--spacing-xl);
+    animation: fadeInUp 0.6s ease-out 0.2s backwards;
+    margin-bottom: var(--spacing-xl);
 }
 
 .hero-social-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 48px;
-    height: 48px;
-    background: rgba(255, 255, 255, 0.8);
+    width: 56px;
+    height: 56px;
+    background: rgba(255, 255, 255, 0.95);
     border: 2px solid var(--border);
-    border-radius: var(--radius-lg);
+    border-radius: 50%;
     color: var(--text);
     transition: all var(--transition-base);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .hero-social-icon:focus-visible {
@@ -1905,8 +1898,12 @@ button:focus:not(:focus-visible) {
     }
     
     .hero-social-icon {
-        width: 48px;
-        height: 48px;
+        width: 52px;
+        height: 52px;
+    }
+    
+    .scroll-indicator {
+        bottom: 30px;
     }
     
     .timeline {
@@ -2329,14 +2326,14 @@ button:focus:not(:focus-visible) {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 1.25rem 2rem;
+    padding: 1rem 2.5rem;
     min-height: 52px;
     font-size: 1.125rem;
     font-weight: 700;
     border-radius: var(--radius-md);
     transition: all var(--transition-base);
     border: 2px solid transparent;
-    box-shadow: 0 6px 20px rgba(26, 77, 92, 0.3);
+    box-shadow: 0 6px 20px rgba(26, 77, 92, 0.25);
     position: relative;
     overflow: hidden;
 }
@@ -2356,8 +2353,8 @@ button:focus:not(:focus-visible) {
 }
 
 .btn-primary-hero:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 10px 28px rgba(26, 77, 92, 0.4), var(--shadow-glow);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 28px rgba(26, 77, 92, 0.35), var(--shadow-glow);
 }
 
 .btn-primary-hero:hover::before {
@@ -2371,18 +2368,18 @@ button:focus:not(:focus-visible) {
 
 .btn-secondary-hero {
     background: transparent;
-    color: var(--text-secondary);
+    color: var(--text);
     border: 2px solid var(--border);
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 1rem 1.75rem;
-    min-height: 44px;
-    font-size: 0.9375rem;
+    padding: 1rem 2.5rem;
+    min-height: 52px;
+    font-size: 1.125rem;
     font-weight: 600;
     border-radius: var(--radius-md);
     transition: all var(--transition-base);
-    box-shadow: 0 1px 4px rgba(42, 40, 38, 0.04);
+    box-shadow: 0 2px 8px rgba(42, 40, 38, 0.06);
 }
 
 .btn-secondary-hero:focus-visible {
@@ -2394,65 +2391,59 @@ button:focus:not(:focus-visible) {
     background: var(--surface-muted);
     color: var(--text);
     border-color: var(--text-secondary);
-    transform: translateY(-4px) scale(1.01);
-    box-shadow: 0 4px 12px rgba(42, 40, 38, 0.12);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 16px rgba(42, 40, 38, 0.12);
 }
 
 .btn-secondary-hero:active {
     transform: translateY(-1px) scale(1);
-    box-shadow: 0 2px 8px rgba(212, 165, 116, 0.15);
+    box-shadow: 0 2px 8px rgba(42, 40, 38, 0.08);
 }
 
 .scroll-indicator {
     position: absolute;
-    bottom: 30px;
+    bottom: 40px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
-    color: var(--muted-text);
-    opacity: 0.8;
-    animation: fadeIn 1s ease-out 1s backwards;
+    color: var(--text-secondary);
+    opacity: 0.7;
+    animation: fadeIn 1s ease-out 0.8s backwards;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    text-decoration: none;
 }
 
-.scroll-mouse {
+.scroll-indicator:hover {
+    opacity: 1;
+    transform: translateX(-50%) translateY(4px);
+}
+
+.scroll-arrow {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--text-secondary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+.scroll-arrow svg {
     width: 24px;
-    height: 38px;
-    border: 2px solid var(--border);
-    border-radius: 12px;
-    position: relative;
+    height: 24px;
 }
 
-.scroll-wheel {
-    width: 3px;
-    height: 8px;
-    background: var(--muted-text);
-    border-radius: 2px;
-    position: absolute;
-    top: 6px;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: scrollWheel 1.5s ease-in-out infinite;
-}
-
-@keyframes scrollWheel {
+@keyframes bounce {
     0%, 100% {
-        transform: translateX(-50%) translateY(0);
-        opacity: 1;
+        transform: translateY(0);
     }
     50% {
-        transform: translateX(-50%) translateY(12px);
-        opacity: 0.3;
+        transform: translateY(8px);
     }
-}
-
-.scroll-indicator p {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin: 0;
 }
 
 /* Hero Highlight Strip */
