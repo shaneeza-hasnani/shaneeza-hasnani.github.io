@@ -57,64 +57,15 @@
     <!-- Hero Section -->
     <main>
     <section id="home" class="hero">
-        <!-- Particle Background -->
-        <div class="particles-container" id="particles-js"></div>
-        
-        <!-- Decorative geometric shapes -->
-        <div class="hero-shapes">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-            <div class="shape shape-3"></div>
-        </div>
+        <!-- Network/Particles Canvas Background -->
+        <canvas id="hero-network-canvas" class="hero-network-canvas"></canvas>
         
         <div class="container">
             <div class="hero-content fade-in">
                 <h1 class="hero-name-primary">Shaneeza Hasnani, CFE</h1>
-                <p class="hero-tagline">Turning Data into Insights & Fraud into Evidence</p>
-                <p class="hero-description">
-                    Certified Fraud Examiner • Data Scientist • Financial Forensics Expert
-                </p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary-hero">
-                        <span>Let's Connect</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                            <polyline points="12 5 19 12 12 19"></polyline>
-                        </svg>
-                    </a>
-                    <a href="Hasnani-Resume.pdf" target="_blank" class="btn btn-secondary-hero">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                            <polyline points="7 10 12 15 17 10"></polyline>
-                            <line x1="12" y1="15" x2="12" y2="3"></line>
-                        </svg>
-                        <span>View Resume</span>
-                    </a>
-                </div>
+                <p class="hero-positioning">Fraud detection for messy data and real-world decisions.</p>
                 
-                <!-- Highlight Strip -->
-                <div class="hero-highlight-strip">
-                    <div class="highlight-item">
-                        <span class="highlight-kicker">Focus</span>
-                        <span class="highlight-value">Fraud Detection</span>
-                    </div>
-                    <div class="highlight-item">
-                        <span class="highlight-kicker">Tooling</span>
-                        <span class="highlight-value">Python • SQL • ML</span>
-                    </div>
-                    <div class="highlight-item">
-                        <span class="highlight-kicker">Lens</span>
-                        <span class="highlight-value">CFE + Forensics</span>
-                    </div>
-                    <a href="#projects" class="highlight-cta highlight-cta-secondary">
-                        <span>Explore Projects</span>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                            <polyline points="12 5 19 12 12 19"></polyline>
-                        </svg>
-                    </a>
-                </div>
-                
+                <!-- Social Icons Row -->
                 <div class="hero-social-links">
                     <a href="https://github.com/shaneeza-hasnani" target="_blank" rel="noopener noreferrer" class="hero-social-icon" aria-label="GitHub">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -127,16 +78,27 @@
                         </svg>
                     </a>
                 </div>
+                
+                <!-- CTA Buttons -->
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary-hero">
+                        <span>View Projects</span>
+                    </a>
+                    <a href="#contact" class="btn btn-secondary-hero">
+                        <span>Contact</span>
+                    </a>
+                </div>
             </div>
         </div>
         
-        <!-- Scroll indicator -->
-        <div class="scroll-indicator">
-            <div class="scroll-mouse">
-                <div class="scroll-wheel"></div>
+        <!-- Scroll indicator with down arrow -->
+        <a href="#projects" class="scroll-indicator" aria-label="Scroll to projects">
+            <div class="scroll-arrow">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
             </div>
-            <p>Scroll to explore</p>
-        </div>
+        </a>
     </section>
 
     <!-- About Me Section -->
