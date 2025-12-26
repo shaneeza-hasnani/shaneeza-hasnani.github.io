@@ -50,6 +50,7 @@ function initNetworkAnimation() {
     let particles = [];
     let animationId;
     let isTabVisible = true;
+    let mouse = { x: null, y: null, radius: 150 };
     
     // Configuration
     // Particle count: desktop 50, mobile 25 for performance
@@ -57,12 +58,26 @@ function initNetworkAnimation() {
     const particleCount = isMobile ? 25 : 50;
     const maxDistance = 150; // Max distance for line connections
     const particleSpeed = 0.3; // Slow movement
+    const mouseInfluenceRadius = 150; // Mouse interaction radius
     
     // Resize canvas to match container
     function resizeCanvas() {
         canvas.width = canvas.offsetWidth;
         canvas.height = canvas.offsetHeight;
     }
+    
+    // Track mouse movement
+    canvas.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+    });
+    
+    // Reset mouse position when leaving canvas
+    canvas.addEventListener('mouseleave', () => {
+        mouse.x = null;
+        mouse.y = null;
+    });
     
     // Particle class
     class Particle {
@@ -72,9 +87,34 @@ function initNetworkAnimation() {
             this.vx = (Math.random() - 0.5) * particleSpeed;
             this.vy = (Math.random() - 0.5) * particleSpeed;
             this.radius = Math.random() * 2 + 1;
+            this.originalVx = this.vx;
+            this.originalVy = this.vy;
         }
         
         update() {
+            // Check mouse interaction
+            if (mouse.x != null && mouse.y != null) {
+                const dx = this.x - mouse.x;
+                const dy = this.y - mouse.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                // If particle is within mouse influence radius
+                if (distance < mouseInfluenceRadius) {
+                    // Push particles away from mouse or attract them
+                    const forceDirectionX = dx / distance;
+                    const forceDirectionY = dy / distance;
+                    const force = (mouseInfluenceRadius - distance) / mouseInfluenceRadius;
+                    
+                    // Repel particles (push away)
+                    this.vx += forceDirectionX * force * 0.5;
+                    this.vy += forceDirectionY * force * 0.5;
+                }
+            }
+            
+            // Gradually return to original velocity (damping)
+            this.vx += (this.originalVx - this.vx) * 0.05;
+            this.vy += (this.originalVy - this.vy) * 0.05;
+            
             // Move particle
             this.x += this.vx;
             this.y += this.vy;
@@ -125,6 +165,31 @@ function initNetworkAnimation() {
                 }
             }
         }
+        
+        // Draw connections to mouse if present
+        if (mouse.x != null && mouse.y != null) {
+            particles.forEach(particle => {
+                const dx = particle.x - mouse.x;
+                const dy = particle.y - mouse.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < mouseInfluenceRadius) {
+                    const opacity = (1 - distance / mouseInfluenceRadius) * 0.25;
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(26, 77, 92, ${opacity})`;
+                    ctx.lineWidth = 1.5;
+                    ctx.moveTo(particle.x, particle.y);
+                    ctx.lineTo(mouse.x, mouse.y);
+                    ctx.stroke();
+                }
+            });
+            
+            // Draw mouse cursor indicator
+            ctx.beginPath();
+            ctx.arc(mouse.x, mouse.y, 5, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(26, 77, 92, 0.3)';
+            ctx.fill();
+        }
     }
     
     // Animation loop
@@ -164,6 +229,9 @@ function initNetworkAnimation() {
     window.addEventListener('resize', () => {
         resizeCanvas();
         init(); // Reinitialize particles on resize
+        // Reset mouse position on resize
+        mouse.x = null;
+        mouse.y = null;
     });
     
     // Initialize

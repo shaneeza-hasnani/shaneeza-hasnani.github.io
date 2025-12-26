@@ -288,8 +288,9 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* Allow clicking through canvas */
+    pointer-events: all; /* Enable mouse interaction with canvas */
     z-index: 0;
+    cursor: crosshair; /* Show interactive cursor */
 }
 
 /* Respect reduced motion preference */
@@ -652,7 +653,7 @@ button:focus:not(:focus-visible) {
 .hero-content {
     text-align: center;
     position: relative;
-    z-index: 1;
+    z-index: 10; /* Ensure content is above canvas */
     max-width: 1000px;
     margin: 0 auto;
     padding: 0 var(--spacing-xl);
@@ -661,23 +662,31 @@ button:focus:not(:focus-visible) {
 .hero-name-primary {
     font-size: clamp(2.5rem, 6vw, 4rem);
     font-weight: 900;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     color: var(--text);
     letter-spacing: -0.02em;
     animation: fadeInUp 0.6s ease-out;
     line-height: 1.1;
 }
 
-.hero-positioning {
-    font-size: clamp(1.25rem, 3vw, 1.75rem);
-    font-weight: 600;
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
-    line-height: 1.4;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+.hero-divider {
+    width: 100px;
+    height: 3px;
+    background: var(--gradient-primary);
+    margin: 0 auto 2rem;
+    border-radius: var(--radius-full);
+    box-shadow: 0 0 10px rgba(26, 77, 92, 0.3);
     animation: fadeInUp 0.6s ease-out 0.1s backwards;
+}
+
+.hero-intro {
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+    max-width: 600px;
+    animation: fadeInUp 0.6s ease-out 0.25s backwards;
 }
 
 .hero-tagline {
@@ -725,7 +734,7 @@ button:focus:not(:focus-visible) {
     gap: var(--spacing-md);
     justify-content: center;
     flex-wrap: wrap;
-    animation: fadeInUp 0.6s ease-out 0.3s backwards;
+    animation: fadeInUp 0.6s ease-out 0.35s backwards;
     margin-bottom: var(--spacing-xl);
 }
 
@@ -734,7 +743,7 @@ button:focus:not(:focus-visible) {
     display: flex;
     justify-content: center;
     gap: var(--spacing-md);
-    animation: fadeInUp 0.6s ease-out 0.2s backwards;
+    animation: fadeInUp 0.6s ease-out 0.15s backwards;
     margin-bottom: var(--spacing-xl);
 }
 
@@ -2321,8 +2330,8 @@ button:focus:not(:focus-visible) {
 }
 
 .btn-primary-hero {
-    background: var(--gradient-primary);
-    color: white;
+    background: transparent;
+    color: var(--text);
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -2332,8 +2341,8 @@ button:focus:not(:focus-visible) {
     font-weight: 700;
     border-radius: var(--radius-md);
     transition: all var(--transition-base);
-    border: 2px solid transparent;
-    box-shadow: 0 6px 20px rgba(26, 77, 92, 0.25);
+    border: 2px solid var(--text-secondary);
+    box-shadow: 0 2px 8px rgba(42, 40, 38, 0.08);
     position: relative;
     overflow: hidden;
 }
@@ -2342,9 +2351,10 @@ button:focus:not(:focus-visible) {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
+    background: var(--gradient-primary);
     opacity: 0;
     transition: opacity var(--transition-base);
+    z-index: -1;
 }
 
 .btn-primary-hero:focus-visible {
@@ -2353,6 +2363,8 @@ button:focus:not(:focus-visible) {
 }
 
 .btn-primary-hero:hover {
+    color: white;
+    border-color: var(--primary);
     transform: translateY(-3px) scale(1.02);
     box-shadow: 0 10px 28px rgba(26, 77, 92, 0.35), var(--shadow-glow);
 }
@@ -2369,7 +2381,7 @@ button:focus:not(:focus-visible) {
 .btn-secondary-hero {
     background: transparent;
     color: var(--text);
-    border: 2px solid var(--border);
+    border: 2px solid var(--text-secondary);
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -2380,6 +2392,18 @@ button:focus:not(:focus-visible) {
     border-radius: var(--radius-md);
     transition: all var(--transition-base);
     box-shadow: 0 2px 8px rgba(42, 40, 38, 0.06);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-secondary-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+    z-index: -1;
 }
 
 .btn-secondary-hero:focus-visible {
@@ -2388,16 +2412,19 @@ button:focus:not(:focus-visible) {
 }
 
 .btn-secondary-hero:hover {
-    background: var(--surface-muted);
-    color: var(--text);
-    border-color: var(--text-secondary);
+    color: white;
+    border-color: var(--primary);
     transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 6px 16px rgba(42, 40, 38, 0.12);
+    box-shadow: 0 10px 28px rgba(26, 77, 92, 0.35), var(--shadow-glow);
+}
+
+.btn-secondary-hero:hover::before {
+    opacity: 1;
 }
 
 .btn-secondary-hero:active {
     transform: translateY(-1px) scale(1);
-    box-shadow: 0 2px 8px rgba(42, 40, 38, 0.08);
+    box-shadow: 0 4px 12px rgba(26, 77, 92, 0.2);
 }
 
 .scroll-indicator {
