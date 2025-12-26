@@ -766,6 +766,37 @@ button:focus:not(:focus-visible) {
     margin-bottom: var(--spacing-xl);
 }
 
+/* Hero Social Icons - Simple Style (no boxes) */
+.hero-social-icon-simple {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+    transition: all var(--transition-base);
+    opacity: 0.7;
+}
+
+.hero-social-icon-simple:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
+}
+
+.hero-social-icon-simple:hover {
+    color: var(--primary);
+    opacity: 1;
+    transform: translateY(-2px) scale(1.1);
+}
+
+.hero-social-icon-simple:active {
+    transform: translateY(0) scale(1.05);
+}
+
+.hero-social-icon-simple svg {
+    width: 28px;
+    height: 28px;
+}
+
+/* Hero Social Icons - Original Style with boxes and labels */
 .hero-social-icon {
     display: flex;
     flex-direction: column;
@@ -2815,6 +2846,18 @@ button:focus:not(:focus-visible) {
     font-size: 1.0625rem;
     line-height: 1.8;
     color: var(--text-secondary);
+}
+
+/* Clean About Text Style (no boxes or headers) */
+.about-intro-text-clean {
+    padding: 0;
+}
+
+.about-intro-text-clean p {
+    margin: 0;
+    font-size: 1.125rem;
+    line-height: 1.9;
+    color: var(--text);
 }
 
 .about-stats-inline {
