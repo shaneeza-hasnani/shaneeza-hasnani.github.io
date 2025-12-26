@@ -120,8 +120,8 @@
     --border-muted: rgba(232, 221, 208, 0.5); /* Very subtle border */
     
     /* Primary Actions (Deeper Teal) */
-    --primary: #1A4D5C;              /* Primary CTA color - deeper teal */
-    --primary-hover: #14404D;        /* Darker teal for hover */
+    --primary: #164651;              /* Primary CTA color - darker teal for more contrast */
+    --primary-hover: #0F333E;        /* Darker teal for hover */
     --primary-active: #0F333E;       /* Even darker for active state */
     --primary-soft: rgba(26, 77, 92, 0.08); /* Soft teal background */
     
@@ -669,12 +669,12 @@ button:focus:not(:focus-visible) {
 }
 
 .hero-content {
-    text-align: center;
+    text-align: left;
     position: relative;
     z-index: 1;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
+    border-radius: 0.75rem;
     padding: var(--spacing-2xl) var(--spacing-xl);
     box-shadow: var(--shadow-xl), var(--shadow-glow);
     max-width: 900px;
@@ -684,11 +684,11 @@ button:focus:not(:focus-visible) {
 }
 
 .hero-title {
-    font-size: 3.75rem;
-    margin-bottom: var(--spacing-sm);
+    font-size: 4.875rem;
+    margin-bottom: 0.25rem;
     color: var(--text);
     text-shadow: none;
-    animation: fadeInUp 0.6s ease-out;
+    animation: fadeInUp 0.8s ease-out;
 }
 
 @keyframes fadeInUp {
@@ -706,8 +706,9 @@ button:focus:not(:focus-visible) {
     font-size: 1.5rem;
     color: var(--text-secondary);
     margin-bottom: var(--spacing-sm);
-    font-weight: 500;
-    animation: fadeInUp 0.6s ease-out 0.1s backwards;
+    font-weight: 400;
+    opacity: 0.75;
+    animation: fadeInUp 0.8s ease-out 0.2s backwards;
 }
 
 .hero-description {
@@ -715,37 +716,41 @@ button:focus:not(:focus-visible) {
     color: var(--text-secondary);
     margin-bottom: var(--spacing-lg);
     max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    animation: fadeInUp 0.6s ease-out 0.2s backwards;
+    animation: fadeInUp 0.8s ease-out 0.4s backwards;
 }
 
 .hero-buttons {
     display: flex;
     gap: var(--spacing-md);
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: nowrap;
-    animation: fadeInUp 0.6s ease-out 0.3s backwards;
+    animation: fadeInUp 0.6s ease-out 0.5s backwards;
     margin-bottom: var(--spacing-md);
 }
 
 /* Hero Social Icons */
 .hero-social-links {
     display: flex;
-    justify-content: center;
-    gap: var(--spacing-md);
-    animation: fadeInUp 0.6s ease-out 0.4s backwards;
+    justify-content: flex-start;
+    gap: var(--spacing-sm);
+    animation: fadeInUp 0.8s ease-out 0.7s backwards;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 240, 235, 0.4) 100%);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    width: fit-content;
+    box-shadow: var(--shadow-sm);
 }
 
 .hero-social-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 52px;
-    height: 52px;
+    width: 56px;
+    height: 56px;
     min-width: 48px;
     min-height: 48px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 240, 235, 0.9) 100%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 240, 235, 0.95) 100%);
     border: 2px solid var(--border);
     border-radius: var(--radius-lg);
     color: var(--text);
@@ -762,18 +767,18 @@ button:focus:not(:focus-visible) {
     background: var(--gradient-primary);
     color: white;
     border-color: transparent;
-    transform: translateY(-4px) scale(1.05);
-    box-shadow: 0 6px 16px rgba(26, 77, 92, 0.25), var(--shadow-glow);
+    transform: translateY(-6px) scale(1.08);
+    box-shadow: 0 8px 20px rgba(26, 77, 92, 0.3), var(--shadow-glow);
 }
 
 .hero-social-icon:active {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 3px 8px rgba(26, 77, 92, 0.2);
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 4px 10px rgba(26, 77, 92, 0.2);
 }
 
 .hero-social-icon svg {
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
 }
 
 /* ===========================
@@ -849,8 +854,8 @@ button:focus:not(:focus-visible) {
 .btn-primary:hover {
     background: var(--gradient-primary);
     border-color: var(--primary-hover);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(26, 77, 92, 0.25), var(--shadow-glow);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 24px rgba(26, 77, 92, 0.3), var(--shadow-glow);
 }
 
 .btn-primary:hover::after {
@@ -872,8 +877,8 @@ button:focus:not(:focus-visible) {
 .btn-secondary:hover {
     background-color: var(--surface-muted);
     border-color: var(--text-secondary);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
 }
 
 .btn-secondary:active {
@@ -1099,7 +1104,7 @@ button:focus:not(:focus-visible) {
 .timeline-content {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 240, 235, 0.4) 100%);
     padding: var(--spacing-lg) var(--spacing-xl);
-    border-radius: var(--radius-xl);
+    border-radius: 0.5rem;
     box-shadow: var(--shadow-lg);
     transition: all var(--transition-base);
     border: 1px solid var(--border);
@@ -1359,7 +1364,7 @@ button:focus:not(:focus-visible) {
 .education-card {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 240, 235, 0.4) 100%);
     padding: var(--spacing-xl);
-    border-radius: var(--radius-xl);
+    border-radius: 0.5rem;
     box-shadow: var(--shadow-lg);
     transition: all var(--transition-base);
     border: 1px solid var(--border);
@@ -1392,7 +1397,7 @@ button:focus:not(:focus-visible) {
 }
 
 .education-card:hover {
-    transform: translateY(-6px) scale(1.02);
+    transform: translateY(-5px) scale(1.015);
     box-shadow: var(--shadow-xl), var(--shadow-glow);
     border-color: var(--primary);
 }
@@ -1477,7 +1482,7 @@ button:focus:not(:focus-visible) {
 .certification-card {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 240, 235, 0.5) 100%);
     padding: var(--spacing-xl);
-    border-radius: var(--radius-xl);
+    border-radius: 0.5rem;
     box-shadow: var(--shadow-lg);
     transition: all var(--transition-base);
     border: 1px solid var(--border);
@@ -1496,7 +1501,7 @@ button:focus:not(:focus-visible) {
 }
 
 .certification-card:hover {
-    transform: translateY(-10px) scale(1.03);
+    transform: translateY(-8px) scale(1.02);
     box-shadow: var(--shadow-xl), var(--shadow-warm);
     border-color: var(--highlight);
 }
@@ -1582,7 +1587,7 @@ button:focus:not(:focus-visible) {
     gap: var(--spacing-md);
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 240, 235, 0.5) 100%);
     padding: var(--spacing-xl);
-    border-radius: var(--radius-xl);
+    border-radius: 0.5rem;
     box-shadow: var(--shadow-lg);
     transition: all var(--transition-base);
     text-align: left;
@@ -1607,7 +1612,7 @@ button:focus:not(:focus-visible) {
 }
 
 .contact-method:hover {
-    transform: translateY(-8px) scale(1.03);
+    transform: translateY(-6px) scale(1.02);
     box-shadow: var(--shadow-xl), var(--shadow-glow);
     border-color: var(--primary);
 }
@@ -2301,17 +2306,20 @@ button:focus:not(:focus-visible) {
 
 .hero-greeting {
     display: block;
-    font-size: 1rem;
-    font-weight: 400;
-    margin-bottom: 0.5rem;
-    opacity: 0.5;
+    font-size: 0.75rem;
+    font-weight: 300;
+    margin-bottom: 0.25rem;
+    opacity: 0.15;
     color: var(--text-secondary);
 }
 
 .hero-name {
-    display: block;
-    font-weight: 900;
-    color: var(--text);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    opacity: 0.8;
+    margin-bottom: 0.25rem;
+    animation: fadeInUp 0.8s ease-out 0.3s backwards;
 }
 
 .btn-primary-hero {
@@ -2320,14 +2328,14 @@ button:focus:not(:focus-visible) {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 1.125rem 2.25rem;
-    min-height: 48px;
-    font-size: 1.0625rem;
+    padding: 1.25rem 2rem;
+    min-height: 52px;
+    font-size: 1.125rem;
     font-weight: 700;
-    border-radius: 0.75rem;
+    border-radius: 0.5rem;
     transition: all var(--transition-base);
     border: 2px solid transparent;
-    box-shadow: 0 4px 16px rgba(26, 77, 92, 0.2);
+    box-shadow: 0 6px 20px rgba(26, 77, 92, 0.3);
     position: relative;
     overflow: hidden;
 }
@@ -2347,8 +2355,8 @@ button:focus:not(:focus-visible) {
 }
 
 .btn-primary-hero:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 8px 24px rgba(26, 77, 92, 0.3), var(--shadow-glow);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 28px rgba(26, 77, 92, 0.4), var(--shadow-glow);
 }
 
 .btn-primary-hero:hover::before {
@@ -2361,19 +2369,19 @@ button:focus:not(:focus-visible) {
 }
 
 .btn-secondary-hero {
-    background: linear-gradient(135deg, rgba(212, 165, 116, 0.08) 0%, rgba(230, 182, 133, 0.08) 100%);
-    color: var(--text);
+    background: transparent;
+    color: var(--text-secondary);
     border: 2px solid var(--border);
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 1.125rem 2.25rem;
-    min-height: 48px;
+    padding: 1rem 1.75rem;
+    min-height: 44px;
     font-size: 0.9375rem;
     font-weight: 600;
-    border-radius: 0.75rem;
+    border-radius: 0.5rem;
     transition: all var(--transition-base);
-    box-shadow: 0 2px 8px rgba(42, 40, 38, 0.06);
+    box-shadow: 0 1px 4px rgba(42, 40, 38, 0.04);
 }
 
 .btn-secondary-hero:focus-visible {
@@ -2382,11 +2390,11 @@ button:focus:not(:focus-visible) {
 }
 
 .btn-secondary-hero:hover {
-    background: var(--gradient-secondary);
-    color: white;
-    border-color: var(--secondary);
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 6px 18px rgba(212, 165, 116, 0.25), var(--shadow-warm);
+    background: var(--surface-muted);
+    color: var(--text);
+    border-color: var(--text-secondary);
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 4px 12px rgba(42, 40, 38, 0.12);
 }
 
 .btn-secondary-hero:active {
@@ -2446,30 +2454,35 @@ button:focus:not(:focus-visible) {
     margin: 0;
 }
 
-/* ===========================
-   Hero Highlight Strip
-   =========================== */
+/* Hero Highlight Strip */
 .hero-highlight-strip {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: var(--spacing-md);
+    justify-content: flex-start;
+    gap: var(--spacing-lg);
     margin-top: var(--spacing-lg);
     margin-bottom: var(--spacing-md);
     padding: var(--spacing-md) var(--spacing-lg);
-    background: linear-gradient(135deg, rgba(255, 240, 235, 0.6) 0%, rgba(255, 255, 255, 0.4) 100%);
-    border: 1px solid var(--border);
-    border-radius: 1rem;
-    box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-    animation: fadeInUp 0.6s ease-out 0.35s backwards;
+    background: linear-gradient(135deg, rgba(42, 40, 38, 0.04) 0%, rgba(42, 40, 38, 0.02) 100%);
+    border: 1px solid rgba(42, 40, 38, 0.12);
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(42, 40, 38, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    animation: fadeInUp 0.8s ease-out 0.6s backwards;
     flex-wrap: wrap;
     backdrop-filter: blur(5px);
+    position: relative;
+    width: calc(100% + var(--spacing-xl));
+    left: calc(-0.5 * var(--spacing-xl));
 }
 
 .highlight-item {
-    text-align: center;
-    padding: 0 var(--spacing-md);
-    border-right: 1px solid var(--border);
+    text-align: left;
+    padding: 0 var(--spacing-sm);
+    border-right: 1px solid rgba(42, 40, 38, 0.12);
+}
+
+.highlight-item:first-of-type {
+    padding-left: 0;
 }
 
 .highlight-item:last-of-type {
@@ -2478,17 +2491,17 @@ button:focus:not(:focus-visible) {
 
 .highlight-kicker {
     display: block;
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: 0.6875rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.2px;
     color: var(--muted-text);
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.125rem;
 }
 
 .highlight-value {
     display: block;
-    font-size: 1rem;
+    font-size: 0.9375rem;
     font-weight: 700;
     color: var(--text);
     white-space: nowrap;
@@ -2532,14 +2545,20 @@ button:focus:not(:focus-visible) {
     background: var(--gradient-secondary);
     color: white;
     border-color: transparent;
-    box-shadow: 0 4px 12px rgba(212, 165, 116, 0.2);
+    box-shadow: 0 6px 16px rgba(212, 165, 116, 0.3);
+    padding: 0.875rem 1.75rem;
+    font-size: 1rem;
+    margin-left: auto;
+    position: relative;
+    z-index: 2;
+    transform: translateY(-4px);
 }
 
 .highlight-cta-secondary:hover {
     background: var(--gradient-secondary);
-    filter: brightness(1.1);
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 6px 20px rgba(212, 165, 116, 0.3), var(--shadow-warm);
+    filter: brightness(1.15);
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 10px 28px rgba(212, 165, 116, 0.4), var(--shadow-warm);
 }
 
 .highlight-cta-secondary:active {
@@ -2584,7 +2603,7 @@ button:focus:not(:focus-visible) {
 
 .about-card {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 240, 235, 0.5) 100%);
-    border-radius: var(--radius-xl);
+    border-radius: 0.5rem;
     box-shadow: var(--shadow-xl), var(--shadow-warm);
     overflow: hidden;
     border: 1px solid var(--border);
@@ -2749,7 +2768,7 @@ button:focus:not(:focus-visible) {
     min-height: 48px;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 240, 235, 0.5) 100%);
     border: 2px solid var(--border);
-    border-radius: 0.75rem;
+    border-radius: 0.5rem;
     color: var(--text-secondary);
     font-weight: 600;
     font-size: 0.9375rem;
@@ -2782,8 +2801,8 @@ button:focus:not(:focus-visible) {
 .filter-btn:hover {
     border-color: var(--primary);
     color: var(--primary);
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(26, 77, 92, 0.1);
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(26, 77, 92, 0.15);
 }
 
 .filter-btn.active {
@@ -2817,7 +2836,7 @@ button:focus:not(:focus-visible) {
 
 .project-card {
     background: var(--surface);
-    border-radius: var(--radius-lg);
+    border-radius: 0.5rem;
     padding: var(--spacing-lg);
     box-shadow: var(--shadow-md);
     border: 1px solid var(--border);
@@ -2846,7 +2865,7 @@ button:focus:not(:focus-visible) {
 }
 
 .project-card:hover {
-    transform: translateY(-12px) scale(1.02);
+    transform: translateY(-10px) scale(1.02);
     box-shadow: var(--shadow-xl), var(--shadow-glow);
     border-color: var(--primary);
 }
@@ -2976,7 +2995,7 @@ button:focus:not(:focus-visible) {
 .skill-category {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 240, 235, 0.5) 100%);
     padding: var(--spacing-lg);
-    border-radius: var(--radius-xl);
+    border-radius: 0.5rem;
     box-shadow: var(--shadow-lg);
     transition: all var(--transition-base);
     border: 1px solid var(--border);
@@ -3007,7 +3026,7 @@ button:focus:not(:focus-visible) {
 }
 
 .skill-category:hover {
-    transform: translateY(-6px) scale(1.02);
+    transform: translateY(-5px) scale(1.015);
     box-shadow: var(--shadow-xl), var(--shadow-warm);
     border-color: var(--secondary);
 }
