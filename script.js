@@ -798,268 +798,262 @@ if ('serviceWorker' in navigator) {
 // Project Modal Data
 // ===========================
 const projectDetails = {
-    'fraud-detection': {
-        title: 'Credit Card Fraud Detection',
+    'titanic-survival': {
+        title: 'Titanic Survival Prediction',
         badge: 'Machine Learning',
-        tech: ['Python', 'Random Forest', 'Scikit-learn', 'Pandas', 'NumPy'],
-        githubLink: 'https://github.com/shaneeza-hasnani',
+        tech: ['Python', 'Logistic Regression', 'Scikit-learn', 'Pandas', 'NumPy'],
+        githubLink: 'https://github.com/shaneeza-hasnani/titanic-survival-prediction',
         sections: [
             {
                 title: 'Overview',
-                content: `<p>This project develops an advanced machine learning system to detect fraudulent credit card transactions with exceptional accuracy. Using a Random Forest classifier, the model analyzes transaction patterns to identify potentially fraudulent activities in real-time.</p>
-                <p>The system processes thousands of transactions and uses sophisticated algorithms to distinguish between legitimate and fraudulent behavior, helping financial institutions protect their customers.</p>`
+                content: `<p>This machine learning project predicts whether passengers aboard the RMS Titanic would have survived based on various features like age, gender, passenger class, and ticket fare.</p>
+                <p>Using logistic regression, the model analyzes historical Titanic passenger data to understand the factors that influenced survival rates during the tragic disaster.</p>`
             },
             {
                 title: 'What We Built',
                 content: `<ul>
-                    <li>A smart detection system that reviews credit card transactions automatically</li>
-                    <li>Advanced pattern recognition to spot unusual spending behavior</li>
-                    <li>Real-time alerts for suspicious activities</li>
-                    <li>User-friendly dashboard showing detection results</li>
+                    <li>A predictive model using logistic regression to classify survival outcomes</li>
+                    <li>Feature engineering to extract meaningful patterns from passenger data</li>
+                    <li>Data preprocessing pipeline to handle missing values and categorical variables</li>
+                    <li>Model evaluation using accuracy, precision, and recall metrics</li>
                 </ul>`
             },
             {
-                title: 'Key Results',
-                content: `<p>The model achieved <strong>99.96% accuracy</strong> in identifying fraudulent transactions across 10,000+ credit card transactions. This means it correctly identifies fraud 9,996 times out of 10,000 attempts.</p>
-                <p>Key metrics include:</p>
+                title: 'Key Features Analyzed',
+                content: `<p>The model considers several important factors:</p>
                 <ul>
-                    <li>99.96% overall accuracy in fraud detection</li>
-                    <li>Extremely low false positive rate (genuine transactions marked as fraud)</li>
-                    <li>Fast processing time suitable for real-time detection</li>
-                    <li>Ability to learn and adapt to new fraud patterns</li>
+                    <li><strong>Passenger Class:</strong> First, second, or third class ticket</li>
+                    <li><strong>Gender:</strong> Male or female passenger</li>
+                    <li><strong>Age:</strong> Passenger age in years</li>
+                    <li><strong>Family Aboard:</strong> Number of siblings/spouses and parents/children</li>
+                    <li><strong>Fare:</strong> Ticket price paid by the passenger</li>
+                    <li><strong>Embarkation Port:</strong> Where the passenger boarded the ship</li>
                 </ul>`
             },
             {
-                title: 'How It Works',
-                content: `<p>The system works in several simple steps:</p>
+                title: 'Results and Insights',
+                content: `<p>The analysis revealed several key survival patterns:</p>
                 <ul>
-                    <li><strong>Data Collection:</strong> Gathers transaction information like amount, time, location, and merchant details</li>
-                    <li><strong>Pattern Analysis:</strong> Compares each transaction against known patterns of legitimate and fraudulent activity</li>
-                    <li><strong>Risk Scoring:</strong> Assigns a risk score to each transaction based on multiple factors</li>
-                    <li><strong>Decision Making:</strong> Automatically flags high-risk transactions for review or blocking</li>
+                    <li>Women and children had significantly higher survival rates</li>
+                    <li>First class passengers were more likely to survive than third class</li>
+                    <li>Passengers traveling with family had different survival patterns</li>
+                    <li>The model achieved strong predictive accuracy on test data</li>
                 </ul>`
             }
         ],
         chartPlaceholder: true
     },
-    'fraud-dashboard': {
-        title: 'Automated Fraud Dashboard',
-        badge: 'Dashboard & Visualization',
-        tech: ['Python', 'SQL', 'Power BI', 'Data Visualization'],
-        githubLink: 'https://github.com/shaneeza-hasnani',
+    'fraud-disclosure': {
+        title: 'Fraud Disclosure Event Study',
+        badge: 'Event Study',
+        tech: ['Python', 'Pandas', 'NumPy', 'Financial Analysis', 'Statistics'],
+        githubLink: 'https://github.com/shaneeza-hasnani/fraud-disclosure-event-study',
         sections: [
             {
                 title: 'Overview',
-                content: `<p>An integrated real-time dashboard system that combines Python data processing, SQL database queries, and Power BI visualizations to monitor and detect fraudulent activities across the organization.</p>
-                <p>This comprehensive solution reduced manual review time by 40% while providing fraud analysts with powerful tools to investigate suspicious activities quickly.</p>`
+                content: `<p>This event study analyzes how stock markets react to corporate fraud disclosures using the Fama-French Three-Factor Model. The research examines abnormal returns around fraud announcement dates to understand investor responses to fraud revelations.</p>
+                <p>The study provides insights into market efficiency and investor behavior when companies publicly disclose fraudulent activities.</p>`
             },
             {
-                title: 'Dashboard Features',
+                title: 'Research Methodology',
                 content: `<ul>
-                    <li>Real-time fraud detection alerts and notifications</li>
-                    <li>Interactive visualizations showing fraud trends and patterns</li>
-                    <li>Automated reporting with customizable time periods</li>
-                    <li>Drill-down capabilities for detailed transaction analysis</li>
-                    <li>Risk scoring dashboard with color-coded alerts</li>
-                </ul>`
-            },
-            {
-                title: 'Impact & Benefits',
-                content: `<p>The automated dashboard transformed how the fraud team operates:</p>
-                <ul>
-                    <li><strong>40% reduction</strong> in manual review time</li>
-                    <li><strong>Real-time visibility</strong> into fraud trends across all channels</li>
-                    <li><strong>Faster response</strong> to emerging fraud patterns</li>
-                    <li><strong>Better collaboration</strong> with shared dashboards across teams</li>
-                    <li><strong>Data-driven decisions</strong> with comprehensive analytics</li>
-                </ul>`
-            },
-            {
-                title: 'Technical Architecture',
-                content: `<p>The system uses a three-tier architecture:</p>
-                <ul>
-                    <li><strong>Data Layer:</strong> SQL databases store transaction and fraud data</li>
-                    <li><strong>Processing Layer:</strong> Python scripts clean, transform, and analyze data</li>
-                    <li><strong>Presentation Layer:</strong> Power BI creates interactive visualizations</li>
-                </ul>`
-            }
-        ],
-        chartPlaceholder: true
-    },
-    'risk-scoring': {
-        title: 'Transaction Risk Scoring',
-        badge: 'Predictive Analytics',
-        tech: ['R', 'Logistic Regression', 'Decision Trees', 'Statistical Analysis'],
-        githubLink: 'https://github.com/shaneeza-hasnani',
-        sections: [
-            {
-                title: 'Overview',
-                content: `<p>A sophisticated risk scoring system that uses predictive analytics to assess the likelihood of fraud for each transaction. The model employs logistic regression and decision trees to calculate risk scores in real-time.</p>
-                <p>This system successfully reduced false positives by 20% while maintaining high detection accuracy, saving time and improving customer experience.</p>`
-            },
-            {
-                title: 'How Risk Scoring Works',
-                content: `<p>The system evaluates multiple factors for each transaction:</p>
-                <ul>
-                    <li>Transaction amount and frequency patterns</li>
-                    <li>Geographic location and device information</li>
-                    <li>Historical customer behavior</li>
-                    <li>Time and velocity of transactions</li>
-                    <li>Merchant category and reputation</li>
-                </ul>
-                <p>Each factor is weighted and combined to produce a final risk score from 0-100, where higher scores indicate higher fraud risk.</p>`
-            },
-            {
-                title: 'Key Achievements',
-                content: `<ul>
-                    <li><strong>20% reduction</strong> in false positives (legitimate transactions incorrectly flagged)</li>
-                    <li><strong>Maintained high accuracy</strong> in detecting actual fraud</li>
-                    <li><strong>Faster transaction processing</strong> with automated risk assessment</li>
-                    <li><strong>Better customer experience</strong> with fewer unnecessary blocks</li>
-                    <li><strong>Adaptive learning</strong> that improves over time</li>
-                </ul>`
-            },
-            {
-                title: 'Business Impact',
-                content: `<p>The risk scoring model provided significant benefits:</p>
-                <ul>
-                    <li>Reduced customer complaints about blocked legitimate transactions</li>
-                    <li>Improved fraud detection rates with more accurate targeting</li>
-                    <li>Decreased operational costs through automation</li>
-                    <li>Enhanced risk management capabilities for the business</li>
-                </ul>`
-            }
-        ],
-        chartPlaceholder: true
-    },
-    'anomaly-detection': {
-        title: 'Anomaly Detection System',
-        badge: 'Real-time Detection',
-        tech: ['Python', 'SQL', 'Pandas', 'Anomaly Detection Algorithms'],
-        githubLink: 'https://github.com/shaneeza-hasnani',
-        sections: [
-            {
-                title: 'Overview',
-                content: `<p>A real-time anomaly detection system that continuously monitors transaction data to identify unusual patterns that may indicate fraud. The system uses advanced algorithms to spot deviations from normal behavior.</p>
-                <p>This solution improved overall fraud detection by 25% by catching sophisticated fraud schemes that traditional rule-based systems might miss.</p>`
-            },
-            {
-                title: 'What Makes It Special',
-                content: `<ul>
-                    <li><strong>Real-time Processing:</strong> Analyzes transactions as they happen, not hours later</li>
-                    <li><strong>Pattern Learning:</strong> Automatically learns what "normal" looks like for each customer</li>
-                    <li><strong>Adaptive Detection:</strong> Adjusts to new fraud techniques without manual reprogramming</li>
-                    <li><strong>Multi-dimensional Analysis:</strong> Considers multiple factors simultaneously</li>
-                </ul>`
-            },
-            {
-                title: 'Types of Anomalies Detected',
-                content: `<p>The system identifies various types of unusual activity:</p>
-                <ul>
-                    <li><strong>Volume Anomalies:</strong> Unusual transaction amounts or frequencies</li>
-                    <li><strong>Behavioral Anomalies:</strong> Actions that don't match customer's typical patterns</li>
-                    <li><strong>Geographic Anomalies:</strong> Transactions from unexpected locations</li>
-                    <li><strong>Temporal Anomalies:</strong> Unusual timing or velocity of transactions</li>
-                </ul>`
-            },
-            {
-                title: 'Results & Impact',
-                content: `<p>The anomaly detection system delivered impressive results:</p>
-                <ul>
-                    <li><strong>25% improvement</strong> in fraud detection rates</li>
-                    <li><strong>Earlier detection</strong> of emerging fraud patterns</li>
-                    <li><strong>Reduced investigation time</strong> with prioritized alerts</li>
-                    <li><strong>Better protection</strong> for high-value accounts</li>
-                </ul>`
-            }
-        ],
-        chartPlaceholder: true
-    },
-    'healthcare-fraud': {
-        title: 'Healthcare Fraud Analytics',
-        badge: 'Statistical Analysis',
-        tech: ['R', 'SQL', 'SPSS', 'Statistical Modeling'],
-        githubLink: 'https://github.com/shaneeza-hasnani',
-        sections: [
-            {
-                title: 'Overview',
-                content: `<p>A comprehensive healthcare fraud analysis project that used statistical methods to examine medical billing data and identify fraudulent claims. The analysis uncovered over $500,000 in fraudulent billing activities.</p>
-                <p>This work involved analyzing patterns in healthcare claims to identify providers submitting false or inflated bills.</p>`
-            },
-            {
-                title: 'What We Analyzed',
-                content: `<p>The project examined various aspects of healthcare billing:</p>
-                <ul>
-                    <li>Medical procedure codes and billing patterns</li>
-                    <li>Provider billing histories and frequencies</li>
-                    <li>Patient diagnosis and treatment correlations</li>
-                    <li>Geographic distribution of claims</li>
-                    <li>Comparative analysis with industry standards</li>
+                    <li>Event study framework with defined event windows around disclosure dates</li>
+                    <li>Fama-French Three-Factor Model to calculate expected returns</li>
+                    <li>Analysis of abnormal returns (AR) and cumulative abnormal returns (CAR)</li>
+                    <li>Statistical significance testing of market reactions</li>
                 </ul>`
             },
             {
                 title: 'Key Findings',
-                content: `<p>Statistical analysis revealed several fraud patterns:</p>
+                content: `<p>The analysis revealed important patterns in market reactions:</p>
                 <ul>
-                    <li><strong>Billing Anomalies:</strong> Over $500,000 in fraudulent claims identified</li>
-                    <li><strong>Upcoding:</strong> Providers billing for more expensive procedures than performed</li>
-                    <li><strong>Phantom Billing:</strong> Charges for services never provided</li>
-                    <li><strong>Duplicate Claims:</strong> Multiple bills for the same service</li>
+                    <li>Significant negative abnormal returns following fraud disclosures</li>
+                    <li>Market reaction timing and magnitude varied by fraud type and severity</li>
+                    <li>Evidence of information leakage prior to official announcements</li>
+                    <li>Longer-term impacts on stock performance and volatility</li>
                 </ul>`
             },
             {
-                title: 'Methodology',
-                content: `<p>Our approach combined multiple statistical techniques:</p>
+                title: 'Implications',
+                content: `<p>This research contributes to understanding:</p>
                 <ul>
-                    <li><strong>Descriptive Statistics:</strong> Understanding normal billing patterns</li>
-                    <li><strong>Outlier Detection:</strong> Identifying unusual claims</li>
-                    <li><strong>Correlation Analysis:</strong> Finding relationships between variables</li>
-                    <li><strong>Comparative Analysis:</strong> Benchmarking against industry norms</li>
+                    <li>How markets price fraud risk and reputational damage</li>
+                    <li>The effectiveness of corporate governance and disclosure policies</li>
+                    <li>Investor sentiment and confidence following fraud revelations</li>
+                    <li>Risk management strategies for detecting early warning signs</li>
                 </ul>`
             }
         ],
         chartPlaceholder: true
     },
-    'neural-network': {
-        title: 'Neural Network Fraud Classifier',
-        badge: 'Deep Learning',
-        tech: ['Python', 'TensorFlow', 'Keras', 'Deep Learning'],
-        githubLink: 'https://github.com/shaneeza-hasnani',
+    'wmata-ridership': {
+        title: 'WMATA Ridership Analysis',
+        badge: 'Data Analysis',
+        tech: ['R', 'ggplot2', 'dplyr', 'Exploratory Data Analysis'],
+        githubLink: 'https://github.com/shaneeza-hasnani/wmata-ridership-analysis',
         sections: [
             {
                 title: 'Overview',
-                content: `<p>An advanced deep learning neural network designed to classify different types of fraud with high accuracy. This system uses TensorFlow and Keras to build and train sophisticated models that can handle imbalanced datasets effectively.</p>
-                <p>The neural network approach allows the model to learn complex patterns that traditional methods might miss.</p>`
+                content: `<p>This exploratory data analysis examines ridership patterns at Washington DC Metro stations, with a specific focus on American University and George Washington University stations. The analysis explores how weekday versus holiday patterns affect metro usage at university locations.</p>
+                <p>Understanding these patterns helps transit planners optimize service schedules and capacity planning.</p>`
             },
             {
-                title: 'How Neural Networks Help',
-                content: `<p>Neural networks offer several advantages for fraud detection:</p>
-                <ul>
-                    <li><strong>Complex Pattern Recognition:</strong> Can identify subtle fraud indicators</li>
-                    <li><strong>Multi-class Classification:</strong> Distinguishes between different fraud types</li>
-                    <li><strong>Handling Imbalanced Data:</strong> Works well even when fraud cases are rare</li>
-                    <li><strong>Continuous Learning:</strong> Improves accuracy as it processes more data</li>
+                title: 'Analysis Approach',
+                content: `<ul>
+                    <li>Time series analysis of daily ridership data</li>
+                    <li>Comparison of weekday and weekend/holiday patterns</li>
+                    <li>Seasonal trend identification and decomposition</li>
+                    <li>Station-specific ridership characteristics</li>
                 </ul>`
             },
             {
-                title: 'Model Architecture',
-                content: `<p>The neural network consists of multiple layers:</p>
+                title: 'Key Insights',
+                content: `<p>The analysis uncovered several important patterns:</p>
                 <ul>
-                    <li><strong>Input Layer:</strong> Receives transaction features and characteristics</li>
-                    <li><strong>Hidden Layers:</strong> Process and transform data through multiple stages</li>
-                    <li><strong>Output Layer:</strong> Classifies transactions into fraud categories</li>
-                    <li><strong>Activation Functions:</strong> Add non-linearity for complex pattern learning</li>
+                    <li><strong>Academic Calendar Impact:</strong> Clear correlation between university schedules and ridership</li>
+                    <li><strong>Weekday vs. Holiday:</strong> Significant differences in usage patterns</li>
+                    <li><strong>Peak Hours:</strong> Morning and evening commute times show highest ridership</li>
+                    <li><strong>Seasonal Variations:</strong> Lower ridership during summer and winter breaks</li>
                 </ul>`
             },
             {
-                title: 'Performance & Applications',
-                content: `<p>The model excels in several areas:</p>
+                title: 'Applications',
+                content: `<p>These findings can inform:</p>
                 <ul>
-                    <li>Superior performance on imbalanced datasets</li>
-                    <li>Accurate classification of multiple fraud types</li>
-                    <li>Fast inference time for real-time applications</li>
-                    <li>Scalable architecture for growing data volumes</li>
-                    <li>Transfer learning capabilities for new fraud types</li>
+                    <li>Metro service frequency adjustments based on predicted demand</li>
+                    <li>Resource allocation during peak academic periods</li>
+                    <li>Student transportation planning and campus connectivity</li>
+                    <li>Infrastructure investment decisions for university areas</li>
+                </ul>`
+            }
+        ],
+        chartPlaceholder: true
+    },
+    'nyc-job-salary': {
+        title: 'NYC Job Salary and Career Analysis',
+        badge: 'Statistical Analysis',
+        tech: ['R', 'Linear Regression', 'Statistical Modeling', 'Data Visualization'],
+        githubLink: 'https://github.com/shaneeza-hasnani/nyc-job-salary-career-analysis',
+        sections: [
+            {
+                title: 'Overview',
+                content: `<p>This statistical analysis examines the relationship between career level and salary in New York City job postings. Using regression methods, the study quantifies how different career stages (entry-level, mid-level, senior) correlate with compensation.</p>
+                <p>The research provides valuable insights for job seekers, employers, and career counselors about salary expectations across career progression.</p>`
+            },
+            {
+                title: 'Research Questions',
+                content: `<ul>
+                    <li>How does career level influence salary in NYC job market?</li>
+                    <li>What is the average salary premium for each career advancement?</li>
+                    <li>Are there industry-specific patterns in the career-salary relationship?</li>
+                    <li>How do other factors (education, skills) interact with career level?</li>
+                </ul>`
+            },
+            {
+                title: 'Statistical Methods',
+                content: `<p>The analysis employed several statistical techniques:</p>
+                <ul>
+                    <li><strong>Multiple Linear Regression:</strong> Modeling salary as a function of career level</li>
+                    <li><strong>Hypothesis Testing:</strong> Testing significance of career level coefficients</li>
+                    <li><strong>Model Diagnostics:</strong> Checking assumptions and model fit</li>
+                    <li><strong>Confidence Intervals:</strong> Quantifying uncertainty in estimates</li>
+                </ul>`
+            },
+            {
+                title: 'Key Findings',
+                content: `<p>The analysis revealed important salary patterns:</p>
+                <ul>
+                    <li>Statistically significant relationship between career level and salary</li>
+                    <li>Quantified salary increases for each career advancement stage</li>
+                    <li>Industry and location variations in the career-salary relationship</li>
+                    <li>Evidence-based salary benchmarks for NYC job market</li>
+                </ul>`
+            }
+        ],
+        chartPlaceholder: true
+    },
+    'linkedin-skills': {
+        title: 'LinkedIn Job Skills and Salary Analytics',
+        badge: 'Labor Analytics',
+        tech: ['R', 'Data Mining', 'Text Analysis', 'Market Research'],
+        githubLink: 'https://github.com/shaneeza-hasnani/linkedin-job-skills-salary-analytics',
+        sections: [
+            {
+                title: 'Overview',
+                content: `<p>This labor market analytics project examines LinkedIn job postings to identify high-value skill bundles and their relationship to industry, experience level, and salary. The analysis provides actionable insights for career development and hiring strategies.</p>
+                <p>By analyzing thousands of job postings, the study reveals which skill combinations command the highest salaries and are most in-demand.</p>`
+            },
+            {
+                title: 'Research Objectives',
+                content: `<ul>
+                    <li>Identify the most valuable skill combinations in the job market</li>
+                    <li>Analyze how skills relate to salary across industries</li>
+                    <li>Understand skill requirements by experience level</li>
+                    <li>Discover emerging skills and market trends</li>
+                </ul>`
+            },
+            {
+                title: 'Analytical Approach',
+                content: `<p>The project uses advanced data analysis techniques:</p>
+                <ul>
+                    <li><strong>Text Mining:</strong> Extracting skills from job descriptions</li>
+                    <li><strong>Association Analysis:</strong> Finding skill bundles that appear together</li>
+                    <li><strong>Regression Analysis:</strong> Modeling the relationship between skills and salary</li>
+                    <li><strong>Clustering:</strong> Grouping similar job profiles and skill sets</li>
+                </ul>`
+            },
+            {
+                title: 'Key Insights',
+                content: `<p>The analysis uncovered important labor market patterns:</p>
+                <ul>
+                    <li>Specific skill combinations that command premium salaries</li>
+                    <li>Industry-specific skill requirements and compensation trends</li>
+                    <li>Skills that provide the highest return on investment</li>
+                    <li>Emerging skills gaining traction in the job market</li>
+                </ul>`
+            }
+        ],
+        chartPlaceholder: true
+    },
+    'spotify-analysis': {
+        title: 'Spotify Audio Features Analysis',
+        badge: 'Regression Analysis',
+        tech: ['R', 'Regression Modeling', 'Data Visualization', 'Statistical Analysis'],
+        githubLink: 'https://github.com/shaneeza-hasnani/spotify-audio-features-analysis',
+        sections: [
+            {
+                title: 'Overview',
+                content: `<p>This project analyzes Spotify song data to examine how various audio features and genre relate to song energy levels. Using regression modeling in R, the study quantifies the relationships between musical characteristics and energy.</p>
+                <p>The research provides insights into what makes songs energetic and how different genres utilize various audio features.</p>`
+            },
+            {
+                title: 'Audio Features Analyzed',
+                content: `<ul>
+                    <li><strong>Acousticness:</strong> Confidence measure of whether the track is acoustic</li>
+                    <li><strong>Danceability:</strong> How suitable a track is for dancing</li>
+                    <li><strong>Valence:</strong> Musical positiveness conveyed by a track</li>
+                    <li><strong>Tempo:</strong> Overall estimated tempo in beats per minute</li>
+                    <li><strong>Loudness:</strong> Overall loudness of a track in decibels</li>
+                </ul>`
+            },
+            {
+                title: 'Statistical Methods',
+                content: `<p>The analysis employed multiple regression techniques:</p>
+                <ul>
+                    <li>Multiple linear regression to model energy as a function of audio features</li>
+                    <li>Genre as a categorical predictor variable</li>
+                    <li>Interaction effects between genre and audio features</li>
+                    <li>Model selection and validation procedures</li>
+                </ul>`
+            },
+            {
+                title: 'Key Findings',
+                content: `<p>The study revealed important patterns:</p>
+                <ul>
+                    <li>Strong relationships between certain audio features and energy levels</li>
+                    <li>Genre-specific patterns in how features relate to energy</li>
+                    <li>Predictive model for estimating song energy from audio features</li>
+                    <li>Insights into the musical characteristics that define energetic songs</li>
                 </ul>`
             }
         ],
