@@ -810,7 +810,7 @@ const projectDetails = {
                 <p>Using logistic regression, the model analyzes historical Titanic passenger data to understand the factors that influenced survival rates during the tragic disaster.</p>`
             },
             {
-                title: 'What We Built',
+                title: 'What I Built',
                 content: `<ul>
                     <li>A predictive model using logistic regression to classify survival outcomes</li>
                     <li>Feature engineering to extract meaningful patterns from passenger data</li>
@@ -840,8 +840,7 @@ const projectDetails = {
                     <li>The model achieved strong predictive accuracy on test data</li>
                 </ul>`
             }
-        ],
-        chartPlaceholder: true
+        ]
     },
     'fraud-disclosure': {
         title: 'Fraud Disclosure Event Study',
@@ -883,8 +882,7 @@ const projectDetails = {
                     <li>Risk management strategies for detecting early warning signs</li>
                 </ul>`
             }
-        ],
-        chartPlaceholder: true
+        ]
     },
     'wmata-ridership': {
         title: 'WMATA Ridership Analysis',
@@ -926,8 +924,7 @@ const projectDetails = {
                     <li>Infrastructure investment decisions for university areas</li>
                 </ul>`
             }
-        ],
-        chartPlaceholder: true
+        ]
     },
     'nyc-job-salary': {
         title: 'NYC Job Salary and Career Analysis',
@@ -969,8 +966,7 @@ const projectDetails = {
                     <li>Evidence-based salary benchmarks for NYC job market</li>
                 </ul>`
             }
-        ],
-        chartPlaceholder: true
+        ]
     },
     'linkedin-skills': {
         title: 'LinkedIn Job Skills and Salary Analytics',
@@ -1012,8 +1008,7 @@ const projectDetails = {
                     <li>Emerging skills gaining traction in the job market</li>
                 </ul>`
             }
-        ],
-        chartPlaceholder: true
+        ]
     },
     'spotify-analysis': {
         title: 'Spotify Audio Features Analysis',
@@ -1056,8 +1051,7 @@ const projectDetails = {
                     <li>Insights into the musical characteristics that define energetic songs</li>
                 </ul>`
             }
-        ],
-        chartPlaceholder: true
+        ]
     }
 };
 
@@ -1093,20 +1087,6 @@ function openProjectModal(projectId) {
             </div>
         `;
     });
-    
-    // Add chart placeholder if needed
-    if (project.chartPlaceholder) {
-        contentHTML += `
-            <div class="modal-chart-placeholder">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="18" y1="20" x2="18" y2="10"></line>
-                    <line x1="12" y1="20" x2="12" y2="4"></line>
-                    <line x1="6" y1="20" x2="6" y2="14"></line>
-                </svg>
-                <p>Charts, diagrams, and visualizations can be added here to illustrate project results</p>
-            </div>
-        `;
-    }
     
     // Add footer with GitHub link
     contentHTML += `
