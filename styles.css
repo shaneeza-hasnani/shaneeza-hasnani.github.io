@@ -3007,65 +3007,76 @@ button:focus:not(:focus-visible) {
     .horizontal-timeline {
         flex-direction: column;
         align-items: stretch;
-        padding: var(--spacing-xl) var(--spacing-lg);
+        padding: var(--spacing-xl) var(--spacing-md);
     }
     
     /* Vertical line for mobile */
     .horizontal-timeline::before {
-        top: var(--spacing-xl);
-        bottom: var(--spacing-xl);
-        left: calc(var(--spacing-lg) + 0.5rem);
+        top: 0;
+        bottom: 0;
+        left: 6px;
         right: auto;
         width: 2px;
         height: auto;
     }
     
     .timeline-item-horizontal {
-        flex-direction: row;
+        flex-direction: column;
         text-align: left;
         align-items: flex-start;
-        margin-bottom: var(--spacing-xl);
-        gap: var(--spacing-md);
+        margin-bottom: var(--spacing-2xl);
+        gap: 0;
+        padding-left: var(--spacing-lg);
+        position: relative;
     }
     
     .timeline-item-horizontal:last-child {
         margin-bottom: 0;
     }
     
+    .timeline-node {
+        position: absolute;
+        left: 0;
+        top: 0.25rem;
+        margin: 0;
+        flex-shrink: 0;
+    }
+    
     .timeline-role {
         order: 1;
         min-height: auto;
-        margin-bottom: 0;
+        margin-bottom: 0.5rem;
         padding: 0;
-        flex: 1;
+        flex: none;
         display: block;
         text-align: left;
-        font-size: 0.9375rem;
-    }
-    
-    .timeline-node {
-        order: -1;
-        margin: 0.5rem 0 0 0;
-        flex-shrink: 0;
+        font-size: 1rem;
+        font-weight: 700;
     }
     
     .timeline-year {
         position: static;
         transform: none;
-        margin-top: 0.5rem;
-        font-size: 1rem;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        font-size: 0.9375rem;
         order: 2;
-        width: 100%;
+        width: auto;
         text-align: left;
+        font-weight: 600;
+        color: var(--primary);
     }
     
     .timeline-organization {
         order: 3;
-        margin-top: 0.5rem;
+        margin-top: 0;
         font-size: 0.875rem;
         text-align: left;
         padding: 0;
         width: 100%;
+        font-style: normal;
+        font-weight: 400;
+        color: var(--text-secondary);
     }
 }
 
