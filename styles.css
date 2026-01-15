@@ -2837,10 +2837,14 @@ button:focus:not(:focus-visible) {
 }
 
 .about-intro-text-clean p {
-    margin: 0;
+    margin: 0 0 1.5rem 0;
     font-size: 1.125rem;
     line-height: 1.9;
     color: var(--text);
+}
+
+.about-intro-text-clean p:last-child {
+    margin-bottom: 0;
 }
 
 .about-stats-inline {
