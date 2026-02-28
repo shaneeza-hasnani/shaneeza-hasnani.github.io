@@ -1,803 +1,14 @@
-// ===========================
-// Constants
-// ===========================
-const MOBILE_BREAKPOINT = 768;
-const SCROLL_REVEAL_OFFSET = 200;
-const BACK_TO_TOP_THRESHOLD = 300;
+/* ================================================================
+   SHANEEZA HASNANI — DATA SCIENTIST PORTFOLIO
+   script.js — All interactivity
+   ================================================================ */
 
-// ===========================
-// Loading Screen
-// ===========================
-window.addEventListener('load', () => {
-    const loadingScreen = document.getElementById('loading-screen');
-    
-    setTimeout(() => {
-        if (loadingScreen) {
-            loadingScreen.classList.add('hidden');
-            // Remove from DOM after transition
-            setTimeout(() => {
-                loadingScreen.style.display = 'none';
-            }, 500);
-        }
-    }, 500);
-});
+'use strict';
 
-// ===========================
-// Network Animation (Canvas)
-// =========================== 
-/**
- * Custom canvas-based network animation for the hero section.
- * Features:
- * - Animated particles (dots) with connecting lines
- * - Performance optimized for 60fps
- * - Reduced particle count on mobile devices
- * - Pauses animation when tab is hidden
- * - Respects prefers-reduced-motion accessibility setting
- * - pointer-events: none on canvas (doesn't interfere with clicks)
- */
-function initNetworkAnimation() {
-    const canvas = document.getElementById('hero-network-canvas');
-    if (!canvas) return;
-    
-    // Check for reduced motion preference
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) {
-        canvas.style.display = 'none';
-        return;
-    }
-    
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    let animationId;
-    let isTabVisible = true;
-    let mouse = { x: null, y: null, radius: 150 };
-    
-    // Configuration
-    // Particle count: desktop 50, mobile 25 for performance
-    const isMobile = window.innerWidth < 768;
-    const particleCount = isMobile ? 25 : 50;
-    const maxDistance = 150; // Max distance for line connections
-    const particleSpeed = 0.3; // Slow movement
-    const mouseInfluenceRadius = 150; // Mouse interaction radius
-    
-    // Resize canvas to match container
-    function resizeCanvas() {
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
-    }
-    
-    // Track mouse movement
-    canvas.addEventListener('mousemove', (e) => {
-        const rect = canvas.getBoundingClientRect();
-        mouse.x = e.clientX - rect.left;
-        mouse.y = e.clientY - rect.top;
-    });
-    
-    // Reset mouse position when leaving canvas
-    canvas.addEventListener('mouseleave', () => {
-        mouse.x = null;
-        mouse.y = null;
-    });
-    
-    // Particle class
-    class Particle {
-        constructor() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.vx = (Math.random() - 0.5) * particleSpeed;
-            this.vy = (Math.random() - 0.5) * particleSpeed;
-            this.radius = Math.random() * 2 + 1;
-            this.originalVx = this.vx;
-            this.originalVy = this.vy;
-        }
-        
-        update() {
-            // Check mouse interaction
-            if (mouse.x != null && mouse.y != null) {
-                const dx = this.x - mouse.x;
-                const dy = this.y - mouse.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                
-                // If particle is within mouse influence radius
-                if (distance < mouseInfluenceRadius) {
-                    // Push particles away from mouse or attract them
-                    const forceDirectionX = dx / distance;
-                    const forceDirectionY = dy / distance;
-                    const force = (mouseInfluenceRadius - distance) / mouseInfluenceRadius;
-                    
-                    // Repel particles (push away)
-                    this.vx += forceDirectionX * force * 0.5;
-                    this.vy += forceDirectionY * force * 0.5;
-                }
-            }
-            
-            // Gradually return to original velocity (damping)
-            this.vx += (this.originalVx - this.vx) * 0.05;
-            this.vy += (this.originalVy - this.vy) * 0.05;
-            
-            // Move particle
-            this.x += this.vx;
-            this.y += this.vy;
-            
-            // Bounce off edges
-            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-            
-            // Keep within bounds
-            this.x = Math.max(0, Math.min(canvas.width, this.x));
-            this.y = Math.max(0, Math.min(canvas.height, this.y));
-        }
-        
-        draw() {
-            // Draw subtle dot - slightly darker for better visibility
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(26, 77, 92, 0.25)'; // Increased from 0.15 to 0.25
-            ctx.fill();
-        }
-    }
-    
-    // Initialize particles
-    function init() {
-        particles = [];
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
-        }
-    }
-    
-    // Draw connecting lines between nearby particles
-    function drawConnections() {
-        for (let i = 0; i < particles.length; i++) {
-            for (let j = i + 1; j < particles.length; j++) {
-                const dx = particles[i].x - particles[j].x;
-                const dy = particles[i].y - particles[j].y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                
-                if (distance < maxDistance) {
-                    // Line opacity based on distance (closer = more opaque) - slightly darker
-                    const opacity = (1 - distance / maxDistance) * 0.25; // Increased from 0.15 to 0.25
-                    ctx.beginPath();
-                    ctx.strokeStyle = `rgba(26, 77, 92, ${opacity})`;
-                    ctx.lineWidth = 1;
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.stroke();
-                }
-            }
-        }
-        
-        // Draw connections to mouse if present
-        if (mouse.x != null && mouse.y != null) {
-            particles.forEach(particle => {
-                const dx = particle.x - mouse.x;
-                const dy = particle.y - mouse.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                
-                if (distance < mouseInfluenceRadius) {
-                    const opacity = (1 - distance / mouseInfluenceRadius) * 0.25;
-                    ctx.beginPath();
-                    ctx.strokeStyle = `rgba(26, 77, 92, ${opacity})`;
-                    ctx.lineWidth = 1.5;
-                    ctx.moveTo(particle.x, particle.y);
-                    ctx.lineTo(mouse.x, mouse.y);
-                    ctx.stroke();
-                }
-            });
-            
-            // Draw mouse cursor indicator
-            ctx.beginPath();
-            ctx.arc(mouse.x, mouse.y, 5, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(26, 77, 92, 0.3)';
-            ctx.fill();
-        }
-    }
-    
-    // Animation loop
-    function animate() {
-        if (!isTabVisible) {
-            // Pause animation when tab is not visible
-            return;
-        }
-        
-        // Clear canvas
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        // Update and draw particles
-        particles.forEach(particle => {
-            particle.update();
-            particle.draw();
-        });
-        
-        // Draw connections
-        drawConnections();
-        
-        // Request next frame (60fps target)
-        animationId = requestAnimationFrame(animate);
-    }
-    
-    // Handle visibility change (pause when tab is hidden)
-    document.addEventListener('visibilitychange', () => {
-        isTabVisible = !document.hidden;
-        if (isTabVisible) {
-            animate(); // Resume animation
-        } else {
-            cancelAnimationFrame(animationId); // Pause animation
-        }
-    });
-    
-    // Handle window resize
-    window.addEventListener('resize', () => {
-        resizeCanvas();
-        init(); // Reinitialize particles on resize
-        // Reset mouse position on resize
-        mouse.x = null;
-        mouse.y = null;
-    });
-    
-    // Initialize
-    resizeCanvas();
-    init();
-    animate();
-}
-
-// ===========================
-// Particles Animation (Legacy - Removed)
-// ===========================
-function createParticles() {
-    // Legacy particle function - no longer used
-    // Network animation replaced this
-}
-
-// ===========================
-// Counter Animation
-// ===========================
-function animateCounter(element, target, duration = 2000, suffix = '') {
-    const start = 0;
-    const startTime = performance.now();
-    
-    function update(currentTime) {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        
-        const current = Math.floor(progress * target);
-        element.textContent = current + suffix;
-        
-        if (progress < 1) {
-            requestAnimationFrame(update);
-        } else {
-            element.textContent = target + suffix;
-        }
-    }
-    
-    requestAnimationFrame(update);
-}
-
-function initCounterAnimation() {
-    const counters = document.querySelectorAll('.stat-number');
-    let hasAnimated = false;
-    
-    const observerOptions = {
-        threshold: 0.5,
-        rootMargin: '0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !hasAnimated) {
-                hasAnimated = true;
-                counters.forEach(counter => {
-                    const target = parseInt(counter.getAttribute('data-target'), 10);
-                    const suffix = counter.getAttribute('data-suffix') || '';
-                    
-                    // Validate target is a valid number
-                    if (!isNaN(target) && target >= 0) {
-                        animateCounter(counter, target, 2000, suffix);
-                    }
-                });
-                observer.disconnect();
-            }
-        });
-    }, observerOptions);
-    
-    const statsContainer = document.querySelector('.stats-container');
-    if (statsContainer) {
-        observer.observe(statsContainer);
-    }
-}
-
-// ===========================
-// Navigation Functionality
-// ===========================
-
-// Get navigation elements
-const navToggle = document.getElementById('nav-toggle');
-const navMenu = document.getElementById('nav-menu');
-const navLinks = document.querySelectorAll('.nav-link');
-const navbar = document.getElementById('navbar');
-const backToTopBtn = document.getElementById('back-to-top');
-
-// Toggle mobile menu
-if (navToggle) {
-    navToggle.addEventListener('click', () => {
-        navToggle.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
-}
-
-// Close mobile menu when clicking on a link
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        navToggle.classList.remove('active');
-        navMenu.classList.remove('active');
-    });
-});
-
-// ===========================
-// Smooth Scrolling with sticky nav offset
-// ===========================
-
-// Smooth scroll to sections
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        
-        if (targetId === '#' || targetId === '#home') {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-            return;
-        }
-        
-        const targetSection = document.querySelector(targetId);
-        if (targetSection) {
-            const navHeight = navbar ? navbar.offsetHeight : 70;
-            const targetPosition = targetSection.offsetTop - navHeight - 20; // Extra 20px padding
-            
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
-
-// ===========================
-// Active Navigation Link
-// ===========================
-
-function updateActiveNavLink() {
-    const sections = document.querySelectorAll('section[id]');
-    const scrollPosition = window.scrollY + navbar.offsetHeight + 100;
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-        const sectionId = section.getAttribute('id');
-        
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${sectionId}`) {
-                    link.classList.add('active');
-                }
-            });
-        }
-    });
-    
-    // Special case for home/hero section
-    if (window.scrollY < 100) {
-        navLinks.forEach(link => link.classList.remove('active'));
-    }
-}
-
-// ===========================
-// Navbar Scroll Effect
-// ===========================
-
-function handleNavbarScroll() {
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-    
-    // Show/hide back to top button
-    if (backToTopBtn) {
-        if (window.scrollY > BACK_TO_TOP_THRESHOLD) {
-            backToTopBtn.classList.add('visible');
-        } else {
-            backToTopBtn.classList.remove('visible');
-        }
-    }
-    
-    // Update scroll progress bar
-    updateScrollProgress();
-}
-
-// ===========================
-// Scroll Progress Bar
-// ===========================
-function updateScrollProgress() {
-    const scrollProgress = document.getElementById('scroll-progress');
-    if (!scrollProgress) return;
-    
-    const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = (window.scrollY / windowHeight) * 100;
-    scrollProgress.style.width = scrolled + '%';
-}
-
-// ===========================
-// Back to Top Button
-// ===========================
-
-if (backToTopBtn) {
-    backToTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-}
-
-// ===========================
-// Scroll Reveal Animation
-// ===========================
-
-function revealOnScroll() {
-    const reveals = document.querySelectorAll('.timeline-item, .project-card, .skill-category, .education-card, .contact-method');
-    
-    reveals.forEach(element => {
-        const elementTop = element.getBoundingClientRect().top;
-        
-        if (elementTop < window.innerHeight - SCROLL_REVEAL_OFFSET) {
-            element.classList.add('reveal', 'active');
-        }
-    });
-}
-
-// Initialize reveal class
-function initializeRevealElements() {
-    const reveals = document.querySelectorAll('.timeline-item, .project-card, .skill-category, .education-card, .contact-method');
-    reveals.forEach(element => {
-        element.classList.add('reveal');
-    });
-}
-
-// ===========================
-// Intersection Observer for Better Performance
-// ===========================
-
-function setupIntersectionObserver() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px 200px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('reveal', 'active');
-                // Optional: stop observing after animation for performance
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-    
-    // Observe elements for instant reveal animation (no staggered delay)
-    const elementsToObserve = document.querySelectorAll('.timeline-item, .project-card, .skill-category, .education-card, .contact-method');
-    elementsToObserve.forEach((element, index) => {
-        element.classList.add('reveal');
-        observer.observe(element);
-    });
-}
-
-// ===========================
-// Typing Effect for Hero (Optional Enhancement)
-// ===========================
-
-function typeWriter(element, text, speed = 100) {
-    let i = 0;
-    element.textContent = '';
-    
-    function type() {
-        if (i < text.length) {
-            element.textContent += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    }
-    
-    type();
-}
-
-// ===========================
-// Smooth Page Load
-// ===========================
-
-window.addEventListener('load', () => {
-    // Initialize network animation
-    initNetworkAnimation();
-    
-    // Initialize counter animation
-    initCounterAnimation();
-    
-    // Initialize reveal elements
-    initializeRevealElements();
-    
-    // Setup intersection observer for better performance
-    if ('IntersectionObserver' in window) {
-        setupIntersectionObserver();
-    } else {
-        // Fallback for older browsers
-        revealOnScroll();
-    }
-});
-
-// ===========================
-// Custom Cursor Removed - Using Default Pointer
-// ===========================
-
-// ===========================
-// Ripple Effect for Buttons
-// ===========================
-function createRipple(event) {
-    const button = event.currentTarget;
-    const ripple = document.createElement('span');
-    const diameter = Math.max(button.clientWidth, button.clientHeight);
-    const radius = diameter / 2;
-    
-    const rect = button.getBoundingClientRect();
-    ripple.style.width = ripple.style.height = `${diameter}px`;
-    ripple.style.left = `${event.clientX - rect.left - radius}px`;
-    ripple.style.top = `${event.clientY - rect.top - radius}px`;
-    ripple.classList.add('ripple');
-    
-    const rippleElement = button.querySelector('.ripple');
-    if (rippleElement) {
-        rippleElement.remove();
-    }
-    
-    button.appendChild(ripple);
-    
-    setTimeout(() => {
-        ripple.remove();
-    }, 600);
-}
-
-// Add ripple effect to all buttons
-function initRippleEffect() {
-    const buttons = document.querySelectorAll('.btn, .contact-method, .project-card');
-    buttons.forEach(button => {
-        button.style.position = 'relative';
-        button.style.overflow = 'hidden';
-        button.addEventListener('click', createRipple);
-    });
-}
-
-// ===========================
-// Event Listeners
-// ===========================
-
-// Scroll events
-let scrollTimeout;
-window.addEventListener('scroll', () => {
-    handleNavbarScroll();
-    updateActiveNavLink();
-    
-    // Debounce scroll reveal for performance
-    if (!('IntersectionObserver' in window)) {
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(revealOnScroll, 100);
-    }
-}, { passive: true });
-
-// Resize events
-let resizeTimeout;
-window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-        // Close mobile menu on resize to desktop
-        if (window.innerWidth > MOBILE_BREAKPOINT) {
-            navToggle.classList.remove('active');
-            navMenu.classList.remove('active');
-        }
-    }, 250);
-}, { passive: true });
-
-// ===========================
-// Keyboard Navigation
-// ===========================
-
-// ESC key to close mobile menu
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-        navToggle.classList.remove('active');
-        navMenu.classList.remove('active');
-    }
-});
-
-// ===========================
-// Click Outside to Close Menu
-// ===========================
-
-document.addEventListener('click', (e) => {
-    if (navMenu.classList.contains('active')) {
-        const isClickInsideNav = navMenu.contains(e.target) || navToggle.contains(e.target);
-        if (!isClickInsideNav) {
-            navToggle.classList.remove('active');
-            navMenu.classList.remove('active');
-        }
-    }
-});
-
-// ===========================
-// ===========================
-// Utility Functions
-// ===========================
-
-// Debounce function for performance optimization
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Throttle function for scroll events
-function throttle(func, limit) {
-    let inThrottle;
-    return function(...args) {
-        if (!inThrottle) {
-            func.apply(this, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    };
-}
-
-// ===========================
-// Analytics and Tracking (Optional)
-// ===========================
-
-// Track navigation clicks
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        const section = link.getAttribute('href').substring(1);
-        // Add analytics tracking here if needed
-        console.log(`Navigation to: ${section}`);
-    });
-});
-
-// Track project card clicks
-document.querySelectorAll('.project-link').forEach(link => {
-    link.addEventListener('click', (e) => {
-        const projectTitle = link.closest('.project-card').querySelector('.project-title').textContent;
-        // Add analytics tracking here if needed
-        console.log(`Project clicked: ${projectTitle}`);
-    });
-});
-
-// ===========================
-// Performance Monitoring
-// ===========================
-
-// Log page load time (development only)
-window.addEventListener('load', () => {
-    const perfData = window.performance.timing;
-    const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
-    console.log(`Page load time: ${pageLoadTime}ms`);
-});
-
-// ===========================
-// Initialize on DOM Content Loaded
-// ===========================
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Initial calls
-    handleNavbarScroll();
-    updateActiveNavLink();
-    
-    // Initialize ripple effects
-    initRippleEffect();
-    
-    // Add smooth scroll behavior for older browsers
-    if (!('scrollBehavior' in document.documentElement.style)) {
-        console.log('Smooth scroll polyfill might be needed');
-    }
-    
-    console.log('Portfolio website initialized successfully');
-});
-
-// ===========================
-// Project Filtering Functionality
-// ===========================
-function initProjectFilters() {
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
-    
-    if (!filterBtns.length || !projectCards.length) return;
-    
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const filter = btn.getAttribute('data-filter');
-            
-            // Update active state
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            
-            // Filter projects
-            let visibleCount = 0;
-            projectCards.forEach(card => {
-                const tools = card.getAttribute('data-tools');
-                
-                if (filter === 'all') {
-                    card.classList.remove('hidden');
-                    visibleCount++;
-                } else {
-                    if (tools && tools.includes(filter)) {
-                        card.classList.remove('hidden');
-                        visibleCount++;
-                    } else {
-                        card.classList.add('hidden');
-                    }
-                }
-            });
-            
-            // Update count on "All Projects" button
-            const allBtn = document.querySelector('.filter-btn[data-filter="all"]');
-            const countSpan = allBtn ? allBtn.querySelector('.filter-count') : null;
-            if (countSpan && filter === 'all') {
-                countSpan.textContent = projectCards.length;
-            }
-            
-            // Trigger animation for visible cards
-            setTimeout(() => {
-                projectCards.forEach(card => {
-                    if (!card.classList.contains('hidden')) {
-                        card.style.animation = 'none';
-                        setTimeout(() => {
-                            card.style.animation = '';
-                            card.classList.add('reveal', 'active');
-                        }, 10);
-                    }
-                });
-            }, 100);
-        });
-    });
-}
-
-// ===========================
-// ===========================
-// Initialize New Features
-// ===========================
-document.addEventListener('DOMContentLoaded', () => {
-    initProjectFilters();
-});
-
-// ===========================
-// Service Worker Registration (for PWA - Optional)
-// ===========================
-
-if ('serviceWorker' in navigator) {
-    // Uncomment when service worker is ready
-    // window.addEventListener('load', () => {
-    //     navigator.serviceWorker.register('/service-worker.js')
-    //         .then(registration => console.log('SW registered:', registration))
-    //         .catch(error => console.log('SW registration failed:', error));
-    // });
-}
-
-// ===========================
-// Project Modal Data
-// ===========================
-const projectDetails = {
+/* ================================================================
+   PROJECT DATA
+   ================================================================ */
+const PROJECT_DATA = {
     'titanic-survival': {
         title: 'Titanic Survival Prediction',
         badge: 'Machine Learning',
@@ -892,8 +103,7 @@ const projectDetails = {
         sections: [
             {
                 title: 'Overview',
-                content: `<p>This exploratory data analysis examines ridership patterns at Washington DC Metro stations, with a specific focus on American University and George Washington University stations. The analysis explores how weekday versus holiday patterns affect metro usage at university locations.</p>
-                <p>Understanding these patterns helps transit planners optimize service schedules and capacity planning.</p>`
+                content: `<p>This exploratory data analysis examines ridership patterns at Washington DC Metro stations, with a specific focus on American University and George Washington University stations. The analysis explores how weekday versus holiday patterns affect metro usage at university locations.</p>`
             },
             {
                 title: 'Analysis Approach',
@@ -906,8 +116,7 @@ const projectDetails = {
             },
             {
                 title: 'Key Insights',
-                content: `<p>The analysis uncovered several important patterns:</p>
-                <ul>
+                content: `<ul>
                     <li><strong>Academic Calendar Impact:</strong> Clear correlation between university schedules and ridership</li>
                     <li><strong>Weekday vs. Holiday:</strong> Significant differences in usage patterns</li>
                     <li><strong>Peak Hours:</strong> Morning and evening commute times show highest ridership</li>
@@ -916,13 +125,7 @@ const projectDetails = {
             },
             {
                 title: 'Applications',
-                content: `<p>These findings can inform:</p>
-                <ul>
-                    <li>Metro service frequency adjustments based on predicted demand</li>
-                    <li>Resource allocation during peak academic periods</li>
-                    <li>Student transportation planning and campus connectivity</li>
-                    <li>Infrastructure investment decisions for university areas</li>
-                </ul>`
+                content: `<p>These findings can inform metro service frequency adjustments, resource allocation during peak academic periods, and student transportation planning.</p>`
             }
         ]
     },
@@ -934,22 +137,11 @@ const projectDetails = {
         sections: [
             {
                 title: 'Overview',
-                content: `<p>This statistical analysis examines the relationship between career level and salary in New York City job postings. Using regression methods, the study quantifies how different career stages (entry-level, mid-level, senior) correlate with compensation.</p>
-                <p>The research provides valuable insights for job seekers, employers, and career counselors about salary expectations across career progression.</p>`
-            },
-            {
-                title: 'Research Questions',
-                content: `<ul>
-                    <li>How does career level influence salary in NYC job market?</li>
-                    <li>What is the average salary premium for each career advancement?</li>
-                    <li>Are there industry-specific patterns in the career-salary relationship?</li>
-                    <li>How do other factors (education, skills) interact with career level?</li>
-                </ul>`
+                content: `<p>This statistical analysis examines the relationship between career level and salary in New York City job postings. Using regression methods, the study quantifies how different career stages correlate with compensation.</p>`
             },
             {
                 title: 'Statistical Methods',
-                content: `<p>The analysis employed several statistical techniques:</p>
-                <ul>
+                content: `<ul>
                     <li><strong>Multiple Linear Regression:</strong> Modeling salary as a function of career level</li>
                     <li><strong>Hypothesis Testing:</strong> Testing significance of career level coefficients</li>
                     <li><strong>Model Diagnostics:</strong> Checking assumptions and model fit</li>
@@ -958,8 +150,7 @@ const projectDetails = {
             },
             {
                 title: 'Key Findings',
-                content: `<p>The analysis revealed important salary patterns:</p>
-                <ul>
+                content: `<ul>
                     <li>Statistically significant relationship between career level and salary</li>
                     <li>Quantified salary increases for each career advancement stage</li>
                     <li>Industry and location variations in the career-salary relationship</li>
@@ -976,22 +167,11 @@ const projectDetails = {
         sections: [
             {
                 title: 'Overview',
-                content: `<p>This labor market analytics project examines LinkedIn job postings to identify high-value skill bundles and their relationship to industry, experience level, and salary. The analysis provides actionable insights for career development and hiring strategies.</p>
-                <p>By analyzing thousands of job postings, the study reveals which skill combinations command the highest salaries and are most in-demand.</p>`
-            },
-            {
-                title: 'Research Objectives',
-                content: `<ul>
-                    <li>Identify the most valuable skill combinations in the job market</li>
-                    <li>Analyze how skills relate to salary across industries</li>
-                    <li>Understand skill requirements by experience level</li>
-                    <li>Discover emerging skills and market trends</li>
-                </ul>`
+                content: `<p>This labor market analytics project examines LinkedIn job postings to identify high-value skill bundles and their relationship to industry, experience level, and salary.</p>`
             },
             {
                 title: 'Analytical Approach',
-                content: `<p>The project uses advanced data analysis techniques:</p>
-                <ul>
+                content: `<ul>
                     <li><strong>Text Mining:</strong> Extracting skills from job descriptions</li>
                     <li><strong>Association Analysis:</strong> Finding skill bundles that appear together</li>
                     <li><strong>Regression Analysis:</strong> Modeling the relationship between skills and salary</li>
@@ -1000,8 +180,7 @@ const projectDetails = {
             },
             {
                 title: 'Key Insights',
-                content: `<p>The analysis uncovered important labor market patterns:</p>
-                <ul>
+                content: `<ul>
                     <li>Specific skill combinations that command premium salaries</li>
                     <li>Industry-specific skill requirements and compensation trends</li>
                     <li>Skills that provide the highest return on investment</li>
@@ -1018,8 +197,7 @@ const projectDetails = {
         sections: [
             {
                 title: 'Overview',
-                content: `<p>This project analyzes Spotify song data to examine how various audio features and genre relate to song energy levels. Using regression modeling in R, the study quantifies the relationships between musical characteristics and energy.</p>
-                <p>The research provides insights into what makes songs energetic and how different genres utilize various audio features.</p>`
+                content: `<p>This project analyzes Spotify song data to examine how various audio features and genre relate to song energy levels. Using regression modeling in R, the study quantifies the relationships between musical characteristics and energy.</p>`
             },
             {
                 title: 'Audio Features Analyzed',
@@ -1032,19 +210,8 @@ const projectDetails = {
                 </ul>`
             },
             {
-                title: 'Statistical Methods',
-                content: `<p>The analysis employed multiple regression techniques:</p>
-                <ul>
-                    <li>Multiple linear regression to model energy as a function of audio features</li>
-                    <li>Genre as a categorical predictor variable</li>
-                    <li>Interaction effects between genre and audio features</li>
-                    <li>Model selection and validation procedures</li>
-                </ul>`
-            },
-            {
                 title: 'Key Findings',
-                content: `<p>The study revealed important patterns:</p>
-                <ul>
+                content: `<ul>
                     <li>Strong relationships between certain audio features and energy levels</li>
                     <li>Genre-specific patterns in how features relate to energy</li>
                     <li>Predictive model for estimating song energy from audio features</li>
@@ -1055,94 +222,768 @@ const projectDetails = {
     }
 };
 
-// ===========================
-// Project Modal Functions
-// ===========================
-function openProjectModal(projectId) {
-    const modal = document.getElementById('project-modal');
-    const modalContent = document.getElementById('modal-content');
-    const project = projectDetails[projectId];
-    
-    if (!project) return;
-    
-    // Build modal content
-    let contentHTML = `
-        <div class="modal-header">
-            <span class="modal-badge">${project.badge}</span>
-            <h2 class="modal-title">${project.title}</h2>
-            <div class="modal-tech-stack">
-                ${project.tech.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
-            </div>
-        </div>
-    `;
-    
-    // Add all sections
-    project.sections.forEach(section => {
-        contentHTML += `
-            <div class="modal-section">
-                <h3 class="modal-section-title">${section.title}</h3>
-                <div class="modal-section-content">
-                    ${section.content}
-                </div>
-            </div>
-        `;
+/* ================================================================
+   UTILITIES
+   ================================================================ */
+function lerp(a, b, t) { return a + (b - a) * t; }
+function isMobile() { return window.innerWidth <= 768; }
+
+function debounce(fn, delay) {
+    let timer;
+    return function(...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => fn.apply(this, args), delay);
+    };
+}
+
+/* ================================================================
+   LOADER
+   ================================================================ */
+function initLoader(onComplete) {
+    const loader  = document.getElementById('loader');
+    const bar     = document.getElementById('loader-bar');
+    const percent = document.getElementById('loader-percent');
+
+    if (!loader) { onComplete(); return; }
+
+    const start    = performance.now();
+    const duration = 1800;
+
+    function step(now) {
+        const elapsed = now - start;
+        const t       = Math.min(elapsed / duration, 1);
+        const eased   = 1 - Math.pow(1 - t, 3);
+        const progress = eased * 100;
+
+        if (bar)     bar.style.width     = progress + '%';
+        if (percent) percent.textContent = Math.round(progress) + '%';
+
+        if (t < 1) {
+            requestAnimationFrame(step);
+        } else {
+            loader.classList.add('hidden');
+            setTimeout(onComplete, 500);
+        }
+    }
+
+    requestAnimationFrame(step);
+}
+
+/* ================================================================
+   SCROLL PROGRESS
+   ================================================================ */
+function initScrollProgress() {
+    const bar = document.getElementById('scroll-progress');
+    if (!bar) return;
+
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        const total    = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = (total > 0 ? (scrolled / total) * 100 : 0) + '%';
+    }, { passive: true });
+}
+
+/* ================================================================
+   NAVIGATION
+   ================================================================ */
+function initNavigation() {
+    const navbar    = document.getElementById('navbar');
+    const hamburger = document.getElementById('nav-hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    const overlay   = document.getElementById('mobile-overlay');
+    const backToTop = document.getElementById('back-to-top');
+    const sections  = document.querySelectorAll('section[id]');
+
+    // Scroll effects
+    window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+
+        if (navbar)    navbar.classList.toggle('scrolled', scrollY > 30);
+        if (backToTop) backToTop.classList.toggle('visible', scrollY > 400);
+
+        // Active link detection
+        let current = '';
+        sections.forEach(section => {
+            if (window.scrollY >= section.offsetTop - 120) {
+                current = section.getAttribute('id');
+            }
+        });
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+        });
+    }, { passive: true });
+
+    // Back to top
+    if (backToTop) {
+        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    }
+
+    // Mobile nav
+    function openMobileNav() {
+        hamburger && hamburger.classList.add('active');
+        hamburger && hamburger.setAttribute('aria-expanded', 'true');
+        mobileNav && mobileNav.classList.add('active');
+        overlay   && overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileNav() {
+        hamburger && hamburger.classList.remove('active');
+        hamburger && hamburger.setAttribute('aria-expanded', 'false');
+        mobileNav && mobileNav.classList.remove('active');
+        overlay   && overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    if (hamburger) hamburger.addEventListener('click', () => {
+        mobileNav && mobileNav.classList.contains('active') ? closeMobileNav() : openMobileNav();
     });
-    
-    // Add footer with GitHub link
-    contentHTML += `
-        <div class="modal-footer">
-            <a href="${project.githubLink}" target="_blank" rel="noopener noreferrer" class="modal-cta-btn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                </svg>
-                <span>View Code on GitHub</span>
-            </a>
-        </div>
-    `;
-    
-    modalContent.innerHTML = contentHTML;
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
+    if (overlay) overlay.addEventListener('click', closeMobileNav);
 
-function closeProjectModal() {
-    const modal = document.getElementById('project-modal');
-    modal.classList.remove('active');
-    document.body.style.overflow = '';
-}
+    document.querySelectorAll('.mobile-nav-link').forEach(l => l.addEventListener('click', closeMobileNav));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileNav(); });
 
-// ===========================
-// Initialize Project Modal Events
-// ===========================
-document.addEventListener('DOMContentLoaded', () => {
-    // Add click handlers to all "View Details" buttons
-    const detailsButtons = document.querySelectorAll('.btn-details');
-    detailsButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const projectId = button.getAttribute('data-project');
-            openProjectModal(projectId);
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', e => {
+            const target = document.querySelector(link.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         });
     });
-    
-    // Close modal on close button click
-    const closeButton = document.querySelector('.modal-close');
-    if (closeButton) {
-        closeButton.addEventListener('click', closeProjectModal);
+}
+
+/* ================================================================
+   THREE.JS NEURAL NETWORK HERO
+   ================================================================ */
+function initThreeHero() {
+    if (typeof THREE === 'undefined') return;
+
+    const canvas = document.getElementById('three-canvas');
+    if (!canvas) return;
+
+    const mobile     = isMobile();
+    const NODE_COUNT = mobile ? 35 : 70;
+    const EDGE_THRESH = mobile ? 1.8 : 2.2;
+
+    const scene    = new THREE.Scene();
+    const camera   = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 100);
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: !mobile });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.position.z = 6;
+
+    // Node geometry & materials
+    const nodeGeom = new THREE.SphereGeometry(0.045, 8, 8);
+    const nodeGroup = new THREE.Group();
+    const positions = [];
+
+    for (let i = 0; i < NODE_COUNT; i++) {
+        const mat   = new THREE.MeshBasicMaterial({ color: 0x14B8A6, transparent: true, opacity: 0.75 });
+        const mesh  = new THREE.Mesh(nodeGeom, mat);
+        const phi   = Math.acos(1 - 2 * (i + 0.5) / NODE_COUNT);
+        const theta = Math.PI * (1 + Math.sqrt(5)) * (i + 0.5);
+        const r     = 3.5 + (Math.random() - 0.5) * 2;
+        mesh.position.set(
+            r * Math.sin(phi) * Math.cos(theta),
+            r * Math.sin(phi) * Math.sin(theta),
+            r * Math.cos(phi)
+        );
+        positions.push(mesh.position.clone());
+        mesh.userData.pulseSpeed  = 0.5 + Math.random() * 2;
+        mesh.userData.pulseOffset = Math.random() * Math.PI * 2;
+        mesh.userData.baseOpacity = 0.35 + Math.random() * 0.4;
+        nodeGroup.add(mesh);
     }
-    
-    // Close modal on overlay click
-    const overlay = document.querySelector('.modal-overlay');
-    if (overlay) {
-        overlay.addEventListener('click', closeProjectModal);
-    }
-    
-    // Close modal on ESC key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            const modal = document.getElementById('project-modal');
-            if (modal && modal.classList.contains('active')) {
-                closeProjectModal();
+
+    // Accent nodes
+    [2, 11, 23, 38, 55].filter(i => i < NODE_COUNT).forEach((idx, i) => {
+        nodeGroup.children[idx].material.color.setHex(i % 2 === 0 ? 0x8B5CF6 : 0xF59E0B);
+        nodeGroup.children[idx].scale.setScalar(2.2);
+    });
+
+    scene.add(nodeGroup);
+
+    // Edges
+    const edgeGroup = new THREE.Group();
+    const edgeMat   = new THREE.LineBasicMaterial({ color: 0x14B8A6, transparent: true, opacity: 0.12 });
+    for (let i = 0; i < NODE_COUNT; i++) {
+        for (let j = i + 1; j < NODE_COUNT; j++) {
+            if (positions[i].distanceTo(positions[j]) < EDGE_THRESH) {
+                const geom = new THREE.BufferGeometry().setFromPoints([positions[i], positions[j]]);
+                edgeGroup.add(new THREE.Line(geom, edgeMat.clone()));
             }
         }
+    }
+    scene.add(edgeGroup);
+
+    // Show canvas
+    canvas.classList.add('visible');
+
+    // Mouse tilt
+    let targetX = 0, targetY = 0;
+    document.addEventListener('mousemove', e => {
+        targetX = (e.clientX / window.innerWidth  - 0.5) * 0.5;
+        targetY = (e.clientY / window.innerHeight - 0.5) * 0.35;
+    }, { passive: true });
+
+    // Render loop
+    const clock = new THREE.Clock();
+    let   paused = false;
+
+    function animate() {
+        requestAnimationFrame(animate);
+        if (paused) return;
+
+        const t = clock.getElapsedTime();
+        nodeGroup.rotation.y  = t * 0.07 + targetX;
+        nodeGroup.rotation.x  = Math.sin(t * 0.04) * 0.15 + targetY;
+        edgeGroup.rotation.y  = nodeGroup.rotation.y;
+        edgeGroup.rotation.x  = nodeGroup.rotation.x;
+
+        nodeGroup.children.forEach(node => {
+            const p = Math.sin(t * node.userData.pulseSpeed + node.userData.pulseOffset);
+            node.material.opacity = node.userData.baseOpacity + p * 0.25;
+        });
+
+        renderer.render(scene, camera);
+    }
+
+    animate();
+
+    document.addEventListener('visibilitychange', () => { paused = document.hidden; });
+
+    const heroEl = document.getElementById('home');
+    if (heroEl) {
+        new IntersectionObserver(entries => { paused = !entries[0].isIntersecting; }, { threshold: 0 })
+            .observe(heroEl);
+    }
+
+    window.addEventListener('resize', debounce(() => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    }, 200));
+}
+
+/* ================================================================
+   TYPED.JS
+   ================================================================ */
+function initTyped() {
+    if (typeof Typed === 'undefined') return;
+    const el = document.getElementById('typed-target');
+    if (!el) return;
+
+    new Typed('#typed-target', {
+        strings: ['Fraud Analyst', 'Data Scientist', 'ML Engineer', 'Certified Fraud Examiner', 'Anomaly Hunter'],
+        typeSpeed: 65,
+        backSpeed: 40,
+        backDelay: 2000,
+        loop: true,
+        showCursor: false
     });
+}
+
+/* ================================================================
+   HERO ENTRANCE
+   ================================================================ */
+function runHeroEntrance() {
+    const els = ['.hero-eyebrow', '.hero-name', '.hero-typed-row', '.hero-tagline',
+                 '.hero-stats-row', '.hero-cta-row', '.hero-social-row'];
+
+    if (typeof gsap !== 'undefined') {
+        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+        els.forEach((sel, i) => {
+            tl.to(sel, { y: 0, opacity: 1, duration: i === 1 ? 0.7 : 0.55 }, i === 0 ? 0 : '-=0.3');
+        });
+        tl.add(() => { initTyped(); animateHeroCounters(); }, 0.5);
+    } else {
+        // Fallback — just reveal
+        els.forEach(sel => {
+            const el = document.querySelector(sel);
+            if (el) { el.style.opacity = '1'; el.style.transform = 'none'; }
+        });
+        initTyped();
+        animateHeroCounters();
+    }
+}
+
+/* ================================================================
+   HERO COUNTERS
+   ================================================================ */
+function animateHeroCounters() {
+    document.querySelectorAll('.hero-stat-num').forEach(el => {
+        const target = parseInt(el.dataset.val, 10);
+        const start  = performance.now();
+        const dur    = 1200;
+        function tick(now) {
+            const t = Math.min((now - start) / dur, 1);
+            el.textContent = Math.round((1 - Math.pow(1 - t, 3)) * target);
+            if (t < 1) requestAnimationFrame(tick);
+            else el.textContent = target;
+        }
+        requestAnimationFrame(tick);
+    });
+}
+
+/* ================================================================
+   ABOUT COUNTERS
+   ================================================================ */
+function initCounters() {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting || entry.target.dataset.animated) return;
+            entry.target.dataset.animated = '1';
+            const numEl  = entry.target.querySelector('.counter-num');
+            const target = parseInt(entry.target.dataset.count, 10);
+            const suffix = entry.target.dataset.suffix || '';
+            const start  = performance.now();
+            function tick(now) {
+                const t = Math.min((now - start) / 1400, 1);
+                numEl.textContent = Math.round((1 - Math.pow(1 - t, 3)) * target) + (t >= 1 ? suffix : '');
+                if (t < 1) requestAnimationFrame(tick);
+            }
+            requestAnimationFrame(tick);
+        });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.counter-card').forEach(c => observer.observe(c));
+}
+
+/* ================================================================
+   TERMINAL TYPEWRITER
+   ================================================================ */
+function initTerminal() {
+    const body = document.getElementById('terminal-body');
+    if (!body) return;
+
+    const lines = [
+        { type: 'prompt', text: 'whoami' },
+        { type: 'output', text: 'shaneeza_hasnani — CFE · Data Scientist · ML Engineer' },
+        { type: 'blank' },
+        { type: 'prompt', text: 'cat about.txt' },
+        { type: 'output', text: 'Drawn to the puzzles hidden in data:' },
+        { type: 'output', text: 'outliers, patterns, and the stories numbers tell.' },
+        { type: 'output', text: 'Bridging fraud examination with machine learning.' },
+        { type: 'blank' },
+        { type: 'prompt', text: 'ls specialization/' },
+        { type: 'output', text: 'fraud-analytics/  machine-learning/  data-viz/' },
+        { type: 'blank' },
+        { type: 'prompt', text: 'echo $STATUS' },
+        { type: 'green',  text: 'AVAILABLE_FOR_DATA_SCIENCE_ROLES' },
+    ];
+
+    new IntersectionObserver((entries, obs) => {
+        if (!entries[0].isIntersecting) return;
+        obs.disconnect();
+        typeLines(lines, body, 0);
+    }, { threshold: 0.3 }).observe(body);
+}
+
+function typeLines(lines, container, idx) {
+    if (idx >= lines.length) {
+        const c = document.createElement('span');
+        c.className = 't-cursor';
+        container.appendChild(c);
+        return;
+    }
+
+    const line   = lines[idx];
+    const lineEl = document.createElement('div');
+
+    if (line.type === 'blank') {
+        lineEl.innerHTML = '&nbsp;';
+        container.appendChild(lineEl);
+        setTimeout(() => typeLines(lines, container, idx + 1), 120);
+        return;
+    }
+
+    container.appendChild(lineEl);
+
+    const isPrompt  = line.type === 'prompt';
+    const isGreen   = line.type === 'green';
+    const charDelay = isPrompt ? 48 : 20;
+    const pauseAfter = isPrompt ? 280 : 90;
+
+    if (isPrompt) {
+        lineEl.innerHTML = '<span class="t-prompt">shaneeza@datalab</span><span style="color:#475569">:</span><span class="t-cmd">~</span><span style="color:#94A3B8"> $ </span>';
+    } else if (isGreen) {
+        lineEl.style.color = '#10B981';
+    } else {
+        lineEl.style.opacity = '0.7';
+    }
+
+    const textSpan = document.createElement('span');
+    if (isPrompt) textSpan.className = 't-cmd';
+    lineEl.appendChild(textSpan);
+
+    const cursor = document.createElement('span');
+    cursor.className = 't-cursor';
+    lineEl.appendChild(cursor);
+
+    let charIdx = 0;
+    const text  = line.text;
+
+    function typeChar() {
+        if (charIdx < text.length) {
+            textSpan.textContent += text[charIdx++];
+            setTimeout(typeChar, charDelay + Math.random() * 18);
+        } else {
+            cursor.remove();
+            setTimeout(() => typeLines(lines, container, idx + 1), pauseAfter);
+        }
+    }
+
+    typeChar();
+}
+
+/* ================================================================
+   CHART.JS RADAR
+   ================================================================ */
+function initSkillsRadar() {
+    if (typeof Chart === 'undefined') return;
+    const canvas = document.getElementById('skills-radar');
+    if (!canvas) return;
+
+    new IntersectionObserver((entries, obs) => {
+        if (!entries[0].isIntersecting) return;
+        obs.disconnect();
+
+        new Chart(canvas.getContext('2d'), {
+            type: 'radar',
+            data: {
+                labels: ['Fraud Analytics', 'Machine Learning', 'Data Visualization',
+                         'Programming', 'Statistical Analysis', 'Financial Forensics'],
+                datasets: [{
+                    label: 'Proficiency',
+                    data: [95, 85, 90, 88, 87, 92],
+                    borderColor: '#14B8A6',
+                    backgroundColor: 'rgba(20,184,166,0.1)',
+                    pointBackgroundColor: '#14B8A6',
+                    pointBorderColor: '#0F172A',
+                    pointBorderWidth: 2,
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                animation: { duration: 1500, easing: 'easeOutQuart' },
+                scales: {
+                    r: {
+                        min: 0, max: 100, beginAtZero: true,
+                        grid:       { color: 'rgba(148,163,184,0.08)' },
+                        angleLines: { color: 'rgba(148,163,184,0.08)' },
+                        ticks:      { display: false },
+                        pointLabels: {
+                            color: '#94A3B8',
+                            font: { family: "'JetBrains Mono', monospace", size: isMobile() ? 9 : 11 }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#1E293B',
+                        borderColor: 'rgba(20,184,166,0.3)',
+                        borderWidth: 1,
+                        titleColor: '#14B8A6',
+                        bodyColor: '#94A3B8',
+                        callbacks: { label: ctx => ` ${ctx.raw}% proficiency` }
+                    }
+                }
+            }
+        });
+    }, { threshold: 0.3 }).observe(canvas);
+}
+
+/* ================================================================
+   PROGRESS BARS
+   ================================================================ */
+function initProgressBars() {
+    new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+            }
+        });
+    }, { threshold: 0.4 }).observe(document.querySelector('.skills-bars-panel') || document.body);
+
+    // Per-bar observer for precise timing
+    document.querySelectorAll('.bar-fill').forEach(bar => {
+        new IntersectionObserver((entries, obs) => {
+            if (entries[0].isIntersecting) {
+                bar.classList.add('animate');
+                obs.disconnect();
+            }
+        }, { threshold: 0.5 }).observe(bar);
+    });
+}
+
+/* ================================================================
+   MINI SPARKLINES
+   ================================================================ */
+function initSparklines() {
+    document.querySelectorAll('.mini-chart').forEach(canvas => {
+        const type = canvas.dataset.type;
+        const ctx  = canvas.getContext('2d');
+        const w = canvas.offsetWidth || 200;
+        const h = canvas.offsetHeight || 60;
+        canvas.width  = w;
+        canvas.height = h;
+
+        let data, color;
+        if (type === 'event-study') {
+            data  = [50,51,50,49,50,48,46,44,42,38,28,22,20,19,19,20,21,22,23,24];
+            color = '#F59E0B';
+        } else if (type === 'classification') {
+            data  = [50,54,58,63,67,71,74,77,80,82,84,85,86,86,87,87,88,88,89,89];
+            color = '#14B8A6';
+        } else {
+            data  = Array.from({ length: 20 }, (_, i) => 40 + Math.sin(i * 0.6) * 20 + i * 1.5);
+            color = '#8B5CF6';
+        }
+
+        drawSparkline(ctx, w, h, data, color);
+    });
+}
+
+function drawSparkline(ctx, w, h, data, color) {
+    ctx.clearRect(0, 0, w, h);
+    const min = Math.min(...data), max = Math.max(...data);
+    const range = max - min || 1;
+    const pad = 4;
+    const ew  = (w - pad * 2) / (data.length - 1);
+
+    const toY = v => h - pad - ((v - min) / range) * (h - pad * 2);
+
+    // Gradient fill
+    const grad = ctx.createLinearGradient(0, 0, 0, h);
+    grad.addColorStop(0, color + '50');
+    grad.addColorStop(1, color + '00');
+
+    ctx.beginPath();
+    data.forEach((v, i) => {
+        const x = pad + i * ew, y = toY(v);
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    ctx.lineTo(pad + (data.length - 1) * ew, h);
+    ctx.lineTo(pad, h);
+    ctx.closePath();
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    // Line
+    ctx.beginPath();
+    data.forEach((v, i) => {
+        const x = pad + i * ew, y = toY(v);
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    ctx.strokeStyle = color;
+    ctx.lineWidth   = 1.5;
+    ctx.lineJoin    = 'round';
+    ctx.stroke();
+
+    // End dot
+    const lastX = pad + (data.length - 1) * ew;
+    const lastY = toY(data[data.length - 1]);
+    ctx.beginPath();
+    ctx.arc(lastX, lastY, 3, 0, Math.PI * 2);
+    ctx.fillStyle = color;
+    ctx.fill();
+}
+
+/* ================================================================
+   PROJECT FILTER
+   ================================================================ */
+function initProjectFilter() {
+    const pills = document.querySelectorAll('.filter-pill');
+    const cards = document.querySelectorAll('.project-card');
+
+    pills.forEach(pill => {
+        pill.addEventListener('click', () => {
+            pills.forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+            const filter = pill.dataset.filter;
+
+            cards.forEach(card => {
+                const tags = (card.dataset.filter || '').toLowerCase();
+                const show = filter === 'all' || tags.includes(filter);
+
+                card.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+                if (show) {
+                    card.style.display   = '';
+                    requestAnimationFrame(() => {
+                        card.style.opacity   = '1';
+                        card.style.transform = '';
+                    });
+                } else {
+                    card.style.opacity   = '0';
+                    card.style.transform = 'scale(0.95)';
+                    setTimeout(() => { card.style.display = 'none'; }, 220);
+                }
+            });
+        });
+    });
+}
+
+/* ================================================================
+   PROJECT MODAL
+   ================================================================ */
+function initProjectModal() {
+    const modal    = document.getElementById('project-modal');
+    const backdrop = document.getElementById('modal-backdrop');
+    const closeBtn = document.getElementById('modal-close');
+    const bodyEl   = document.getElementById('modal-body');
+    if (!modal) return;
+
+    function openModal(projectId) {
+        const project = PROJECT_DATA[projectId];
+        if (!project) return;
+
+        let html = `
+            <span class="modal-badge">${project.badge}</span>
+            <h2 class="modal-title" id="modal-title">${project.title}</h2>
+            <div class="modal-tech-stack">
+                ${project.tech.map(t => `<span class="modal-tech-tag">${t}</span>`).join('')}
+            </div>
+        `;
+        project.sections.forEach(s => {
+            html += `<div class="modal-section">
+                <h3 class="modal-section-title">${s.title}</h3>
+                <div class="modal-section-content">${s.content}</div>
+            </div>`;
+        });
+        html += `<div class="modal-footer">
+            <a href="${project.githubLink}" target="_blank" rel="noopener noreferrer" class="modal-github-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                View Code on GitHub
+            </a>
+        </div>`;
+
+        bodyEl.innerHTML = html;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        closeBtn && closeBtn.focus();
+    }
+
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.card-btn-details').forEach(btn => {
+        btn.addEventListener('click', () => openModal(btn.dataset.project));
+    });
+
+    closeBtn  && closeBtn.addEventListener('click', closeModal);
+    backdrop  && backdrop.addEventListener('click', closeModal);
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+    });
+}
+
+/* ================================================================
+   SCROLL REVEAL
+   ================================================================ */
+function initScrollReveal() {
+    // Assign reveal classes
+    const assignments = [
+        ['.section-header',       'reveal'],
+        ['.terminal-window',      'reveal-left'],
+        ['.about-right',          'reveal-right'],
+        ['.experience-strip',     'reveal'],
+        ['.panel-card',           'reveal'],
+        ['.skill-tag-group',      'reveal'],
+        ['.project-card',         'reveal'],
+        ['.contact-terminal',     'reveal'],
+        ['.contact-link-card',    'reveal'],
+    ];
+
+    assignments.forEach(([selector, cls]) => {
+        document.querySelectorAll(selector).forEach(el => el.classList.add(cls));
+    });
+
+    // Timeline directional reveals
+    document.querySelectorAll('.tl-item').forEach(item => {
+        item.classList.add(item.classList.contains('tl-left') ? 'reveal-left' : 'reveal-right');
+    });
+
+    // Stagger delays
+    document.querySelectorAll('.project-card').forEach((c, i) => {
+        c.style.transitionDelay = (i * 0.07) + 's';
+    });
+    document.querySelectorAll('.skill-chip').forEach((c, i) => {
+        c.style.transitionDelay = (i * 0.025) + 's';
+    });
+    document.querySelectorAll('.contact-link-card').forEach((c, i) => {
+        c.style.transitionDelay = (i * 0.1) + 's';
+    });
+
+    // Intersection observer
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+        observer.observe(el);
+    });
+}
+
+/* ================================================================
+   GSAP PARALLAX (if available)
+   ================================================================ */
+function initGSAPAnimations() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero canvas parallax
+    const canvas = document.getElementById('three-canvas');
+    if (canvas) {
+        ScrollTrigger.create({
+            trigger: '#home',
+            start: 'top top',
+            end: 'bottom top',
+            onUpdate: self => {
+                canvas.style.transform = `translateY(${self.progress * 100}px)`;
+                canvas.style.opacity   = String(Math.max(0, 1 - self.progress * 1.5));
+            }
+        });
+    }
+}
+
+/* ================================================================
+   BOOT
+   ================================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+    initNavigation();
+    initScrollProgress();
+    initProjectFilter();
+    initProjectModal();
+    initScrollReveal();
+});
+
+window.addEventListener('load', () => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    initLoader(() => {
+        if (!prefersReduced) initThreeHero();
+        runHeroEntrance();
+        initGSAPAnimations();
+    });
+
+    initTerminal();
+    initSkillsRadar();
+    initProgressBars();
+    initSparklines();
+    initCounters();
 });
