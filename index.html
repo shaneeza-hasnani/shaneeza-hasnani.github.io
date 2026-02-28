@@ -3,644 +3,752 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Personal Portfolio Website">
-    <title>Shaneeza Hasnani, CFE | Portfolio</title>
+    <meta name="description" content="Shaneeza Hasnani — Certified Fraud Examiner, Data Scientist, ML Engineer. Portfolio showcasing fraud analytics, machine learning, and data visualization projects.">
+    <title>Shaneeza Hasnani | Data Scientist & CFE</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Fonts - Using Google Fonts alternatives for Roslindale and Graphik -->
-    <!-- Crimson Pro (Roslindale-style elegant serif for headings) -->
-    <!-- Inter (Graphik-style clean sans-serif for body text) -->
-    <!-- Playfair Display (unique font for hero name) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loading-screen">
-        <div class="loader-container">
-            <div class="loader">
-                <div class="loader-circle"></div>
-                <div class="loader-circle"></div>
-                <div class="loader-circle"></div>
+
+    <!-- ===================== LOADER ===================== -->
+    <div id="loader" class="loader" role="status" aria-label="Loading portfolio">
+        <div class="loader-inner">
+            <div class="loader-logo">SH</div>
+            <div class="loader-label">INITIALIZING DATA LAB</div>
+            <div class="loader-bar-track">
+                <div class="loader-bar-fill" id="loader-bar"></div>
             </div>
-            <p class="loading-text">Loading Portfolio...</p>
+            <div class="loader-percent" id="loader-percent">0%</div>
         </div>
     </div>
-    
-    <!-- Scroll Progress Bar -->
-    <div class="scroll-progress" id="scroll-progress"></div>
-    
-    <!-- Navigation Bar -->
-    <header>
-        <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="#home">Home</a>
+
+    <!-- ===================== SCROLL PROGRESS ===================== -->
+    <div class="scroll-progress-bar" id="scroll-progress"></div>
+
+    <!-- ===================== NAVIGATION ===================== -->
+    <nav id="navbar" class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner container">
+            <a href="#home" class="nav-brand" aria-label="Home">
+                <span class="brand-text">SH</span>
+            </a>
+
+            <div class="nav-links" id="nav-links">
+                <a href="#about"    class="nav-link">About</a>
+                <a href="#skills"   class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#timeline" class="nav-link">Timeline</a>
+                <a href="#contact"  class="nav-link">Contact</a>
+                <a href="ResumeHasnani.pdf" target="_blank" rel="noopener noreferrer" class="nav-resume-btn">Resume</a>
             </div>
-            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
+
+            <div class="nav-status">
+                <span class="status-dot" aria-hidden="true"></span>
+                <span class="status-text">Available</span>
+            </div>
+
+            <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
             </button>
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="#about" class="nav-link">About Me</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#certifications" class="nav-link">Certifications and Awards</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
         </div>
     </nav>
-    </header>
 
-    <!-- Hero Section -->
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-nav-overlay" id="mobile-overlay"></div>
+    <div class="mobile-nav" id="mobile-nav">
+        <a href="#about"    class="mobile-nav-link">About</a>
+        <a href="#skills"   class="mobile-nav-link">Skills</a>
+        <a href="#projects" class="mobile-nav-link">Projects</a>
+        <a href="#timeline" class="mobile-nav-link">Timeline</a>
+        <a href="#contact"  class="mobile-nav-link">Contact</a>
+        <a href="ResumeHasnani.pdf" target="_blank" rel="noopener noreferrer" class="mobile-nav-link mobile-resume">Resume ↗</a>
+    </div>
+
     <main>
+
+    <!-- ===================== HERO ===================== -->
     <section id="home" class="hero">
-        <!-- Network/Particles Canvas Background -->
-        <canvas id="hero-network-canvas" class="hero-network-canvas"></canvas>
-        
-        <div class="container">
-            <div class="hero-content fade-in">
-                <h1 class="hero-name-primary hero-name-unique">Shaneeza Hasnani</h1>
-                
-                <!-- Divider Line -->
-                <div class="hero-name-divider"></div>
-                
-                <!-- Social Icons Row -->
-                <div class="hero-social-links">
-                    <a href="https://github.com/shaneeza-hasnani" target="_blank" rel="noopener noreferrer" class="hero-social-icon-simple" aria-label="GitHub">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                        </svg>
-                    </a>
-                    <a href="https://linkedin.com/in/shasnani" target="_blank" rel="noopener noreferrer" class="hero-social-icon-simple" aria-label="LinkedIn">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                        </svg>
-                    </a>
+        <canvas id="three-canvas" aria-hidden="true"></canvas>
+        <div class="hero-grid-overlay" aria-hidden="true"></div>
+
+        <div class="hero-content">
+            <div class="hero-eyebrow">
+                <span class="eyebrow-line" aria-hidden="true"></span>
+                <span class="eyebrow-text">CERTIFIED FRAUD EXAMINER · DATA SCIENTIST</span>
+                <span class="eyebrow-line" aria-hidden="true"></span>
+            </div>
+
+            <h1 class="hero-name" id="hero-name">Shaneeza Hasnani</h1>
+
+            <div class="hero-typed-row">
+                <span class="typed-prefix" aria-hidden="true">&gt;&nbsp;</span>
+                <span id="typed-target" aria-label="Role: Data Scientist"></span>
+                <span class="typed-cursor" aria-hidden="true">_</span>
+            </div>
+
+            <p class="hero-tagline">Bridging financial forensics with machine learning to detect, predict, and prevent fraud at scale.</p>
+
+            <div class="hero-stats-row" aria-label="Quick stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-num" data-val="6">0</span>
+                    <span class="hero-stat-lbl">Projects</span>
                 </div>
-                
-                <!-- Introduction Text -->
-                <p class="hero-intro">👋 Hi! I'm a <strong>Certified Fraud Examiner</strong> specializing in <strong>data visualization</strong> and <strong>fraud analytics</strong>. I'm also an <strong>AI and ML scientist</strong> in training that you might benefit from. ❤️</p>
-                
-                <!-- CTA Buttons -->
-                <div class="hero-buttons">
-                    <a href="ResumeHasnani.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary-hero-gradient">
-                        <span>Resume</span>
-                    </a>
-                    <a href="#contact" class="btn btn-secondary-hero-gradient">
-                        <span>Contact</span>
-                    </a>
+                <div class="hero-stat-sep" aria-hidden="true"></div>
+                <div class="hero-stat">
+                    <span class="hero-stat-num" data-val="7">0</span>
+                    <span class="hero-stat-lbl">Languages</span>
+                </div>
+                <div class="hero-stat-sep" aria-hidden="true"></div>
+                <div class="hero-stat">
+                    <span class="hero-stat-num" data-val="2">0</span>
+                    <span class="hero-stat-lbl">Degrees</span>
+                </div>
+                <div class="hero-stat-sep" aria-hidden="true"></div>
+                <div class="hero-stat">
+                    <span class="hero-stat-num" data-val="1">0</span>
+                    <span class="hero-stat-lbl">CFE Cert</span>
+                </div>
+            </div>
+
+            <div class="hero-cta-row">
+                <a href="#projects" class="btn-primary">Explore Work</a>
+                <a href="ResumeHasnani.pdf" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+                    Download Resume
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                </a>
+            </div>
+
+            <div class="hero-social-row">
+                <a href="https://github.com/shaneeza-hasnani" target="_blank" rel="noopener noreferrer" class="hero-social" aria-label="GitHub profile">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+                <a href="https://linkedin.com/in/shasnani" target="_blank" rel="noopener noreferrer" class="hero-social" aria-label="LinkedIn profile">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-scroll-hint" aria-hidden="true">
+            <span class="scroll-hint-text">SCROLL</span>
+            <div class="scroll-hint-line"></div>
+        </div>
+    </section>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section id="about" class="about-section section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">// 01 &mdash; ABOUT</div>
+                <h2 class="section-title">Who I Am</h2>
+                <div class="section-underline"></div>
+            </div>
+
+            <div class="about-grid">
+                <!-- Terminal window -->
+                <div class="terminal-window" aria-label="Interactive terminal showing about information">
+                    <div class="terminal-titlebar" aria-hidden="true">
+                        <div class="terminal-dots">
+                            <span class="tdot tdot-red"></span>
+                            <span class="tdot tdot-yellow"></span>
+                            <span class="tdot tdot-green"></span>
+                        </div>
+                        <span class="terminal-title">shaneeza@datalab: ~</span>
+                    </div>
+                    <div class="terminal-body" id="terminal-body" aria-live="polite">
+                        <!-- JS types content here -->
+                    </div>
+                </div>
+
+                <!-- Avatar + Stats -->
+                <div class="about-right">
+                    <div class="avatar-container" aria-label="Profile avatar">
+                        <div class="avatar-ring avatar-ring-1" aria-hidden="true"></div>
+                        <div class="avatar-ring avatar-ring-2" aria-hidden="true"></div>
+                        <div class="avatar-core">
+                            <span class="avatar-initials">SH</span>
+                            <span class="avatar-glow" aria-hidden="true"></span>
+                        </div>
+                    </div>
+
+                    <div class="about-counters">
+                        <div class="counter-card" data-count="5" data-suffix="+">
+                            <span class="counter-num">0</span>
+                            <span class="counter-label">Years of Experience</span>
+                        </div>
+                        <div class="counter-card" data-count="6" data-suffix="">
+                            <span class="counter-num">0</span>
+                            <span class="counter-label">Projects Completed</span>
+                        </div>
+                        <div class="counter-card" data-count="3" data-suffix="">
+                            <span class="counter-num">0</span>
+                            <span class="counter-label">Internships</span>
+                        </div>
+                        <div class="counter-card" data-count="3" data-suffix="">
+                            <span class="counter-num">0</span>
+                            <span class="counter-label">Certs & Awards</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience strip -->
+            <div class="experience-strip">
+                <div class="exp-header">Work Experience</div>
+                <div class="exp-track" role="list">
+                    <div class="exp-item" role="listitem">
+                        <div class="exp-year">2021</div>
+                        <div class="exp-dot" aria-hidden="true"></div>
+                        <div class="exp-role">Data Analyst Intern</div>
+                        <div class="exp-org">EduGuide Overseas Pvt. Ltd.</div>
+                    </div>
+                    <div class="exp-connector" aria-hidden="true"></div>
+                    <div class="exp-item" role="listitem">
+                        <div class="exp-year">2023</div>
+                        <div class="exp-dot" aria-hidden="true"></div>
+                        <div class="exp-role">Fraud Audit Intern</div>
+                        <div class="exp-org">NY Attorney General's Office</div>
+                    </div>
+                    <div class="exp-connector" aria-hidden="true"></div>
+                    <div class="exp-item" role="listitem">
+                        <div class="exp-year">2023</div>
+                        <div class="exp-dot" aria-hidden="true"></div>
+                        <div class="exp-role">Data Analyst</div>
+                        <div class="exp-org">EduGuide Overseas Pvt. Ltd.</div>
+                    </div>
+                    <div class="exp-connector" aria-hidden="true"></div>
+                    <div class="exp-item" role="listitem">
+                        <div class="exp-year">2024</div>
+                        <div class="exp-dot" aria-hidden="true"></div>
+                        <div class="exp-role">Financial Crime Intern</div>
+                        <div class="exp-org">Guidehouse</div>
+                    </div>
+                    <div class="exp-connector" aria-hidden="true"></div>
+                    <div class="exp-item" role="listitem">
+                        <div class="exp-year">2024</div>
+                        <div class="exp-dot" aria-hidden="true"></div>
+                        <div class="exp-role">Fraud Data Analyst</div>
+                        <div class="exp-org">EduGuide Overseas Pvt. Ltd.</div>
+                    </div>
+                    <div class="exp-connector" aria-hidden="true"></div>
+                    <div class="exp-item" role="listitem">
+                        <div class="exp-year">2026</div>
+                        <div class="exp-dot" aria-hidden="true"></div>
+                        <div class="exp-role">Research Assistant</div>
+                        <div class="exp-org">Special Competitive Studies Project (SCSP)</div>
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <!-- Scroll indicator with down arrow -->
-        <a href="#projects" class="scroll-indicator-minimal" aria-label="Scroll to projects">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-        </a>
     </section>
 
-    <!-- About Me Section -->
-    <section id="about" class="about section">
+    <!-- ===================== SKILLS ===================== -->
+    <section id="skills" class="skills-section section">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content-wrapper">
-                <div class="about-profile-section">
-                    <!-- Left: Profile Picture -->
-                    <div class="about-profile-image">
-                        <div class="profile-picture">
-                            <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="12" cy="7" r="4"></circle>
-                            </svg>
-                        </div>
+            <div class="section-header">
+                <div class="section-label">// 02 &mdash; SKILLS</div>
+                <h2 class="section-title">Data Lab</h2>
+                <div class="section-underline"></div>
+            </div>
+
+            <div class="skills-grid">
+                <!-- Radar Chart panel -->
+                <div class="panel-card skills-radar-panel">
+                    <div class="panel-header">
+                        <span class="panel-title">Skill Matrix</span>
+                        <span class="panel-live-badge" aria-hidden="true">● LIVE</span>
                     </div>
-                    
-                    <!-- Right: Intro Text -->
-                    <div class="about-intro-text-clean">
-                        <p>Hi, I'm Shaneeza. I'm drawn to the <strong>puzzles hidden in data</strong>: the unusual patterns, the outliers that don't quite fit, the <strong>stories that numbers tell</strong> when you know how to look.</p>
-                        
-                        <p>As a <strong>Certified Fraud Examiner</strong> and <strong>Master's student in Business Analytics and AI</strong> at American University, I'm learning to combine <strong>fraud detection expertise</strong> with <strong>machine learning</strong>. My focus is on building models that <strong>catch what's easy to miss</strong> and creating <strong>visualizations that actually make sense</strong> to people. Because what's the point of detecting fraud if you can't explain it clearly?</p>
-                        
-                        <p>What I enjoy most is turning <strong>messy, complex datasets</strong> into <strong>insights that actually matter</strong>. Whether it's spotting unusual patterns or finding better ways to present risk, I'm constantly working on projects that <strong>push my skills forward</strong> and <strong>solve real problems</strong>.</p>
-                        
-                        <p>I believe good fraud analytics is equal parts <strong>technical skill</strong> and <strong>clear communication</strong>, and I'm committed to getting better at both. Every project teaches me something new, and that's what keeps me hooked.</p>
+                    <div class="radar-chart-wrap">
+                        <canvas id="skills-radar" aria-label="Radar chart showing skill proficiency across 6 domains"></canvas>
                     </div>
                 </div>
-                
-                <!-- Horizontal Timeline -->
-                <div class="work-experience-timeline">
-                    <div class="horizontal-timeline">
-                        <!-- Timeline Item 1 -->
-                        <div class="timeline-item-horizontal">
-                            <div class="timeline-role">Data Analyst Intern</div>
-                            <div class="timeline-node">
-                                <div class="timeline-year">2021</div>
+
+                <!-- Training bars panel -->
+                <div class="panel-card skills-bars-panel">
+                    <div class="panel-header">
+                        <span class="panel-title">Training Accuracy</span>
+                        <span class="panel-epoch">epoch 42/42</span>
+                    </div>
+                    <div class="training-bars" role="list">
+                        <div class="bar-item" role="listitem">
+                            <div class="bar-meta">
+                                <span class="bar-name">Fraud Analytics</span>
+                                <span class="bar-pct">95%</span>
                             </div>
-                            <div class="timeline-organization">EduGuide Overseas Pvt. Ltd.</div>
-                        </div>
-                        
-                        <!-- Timeline Item 2 -->
-                        <div class="timeline-item-horizontal">
-                            <div class="timeline-role">Fraud Audit Intern</div>
-                            <div class="timeline-node">
-                                <div class="timeline-year">2023</div>
+                            <div class="bar-track" aria-label="Fraud Analytics: 95%">
+                                <div class="bar-fill" style="--pct:95%;--bar-color:#14B8A6"></div>
                             </div>
-                            <div class="timeline-organization">New York Attorney General's Office</div>
                         </div>
-                        
-                        <!-- Timeline Item 3 -->
-                        <div class="timeline-item-horizontal">
-                            <div class="timeline-role">Data Analyst</div>
-                            <div class="timeline-node">
-                                <div class="timeline-year">2023</div>
+                        <div class="bar-item" role="listitem">
+                            <div class="bar-meta">
+                                <span class="bar-name">Python</span>
+                                <span class="bar-pct">92%</span>
                             </div>
-                            <div class="timeline-organization">EduGuide Overseas Pvt. Ltd.</div>
-                        </div>
-                        
-                        <!-- Timeline Item 4 -->
-                        <div class="timeline-item-horizontal">
-                            <div class="timeline-role">Financial Crime & Investigative Services Intern</div>
-                            <div class="timeline-node">
-                                <div class="timeline-year">2024</div>
+                            <div class="bar-track" aria-label="Python: 92%">
+                                <div class="bar-fill" style="--pct:92%;--bar-color:#14B8A6"></div>
                             </div>
-                            <div class="timeline-organization">Guidehouse</div>
                         </div>
-                        
-                        <!-- Timeline Item 5 -->
-                        <div class="timeline-item-horizontal">
-                            <div class="timeline-role">Fraud Data Analyst</div>
-                            <div class="timeline-node">
-                                <div class="timeline-year">2024</div>
+                        <div class="bar-item" role="listitem">
+                            <div class="bar-meta">
+                                <span class="bar-name">Data Visualization</span>
+                                <span class="bar-pct">90%</span>
                             </div>
-                            <div class="timeline-organization">EduGuide Overseas Pvt. Ltd.</div>
-                        </div>
-                        
-                        <!-- Timeline Item 6 -->
-                        <div class="timeline-item-horizontal">
-                            <div class="timeline-role">Research Assistant</div>
-                            <div class="timeline-node">
-                                <div class="timeline-year">2026</div>
+                            <div class="bar-track" aria-label="Data Visualization: 90%">
+                                <div class="bar-fill" style="--pct:90%;--bar-color:#F59E0B"></div>
                             </div>
-                            <div class="timeline-organization">Special Competitive Studies Project (SCSP)</div>
                         </div>
+                        <div class="bar-item" role="listitem">
+                            <div class="bar-meta">
+                                <span class="bar-name">R Language</span>
+                                <span class="bar-pct">88%</span>
+                            </div>
+                            <div class="bar-track" aria-label="R Language: 88%">
+                                <div class="bar-fill" style="--pct:88%;--bar-color:#14B8A6"></div>
+                            </div>
+                        </div>
+                        <div class="bar-item" role="listitem">
+                            <div class="bar-meta">
+                                <span class="bar-name">Machine Learning</span>
+                                <span class="bar-pct">85%</span>
+                            </div>
+                            <div class="bar-track" aria-label="Machine Learning: 85%">
+                                <div class="bar-fill" style="--pct:85%;--bar-color:#8B5CF6"></div>
+                            </div>
+                        </div>
+                        <div class="bar-item" role="listitem">
+                            <div class="bar-meta">
+                                <span class="bar-name">SQL</span>
+                                <span class="bar-pct">85%</span>
+                            </div>
+                            <div class="bar-track" aria-label="SQL: 85%">
+                                <div class="bar-fill" style="--pct:85%;--bar-color:#F59E0B"></div>
+                            </div>
+                        </div>
+                        <div class="bar-item" role="listitem">
+                            <div class="bar-meta">
+                                <span class="bar-name">Statistical Analysis</span>
+                                <span class="bar-pct">87%</span>
+                            </div>
+                            <div class="bar-track" aria-label="Statistical Analysis: 87%">
+                                <div class="bar-fill" style="--pct:87%;--bar-color:#8B5CF6"></div>
+                            </div>
+                        </div>
+                        <div class="bar-item" role="listitem">
+                            <div class="bar-meta">
+                                <span class="bar-name">Power BI / Tableau</span>
+                                <span class="bar-pct">82%</span>
+                            </div>
+                            <div class="bar-track" aria-label="Power BI / Tableau: 82%">
+                                <div class="bar-fill" style="--pct:82%;--bar-color:#F59E0B"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skill tags -->
+            <div class="skill-tags-grid">
+                <div class="skill-tag-group">
+                    <h3 class="skill-tag-group-title">Programming</h3>
+                    <div class="skill-tag-cloud">
+                        <span class="skill-chip skill-chip-teal">Python</span>
+                        <span class="skill-chip skill-chip-teal">R</span>
+                        <span class="skill-chip skill-chip-teal">SQL</span>
+                        <span class="skill-chip skill-chip-teal">SAS</span>
+                        <span class="skill-chip skill-chip-teal">Scala</span>
+                        <span class="skill-chip skill-chip-teal">C++</span>
+                        <span class="skill-chip skill-chip-teal">SPSS</span>
+                    </div>
+                </div>
+                <div class="skill-tag-group">
+                    <h3 class="skill-tag-group-title">Visualization</h3>
+                    <div class="skill-tag-cloud">
+                        <span class="skill-chip skill-chip-gold">Power BI</span>
+                        <span class="skill-chip skill-chip-gold">Tableau</span>
+                        <span class="skill-chip skill-chip-gold">Excel</span>
+                        <span class="skill-chip skill-chip-gold">ggplot2</span>
+                    </div>
+                </div>
+                <div class="skill-tag-group">
+                    <h3 class="skill-tag-group-title">Fraud & Compliance</h3>
+                    <div class="skill-tag-cloud">
+                        <span class="skill-chip skill-chip-purple">Fraud Detection</span>
+                        <span class="skill-chip skill-chip-purple">Fraud Analytics</span>
+                        <span class="skill-chip skill-chip-purple">Investigative Analytics</span>
+                        <span class="skill-chip skill-chip-purple">Auditing</span>
+                        <span class="skill-chip skill-chip-purple">Compliance</span>
+                        <span class="skill-chip skill-chip-purple">Risk Assessment</span>
+                        <span class="skill-chip skill-chip-purple">Financial Forensics</span>
+                    </div>
+                </div>
+                <div class="skill-tag-group">
+                    <h3 class="skill-tag-group-title">Analytics & ML</h3>
+                    <div class="skill-tag-cloud">
+                        <span class="skill-chip skill-chip-teal">Machine Learning</span>
+                        <span class="skill-chip skill-chip-teal">Anomaly Detection</span>
+                        <span class="skill-chip skill-chip-teal">Predictive Analytics</span>
+                        <span class="skill-chip skill-chip-teal">Data Mining</span>
+                        <span class="skill-chip skill-chip-teal">Pattern Recognition</span>
+                        <span class="skill-chip skill-chip-teal">Statistical Analysis</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects section">
+    <!-- ===================== PROJECTS ===================== -->
+    <section id="projects" class="projects-section section">
         <div class="container">
-            <h2 class="section-title">Featured Projects</h2> 
-            <!-- Project Filters -->
-            <div class="project-filters">
-                <button class="filter-btn active" data-filter="all">
-                    <span>All Projects</span>
-                    <span class="filter-count">6</span>
-                </button>
-                <button class="filter-btn" data-filter="python">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="python-logo">
-                        <path d="M14.31.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.83l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.23l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.24l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05 1.07.13zm-6.3 1.98l-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09-.33.22zM21.1 6.11l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01.21.03zm-6.47 14.25l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08-.33.23z"/>
-                    </svg>
-                    <span>Python</span>
-                </button>
-                <button class="filter-btn" data-filter="r">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="3" width="18" height="18" rx="2"></rect>
-                        <path d="M12 8h5v5h-5z"></path>
-                    </svg>
-                    <span>R</span>
-                </button>
-                <button class="filter-btn" data-filter="sql">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 7.353v-.353h-17v.353c0 .795 3.811 1.447 8.5 1.447s8.5-.652 8.5-1.447z"></path>
-                        <path d="M21 12c0 .795-3.811 1.447-8.5 1.447S4 12.795 4 12"></path>
-                        <path d="M21 16.647c0 .795-3.811 1.447-8.5 1.447S4 17.442 4 16.647"></path>
-                        <path d="M4 7v10"></path>
-                        <path d="M21 7v10"></path>
-                    </svg>
-                    <span>SQL</span>
-                </button>
+            <div class="section-header">
+                <div class="section-label">// 03 &mdash; PROJECTS</div>
+                <h2 class="section-title">Featured Work</h2>
+                <div class="section-underline"></div>
             </div>
-            
-            <!-- Projects Grid -->
-            <div class="projects-grid" id="projects-grid">
-                <!-- Project 1 -->
-                <div class="project-card" data-tools="python" data-project="titanic-survival">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 2a10 10 0 0 1 10 10h-10V2z"></path>
-                                <path d="M12 12l8.7 5a10 10 0 1 1-8.7-15v10z"></path>
-                            </svg>
-                        </div>
-                        <span class="project-badge">Machine Learning</span>
-                    </div>
-                    <h3 class="project-title">Titanic Survival Prediction</h3>
-                    <p class="project-description">Python project using Logistic Regression to predict survival chances of Titanic passengers.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag python">Python</span>
-                        <span class="tech-tag">Logistic Regression</span>
-                        <span class="tech-tag">Scikit-learn</span>
-                    </div>
-                    <div class="project-footer">
-                        <button class="project-btn btn-details" data-project="titanic-survival">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                <circle cx="12" cy="12" r="3"></circle>
-                            </svg>
-                            <span>View Details</span>
-                        </button>
-                        <a href="https://github.com/shaneeza-hasnani/titanic-survival-prediction" target="_blank" rel="noopener noreferrer" class="project-btn btn-code">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                            <span>View Code</span>
-                        </a>
-                    </div>
-                </div>
 
-                <!-- Project 2 -->
-                <div class="project-card" data-tools="python" data-project="fraud-disclosure">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                                <line x1="3" y1="9" x2="21" y2="9"></line>
-                                <line x1="9" y1="21" x2="9" y2="9"></line>
-                            </svg>
-                        </div>
-                        <span class="project-badge">Event Study</span>
-                    </div>
-                    <h3 class="project-title">Fraud Disclosure Event Study</h3>
-                    <p class="project-description">Event study analyzing stock market reactions to corporate fraud disclosures using Fama-French Three-Factor Model.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag python">Python</span>
-                        <span class="tech-tag">Pandas</span>
-                        <span class="tech-tag">Finance</span>
-                    </div>
-                    <div class="project-footer">
-                        <button class="project-btn btn-details" data-project="fraud-disclosure">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                <circle cx="12" cy="12" r="3"></circle>
-                            </svg>
-                            <span>View Details</span>
-                        </button>
-                        <a href="https://github.com/shaneeza-hasnani/fraud-disclosure-event-study" target="_blank" rel="noopener noreferrer" class="project-btn btn-code">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                            <span>View Code</span>
-                        </a>
-                    </div>
-                </div>
+            <!-- Filter bar -->
+            <div class="filter-bar" role="group" aria-label="Filter projects by technology">
+                <button class="filter-pill active" data-filter="all">All <span class="pill-count">6</span></button>
+                <button class="filter-pill" data-filter="python">Python</button>
+                <button class="filter-pill" data-filter="r">R</button>
+                <button class="filter-pill" data-filter="ml">ML</button>
+                <button class="filter-pill" data-filter="finance">Finance</button>
+            </div>
 
-                <!-- Project 3 -->
-                <div class="project-card" data-tools="r" data-project="wmata-ridership">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                            </svg>
-                        </div>
-                        <span class="project-badge">Data Analysis</span>
-                    </div>
-                    <h3 class="project-title">WMATA Ridership Analysis</h3>
-                    <p class="project-description">Exploratory analysis of DC metro ridership patterns focusing on weekday and holiday effects at university stations.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag r">R</span>
-                        <span class="tech-tag">EDA</span>
-                        <span class="tech-tag">Visualization</span>
-                    </div>
-                    <div class="project-footer">
-                        <button class="project-btn btn-details" data-project="wmata-ridership">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                <circle cx="12" cy="12" r="3"></circle>
-                            </svg>
-                            <span>View Details</span>
-                        </button>
-                        <a href="https://github.com/shaneeza-hasnani/wmata-ridership-analysis" target="_blank" rel="noopener noreferrer" class="project-btn btn-code">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                            <span>View Code</span>
-                        </a>
-                    </div>
-                </div>
+            <!-- Bento grid -->
+            <div class="bento-grid" id="projects-bento">
 
-                <!-- Project 4 -->
-                <div class="project-card" data-tools="r" data-project="nyc-job-salary">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <path d="M12 6v6l4 2"></path>
-                            </svg>
+                <!-- FEATURED: Fraud Disclosure -->
+                <article class="project-card project-card-featured" data-filter="python finance" aria-label="Fraud Disclosure Event Study project">
+                    <div class="card-glow" aria-hidden="true"></div>
+                    <div class="card-inner">
+                        <div class="card-top">
+                            <span class="card-badge badge-gold">FEATURED · Event Study</span>
+                            <div class="card-tech-row">
+                                <span class="tech-pill">Python</span>
+                                <span class="tech-pill">Pandas</span>
+                                <span class="tech-pill">Finance</span>
+                            </div>
                         </div>
-                        <span class="project-badge">Statistical Analysis</span>
+                        <h3 class="card-title">Fraud Disclosure Event Study</h3>
+                        <p class="card-desc">Event study analyzing stock market reactions to corporate fraud disclosures using the Fama-French Three-Factor Model. Reveals abnormal returns and market timing patterns.</p>
+                        <div class="card-sparkline" aria-hidden="true">
+                            <canvas class="mini-chart" data-type="event-study" width="200" height="60"></canvas>
+                        </div>
+                        <div class="card-footer">
+                            <button class="card-btn-details" data-project="fraud-disclosure">View Details</button>
+                            <a href="https://github.com/shaneeza-hasnani/fraud-disclosure-event-study" target="_blank" rel="noopener noreferrer" class="card-btn-github" aria-label="View Fraud Disclosure Event Study on GitHub">
+                                GitHub ↗
+                            </a>
+                        </div>
                     </div>
-                    <h3 class="project-title">NYC Job Salary and Career Analysis</h3>
-                    <p class="project-description">Statistical analysis examining the relationship between career level and salary in NYC job postings.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag r">R</span>
-                        <span class="tech-tag">Statistics</span>
-                        <span class="tech-tag">Regression</span>
-                    </div>
-                    <div class="project-footer">
-                        <button class="project-btn btn-details" data-project="nyc-job-salary">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                <circle cx="12" cy="12" r="3"></circle>
-                            </svg>
-                            <span>View Details</span>
-                        </button>
-                        <a href="https://github.com/shaneeza-hasnani/nyc-job-salary-career-analysis" target="_blank" rel="noopener noreferrer" class="project-btn btn-code">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                            <span>View Code</span>
-                        </a>
-                    </div>
-                </div>
+                </article>
 
-                <!-- Project 5 -->
-                <div class="project-card" data-tools="r" data-project="linkedin-skills">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <line x1="18" y1="20" x2="18" y2="10"></line>
-                                <line x1="12" y1="20" x2="12" y2="4"></line>
-                                <line x1="6" y1="20" x2="6" y2="14"></line>
-                            </svg>
+                <!-- Titanic -->
+                <article class="project-card project-card-tall" data-filter="python ml" aria-label="Titanic Survival Prediction project">
+                    <div class="card-glow" aria-hidden="true"></div>
+                    <div class="card-inner">
+                        <div class="card-top">
+                            <span class="card-badge badge-teal">Machine Learning</span>
+                            <div class="card-tech-row">
+                                <span class="tech-pill">Python</span>
+                                <span class="tech-pill">Scikit-learn</span>
+                            </div>
                         </div>
-                        <span class="project-badge">Labor Analytics</span>
+                        <h3 class="card-title">Titanic Survival Prediction</h3>
+                        <p class="card-desc">Logistic regression model predicting passenger survival using feature engineering and data preprocessing pipelines.</p>
+                        <div class="card-sparkline" aria-hidden="true">
+                            <canvas class="mini-chart" data-type="classification" width="200" height="50"></canvas>
+                        </div>
+                        <div class="card-footer">
+                            <button class="card-btn-details" data-project="titanic-survival">View Details</button>
+                            <a href="https://github.com/shaneeza-hasnani/titanic-survival-prediction" target="_blank" rel="noopener noreferrer" class="card-btn-github" aria-label="View Titanic project on GitHub">GitHub ↗</a>
+                        </div>
                     </div>
-                    <h3 class="project-title">LinkedIn Job Skills and Salary Analytics</h3>
-                    <p class="project-description">Labor market analytics identifying high-value skill bundles and their relationship to salary.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag r">R</span>
-                        <span class="tech-tag">Analytics</span>
-                        <span class="tech-tag">Data Mining</span>
-                    </div>
-                    <div class="project-footer">
-                        <button class="project-btn btn-details" data-project="linkedin-skills">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                <circle cx="12" cy="12" r="3"></circle>
-                            </svg>
-                            <span>View Details</span>
-                        </button>
-                        <a href="https://github.com/shaneeza-hasnani/linkedin-job-skills-salary-analytics" target="_blank" rel="noopener noreferrer" class="project-btn btn-code">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                            <span>View Code</span>
-                        </a>
-                    </div>
-                </div>
+                </article>
 
-                <!-- Project 6 -->
-                <div class="project-card" data-tools="r" data-project="spotify-analysis">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                                <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                            </svg>
+                <!-- WMATA -->
+                <article class="project-card project-card-wide" data-filter="r" aria-label="WMATA Ridership Analysis project">
+                    <div class="card-glow" aria-hidden="true"></div>
+                    <div class="card-inner">
+                        <div class="card-top">
+                            <span class="card-badge badge-purple">Data Analysis</span>
+                            <div class="card-tech-row">
+                                <span class="tech-pill">R</span>
+                                <span class="tech-pill">ggplot2</span>
+                                <span class="tech-pill">EDA</span>
+                            </div>
                         </div>
-                        <span class="project-badge">Regression Analysis</span>
+                        <h3 class="card-title">WMATA Ridership Analysis</h3>
+                        <p class="card-desc">Exploratory analysis of DC metro ridership at university stations, examining weekday vs. holiday effects and seasonal trends.</p>
+                        <div class="card-footer">
+                            <button class="card-btn-details" data-project="wmata-ridership">View Details</button>
+                            <a href="https://github.com/shaneeza-hasnani/wmata-ridership-analysis" target="_blank" rel="noopener noreferrer" class="card-btn-github" aria-label="View WMATA project on GitHub">GitHub ↗</a>
+                        </div>
                     </div>
-                    <h3 class="project-title">Spotify Audio Features Analysis</h3>
-                    <p class="project-description">Analysis examining how audio features and genre relate to song energy using regression modeling.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag r">R</span>
-                        <span class="tech-tag">Regression</span>
-                        <span class="tech-tag">Modeling</span>
+                </article>
+
+                <!-- NYC Salary -->
+                <article class="project-card project-card-wide" data-filter="r" aria-label="NYC Job Salary Analysis project">
+                    <div class="card-glow" aria-hidden="true"></div>
+                    <div class="card-inner">
+                        <div class="card-top">
+                            <span class="card-badge badge-gold">Statistical Analysis</span>
+                            <div class="card-tech-row">
+                                <span class="tech-pill">R</span>
+                                <span class="tech-pill">Regression</span>
+                            </div>
+                        </div>
+                        <h3 class="card-title">NYC Job Salary & Career Analysis</h3>
+                        <p class="card-desc">Statistical analysis of career level's impact on salary in NYC job postings using multiple regression and hypothesis testing.</p>
+                        <div class="card-footer">
+                            <button class="card-btn-details" data-project="nyc-job-salary">View Details</button>
+                            <a href="https://github.com/shaneeza-hasnani/nyc-job-salary-career-analysis" target="_blank" rel="noopener noreferrer" class="card-btn-github" aria-label="View NYC Salary project on GitHub">GitHub ↗</a>
+                        </div>
                     </div>
-                    <div class="project-footer">
-                        <button class="project-btn btn-details" data-project="spotify-analysis">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                <circle cx="12" cy="12" r="3"></circle>
-                            </svg>
-                            <span>View Details</span>
-                        </button>
-                        <a href="https://github.com/shaneeza-hasnani/spotify-audio-features-analysis" target="_blank" rel="noopener noreferrer" class="project-btn btn-code">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                            <span>View Code</span>
-                        </a>
+                </article>
+
+                <!-- LinkedIn Skills -->
+                <article class="project-card project-card-small" data-filter="r" aria-label="LinkedIn Job Skills Analytics project">
+                    <div class="card-glow" aria-hidden="true"></div>
+                    <div class="card-inner">
+                        <div class="card-top">
+                            <span class="card-badge badge-purple">Labor Analytics</span>
+                            <div class="card-tech-row">
+                                <span class="tech-pill">R</span>
+                                <span class="tech-pill">Data Mining</span>
+                            </div>
+                        </div>
+                        <h3 class="card-title">LinkedIn Skills & Salary Analytics</h3>
+                        <p class="card-desc">Identifying high-value skill bundles and salary relationships through labor market data mining.</p>
+                        <div class="card-footer">
+                            <button class="card-btn-details" data-project="linkedin-skills">View Details</button>
+                            <a href="https://github.com/shaneeza-hasnani/linkedin-job-skills-salary-analytics" target="_blank" rel="noopener noreferrer" class="card-btn-github" aria-label="View LinkedIn Skills project on GitHub">GitHub ↗</a>
+                        </div>
                     </div>
-                </div>
+                </article>
+
+                <!-- Spotify -->
+                <article class="project-card project-card-small" data-filter="r" aria-label="Spotify Audio Features Analysis project">
+                    <div class="card-glow" aria-hidden="true"></div>
+                    <div class="card-inner">
+                        <div class="card-top">
+                            <span class="card-badge badge-teal">Regression Analysis</span>
+                            <div class="card-tech-row">
+                                <span class="tech-pill">R</span>
+                                <span class="tech-pill">Modeling</span>
+                            </div>
+                        </div>
+                        <h3 class="card-title">Spotify Audio Features Analysis</h3>
+                        <p class="card-desc">Regression modeling of how audio features and genre relate to song energy levels in Spotify data.</p>
+                        <div class="card-footer">
+                            <button class="card-btn-details" data-project="spotify-analysis">View Details</button>
+                            <a href="https://github.com/shaneeza-hasnani/spotify-audio-features-analysis" target="_blank" rel="noopener noreferrer" class="card-btn-github" aria-label="View Spotify project on GitHub">GitHub ↗</a>
+                        </div>
+                    </div>
+                </article>
+
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills section">
+    <!-- ===================== TIMELINE ===================== -->
+    <section id="timeline" class="timeline-section section">
         <div class="container">
-            <h2 class="section-title">Skills</h2>
-            <div class="skills-grid-compact">
-                <div class="skill-category-compact">
-                    <h3 class="skill-category-title-compact">Programming & Data</h3>
-                    <div class="skill-items-compact">
-                        <span class="skill-item-static">Python</span>
-                        <span class="skill-item-static">R</span>
-                        <span class="skill-item-static">SQL</span>
-                        <span class="skill-item-static">C++</span>
-                        <span class="skill-item-static">SAS</span>
-                        <span class="skill-item-static">Scala</span>
-                        <span class="skill-item-static">SPSS</span>
-                    </div>
+            <div class="section-header">
+                <div class="section-label">// 04 &mdash; TIMELINE</div>
+                <h2 class="section-title">Career Path</h2>
+                <div class="section-underline"></div>
+            </div>
+
+            <div class="timeline-outer">
+                <div class="timeline-spine" aria-hidden="true">
+                    <div class="spine-line"></div>
+                    <div class="spine-pulse"></div>
                 </div>
 
-                <div class="skill-category-compact">
-                    <h3 class="skill-category-title-compact">Visualization & Tools</h3>
-                    <div class="skill-items-compact">
-                        <span class="skill-item-static">Power BI</span>
-                        <span class="skill-item-static">Tableau</span>
-                        <span class="skill-item-static">Excel</span>
-                    </div>
-                </div>
+                <div class="timeline-items">
 
-                <div class="skill-category-compact">
-                    <h3 class="skill-category-title-compact">Fraud & Compliance</h3>
-                    <div class="skill-items-compact">
-                        <span class="skill-item-static">Fraud Detection</span>
-                        <span class="skill-item-static">Fraud Analytics</span>
-                        <span class="skill-item-static">Investigative Analytics</span>
-                        <span class="skill-item-static">Auditing</span>
-                        <span class="skill-item-static">Compliance</span>
-                        <span class="skill-item-static">Risk Assessment</span>
-                        <span class="skill-item-static">Financial Forensics</span>
+                    <!-- Education -->
+                    <div class="tl-item tl-left" data-reveal="left">
+                        <div class="tl-dot" aria-hidden="true"></div>
+                        <div class="tl-card tl-card-edu">
+                            <div class="tl-meta">
+                                <span class="tl-year">2026</span>
+                                <span class="tl-badge tl-badge-teal">Education</span>
+                            </div>
+                            <h3 class="tl-title">M.S. Business Analytics & AI</h3>
+                            <p class="tl-org">American University · Kogod School of Business</p>
+                            <p class="tl-detail">Washington, DC · Machine Learning, Predictive Analytics, Financial Modeling, Data-Driven Decision Making</p>
+                        </div>
                     </div>
-                </div>
 
-                <div class="skill-category-compact">
-                    <h3 class="skill-category-title-compact">Analytics & ML</h3>
-                    <div class="skill-items-compact">
-                        <span class="skill-item-static">Data Analysis</span>
-                        <span class="skill-item-static">Statistical Analysis</span>
-                        <span class="skill-item-static">Predictive Analytics</span>
-                        <span class="skill-item-static">Anomaly Detection</span>
-                        <span class="skill-item-static">Machine Learning</span>
-                        <span class="skill-item-static">Data Mining</span>
-                        <span class="skill-item-static">Pattern Recognition</span>
+                    <div class="tl-item tl-right" data-reveal="right">
+                        <div class="tl-dot" aria-hidden="true"></div>
+                        <div class="tl-card tl-card-edu">
+                            <div class="tl-meta">
+                                <span class="tl-year">2025</span>
+                                <span class="tl-badge tl-badge-teal">Education</span>
+                            </div>
+                            <h3 class="tl-title">B.S. Fraud Examination & Financial Forensics</h3>
+                            <p class="tl-org">John Jay College of Criminal Justice, CUNY</p>
+                            <p class="tl-detail">New York, NY · Fraud Detection, Financial Crime Investigation, Forensic Accounting, Data Analysis</p>
+                        </div>
                     </div>
+
+                    <!-- Certifications -->
+                    <div class="tl-item tl-left" data-reveal="left">
+                        <div class="tl-dot tl-dot-gold" aria-hidden="true"></div>
+                        <div class="tl-card tl-card-cert">
+                            <div class="tl-meta">
+                                <span class="tl-year">2025</span>
+                                <span class="tl-badge tl-badge-gold">Certification</span>
+                            </div>
+                            <h3 class="tl-title">Certified Fraud Examiner (CFE)</h3>
+                            <p class="tl-org">Association of Certified Fraud Examiners</p>
+                            <p class="tl-detail">One of the most rigorous anti-fraud credentials globally, awarded August 2025.</p>
+                        </div>
+                    </div>
+
+                    <div class="tl-item tl-right" data-reveal="right">
+                        <div class="tl-dot tl-dot-gold" aria-hidden="true"></div>
+                        <div class="tl-card tl-card-cert">
+                            <div class="tl-meta">
+                                <span class="tl-year">2024</span>
+                                <span class="tl-badge tl-badge-gold">Award</span>
+                            </div>
+                            <h3 class="tl-title">Ritchie-Jennings Memorial Scholarship</h3>
+                            <p class="tl-org">Association of Certified Fraud Examiners</p>
+                            <p class="tl-detail">Prestigious scholarship awarded to outstanding students in fraud examination, May 2024.</p>
+                        </div>
+                    </div>
+
+                    <div class="tl-item tl-left" data-reveal="left">
+                        <div class="tl-dot" aria-hidden="true"></div>
+                        <div class="tl-card">
+                            <div class="tl-meta">
+                                <span class="tl-year">2021</span>
+                                <span class="tl-badge tl-badge-purple">Certification</span>
+                            </div>
+                            <h3 class="tl-title">Excel Expert Certification</h3>
+                            <p class="tl-org">Microsoft</p>
+                            <p class="tl-detail">Advanced proficiency in Microsoft Excel, including data modeling and analysis tools. December 2021.</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Education Section -->
-    <section id="education" class="education section">
+    <!-- ===================== CONTACT ===================== -->
+    <section id="contact" class="contact-section section">
         <div class="container">
-            <h2 class="section-title">Education</h2>
-            <div class="education-grid">
-                <div class="education-card">
-                    <h3 class="education-degree">M.S. in Business Analytics & AI</h3>
-                    <p class="education-school">American University - Kogod School of Business</p>
-                    <div class="education-meta">
-                        <span class="education-year">December 2026</span>
-                        <span class="education-separator">•</span>
-                        <span class="education-location">Washington, DC</span>
+            <div class="section-header">
+                <div class="section-label">// 05 &mdash; CONTACT</div>
+                <h2 class="section-title">Open Channel</h2>
+                <div class="section-underline"></div>
+            </div>
+
+            <div class="contact-terminal">
+                <div class="terminal-titlebar" aria-hidden="true">
+                    <div class="terminal-dots">
+                        <span class="tdot tdot-red"></span>
+                        <span class="tdot tdot-yellow"></span>
+                        <span class="tdot tdot-green"></span>
                     </div>
-                    <p class="education-focus">Focus: Machine Learning, Predictive Analytics, Financial Modeling, Data-Driven Decision Making</p>
+                    <span class="terminal-title">shaneeza@datalab: ~/contact</span>
                 </div>
-                <div class="education-card">
-                    <h3 class="education-degree">B.S. in Fraud Examination & Financial Forensics</h3>
-                    <p class="education-school">John Jay College of Criminal Justice, CUNY</p>
-                    <div class="education-meta">
-                        <span class="education-year">May 2025</span>
-                        <span class="education-separator">•</span>
-                        <span class="education-location">New York, NY</span>
+                <div class="contact-terminal-body">
+                    <div class="ct-line"><span class="ct-prompt">$</span> <span class="ct-cmd">cat contact.json</span></div>
+                    <pre class="ct-json">{
+  <span class="json-key">"name"</span>:          <span class="json-str">"Shaneeza Hasnani"</span>,
+  <span class="json-key">"status"</span>:        <span class="json-green">"available_for_work"</span>,
+  <span class="json-key">"looking_for"</span>:  <span class="json-str">"Data Science · Fraud Analytics · ML roles"</span>,
+  <span class="json-key">"response_time"</span>: <span class="json-str">"&lt; 24 hours"</span>
+}</pre>
+                    <div class="ct-line ct-line-prompt"><span class="ct-prompt">$</span> <span class="ct-blink-cursor" aria-hidden="true"></span></div>
+                </div>
+            </div>
+
+            <div class="contact-links-grid">
+                <a href="mailto:hasnani.shaneeza@gmail.com" class="contact-link-card" aria-label="Send email to Shaneeza">
+                    <div class="clc-icon clc-icon-teal" aria-hidden="true">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                     </div>
-                    <p class="education-focus">Focus: Fraud Detection, Financial Crime Investigation, Forensic Accounting, Data Analysis</p>
-                </div>
+                    <div class="clc-text">
+                        <span class="clc-label">Email</span>
+                        <span class="clc-val">hasnani.shaneeza@gmail.com</span>
+                    </div>
+                    <span class="clc-arrow" aria-hidden="true">↗</span>
+                </a>
+
+                <a href="https://linkedin.com/in/shasnani" target="_blank" rel="noopener noreferrer" class="contact-link-card" aria-label="Visit LinkedIn profile">
+                    <div class="clc-icon clc-icon-gold" aria-hidden="true">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </div>
+                    <div class="clc-text">
+                        <span class="clc-label">LinkedIn</span>
+                        <span class="clc-val">linkedin.com/in/shasnani</span>
+                    </div>
+                    <span class="clc-arrow" aria-hidden="true">↗</span>
+                </a>
+
+                <a href="https://github.com/shaneeza-hasnani" target="_blank" rel="noopener noreferrer" class="contact-link-card" aria-label="Visit GitHub profile">
+                    <div class="clc-icon" aria-hidden="true">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </div>
+                    <div class="clc-text">
+                        <span class="clc-label">GitHub</span>
+                        <span class="clc-val">github.com/shaneeza-hasnani</span>
+                    </div>
+                    <span class="clc-arrow" aria-hidden="true">↗</span>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Certifications & Awards Section -->
-    <section id="certifications" class="certifications section">
-        <div class="container">
-            <h2 class="section-title">Certifications & Awards</h2>
-            <div class="certifications-grid-compact">
-                <div class="certification-card-compact">
-                    <div class="cert-icon-compact">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="8" r="7"></circle>
-                            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
-                        </svg>
-                    </div>
-                    <h3 class="cert-title-compact">Certified Fraud Examiner (CFE)</h3>
-                    <p class="cert-org-compact">Association of Certified Fraud Examiners • August 2025</p>
-                </div>
-
-                <div class="certification-card-compact">
-                    <div class="cert-icon-compact">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                        </svg>
-                    </div>
-                    <h3 class="cert-title-compact">Ritchie-Jennings Memorial Scholarship</h3>
-                    <p class="cert-org-compact">Association of Certified Fraud Examiners • May 2024</p>
-                </div>
-
-                <div class="certification-card-compact">
-                    <div class="cert-icon-compact">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                            <line x1="3" y1="9" x2="21" y2="9"></line>
-                            <line x1="9" y1="21" x2="9" y2="9"></line>
-                        </svg>
-                    </div>
-                    <h3 class="cert-title-compact">Excel Expert Certification</h3>
-                    <p class="cert-org-compact">Microsoft • December 2021</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact section">
-        <div class="container">
-            <h2 class="section-title">Get in Touch</h2>
-            <div class="contact-content">
-                <p class="contact-intro">Curious? Collaborative? Just want to say hi? Please feel free to reach out!</p>
-                
-                <div class="contact-methods">
-                    <a href="mailto:hasnani.shaneeza@gmail.com" class="contact-method">
-                        <div class="contact-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                                <polyline points="22,6 12,13 2,6"></polyline>
-                            </svg>
-                        </div>
-                        <div class="contact-text">
-                            <h3>Email</h3>
-                            <p>hasnani.shaneeza@gmail.com</p>
-                        </div>
-                    </a>
-
-                    <a href="https://linkedin.com/in/shasnani" target="_blank" rel="noopener noreferrer" class="contact-method">
-                        <div class="contact-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                                <rect x="2" y="9" width="4" height="12"></rect>
-                                <circle cx="4" cy="4" r="2"></circle>
-                            </svg>
-                        </div>
-                        <div class="contact-text">
-                            <h3>LinkedIn</h3>
-                            <p>linkedin.com/in/shasnani</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     </main>
+
+    <!-- ===================== FOOTER ===================== -->
     <footer class="footer">
-        <div class="container">
+        <div class="container footer-inner">
+            <span class="footer-brand">SH</span>
+            <span class="footer-copy">&copy; 2026 Shaneeza Hasnani. Built with data and &hearts;.</span>
+            <div class="footer-socials">
+                <a href="https://github.com/shaneeza-hasnani" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="footer-social-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+                <a href="https://linkedin.com/in/shasnani" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="footer-social-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+            </div>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
+    <!-- ===================== BACK TO TOP ===================== -->
     <button id="back-to-top" class="back-to-top" aria-label="Back to top">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="18 15 12 9 6 15"></polyline>
-        </svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="18 15 12 9 6 15"></polyline></svg>
     </button>
 
-    <!-- Project Details Modal -->
-    <div class="project-modal" id="project-modal">
-        <div class="modal-overlay"></div>
+    <!-- ===================== PROJECT MODAL ===================== -->
+    <div id="project-modal" class="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-backdrop" id="modal-backdrop"></div>
         <div class="modal-container">
-            <button class="modal-close" aria-label="Close modal">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
+            <button class="modal-close" id="modal-close" aria-label="Close project details">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
-            <div class="modal-content" id="modal-content">
-                <!-- Content will be dynamically inserted here -->
+            <div class="modal-body" id="modal-body">
+                <!-- Dynamically populated -->
             </div>
         </div>
     </div>
 
+    <!-- CDN Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.4/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.4/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
