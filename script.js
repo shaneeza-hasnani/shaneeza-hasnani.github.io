@@ -477,7 +477,7 @@ function initTyped() {
     if (!el) return;
 
     new Typed('#typed-target', {
-        strings: ['Fraud Analyst', 'Data Scientist', 'ML Engineer', 'Certified Fraud Examiner', 'Anomaly Hunter'],
+        strings: ['Data Scientist', 'ML Engineer', 'Predictive Modeler', 'Fraud Analyst', 'Quantitative Researcher', 'Anomaly Hunter', 'Certified Fraud Examiner'],
         typeSpeed: 65,
         backSpeed: 40,
         backDelay: 2000,
@@ -896,9 +896,13 @@ function initScrollReveal() {
         ['.section-header',       'reveal'],
         ['.terminal-window',      'reveal-left'],
         ['.about-right',          'reveal-right'],
+        ['.github-activity-strip','reveal'],
         ['.experience-strip',     'reveal'],
         ['.panel-card',           'reveal'],
         ['.skill-tag-group',      'reveal'],
+        ['.process-strip',        'reveal'],
+        ['.credential-card',      'reveal'],
+        ['.gallery-card',         'reveal'],
         ['.project-card',         'reveal'],
         ['.contact-terminal',     'reveal'],
         ['.contact-link-card',    'reveal'],
@@ -922,6 +926,12 @@ function initScrollReveal() {
     });
     document.querySelectorAll('.contact-link-card').forEach((c, i) => {
         c.style.transitionDelay = (i * 0.1) + 's';
+    });
+    document.querySelectorAll('.credential-card').forEach((c, i) => {
+        c.style.transitionDelay = (i * 0.1) + 's';
+    });
+    document.querySelectorAll('.gallery-card').forEach((c, i) => {
+        c.style.transitionDelay = (i * 0.07) + 's';
     });
 
     // Intersection observer
@@ -962,12 +972,223 @@ function initGSAPAnimations() {
 }
 
 /* ================================================================
+   GALLERY FILTER
+   ================================================================ */
+function initGalleryFilter() {
+    const pills = document.querySelectorAll('.gallery-pill');
+    const cards = document.querySelectorAll('.gallery-card');
+
+    pills.forEach(pill => {
+        pill.addEventListener('click', () => {
+            pills.forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+            const filter = pill.dataset.galleryFilter;
+
+            cards.forEach(card => {
+                const tag  = (card.dataset.galleryTag || '').toLowerCase();
+                const show = filter === 'all' || tag === filter;
+
+                card.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+                if (show) {
+                    card.style.display   = '';
+                    requestAnimationFrame(() => {
+                        card.style.opacity   = '1';
+                        card.style.transform = '';
+                    });
+                } else {
+                    card.style.opacity   = '0';
+                    card.style.transform = 'scale(0.95)';
+                    setTimeout(() => { card.style.display = 'none'; }, 220);
+                }
+            });
+        });
+    });
+}
+
+/* ================================================================
+   GALLERY CHARTS (Chart.js live programmatic charts)
+   ================================================================ */
+const GALLERY_CHART_DEFAULTS = {
+    responsive: true,
+    maintainAspectRatio: false,
+    animation: { duration: 1200, easing: 'easeOutQuart' },
+    plugins: {
+        legend: { display: false },
+        tooltip: {
+            backgroundColor: '#1E293B',
+            borderColor: 'rgba(20,184,166,0.3)',
+            borderWidth: 1,
+            titleColor: '#14B8A6',
+            bodyColor: '#94A3B8'
+        }
+    }
+};
+
+function buildGalleryCharts() {
+    if (typeof Chart === 'undefined') return;
+
+    const darkGrid = { color: 'rgba(148,163,184,0.07)' };
+    const axisTick = { color: '#475569', font: { family: "'JetBrains Mono', monospace", size: 9 } };
+    const commonScales = {
+        x: { grid: darkGrid, ticks: axisTick, border: { color: 'transparent' } },
+        y: { grid: darkGrid, ticks: axisTick, border: { color: 'transparent' } }
+    };
+
+    /* — Chart 1: Fraud Event Study — CAR line — */
+    const c1 = document.getElementById('gallery-chart-1');
+    if (c1) {
+        const days   = Array.from({ length: 21 }, (_, i) => `t${i - 10}`);
+        const car    = [0,0,0.2,0.3,0.1,-0.2,-0.5,-1.1,-2.0,-3.5,-5.8,-8.2,-9.4,-9.7,-9.8,-9.6,-9.4,-9.2,-9.0,-8.9,-8.8];
+        new Chart(c1, {
+            type: 'line',
+            data: {
+                labels: days,
+                datasets: [{
+                    data: car,
+                    borderColor: '#F59E0B',
+                    backgroundColor: 'rgba(245,158,11,0.08)',
+                    borderWidth: 2,
+                    pointRadius: 0,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: { ...GALLERY_CHART_DEFAULTS, scales: commonScales }
+        });
+    }
+
+    /* — Chart 2: Titanic — survival by class (grouped bar) — */
+    const c2 = document.getElementById('gallery-chart-2');
+    if (c2) {
+        new Chart(c2, {
+            type: 'bar',
+            data: {
+                labels: ['1st Class', '2nd Class', '3rd Class'],
+                datasets: [
+                    { label: 'Survived', data: [63, 47, 24], backgroundColor: '#14B8A6', borderRadius: 4, barPercentage: 0.6 },
+                    { label: 'Perished', data: [37, 53, 76], backgroundColor: 'rgba(139,92,246,0.5)', borderRadius: 4, barPercentage: 0.6 }
+                ]
+            },
+            options: {
+                ...GALLERY_CHART_DEFAULTS,
+                plugins: { ...GALLERY_CHART_DEFAULTS.plugins, legend: { display: true, labels: { color: '#94A3B8', font: { family: "'JetBrains Mono', monospace", size: 9 } } } },
+                scales: commonScales
+            }
+        });
+    }
+
+    /* — Chart 3: WMATA — ridership weekday vs holiday — */
+    const c3 = document.getElementById('gallery-chart-3');
+    if (c3) {
+        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        new Chart(c3, {
+            type: 'line',
+            data: {
+                labels: months,
+                datasets: [
+                    { label: 'Weekday', data: [420,445,460,430,410,390,350,355,455,475,440,390], borderColor: '#14B8A6', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 3, pointBackgroundColor: '#14B8A6', tension: 0.4 },
+                    { label: 'Holiday', data: [180,160,200,195,170,165,195,200,185,175,160,175], borderColor: '#F59E0B', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 3, pointBackgroundColor: '#F59E0B', tension: 0.4 }
+                ]
+            },
+            options: {
+                ...GALLERY_CHART_DEFAULTS,
+                plugins: { ...GALLERY_CHART_DEFAULTS.plugins, legend: { display: true, labels: { color: '#94A3B8', font: { family: "'JetBrains Mono', monospace", size: 9 } } } },
+                scales: { ...commonScales, y: { ...commonScales.y, title: { display: true, text: 'Avg. Daily Riders (k)', color: '#475569', font: { size: 9 } } } }
+            }
+        });
+    }
+
+    /* — Chart 4: NYC Jobs — median salary by career level — */
+    const c4 = document.getElementById('gallery-chart-4');
+    if (c4) {
+        new Chart(c4, {
+            type: 'bar',
+            data: {
+                labels: ['Entry', 'Mid', 'Senior', 'Manager', 'Director', 'Executive'],
+                datasets: [{
+                    data: [62, 85, 112, 135, 165, 210],
+                    backgroundColor: [
+                        'rgba(20,184,166,0.5)', 'rgba(20,184,166,0.6)', 'rgba(20,184,166,0.7)',
+                        'rgba(139,92,246,0.6)', 'rgba(139,92,246,0.7)', 'rgba(245,158,11,0.7)'
+                    ],
+                    borderRadius: 4, barPercentage: 0.7
+                }]
+            },
+            options: {
+                ...GALLERY_CHART_DEFAULTS,
+                scales: { ...commonScales, y: { ...commonScales.y, title: { display: true, text: 'Median Salary ($k)', color: '#475569', font: { size: 9 } } } }
+            }
+        });
+    }
+
+    /* — Chart 5: LinkedIn skill clusters — radar — */
+    const c5 = document.getElementById('gallery-chart-5');
+    if (c5) {
+        new Chart(c5, {
+            type: 'radar',
+            data: {
+                labels: ['Python/SQL', 'ML/AI', 'Visualization', 'Finance', 'Communication'],
+                datasets: [
+                    { label: 'High-Salary Bundle', data: [90, 85, 70, 60, 75], borderColor: '#14B8A6', backgroundColor: 'rgba(20,184,166,0.1)', borderWidth: 2, pointBackgroundColor: '#14B8A6' },
+                    { label: 'Avg. Bundle', data: [55, 50, 60, 45, 65], borderColor: '#F59E0B', backgroundColor: 'rgba(245,158,11,0.07)', borderWidth: 2, pointBackgroundColor: '#F59E0B' }
+                ]
+            },
+            options: {
+                ...GALLERY_CHART_DEFAULTS,
+                plugins: { ...GALLERY_CHART_DEFAULTS.plugins, legend: { display: true, labels: { color: '#94A3B8', font: { family: "'JetBrains Mono', monospace", size: 9 } } } },
+                scales: { r: { min: 0, max: 100, grid: { color: 'rgba(148,163,184,0.08)' }, angleLines: { color: 'rgba(148,163,184,0.08)' }, ticks: { display: false }, pointLabels: { color: '#94A3B8', font: { size: 9 } } } }
+            }
+        });
+    }
+
+    /* — Chart 6: Spotify — energy vs valence scatter — */
+    const c6 = document.getElementById('gallery-chart-6');
+    if (c6) {
+        const scatterData = Array.from({ length: 80 }, () => ({
+            x: +(Math.random()).toFixed(2),
+            y: +(0.2 + Math.random() * 0.6 + (Math.random() - 0.5) * 0.15).toFixed(2)
+        }));
+        // Add trend line points
+        const trendData = [{ x: 0, y: 0.25 }, { x: 0.25, y: 0.38 }, { x: 0.5, y: 0.52 }, { x: 0.75, y: 0.66 }, { x: 1, y: 0.78 }];
+        new Chart(c6, {
+            type: 'scatter',
+            data: {
+                datasets: [
+                    { label: 'Tracks', data: scatterData, backgroundColor: 'rgba(20,184,166,0.4)', pointRadius: 3, pointHoverRadius: 5 },
+                    { label: 'Trend', data: trendData, type: 'line', borderColor: '#F59E0B', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 0, tension: 0.3 }
+                ]
+            },
+            options: {
+                ...GALLERY_CHART_DEFAULTS,
+                plugins: { ...GALLERY_CHART_DEFAULTS.plugins, legend: { display: false } },
+                scales: {
+                    x: { ...commonScales.x, title: { display: true, text: 'Valence', color: '#475569', font: { size: 9 } } },
+                    y: { ...commonScales.y, title: { display: true, text: 'Energy', color: '#475569', font: { size: 9 } } }
+                }
+            }
+        });
+    }
+}
+
+function initGalleryCharts() {
+    const gallerySection = document.getElementById('gallery');
+    if (!gallerySection) return;
+
+    new IntersectionObserver((entries, obs) => {
+        if (!entries[0].isIntersecting) return;
+        obs.disconnect();
+        buildGalleryCharts();
+    }, { threshold: 0.1 }).observe(gallerySection);
+}
+
+/* ================================================================
    BOOT
    ================================================================ */
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
     initScrollProgress();
     initProjectFilter();
+    initGalleryFilter();
     initProjectModal();
     initScrollReveal();
 });
@@ -986,4 +1207,5 @@ window.addEventListener('load', () => {
     initProgressBars();
     initSparklines();
     initCounters();
+    initGalleryCharts();
 });
