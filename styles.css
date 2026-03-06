@@ -847,6 +847,217 @@ ul, ol { list-style: none; }
 .modal-github-btn:hover { background: #0EA5A3; box-shadow: var(--teal-glow); }
 
 /* ----------------------------------------------------------------
+   MODEL METRIC BADGE (project cards)
+   ---------------------------------------------------------------- */
+.model-metric {
+    display: flex; align-items: center; gap: 0.45rem;
+    font-family: var(--font-mono); font-size: 0.7rem;
+    color: var(--teal); background: rgba(20,184,166,0.07);
+    border: 1px solid rgba(20,184,166,0.18); border-radius: var(--r-sm);
+    padding: 0.3rem 0.65rem; margin: 0.25rem 0;
+    width: fit-content;
+}
+.metric-icon { font-size: 0.75rem; color: var(--teal); opacity: 0.8; }
+.metric-val  { line-height: 1.2; }
+
+/* ----------------------------------------------------------------
+   PROCESS STRIP (DS Methodology in Skills section)
+   ---------------------------------------------------------------- */
+.process-strip {
+    margin-top: 4rem; padding-top: 3rem;
+    border-top: 1px solid var(--border);
+}
+.process-label {
+    font-family: var(--font-mono); font-size: 0.7rem;
+    color: var(--text-dim); letter-spacing: 0.2em;
+    text-transform: uppercase; display: block;
+    margin-bottom: 2.5rem;
+}
+.process-steps {
+    display: flex; align-items: flex-start;
+    gap: 0; flex-wrap: wrap;
+}
+.process-step {
+    flex: 1; min-width: 160px;
+    display: flex; flex-direction: column;
+    align-items: center; text-align: center;
+    gap: 0.6rem; padding: 0 0.75rem;
+}
+.process-step-icon {
+    font-family: var(--font-mono); font-size: 0.65rem;
+    color: var(--teal); background: var(--teal-dim);
+    border: 1px solid rgba(20,184,166,0.3);
+    border-radius: 50%; width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 600; flex-shrink: 0;
+}
+.process-step-title {
+    font-family: var(--font-sans); font-size: 0.9rem;
+    font-weight: 600; color: var(--text);
+}
+.process-step-desc {
+    font-size: 0.78rem; color: var(--text-dim);
+    line-height: 1.55;
+}
+.process-arrow {
+    font-size: 1.25rem; color: var(--teal); opacity: 0.4;
+    padding-top: 1.15rem; flex-shrink: 0;
+    align-self: flex-start;
+}
+
+/* ----------------------------------------------------------------
+   CREDENTIALS SECTION
+   ---------------------------------------------------------------- */
+.credentials-section { background: var(--bg); }
+
+.credentials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.credential-card {
+    position: relative; overflow: hidden;
+    background: var(--bg-surface); border: 1px solid var(--border);
+    border-radius: var(--r-xl); padding: 2rem 1.75rem;
+    display: flex; flex-direction: column; gap: 1.25rem;
+    transition: transform 0.35s var(--ease-o), box-shadow 0.35s var(--ease-o), border-color 0.25s var(--ease);
+}
+.credential-card:hover { transform: translateY(-6px); }
+
+.credential-card-gold:hover  { border-color: rgba(245,158,11,0.4); box-shadow: 0 20px 48px rgba(0,0,0,0.4), 0 0 0 1px rgba(245,158,11,0.15); }
+.credential-card-purple:hover{ border-color: rgba(139,92,246,0.4); box-shadow: 0 20px 48px rgba(0,0,0,0.4), 0 0 0 1px rgba(139,92,246,0.15); }
+.credential-card-teal:hover  { border-color: rgba(20,184,166,0.4); box-shadow: 0 20px 48px rgba(0,0,0,0.4), 0 0 0 1px rgba(20,184,166,0.15); }
+
+.cred-accent {
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+}
+.credential-card-gold   .cred-accent { background: linear-gradient(90deg, var(--gold), rgba(245,158,11,0.3)); }
+.credential-card-purple .cred-accent { background: linear-gradient(90deg, var(--purple), rgba(139,92,246,0.3)); }
+.credential-card-teal   .cred-accent { background: linear-gradient(90deg, var(--teal), rgba(20,184,166,0.3)); }
+
+.cred-icon-wrap { display: flex; align-items: center; }
+.cred-icon {
+    width: 52px; height: 52px; border-radius: var(--r-md);
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid;
+}
+.cred-icon-gold   { background: var(--gold-dim);   color: var(--gold);   border-color: rgba(245,158,11,0.25); }
+.cred-icon-purple { background: var(--purple-dim); color: var(--purple); border-color: rgba(139,92,246,0.25); }
+.cred-icon-teal   { background: var(--teal-dim);   color: var(--teal);   border-color: rgba(20,184,166,0.25); }
+
+.cred-body { display: flex; flex-direction: column; gap: 0.45rem; flex: 1; }
+
+.cred-badge {
+    font-family: var(--font-mono); font-size: 0.62rem;
+    padding: 0.2rem 0.65rem; border-radius: 100px;
+    letter-spacing: 0.08em; width: fit-content;
+}
+.cred-badge-gold   { background: var(--gold-dim);   color: var(--gold);   border: 1px solid rgba(245,158,11,0.25); }
+.cred-badge-purple { background: var(--purple-dim); color: var(--purple); border: 1px solid rgba(139,92,246,0.25); }
+.cred-badge-teal   { background: var(--teal-dim);   color: var(--teal);   border: 1px solid rgba(20,184,166,0.25); }
+
+.cred-title  { font-family: var(--font-sans); font-size: 1.1rem; font-weight: 700; color: var(--text); letter-spacing: -0.02em; line-height: 1.3; }
+.cred-issuer { font-size: 0.83rem; color: var(--text-muted); }
+.cred-year   { font-family: var(--font-mono); font-size: 0.72rem; color: var(--teal); }
+.cred-desc   { font-size: 0.82rem; color: var(--text-dim); line-height: 1.6; margin-top: 0.25rem; }
+
+/* ----------------------------------------------------------------
+   GITHUB ACTIVITY STRIP
+   ---------------------------------------------------------------- */
+.github-activity-strip {
+    border-top: 1px solid var(--border);
+    padding-top: 3rem; margin-bottom: 3rem;
+}
+.github-stats-row {
+    display: flex; flex-wrap: wrap; gap: 1rem;
+    align-items: flex-start;
+}
+.github-stat-card {
+    display: block; border-radius: var(--r-md); overflow: hidden;
+    border: 1px solid var(--border);
+    transition: border-color var(--t), box-shadow var(--t), transform var(--t);
+    flex-shrink: 0;
+}
+.github-stat-card:hover {
+    border-color: rgba(20,184,166,0.35);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    transform: translateY(-3px);
+}
+.github-stat-img {
+    display: block; max-width: 100%; height: auto;
+    background: var(--bg-surface);
+}
+
+/* ----------------------------------------------------------------
+   GALLERY SECTION
+   ---------------------------------------------------------------- */
+.gallery-section { background: var(--bg-surface); }
+
+.gallery-filter-bar {
+    display: flex; gap: 0.5rem; margin-bottom: 2.5rem; flex-wrap: wrap;
+}
+.gallery-pill {
+    font-family: var(--font-mono); font-size: 0.78rem;
+    padding: 0.45rem 1.1rem; border-radius: 100px;
+    border: 1px solid var(--border); color: var(--text-muted);
+    transition: all var(--t);
+}
+.gallery-pill:hover { border-color: var(--teal); color: var(--teal); }
+.gallery-pill.active { background: var(--teal); color: var(--bg); border-color: var(--teal); }
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.gallery-card {
+    background: var(--bg-elevated); border: 1px solid var(--border);
+    border-radius: var(--r-lg); overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: transform 0.3s var(--ease-o), border-color 0.25s var(--ease), box-shadow 0.3s var(--ease-o);
+}
+.gallery-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(20,184,166,0.35);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+}
+
+.gallery-card-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.9rem 1rem; border-bottom: 1px solid var(--border);
+    gap: 0.5rem;
+}
+.gallery-card-title {
+    font-family: var(--font-sans); font-size: 0.82rem;
+    font-weight: 600; color: var(--text); line-height: 1.3;
+    flex: 1;
+}
+.gallery-chip {
+    font-family: var(--font-mono); font-size: 0.62rem;
+    padding: 0.18rem 0.55rem; border-radius: 100px;
+    background: var(--teal-dim); color: var(--teal);
+    border: 1px solid rgba(20,184,166,0.2); white-space: nowrap; flex-shrink: 0;
+}
+
+.gallery-canvas-wrap {
+    padding: 1rem 0.75rem; flex: 1;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 180px;
+}
+.gallery-canvas {
+    display: block; width: 100%; max-height: 180px;
+}
+
+.gallery-card-footer {
+    font-family: var(--font-mono); font-size: 0.68rem;
+    color: var(--text-dim); padding: 0.6rem 1rem;
+    border-top: 1px solid var(--border);
+    background: rgba(0,0,0,0.1);
+}
+
+/* ----------------------------------------------------------------
    REVEAL ANIMATIONS
    ---------------------------------------------------------------- */
 .reveal {
@@ -877,6 +1088,8 @@ ul, ol { list-style: none; }
     .project-card-small    { grid-column: span 6; }
     .tl-left  { padding-right: calc(50% + 1.5rem); }
     .tl-right { padding-left: calc(50% + 1.5rem); }
+    .credentials-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 768px) {
@@ -891,6 +1104,13 @@ ul, ol { list-style: none; }
 
     .about-grid { grid-template-columns: 1fr; }
     .skills-grid { grid-template-columns: 1fr; }
+    .credentials-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .github-stats-row { flex-direction: column; }
+    .github-stat-img { max-width: 100%; width: 100%; }
+
+    .process-steps { flex-direction: column; align-items: center; gap: 1rem; }
+    .process-arrow  { transform: rotate(90deg); padding-top: 0; }
 
     .project-card-featured,
     .project-card-tall,
