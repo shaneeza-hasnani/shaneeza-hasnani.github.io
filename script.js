@@ -495,67 +495,6 @@ function typeLines(lines, container, idx) {
     typeChar();
 }
 
-/* ================================================================
-   CHART.JS RADAR
-   ================================================================ */
-function initSkillsRadar() {
-    if (typeof Chart === 'undefined') return;
-    const canvas = document.getElementById('skills-radar');
-    if (!canvas) return;
-
-    new IntersectionObserver((entries, obs) => {
-        if (!entries[0].isIntersecting) return;
-        obs.disconnect();
-
-        new Chart(canvas.getContext('2d'), {
-            type: 'radar',
-            data: {
-                labels: ['Fraud Analytics', 'Machine Learning', 'Data Visualization',
-                         'Programming', 'Statistical Analysis', 'Financial Forensics'],
-                datasets: [{
-                    label: 'Proficiency',
-                    data: [95, 85, 90, 88, 87, 92],
-                    borderColor: '#14B8A6',
-                    backgroundColor: 'rgba(20,184,166,0.1)',
-                    pointBackgroundColor: '#14B8A6',
-                    pointBorderColor: '#0F172A',
-                    pointBorderWidth: 2,
-                    pointRadius: 5,
-                    pointHoverRadius: 7,
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: true,
-                animation: { duration: 1500, easing: 'easeOutQuart' },
-                scales: {
-                    r: {
-                        min: 0, max: 100, beginAtZero: true,
-                        grid:       { color: 'rgba(148,163,184,0.08)' },
-                        angleLines: { color: 'rgba(148,163,184,0.08)' },
-                        ticks:      { display: false },
-                        pointLabels: {
-                            color: '#94A3B8',
-                            font: { family: "'JetBrains Mono', monospace", size: isMobile() ? 9 : 11 }
-                        }
-                    }
-                },
-                plugins: {
-                    legend: { display: false },
-                    tooltip: {
-                        backgroundColor: '#1E293B',
-                        borderColor: 'rgba(20,184,166,0.3)',
-                        borderWidth: 1,
-                        titleColor: '#14B8A6',
-                        bodyColor: '#94A3B8',
-                        callbacks: { label: ctx => ` ${ctx.raw}% proficiency` }
-                    }
-                }
-            }
-        });
-    }, { threshold: 0.3 }).observe(canvas);
-}
 
 /* ================================================================
    PROGRESS BARS
@@ -753,12 +692,10 @@ function initScrollReveal() {
         ['.terminal-window',      'reveal-left'],
         ['.about-right',          'reveal-right'],
         ['.github-activity-strip','reveal'],
-        ['.experience-strip',     'reveal'],
         ['.panel-card',           'reveal'],
         ['.skill-tag-group',      'reveal'],
-        ['.process-strip',        'reveal'],
         ['.credential-card',      'reveal'],
-        ['.gallery-card',         'reveal'],
+        ['.gallery-figure',       'reveal'],
         ['.project-card',         'reveal'],
         ['.contact-terminal',     'reveal'],
         ['.contact-link-card',    'reveal'],
@@ -786,7 +723,7 @@ function initScrollReveal() {
     document.querySelectorAll('.credential-card').forEach((c, i) => {
         c.style.transitionDelay = (i * 0.1) + 's';
     });
-    document.querySelectorAll('.gallery-card').forEach((c, i) => {
+    document.querySelectorAll('.gallery-figure').forEach((c, i) => {
         c.style.transitionDelay = (i * 0.07) + 's';
     });
 
@@ -813,39 +750,6 @@ function initGSAPAnimations() {
     gsap.registerPlugin(ScrollTrigger);
 }
 
-/* ================================================================
-   GALLERY FILTER
-   ================================================================ */
-function initGalleryFilter() {
-    const pills = document.querySelectorAll('.gallery-pill');
-    const cards = document.querySelectorAll('.gallery-card');
-
-    pills.forEach(pill => {
-        pill.addEventListener('click', () => {
-            pills.forEach(p => p.classList.remove('active'));
-            pill.classList.add('active');
-            const filter = pill.dataset.galleryFilter;
-
-            cards.forEach(card => {
-                const tag  = (card.dataset.galleryTag || '').toLowerCase();
-                const show = filter === 'all' || tag === filter;
-
-                card.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
-                if (show) {
-                    card.style.display   = '';
-                    requestAnimationFrame(() => {
-                        card.style.opacity   = '1';
-                        card.style.transform = '';
-                    });
-                } else {
-                    card.style.opacity   = '0';
-                    card.style.transform = 'scale(0.95)';
-                    setTimeout(() => { card.style.display = 'none'; }, 220);
-                }
-            });
-        });
-    });
-}
 
 /* ================================================================
    GALLERY CHARTS (Chart.js live programmatic charts)
@@ -1030,7 +934,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
     initScrollProgress();
     initProjectFilter();
-    initGalleryFilter();
     initProjectModal();
     initScrollReveal();
 });
@@ -1042,7 +945,6 @@ window.addEventListener('load', () => {
     initGSAPAnimations();
 
     initTerminal();
-    initSkillsRadar();
     initProgressBars();
     initSparklines();
     initCounters();
