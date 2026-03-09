@@ -917,14 +917,14 @@ function buildGalleryCharts() {
 }
 
 function initGalleryCharts() {
-    const gallerySection = document.getElementById('gallery');
-    if (!gallerySection) return;
+    const projectsSection = document.getElementById('projects');
+    if (!projectsSection) return;
 
     new IntersectionObserver((entries, obs) => {
         if (!entries[0].isIntersecting) return;
         obs.disconnect();
         buildGalleryCharts();
-    }, { threshold: 0.1 }).observe(gallerySection);
+    }, { threshold: 0.1 }).observe(projectsSection);
 }
 
 /* ================================================================
@@ -945,7 +945,6 @@ window.addEventListener('load', () => {
     initGSAPAnimations();
 
     initTerminal();
-    initProgressBars();
     initSparklines();
     initCounters();
     initGalleryCharts();
