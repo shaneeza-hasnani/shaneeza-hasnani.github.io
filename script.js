@@ -325,28 +325,10 @@ function initNavigation() {
 
 
 /* ================================================================
-   TYPED.JS
-   ================================================================ */
-function initTyped() {
-    if (typeof Typed === 'undefined') return;
-    const el = document.getElementById('typed-target');
-    if (!el) return;
-
-    new Typed('#typed-target', {
-        strings: ['Data Scientist', 'ML Engineer', 'Predictive Modeler', 'Fraud Analyst', 'Quantitative Researcher', 'Anomaly Hunter', 'Certified Fraud Examiner'],
-        typeSpeed: 65,
-        backSpeed: 40,
-        backDelay: 2000,
-        loop: true,
-        showCursor: false
-    });
-}
-
-/* ================================================================
    HERO ENTRANCE
    ================================================================ */
 function runHeroEntrance() {
-    const els = ['.hero-eyebrow', '.hero-name', '.hero-typed-row', '.hero-tagline',
+    const els = ['.hero-subtitle', '.hero-name', '.hero-tagline',
                  '.hero-stats-row', '.hero-cta-row', '.hero-social-row'];
 
     if (typeof gsap !== 'undefined') {
@@ -354,14 +336,13 @@ function runHeroEntrance() {
         els.forEach((sel, i) => {
             tl.to(sel, { y: 0, opacity: 1, duration: i === 1 ? 0.7 : 0.55 }, i === 0 ? 0 : '-=0.3');
         });
-        tl.add(() => { initTyped(); animateHeroCounters(); }, 0.5);
+        tl.add(() => { animateHeroCounters(); }, 0.5);
     } else {
         // Fallback — just reveal
         els.forEach(sel => {
             const el = document.querySelector(sel);
             if (el) { el.style.opacity = '1'; el.style.transform = 'none'; }
         });
-        initTyped();
         animateHeroCounters();
     }
 }
@@ -689,15 +670,14 @@ function initScrollReveal() {
     // Assign reveal classes
     const assignments = [
         ['.section-header',       'reveal'],
-        ['.terminal-window',      'reveal-left'],
-        ['.about-right',          'reveal-right'],
-        ['.github-activity-strip','reveal'],
+        ['.about-photo-col',      'reveal-left'],
+        ['.about-text-col',       'reveal-right'],
         ['.panel-card',           'reveal'],
         ['.skill-tag-group',      'reveal'],
         ['.credential-card',      'reveal'],
         ['.gallery-figure',       'reveal'],
         ['.project-card',         'reveal'],
-        ['.contact-terminal',     'reveal'],
+        ['.contact-cta',          'reveal'],
         ['.contact-link-card',    'reveal'],
     ];
 
@@ -928,23 +908,41 @@ function initGalleryCharts() {
 }
 
 /* ================================================================
+   THEME TOGGLE
+   ================================================================ */
+function initThemeToggle() {
+    const toggle = document.getElementById('theme-toggle');
+    if (!toggle) return;
+
+    // Restore saved preference
+    const saved = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', saved);
+    toggle.setAttribute('aria-label', saved === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+
+    toggle.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        toggle.setAttribute('aria-label', next === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    });
+}
+
+/* ================================================================
    BOOT
    ================================================================ */
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
     initScrollProgress();
+    initThemeToggle();
     initProjectFilter();
     initProjectModal();
     initScrollReveal();
 });
 
 window.addEventListener('load', () => {
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
     runHeroEntrance();
     initGSAPAnimations();
-
-    initTerminal();
     initSparklines();
     initCounters();
     initGalleryCharts();
