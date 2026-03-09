@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Shaneeza Hasnani — Certified Fraud Examiner, Data Scientist, ML Engineer. Portfolio showcasing fraud analytics, machine learning, and data visualization projects.">
+    <meta name="keywords" content="Data Scientist, Machine Learning Engineer, Fraud Analyst, Predictive Analytics, NLP, Text Mining, scikit-learn, XGBoost, Python, R, SQL, Random Forest, Gradient Boosting, SHAP, Feature Importance, ROC Curve, Anomaly Detection, CFE, Certified Fraud Examiner">
     <title>Shaneeza Hasnani | Data Scientist & CFE</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -91,7 +92,7 @@
                 <span class="typed-cursor" aria-hidden="true">_</span>
             </div>
 
-            <p class="hero-tagline">Bridging financial forensics with machine learning to detect, predict, and prevent fraud at scale.</p>
+            <p class="hero-tagline">Turning raw data into decisions — applying machine learning, statistical modeling, and NLP across finance, labor markets, and beyond.</p>
 
             <div class="hero-stats-row" aria-label="Quick stats">
                 <div class="hero-stat">
@@ -351,6 +352,14 @@
                                 <div class="bar-fill" style="--pct:82%;--bar-color:#F59E0B"></div>
                             </div>
                         </div>
+                        <div class="bar-item" role="listitem">
+                            <div class="bar-meta">
+                                <span class="bar-name">NLP / Text Mining</span>
+                            </div>
+                            <div class="bar-track" aria-label="NLP / Text Mining">
+                                <div class="bar-fill" style="--pct:80%;--bar-color:#8B5CF6"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -411,6 +420,10 @@
                         <span class="skill-chip skill-chip-teal">Matplotlib</span>
                         <span class="skill-chip skill-chip-teal">Seaborn</span>
                         <span class="skill-chip skill-chip-teal">statsmodels</span>
+                        <span class="skill-chip skill-chip-teal">NLTK</span>
+                        <span class="skill-chip skill-chip-teal">spaCy</span>
+                        <span class="skill-chip skill-chip-teal">TF-IDF</span>
+                        <span class="skill-chip skill-chip-teal">Text Mining</span>
                     </div>
                 </div>
                 <div class="skill-tag-group">
@@ -422,6 +435,20 @@
                         <span class="skill-chip skill-chip-gold">Git</span>
                         <span class="skill-chip skill-chip-gold">Snowflake</span>
                         <span class="skill-chip skill-chip-gold">dbt</span>
+                    </div>
+                </div>
+                <div class="skill-tag-group">
+                    <h3 class="skill-tag-group-title">ML Algorithms</h3>
+                    <div class="skill-tag-cloud">
+                        <span class="skill-chip skill-chip-purple">Random Forest</span>
+                        <span class="skill-chip skill-chip-purple">Gradient Boosting</span>
+                        <span class="skill-chip skill-chip-purple">Logistic Regression</span>
+                        <span class="skill-chip skill-chip-purple">SVM</span>
+                        <span class="skill-chip skill-chip-purple">k-Means</span>
+                        <span class="skill-chip skill-chip-purple">DBSCAN</span>
+                        <span class="skill-chip skill-chip-purple">ARIMA</span>
+                        <span class="skill-chip skill-chip-purple">LSTM</span>
+                        <span class="skill-chip skill-chip-purple">SHAP</span>
                     </div>
                 </div>
             </div>
@@ -550,6 +577,7 @@
                 <button class="filter-pill" data-filter="finance">Finance</button>
                 <button class="filter-pill" data-filter="statistics">Statistics</button>
                 <button class="filter-pill" data-filter="fraud">Fraud</button>
+                <button class="filter-pill" data-filter="nlp">NLP</button>
             </div>
 
             <!-- Bento grid -->
@@ -662,7 +690,7 @@
                 </article>
 
                 <!-- LinkedIn Skills -->
-                <article class="project-card project-card-small" data-filter="r ml statistics" aria-label="LinkedIn Job Skills Analytics project">
+                <article class="project-card project-card-small" data-filter="r ml statistics nlp" aria-label="LinkedIn Job Skills Analytics project">
                     <div class="card-glow" aria-hidden="true"></div>
                     <div class="card-inner">
                         <div class="card-top">
@@ -794,6 +822,28 @@
                         <canvas id="gallery-chart-6" class="gallery-canvas" aria-label="Scatter chart showing relationship between audio energy and valence in Spotify tracks"></canvas>
                     </div>
                     <div class="gallery-card-footer">Regression Modeling · 5,000 Tracks · RMSE = 0.09</div>
+                </div>
+
+                <div class="gallery-card" data-gallery-tag="python" aria-label="ROC Curve chart">
+                    <div class="gallery-card-header">
+                        <span class="gallery-card-title">Model Evaluation: ROC Curve</span>
+                        <span class="gallery-chip">Python</span>
+                    </div>
+                    <div class="gallery-canvas-wrap">
+                        <canvas id="gallery-chart-7" class="gallery-canvas" aria-label="ROC curve showing true positive rate vs false positive rate for classification model"></canvas>
+                    </div>
+                    <div class="gallery-card-footer">scikit-learn · AUC = 0.89 · Titanic Classifier</div>
+                </div>
+
+                <div class="gallery-card" data-gallery-tag="python" aria-label="Feature importance bar chart">
+                    <div class="gallery-card-header">
+                        <span class="gallery-card-title">Feature Importance: SHAP Values</span>
+                        <span class="gallery-chip">Python</span>
+                    </div>
+                    <div class="gallery-canvas-wrap">
+                        <canvas id="gallery-chart-8" class="gallery-canvas" aria-label="Horizontal bar chart showing SHAP feature importance values for top predictors"></canvas>
+                    </div>
+                    <div class="gallery-card-footer">XGBoost · SHAP · Fraud Detection Model</div>
                 </div>
 
             </div>
