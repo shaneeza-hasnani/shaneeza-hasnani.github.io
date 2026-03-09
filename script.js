@@ -236,38 +236,6 @@ function debounce(fn, delay) {
     };
 }
 
-/* ================================================================
-   LOADER
-   ================================================================ */
-function initLoader(onComplete) {
-    const loader  = document.getElementById('loader');
-    const bar     = document.getElementById('loader-bar');
-    const percent = document.getElementById('loader-percent');
-
-    if (!loader) { onComplete(); return; }
-
-    const start    = performance.now();
-    const duration = 1800;
-
-    function step(now) {
-        const elapsed = now - start;
-        const t       = Math.min(elapsed / duration, 1);
-        const eased   = 1 - Math.pow(1 - t, 3);
-        const progress = eased * 100;
-
-        if (bar)     bar.style.width     = progress + '%';
-        if (percent) percent.textContent = Math.round(progress) + '%';
-
-        if (t < 1) {
-            requestAnimationFrame(step);
-        } else {
-            loader.classList.add('hidden');
-            setTimeout(onComplete, 500);
-        }
-    }
-
-    requestAnimationFrame(step);
-}
 
 /* ================================================================
    SCROLL PROGRESS
@@ -355,118 +323,6 @@ function initNavigation() {
     });
 }
 
-/* ================================================================
-   THREE.JS NEURAL NETWORK HERO
-   ================================================================ */
-function initThreeHero() {
-    if (typeof THREE === 'undefined') return;
-
-    const canvas = document.getElementById('three-canvas');
-    if (!canvas) return;
-
-    const mobile     = isMobile();
-    const NODE_COUNT = mobile ? 35 : 70;
-    const EDGE_THRESH = mobile ? 1.8 : 2.2;
-
-    const scene    = new THREE.Scene();
-    const camera   = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 100);
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: !mobile });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    camera.position.z = 6;
-
-    // Node geometry & materials
-    const nodeGeom = new THREE.SphereGeometry(0.045, 8, 8);
-    const nodeGroup = new THREE.Group();
-    const positions = [];
-
-    for (let i = 0; i < NODE_COUNT; i++) {
-        const mat   = new THREE.MeshBasicMaterial({ color: 0x14B8A6, transparent: true, opacity: 0.75 });
-        const mesh  = new THREE.Mesh(nodeGeom, mat);
-        const phi   = Math.acos(1 - 2 * (i + 0.5) / NODE_COUNT);
-        const theta = Math.PI * (1 + Math.sqrt(5)) * (i + 0.5);
-        const r     = 3.5 + (Math.random() - 0.5) * 2;
-        mesh.position.set(
-            r * Math.sin(phi) * Math.cos(theta),
-            r * Math.sin(phi) * Math.sin(theta),
-            r * Math.cos(phi)
-        );
-        positions.push(mesh.position.clone());
-        mesh.userData.pulseSpeed  = 0.5 + Math.random() * 2;
-        mesh.userData.pulseOffset = Math.random() * Math.PI * 2;
-        mesh.userData.baseOpacity = 0.35 + Math.random() * 0.4;
-        nodeGroup.add(mesh);
-    }
-
-    // Accent nodes
-    [2, 11, 23, 38, 55].filter(i => i < NODE_COUNT).forEach((idx, i) => {
-        nodeGroup.children[idx].material.color.setHex(i % 2 === 0 ? 0x8B5CF6 : 0xF59E0B);
-        nodeGroup.children[idx].scale.setScalar(2.2);
-    });
-
-    scene.add(nodeGroup);
-
-    // Edges
-    const edgeGroup = new THREE.Group();
-    const edgeMat   = new THREE.LineBasicMaterial({ color: 0x14B8A6, transparent: true, opacity: 0.12 });
-    for (let i = 0; i < NODE_COUNT; i++) {
-        for (let j = i + 1; j < NODE_COUNT; j++) {
-            if (positions[i].distanceTo(positions[j]) < EDGE_THRESH) {
-                const geom = new THREE.BufferGeometry().setFromPoints([positions[i], positions[j]]);
-                edgeGroup.add(new THREE.Line(geom, edgeMat.clone()));
-            }
-        }
-    }
-    scene.add(edgeGroup);
-
-    // Show canvas
-    canvas.classList.add('visible');
-
-    // Mouse tilt
-    let targetX = 0, targetY = 0;
-    document.addEventListener('mousemove', e => {
-        targetX = (e.clientX / window.innerWidth  - 0.5) * 0.5;
-        targetY = (e.clientY / window.innerHeight - 0.5) * 0.35;
-    }, { passive: true });
-
-    // Render loop
-    const clock = new THREE.Clock();
-    let   paused = false;
-
-    function animate() {
-        requestAnimationFrame(animate);
-        if (paused) return;
-
-        const t = clock.getElapsedTime();
-        nodeGroup.rotation.y  = t * 0.07 + targetX;
-        nodeGroup.rotation.x  = Math.sin(t * 0.04) * 0.15 + targetY;
-        edgeGroup.rotation.y  = nodeGroup.rotation.y;
-        edgeGroup.rotation.x  = nodeGroup.rotation.x;
-
-        nodeGroup.children.forEach(node => {
-            const p = Math.sin(t * node.userData.pulseSpeed + node.userData.pulseOffset);
-            node.material.opacity = node.userData.baseOpacity + p * 0.25;
-        });
-
-        renderer.render(scene, camera);
-    }
-
-    animate();
-
-    document.addEventListener('visibilitychange', () => { paused = document.hidden; });
-
-    const heroEl = document.getElementById('home');
-    if (heroEl) {
-        new IntersectionObserver(entries => { paused = !entries[0].isIntersecting; }, { threshold: 0 })
-            .observe(heroEl);
-    }
-
-    window.addEventListener('resize', debounce(() => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-    }, 200));
-}
 
 /* ================================================================
    TYPED.JS
@@ -955,20 +811,6 @@ function initScrollReveal() {
 function initGSAPAnimations() {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
     gsap.registerPlugin(ScrollTrigger);
-
-    // Hero canvas parallax
-    const canvas = document.getElementById('three-canvas');
-    if (canvas) {
-        ScrollTrigger.create({
-            trigger: '#home',
-            start: 'top top',
-            end: 'bottom top',
-            onUpdate: self => {
-                canvas.style.transform = `translateY(${self.progress * 100}px)`;
-                canvas.style.opacity   = String(Math.max(0, 1 - self.progress * 1.5));
-            }
-        });
-    }
 }
 
 /* ================================================================
@@ -1196,11 +1038,8 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('load', () => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    initLoader(() => {
-        if (!prefersReduced) initThreeHero();
-        runHeroEntrance();
-        initGSAPAnimations();
-    });
+    runHeroEntrance();
+    initGSAPAnimations();
 
     initTerminal();
     initSkillsRadar();
