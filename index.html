@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,6 +36,11 @@
                 <span class="status-text">Available</span>
             </div>
 
+            <button class="theme-toggle" id="theme-toggle" aria-label="Switch to light mode" title="Toggle theme">
+                <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </button>
+
             <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false">
                 <span></span><span></span><span></span>
             </button>
@@ -60,21 +65,11 @@
         <div class="hero-grid-overlay" aria-hidden="true"></div>
 
         <div class="hero-content">
-            <div class="hero-eyebrow">
-                <span class="eyebrow-line" aria-hidden="true"></span>
-                <span class="eyebrow-text">CERTIFIED FRAUD EXAMINER · DATA SCIENTIST</span>
-                <span class="eyebrow-line" aria-hidden="true"></span>
-            </div>
+            <div class="hero-subtitle">Certified Fraud Examiner · Data Scientist · ML Engineer</div>
 
             <h1 class="hero-name" id="hero-name">Shaneeza Hasnani</h1>
 
-            <div class="hero-typed-row">
-                <span class="typed-prefix" aria-hidden="true">&gt;&nbsp;</span>
-                <span id="typed-target" aria-label="Role: Data Scientist"></span>
-                <span class="typed-cursor" aria-hidden="true">_</span>
-            </div>
-
-            <p class="hero-tagline">Bridging financial forensics with machine learning to detect, predict, and prevent fraud at scale.</p>
+            <p class="hero-tagline">One of the few who bridges forensic accounting and machine learning. I build systems that catch financial crime — not just audit it.</p>
 
             <div class="hero-stats-row" aria-label="Quick stats">
                 <div class="hero-stat">
@@ -126,55 +121,50 @@
     <section id="about" class="about-section section">
         <div class="container">
             <div class="section-header">
-                <div class="section-label">// 01 &mdash; ABOUT</div>
-                <h2 class="section-title">Who I Am</h2>
+                <h2 class="section-title">About</h2>
                 <div class="section-underline"></div>
             </div>
 
             <div class="about-grid">
-                <!-- Terminal window -->
-                <div class="terminal-window" aria-label="Interactive terminal showing about information">
-                    <div class="terminal-titlebar" aria-hidden="true">
-                        <div class="terminal-dots">
-                            <span class="tdot tdot-red"></span>
-                            <span class="tdot tdot-yellow"></span>
-                            <span class="tdot tdot-green"></span>
-                        </div>
-                        <span class="terminal-title">shaneeza@datalab: ~</span>
-                    </div>
-                    <div class="terminal-body" id="terminal-body" aria-live="polite">
-                        <!-- JS types content here -->
-                    </div>
-                </div>
-
-                <!-- Avatar + Stats -->
-                <div class="about-right">
-                    <div class="avatar-container" aria-label="Profile avatar">
-                        <div class="avatar-ring avatar-ring-1" aria-hidden="true"></div>
-                        <div class="avatar-ring avatar-ring-2" aria-hidden="true"></div>
-                        <div class="avatar-core">
+                <!-- Photo + Stats column -->
+                <div class="about-photo-col">
+                    <div class="profile-photo-wrap">
+                        <!-- Drop your headshot as photo.jpg in this folder -->
+                        <img src="photo.jpg" alt="Shaneeza Hasnani" class="profile-photo"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="photo-fallback" style="display:none">
                             <span class="avatar-initials">SH</span>
-                            <span class="avatar-glow" aria-hidden="true"></span>
                         </div>
                     </div>
 
                     <div class="about-counters">
                         <div class="counter-card" data-count="5" data-suffix="+">
-                            <span class="counter-num">0</span>
-                            <span class="counter-label">Years of Experience</span>
+                            <span class="counter-num">5+</span>
+                            <span class="counter-label">Years in Data</span>
                         </div>
                         <div class="counter-card" data-count="6" data-suffix="">
-                            <span class="counter-num">0</span>
-                            <span class="counter-label">Projects Completed</span>
+                            <span class="counter-num">6</span>
+                            <span class="counter-label">Projects</span>
                         </div>
                         <div class="counter-card" data-count="3" data-suffix="">
-                            <span class="counter-num">0</span>
+                            <span class="counter-num">3</span>
                             <span class="counter-label">Internships</span>
                         </div>
                         <div class="counter-card" data-count="3" data-suffix="">
-                            <span class="counter-num">0</span>
-                            <span class="counter-label">Certs & Awards</span>
+                            <span class="counter-num">3</span>
+                            <span class="counter-label">Certifications</span>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Prose column -->
+                <div class="about-text-col">
+                    <div class="about-prose">
+                        <p>I came to data science from fraud examination — which means I approach problems differently. Before I learned to build models, I learned to follow money: through fraudulent financial statements, misappropriated assets, and corporate corruption cases at the NY Attorney General's Office.</p>
+
+                        <p>That background shapes how I work. I don't just fit models to data. I think about what an anomaly means, why it's there, and what the numbers are trying to hide. I hold the CFE certification — one of the most rigorous credentials in financial crime — and I'm completing my MS in Business Analytics &amp; AI at American University, where I also work as a Research Assistant at SCSP on AI policy and national security.</p>
+
+                        <p>I'm actively looking for data science and fraud analytics roles where I can use both sides of what I do.</p>
                     </div>
                 </div>
             </div>
@@ -186,8 +176,7 @@
     <section id="skills" class="skills-section section">
         <div class="container">
             <div class="section-header">
-                <div class="section-label">// 02 &mdash; SKILLS</div>
-                <h2 class="section-title">Data Lab</h2>
+                <h2 class="section-title">Skills</h2>
                 <div class="section-underline"></div>
             </div>
 
@@ -233,8 +222,7 @@
     <section id="projects" class="projects-section section">
         <div class="container">
             <div class="section-header">
-                <div class="section-label">// 03 &mdash; PROJECTS</div>
-                <h2 class="section-title">Featured Work</h2>
+                <h2 class="section-title">Projects</h2>
                 <div class="section-underline"></div>
             </div>
 
@@ -426,8 +414,7 @@
     <section id="timeline" class="timeline-section section">
         <div class="container">
             <div class="section-header">
-                <div class="section-label">// 04 &mdash; TIMELINE</div>
-                <h2 class="section-title">Career Path</h2>
+                <h2 class="section-title">Experience</h2>
                 <div class="section-underline"></div>
             </div>
 
@@ -564,30 +551,12 @@
     <section id="contact" class="contact-section section">
         <div class="container">
             <div class="section-header">
-                <div class="section-label">// 05 &mdash; CONTACT</div>
-                <h2 class="section-title">Open Channel</h2>
+                <h2 class="section-title">Get in Touch</h2>
                 <div class="section-underline"></div>
             </div>
 
-            <div class="contact-terminal">
-                <div class="terminal-titlebar" aria-hidden="true">
-                    <div class="terminal-dots">
-                        <span class="tdot tdot-red"></span>
-                        <span class="tdot tdot-yellow"></span>
-                        <span class="tdot tdot-green"></span>
-                    </div>
-                    <span class="terminal-title">shaneeza@datalab: ~/contact</span>
-                </div>
-                <div class="contact-terminal-body">
-                    <div class="ct-line"><span class="ct-prompt">$</span> <span class="ct-cmd">cat contact.json</span></div>
-                    <pre class="ct-json">{
-  <span class="json-key">"name"</span>:          <span class="json-str">"Shaneeza Hasnani"</span>,
-  <span class="json-key">"status"</span>:        <span class="json-green">"available_for_work"</span>,
-  <span class="json-key">"looking_for"</span>:  <span class="json-str">"Data Science · Fraud Analytics · ML roles"</span>,
-  <span class="json-key">"response_time"</span>: <span class="json-str">"&lt; 24 hours"</span>
-}</pre>
-                    <div class="ct-line ct-line-prompt"><span class="ct-prompt">$</span> <span class="ct-blink-cursor" aria-hidden="true"></span></div>
-                </div>
+            <div class="contact-cta">
+                <p class="contact-cta-text">I'm actively looking for data science and fraud analytics roles. If my background fits something you're working on, reach out — I respond within 24 hours.</p>
             </div>
 
             <div class="contact-links-grid">
@@ -633,7 +602,7 @@
     <footer class="footer">
         <div class="container footer-inner">
             <span class="footer-brand">SH</span>
-            <span class="footer-copy">&copy; 2026 Shaneeza Hasnani. Built with data and &hearts;.</span>
+            <span class="footer-copy">&copy; 2026 Shaneeza Hasnani</span>
             <div class="footer-socials">
                 <a href="https://github.com/shaneeza-hasnani" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="footer-social-icon">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
