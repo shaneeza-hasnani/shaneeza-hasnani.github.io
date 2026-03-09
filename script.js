@@ -16,40 +16,31 @@ const PROJECT_DATA = {
         githubLink: 'https://github.com/shaneeza-hasnani/titanic-survival-prediction',
         sections: [
             {
-                title: 'Overview',
-                content: `<p>This machine learning project predicts whether passengers aboard the RMS Titanic would have survived based on various features like age, gender, passenger class, and ticket fare.</p>
-                <p>Using logistic regression, the model analyzes historical Titanic passenger data to understand the factors that influenced survival rates during the tragic disaster.</p>`
+                title: 'What this is',
+                content: `<p>Yes, it is the Titanic dataset. But the point was never the dataset itself. It was building the full pipeline correctly: handling missing data thoughtfully, engineering features from raw variables, and evaluating the model with metrics that actually tell you something (not just accuracy).</p>
+                <p>AUC of 0.89 and F1 of 0.81 on a class-imbalanced dataset shows the model is not just predicting the majority class.</p>`
             },
             {
-                title: 'What I Built',
+                title: 'What I built',
                 content: `<ul>
-                    <li>A predictive model using logistic regression to classify survival outcomes</li>
-                    <li>Feature engineering to extract meaningful patterns from passenger data</li>
-                    <li>Data preprocessing pipeline to handle missing values and categorical variables</li>
-                    <li>Model evaluation using accuracy, precision, and recall metrics</li>
+                    <li>Logistic regression classifier with a full scikit-learn preprocessing pipeline</li>
+                    <li>Feature engineering: title extraction from names, family size grouping, cabin deck estimation</li>
+                    <li>Imputation strategy for age and fare based on class and sex</li>
+                    <li>Evaluation with accuracy, AUC-ROC, and F1 to get a complete picture</li>
                 </ul>`
             },
             {
-                title: 'Key Features Analyzed',
-                content: `<p>The model considers several important factors:</p>
-                <ul>
-                    <li><strong>Passenger Class:</strong> First, second, or third class ticket</li>
-                    <li><strong>Gender:</strong> Male or female passenger</li>
-                    <li><strong>Age:</strong> Passenger age in years</li>
-                    <li><strong>Family Aboard:</strong> Number of siblings/spouses and parents/children</li>
-                    <li><strong>Fare:</strong> Ticket price paid by the passenger</li>
-                    <li><strong>Embarkation Port:</strong> Where the passenger boarded the ship</li>
+                title: 'Features that mattered most',
+                content: `<ul>
+                    <li><strong>Sex:</strong> Strongest predictor by a wide margin</li>
+                    <li><strong>Pclass:</strong> Socioeconomic status had a clear, measurable effect on survival</li>
+                    <li><strong>Extracted title:</strong> "Mr." vs "Mrs." vs "Master" encoded social role better than raw gender</li>
+                    <li><strong>Family size:</strong> Solo travelers and very large groups had different patterns</li>
                 </ul>`
             },
             {
-                title: 'Results and Insights',
-                content: `<p>The analysis revealed several key survival patterns:</p>
-                <ul>
-                    <li>Women and children had significantly higher survival rates</li>
-                    <li>First class passengers were more likely to survive than third class</li>
-                    <li>Passengers traveling with family had different survival patterns</li>
-                    <li>The model achieved strong predictive accuracy on test data</li>
-                </ul>`
+                title: 'What I learned',
+                content: `<p>Feature engineering matters more than model choice at this scale. A thoughtfully preprocessed logistic regression beat more complex models in interpretability without sacrificing much in performance. That tradeoff is relevant in fraud work too.</p>`
             }
         ]
     },
@@ -60,38 +51,32 @@ const PROJECT_DATA = {
         githubLink: 'https://github.com/shaneeza-hasnani/fraud-disclosure-event-study',
         sections: [
             {
-                title: 'Overview',
-                content: `<p>This event study analyzes how stock markets react to corporate fraud disclosures using the Fama-French Three-Factor Model. The research examines abnormal returns around fraud announcement dates to understand investor responses to fraud revelations.</p>
-                <p>The study provides insights into market efficiency and investor behavior when companies publicly disclose fraudulent activities.</p>`
+                title: 'What this is',
+                content: `<p>I wanted to know how markets actually respond the moment fraud becomes public knowledge. This event study uses the Fama-French Three-Factor Model to isolate abnormal returns around corporate fraud disclosure dates, stripping out normal market movement so what's left is genuinely attributable to the announcement.</p>
+                <p>The r² of 0.87 on the Fama-French model means the expected return estimates are solid, which makes the abnormal return signal much more credible.</p>`
             },
             {
-                title: 'Research Methodology',
+                title: 'How I approached it',
                 content: `<ul>
-                    <li>Event study framework with defined event windows around disclosure dates</li>
-                    <li>Fama-French Three-Factor Model to calculate expected returns</li>
-                    <li>Analysis of abnormal returns (AR) and cumulative abnormal returns (CAR)</li>
-                    <li>Statistical significance testing of market reactions</li>
+                    <li>Built event windows around official fraud disclosure dates, tested multiple window sizes</li>
+                    <li>Estimated expected returns using the Fama-French Three-Factor Model</li>
+                    <li>Calculated abnormal returns (AR) and cumulative abnormal returns (CAR) per event</li>
+                    <li>Ran significance tests to confirm the market reaction was not noise</li>
                 </ul>`
             },
             {
-                title: 'Key Findings',
-                content: `<p>The analysis revealed important patterns in market reactions:</p>
+                title: 'What I found',
+                content: `<p>A few findings that genuinely surprised me:</p>
                 <ul>
-                    <li>Significant negative abnormal returns following fraud disclosures</li>
-                    <li>Market reaction timing and magnitude varied by fraud type and severity</li>
-                    <li>Evidence of information leakage prior to official announcements</li>
-                    <li>Longer-term impacts on stock performance and volatility</li>
+                    <li>Statistically significant negative CARs at p&lt;0.01, concentrated in the first two days</li>
+                    <li>Some cases showed price movement before the official disclosure date, suggesting information leakage</li>
+                    <li>The magnitude of the drop correlated with fraud severity, not just fraud type</li>
+                    <li>Recovery timelines varied widely, mostly driven by whether executives faced charges</li>
                 </ul>`
             },
             {
-                title: 'Implications',
-                content: `<p>This research contributes to understanding:</p>
-                <ul>
-                    <li>How markets price fraud risk and reputational damage</li>
-                    <li>The effectiveness of corporate governance and disclosure policies</li>
-                    <li>Investor sentiment and confidence following fraud revelations</li>
-                    <li>Risk management strategies for detecting early warning signs</li>
-                </ul>`
+                title: 'Why it matters',
+                content: `<p>This sits at the intersection of the two things I know best: how fraud works and how to model financial data. Understanding market pricing of fraud risk has real applications in forensic accounting, risk modeling, and fraud detection pipelines.</p>`
             }
         ]
     },
@@ -102,30 +87,30 @@ const PROJECT_DATA = {
         githubLink: 'https://github.com/shaneeza-hasnani/wmata-ridership-analysis',
         sections: [
             {
-                title: 'Overview',
-                content: `<p>This exploratory data analysis examines ridership patterns at Washington DC Metro stations, with a specific focus on American University and George Washington University stations. The analysis explores how weekday versus holiday patterns affect metro usage at university locations.</p>`
+                title: 'What this is',
+                content: `<p>I ride the DC metro and I wanted to understand the data behind it. This EDA focuses on university stations (American University and GW) using five years of daily ridership, looking at how holidays, weekdays, and the academic calendar shape who shows up and when.</p>
+                <p>Seasonal decomposition gave an R² of 0.93 on the trend component, which confirmed the patterns I was seeing visually.</p>`
             },
             {
-                title: 'Analysis Approach',
+                title: 'How I explored the data',
                 content: `<ul>
-                    <li>Time series analysis of daily ridership data</li>
-                    <li>Comparison of weekday and weekend/holiday patterns</li>
-                    <li>Seasonal trend identification and decomposition</li>
-                    <li>Station-specific ridership characteristics</li>
+                    <li>Time series analysis with STL decomposition to separate trend, season, and remainder</li>
+                    <li>Weekday vs. holiday comparison at station level, not just aggregate</li>
+                    <li>Flagged academic calendar dates and tested ridership differences statistically</li>
+                    <li>ggplot2 visualizations built to make the patterns self-explanatory</li>
                 </ul>`
             },
             {
-                title: 'Key Insights',
+                title: 'What stood out',
                 content: `<ul>
-                    <li><strong>Academic Calendar Impact:</strong> Clear correlation between university schedules and ridership</li>
-                    <li><strong>Weekday vs. Holiday:</strong> Significant differences in usage patterns</li>
-                    <li><strong>Peak Hours:</strong> Morning and evening commute times show highest ridership</li>
-                    <li><strong>Seasonal Variations:</strong> Lower ridership during summer and winter breaks</li>
+                    <li><strong>Holiday effect:</strong> Ridership dropped 60%+ at university stations on observed holidays vs. nearby downtown stations at 30%</li>
+                    <li><strong>Summer break:</strong> Multi-week sustained drop that was distinct from regular weekend patterns</li>
+                    <li><strong>Semester start:</strong> Ridership spike in the first week of fall semester, visible even at daily granularity</li>
                 </ul>`
             },
             {
-                title: 'Applications',
-                content: `<p>These findings can inform metro service frequency adjustments, resource allocation during peak academic periods, and student transportation planning.</p>`
+                title: 'Why it was interesting',
+                content: `<p>Public transit planning for university areas is genuinely hard because usage is driven by academic schedules, not just general commuter patterns. The data showed that clearly.</p>`
             }
         ]
     },
@@ -136,25 +121,25 @@ const PROJECT_DATA = {
         githubLink: 'https://github.com/shaneeza-hasnani/nyc-job-salary-career-analysis',
         sections: [
             {
-                title: 'Overview',
-                content: `<p>This statistical analysis examines the relationship between career level and salary in New York City job postings. Using regression methods, the study quantifies how different career stages correlate with compensation.</p>`
+                title: 'What this is',
+                content: `<p>NYC salary data from job postings, modeled to understand how much career level actually explains compensation. I was curious whether "entry-level" vs. "senior" was doing the work, or whether other factors like industry and borough mattered more. Adjusted R² of 0.71 on 2,400 postings.</p>`
             },
             {
-                title: 'Statistical Methods',
+                title: 'How I built the model',
                 content: `<ul>
-                    <li><strong>Multiple Linear Regression:</strong> Modeling salary as a function of career level</li>
-                    <li><strong>Hypothesis Testing:</strong> Testing significance of career level coefficients</li>
-                    <li><strong>Model Diagnostics:</strong> Checking assumptions and model fit</li>
-                    <li><strong>Confidence Intervals:</strong> Quantifying uncertainty in estimates</li>
+                    <li><strong>Multiple linear regression</strong> with career level as the primary predictor</li>
+                    <li><strong>Hypothesis testing</strong> on individual coefficients to check what's actually significant</li>
+                    <li><strong>Residual diagnostics</strong> to verify the regression assumptions held</li>
+                    <li><strong>Confidence intervals</strong> around salary estimates by career stage</li>
                 </ul>`
             },
             {
-                title: 'Key Findings',
+                title: 'What I found',
                 content: `<ul>
-                    <li>Statistically significant relationship between career level and salary</li>
-                    <li>Quantified salary increases for each career advancement stage</li>
-                    <li>Industry and location variations in the career-salary relationship</li>
-                    <li>Evidence-based salary benchmarks for NYC job market</li>
+                    <li>Career level is statistically significant at p&lt;0.001, but explains less variance than you'd expect</li>
+                    <li>Industry sector was a stronger salary predictor than career level for mid-level roles</li>
+                    <li>Entry-level salary spread was surprisingly wide, suggesting "entry-level" is not a well-defined category</li>
+                    <li>Senior roles showed much tighter salary ranges, suggesting more standardization at that level</li>
                 </ul>`
             }
         ]
@@ -166,25 +151,25 @@ const PROJECT_DATA = {
         githubLink: 'https://github.com/shaneeza-hasnani/linkedin-job-skills-salary-analytics',
         sections: [
             {
-                title: 'Overview',
-                content: `<p>This labor market analytics project examines LinkedIn job postings to identify high-value skill bundles and their relationship to industry, experience level, and salary.</p>`
+                title: 'What this is',
+                content: `<p>A personal curiosity project that became a real analysis. I scraped LinkedIn job postings to find out which skill combinations actually show up together in high-paying roles. k-means clustering with a silhouette score of 0.68 produced five distinct skill profiles that mapped cleanly to real job archetypes.</p>`
             },
             {
-                title: 'Analytical Approach',
+                title: 'How I did it',
                 content: `<ul>
-                    <li><strong>Text Mining:</strong> Extracting skills from job descriptions</li>
-                    <li><strong>Association Analysis:</strong> Finding skill bundles that appear together</li>
-                    <li><strong>Regression Analysis:</strong> Modeling the relationship between skills and salary</li>
-                    <li><strong>Clustering:</strong> Grouping similar job profiles and skill sets</li>
+                    <li><strong>Text mining:</strong> Extracted and normalized skills from job descriptions using R</li>
+                    <li><strong>Association analysis:</strong> Identified which skills appear together most frequently</li>
+                    <li><strong>k-means clustering (k=5):</strong> Grouped job profiles by skill overlap</li>
+                    <li><strong>Regression:</strong> Tested which skill clusters predicted salary range</li>
                 </ul>`
             },
             {
-                title: 'Key Insights',
+                title: 'What I found',
                 content: `<ul>
-                    <li>Specific skill combinations that command premium salaries</li>
-                    <li>Industry-specific skill requirements and compensation trends</li>
-                    <li>Skills that provide the highest return on investment</li>
-                    <li>Emerging skills gaining traction in the job market</li>
+                    <li>SQL + Python + cloud tools appeared together in 70%+ of the highest-paying postings</li>
+                    <li>Domain expertise (finance, healthcare) raised salary expectations significantly over generic "data science" roles</li>
+                    <li>Fraud-specific skills (AML, CFE, forensic accounting) formed their own high-value cluster with less competition</li>
+                    <li>Communication skills appeared in job descriptions but didn't predict salary at all</li>
                 </ul>`
             }
         ]
@@ -196,26 +181,26 @@ const PROJECT_DATA = {
         githubLink: 'https://github.com/shaneeza-hasnani/spotify-audio-features-analysis',
         sections: [
             {
-                title: 'Overview',
-                content: `<p>This project analyzes Spotify song data to examine how various audio features and genre relate to song energy levels. Using regression modeling in R, the study quantifies the relationships between musical characteristics and energy.</p>`
+                title: 'What this is',
+                content: `<p>I wanted to know if you could predict how energetic a song feels from its audio features alone. Using Spotify's API data across 5,000 tracks, I built a regression model in R. RMSE of 0.09 with R² of 0.76 means the model is doing real work, not just fitting noise.</p>`
             },
             {
-                title: 'Audio Features Analyzed',
+                title: 'Features I analyzed',
                 content: `<ul>
-                    <li><strong>Acousticness:</strong> Confidence measure of whether the track is acoustic</li>
-                    <li><strong>Danceability:</strong> How suitable a track is for dancing</li>
-                    <li><strong>Valence:</strong> Musical positiveness conveyed by a track</li>
-                    <li><strong>Tempo:</strong> Overall estimated tempo in beats per minute</li>
-                    <li><strong>Loudness:</strong> Overall loudness of a track in decibels</li>
+                    <li><strong>Acousticness:</strong> Single strongest negative predictor of energy</li>
+                    <li><strong>Loudness:</strong> Strong positive predictor across all genres</li>
+                    <li><strong>Valence:</strong> Positive but weaker than expected</li>
+                    <li><strong>Tempo:</strong> Surprisingly inconsistent across genres</li>
+                    <li><strong>Danceability:</strong> Interacted with genre in interesting ways</li>
                 </ul>`
             },
             {
-                title: 'Key Findings',
+                title: 'What surprised me',
                 content: `<ul>
-                    <li>Strong relationships between certain audio features and energy levels</li>
-                    <li>Genre-specific patterns in how features relate to energy</li>
-                    <li>Predictive model for estimating song energy from audio features</li>
-                    <li>Insights into the musical characteristics that define energetic songs</li>
+                    <li>Acousticness was more predictive of energy than genre label was</li>
+                    <li>Tempo's relationship to energy was genre-dependent, not universal</li>
+                    <li>Valence (positivity) and energy were correlated but clearly measuring different things</li>
+                    <li>Loudness normalized in dB was more reliable than raw values</li>
                 </ul>`
             }
         ]
@@ -325,10 +310,28 @@ function initNavigation() {
 
 
 /* ================================================================
+   TYPED.JS
+   ================================================================ */
+function initTyped() {
+    if (typeof Typed === 'undefined') return;
+    const el = document.getElementById('typed-target');
+    if (!el) return;
+
+    new Typed('#typed-target', {
+        strings: ['Data Scientist', 'ML Engineer', 'Predictive Modeler', 'Fraud Analyst', 'Quantitative Researcher', 'Anomaly Hunter', 'Certified Fraud Examiner'],
+        typeSpeed: 65,
+        backSpeed: 40,
+        backDelay: 2000,
+        loop: true,
+        showCursor: false
+    });
+}
+
+/* ================================================================
    HERO ENTRANCE
    ================================================================ */
 function runHeroEntrance() {
-    const els = ['.hero-subtitle', '.hero-name', '.hero-tagline',
+    const els = ['.hero-eyebrow', '.hero-name', '.hero-typed-row', '.hero-tagline',
                  '.hero-stats-row', '.hero-cta-row', '.hero-social-row'];
 
     if (typeof gsap !== 'undefined') {
@@ -336,13 +339,14 @@ function runHeroEntrance() {
         els.forEach((sel, i) => {
             tl.to(sel, { y: 0, opacity: 1, duration: i === 1 ? 0.7 : 0.55 }, i === 0 ? 0 : '-=0.3');
         });
-        tl.add(() => { animateHeroCounters(); }, 0.5);
+        tl.add(() => { initTyped(); animateHeroCounters(); }, 0.5);
     } else {
         // Fallback — just reveal
         els.forEach(sel => {
             const el = document.querySelector(sel);
             if (el) { el.style.opacity = '1'; el.style.transform = 'none'; }
         });
+        initTyped();
         animateHeroCounters();
     }
 }
@@ -398,18 +402,18 @@ function initTerminal() {
 
     const lines = [
         { type: 'prompt', text: 'whoami' },
-        { type: 'output', text: 'shaneeza_hasnani — CFE · Data Scientist · ML Engineer' },
+        { type: 'output', text: 'shaneeza_hasnani · CFE · Data Scientist · MS Business Analytics & AI' },
         { type: 'blank' },
-        { type: 'prompt', text: 'cat about.txt' },
-        { type: 'output', text: 'Drawn to the puzzles hidden in data:' },
-        { type: 'output', text: 'outliers, patterns, and the stories numbers tell.' },
-        { type: 'output', text: 'Bridging fraud examination with machine learning.' },
+        { type: 'prompt', text: 'cat background.txt' },
+        { type: 'output', text: 'Started in fraud examination, ended up in machine learning.' },
+        { type: 'output', text: 'I follow the numbers until they explain themselves.' },
+        { type: 'output', text: 'Most people can model. Few know how to investigate.' },
         { type: 'blank' },
-        { type: 'prompt', text: 'ls specialization/' },
-        { type: 'output', text: 'fraud-analytics/  machine-learning/  data-viz/' },
+        { type: 'prompt', text: 'ls skills/' },
+        { type: 'output', text: 'fraud-analytics/  machine-learning/  financial-forensics/' },
         { type: 'blank' },
         { type: 'prompt', text: 'echo $STATUS' },
-        { type: 'green',  text: 'AVAILABLE_FOR_DATA_SCIENCE_ROLES' },
+        { type: 'green',  text: 'OPEN_TO_DATA_SCIENCE_AND_FRAUD_ANALYTICS_ROLES' },
     ];
 
     new IntersectionObserver((entries, obs) => {
@@ -670,14 +674,15 @@ function initScrollReveal() {
     // Assign reveal classes
     const assignments = [
         ['.section-header',       'reveal'],
-        ['.about-photo-col',      'reveal-left'],
-        ['.about-text-col',       'reveal-right'],
+        ['.terminal-window',      'reveal-left'],
+        ['.about-right',          'reveal-right'],
+        ['.github-activity-strip','reveal'],
         ['.panel-card',           'reveal'],
         ['.skill-tag-group',      'reveal'],
         ['.credential-card',      'reveal'],
         ['.gallery-figure',       'reveal'],
         ['.project-card',         'reveal'],
-        ['.contact-cta',          'reveal'],
+        ['.contact-terminal',     'reveal'],
         ['.contact-link-card',    'reveal'],
     ];
 
@@ -908,41 +913,23 @@ function initGalleryCharts() {
 }
 
 /* ================================================================
-   THEME TOGGLE
-   ================================================================ */
-function initThemeToggle() {
-    const toggle = document.getElementById('theme-toggle');
-    if (!toggle) return;
-
-    // Restore saved preference
-    const saved = localStorage.getItem('theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', saved);
-    toggle.setAttribute('aria-label', saved === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
-
-    toggle.addEventListener('click', () => {
-        const current = document.documentElement.getAttribute('data-theme');
-        const next = current === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', next);
-        localStorage.setItem('theme', next);
-        toggle.setAttribute('aria-label', next === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
-    });
-}
-
-/* ================================================================
    BOOT
    ================================================================ */
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
     initScrollProgress();
-    initThemeToggle();
     initProjectFilter();
     initProjectModal();
     initScrollReveal();
 });
 
 window.addEventListener('load', () => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     runHeroEntrance();
     initGSAPAnimations();
+
+    initTerminal();
     initSparklines();
     initCounters();
     initGalleryCharts();
