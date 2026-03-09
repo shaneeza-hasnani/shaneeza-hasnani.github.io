@@ -571,6 +571,9 @@ function initTerminal() {
         { type: 'prompt', text: 'ls specialization/' },
         { type: 'output', text: 'fraud-analytics/  machine-learning/  data-viz/' },
         { type: 'blank' },
+        { type: 'prompt', text: 'python -c "import interests"' },
+        { type: 'output', text: 'nlp · time-series · model-interpretability · causal-inference' },
+        { type: 'blank' },
         { type: 'prompt', text: 'echo $STATUS' },
         { type: 'green',  text: 'AVAILABLE_FOR_DATA_SCIENCE_ROLES' },
     ];
@@ -1164,6 +1167,98 @@ function buildGalleryCharts() {
                 scales: {
                     x: { ...commonScales.x, title: { display: true, text: 'Valence', color: '#475569', font: { size: 9 } } },
                     y: { ...commonScales.y, title: { display: true, text: 'Energy', color: '#475569', font: { size: 9 } } }
+                }
+            }
+        });
+    }
+
+    /* — Chart 7: ROC Curve — */
+    const c7 = document.getElementById('gallery-chart-7');
+    if (c7) {
+        const rocPoints = [
+            {x:0,    y:0   },
+            {x:0.02, y:0.31},
+            {x:0.05, y:0.52},
+            {x:0.10, y:0.68},
+            {x:0.15, y:0.76},
+            {x:0.22, y:0.83},
+            {x:0.32, y:0.88},
+            {x:0.45, y:0.92},
+            {x:0.60, y:0.95},
+            {x:0.78, y:0.97},
+            {x:1,    y:1   }
+        ];
+        new Chart(c7, {
+            type: 'scatter',
+            data: {
+                datasets: [
+                    {
+                        label: 'ROC (AUC=0.89)',
+                        data: rocPoints,
+                        type: 'line',
+                        borderColor: '#14B8A6',
+                        backgroundColor: 'rgba(20,184,166,0.08)',
+                        borderWidth: 2,
+                        pointRadius: 0,
+                        tension: 0.3,
+                        fill: true
+                    },
+                    {
+                        label: 'Random',
+                        data: [{x:0,y:0},{x:1,y:1}],
+                        type: 'line',
+                        borderColor: 'rgba(148,163,184,0.3)',
+                        backgroundColor: 'transparent',
+                        borderWidth: 1,
+                        borderDash: [4, 4],
+                        pointRadius: 0,
+                        tension: 0
+                    }
+                ]
+            },
+            options: {
+                ...GALLERY_CHART_DEFAULTS,
+                plugins: {
+                    ...GALLERY_CHART_DEFAULTS.plugins,
+                    legend: { display: true, labels: { color: '#94A3B8', font: { family: "'JetBrains Mono', monospace", size: 9 } } }
+                },
+                scales: {
+                    x: { ...commonScales.x, min: 0, max: 1, title: { display: true, text: 'False Positive Rate', color: '#475569', font: { size: 9 } } },
+                    y: { ...commonScales.y, min: 0, max: 1, title: { display: true, text: 'True Positive Rate', color: '#475569', font: { size: 9 } } }
+                }
+            }
+        });
+    }
+
+    /* — Chart 8: Feature Importance (SHAP) — horizontal bar — */
+    const c8 = document.getElementById('gallery-chart-8');
+    if (c8) {
+        new Chart(c8, {
+            type: 'bar',
+            data: {
+                labels: ['Transaction Amt', 'Account Age', 'Velocity', 'Country Risk', 'Hour of Day', 'Device Type', 'Prior Flags'],
+                datasets: [{
+                    label: 'SHAP Value',
+                    data: [0.38, 0.29, 0.25, 0.21, 0.17, 0.13, 0.09],
+                    backgroundColor: [
+                        '#14B8A6', 'rgba(20,184,166,0.85)', 'rgba(20,184,166,0.7)',
+                        'rgba(139,92,246,0.7)', 'rgba(139,92,246,0.6)',
+                        'rgba(245,158,11,0.6)', 'rgba(245,158,11,0.45)'
+                    ],
+                    borderRadius: 4,
+                    barPercentage: 0.65
+                }]
+            },
+            options: {
+                ...GALLERY_CHART_DEFAULTS,
+                indexAxis: 'y',
+                plugins: {
+                    ...GALLERY_CHART_DEFAULTS.plugins,
+                    legend: { display: false }
+                },
+                scales: {
+                    x: { ...commonScales.x, title: { display: true, text: 'Mean |SHAP|', color: '#475569', font: { size: 9 } } },
+                    y: { ...commonScales.y }
                 }
             }
         });
