@@ -223,20 +223,6 @@ function debounce(fn, delay) {
 
 
 /* ================================================================
-   SCROLL PROGRESS
-   ================================================================ */
-function initScrollProgress() {
-    const bar = document.getElementById('scroll-progress');
-    if (!bar) return;
-
-    window.addEventListener('scroll', () => {
-        const scrolled = window.scrollY;
-        const total    = document.documentElement.scrollHeight - window.innerHeight;
-        bar.style.width = (total > 0 ? (scrolled / total) * 100 : 0) + '%';
-    }, { passive: true });
-}
-
-/* ================================================================
    NAVIGATION
    ================================================================ */
 function initNavigation() {
@@ -331,15 +317,15 @@ function initTyped() {
    HERO ENTRANCE
    ================================================================ */
 function runHeroEntrance() {
-    const els = ['.hero-eyebrow', '.hero-name', '.hero-typed-row', '.hero-tagline',
-                 '.hero-stats-row', '.hero-cta-row', '.hero-social-row'];
+    const els = ['.hero-name', '.hero-typed-row', '.hero-tagline',
+                 '.hero-cta-row', '.hero-social-row'];
 
     if (typeof gsap !== 'undefined') {
         const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
         els.forEach((sel, i) => {
-            tl.to(sel, { y: 0, opacity: 1, duration: i === 1 ? 0.7 : 0.55 }, i === 0 ? 0 : '-=0.3');
+            tl.to(sel, { y: 0, opacity: 1, duration: i === 0 ? 0.7 : 0.55 }, i === 0 ? 0 : '-=0.3');
         });
-        tl.add(() => { initTyped(); animateHeroCounters(); }, 0.5);
+        tl.add(() => { initTyped(); }, 0.3);
     } else {
         // Fallback — just reveal
         els.forEach(sel => {
@@ -347,26 +333,7 @@ function runHeroEntrance() {
             if (el) { el.style.opacity = '1'; el.style.transform = 'none'; }
         });
         initTyped();
-        animateHeroCounters();
     }
-}
-
-/* ================================================================
-   HERO COUNTERS
-   ================================================================ */
-function animateHeroCounters() {
-    document.querySelectorAll('.hero-stat-num').forEach(el => {
-        const target = parseInt(el.dataset.val, 10);
-        const start  = performance.now();
-        const dur    = 1200;
-        function tick(now) {
-            const t = Math.min((now - start) / dur, 1);
-            el.textContent = Math.round((1 - Math.pow(1 - t, 3)) * target);
-            if (t < 1) requestAnimationFrame(tick);
-            else el.textContent = target;
-        }
-        requestAnimationFrame(tick);
-    });
 }
 
 /* ================================================================
@@ -917,7 +884,6 @@ function initGalleryCharts() {
    ================================================================ */
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
-    initScrollProgress();
     initProjectFilter();
     initProjectModal();
     initScrollReveal();
