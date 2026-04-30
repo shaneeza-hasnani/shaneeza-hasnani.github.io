@@ -369,7 +369,7 @@ ul, ol { list-style: none; }
 .tdot { width: 12px; height: 12px; border-radius: 50%; }
 .tdot-red    { background: #FF5F56; }
 .tdot-yellow { background: #FFBD2E; }
-.tdot-green  { background: #27C93F; }
+.tdot-green  { background: #2C5C3F; }
 .terminal-title { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); }
 
 .terminal-body {
@@ -625,7 +625,7 @@ ul, ol { list-style: none; }
 }
 .progression-ladder::before {
     content: ''; position: absolute; left: 0.35rem; top: 0.6rem; bottom: 0.6rem;
-    width: 1px; border-left: 1px dotted #8A9A8F;
+    width: 1px; border-left: 1px dotted var(--text-muted);
 }
 .prog-item {
     display: flex; align-items: baseline; gap: 0.75rem;
@@ -635,9 +635,9 @@ ul, ol { list-style: none; }
     content: ''; position: absolute; left: -0.65rem; top: 50%;
     transform: translateY(-50%);
     width: 5px; height: 5px; border-radius: 50%;
-    background: #8A9A8F;
+    background: var(--text-muted);
 }
-.prog-year { font-family: var(--font-mono); font-size: 0.7rem; color: #8A9A8F; min-width: 2.5rem; flex-shrink: 0; }
+.prog-year { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); min-width: 2.5rem; flex-shrink: 0; }
 .prog-role { font-size: 0.82rem; color: var(--text); }
 
 /* ----------------------------------------------------------------
