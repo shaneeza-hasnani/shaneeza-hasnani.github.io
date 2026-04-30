@@ -416,9 +416,9 @@ function typeLines(lines, container, idx) {
     const pauseAfter = isPrompt ? 280 : 90;
 
     if (isPrompt) {
-        lineEl.innerHTML = '<span class="t-prompt">shaneeza@datalab</span><span style="color:#475569">:</span><span class="t-cmd">~</span><span style="color:#94A3B8"> $ </span>';
+        lineEl.innerHTML = '<span class="t-prompt">shaneeza@datalab</span><span style="color:#8A9A8F">:</span><span class="t-cmd">~</span><span style="color:#8A9A8F"> $ </span>';
     } else if (isGreen) {
-        lineEl.style.color = '#10B981';
+        lineEl.style.color = '#1A3A2A';
     } else {
         lineEl.style.opacity = '0.7';
     }
@@ -486,13 +486,13 @@ function initSparklines() {
         let data, color;
         if (type === 'event-study') {
             data  = [50,51,50,49,50,48,46,44,42,38,28,22,20,19,19,20,21,22,23,24];
-            color = '#F59E0B';
+            color = '#8A9A8F';
         } else if (type === 'classification') {
             data  = [50,54,58,63,67,71,74,77,80,82,84,85,86,86,87,87,88,88,89,89];
-            color = '#14B8A6';
+            color = '#1A3A2A';
         } else {
             data  = Array.from({ length: 20 }, (_, i) => 40 + Math.sin(i * 0.6) * 20 + i * 1.5);
-            color = '#8B5CF6';
+            color = '#2C5C3F';
         }
 
         drawSparkline(ctx, w, h, data, color);
@@ -657,9 +657,14 @@ function initScrollReveal() {
         document.querySelectorAll(selector).forEach(el => el.classList.add(cls));
     });
 
-    // Timeline directional reveals
-    document.querySelectorAll('.tl-item').forEach(item => {
-        item.classList.add(item.classList.contains('tl-left') ? 'reveal-left' : 'reveal-right');
+    // Timeline chapter reveals
+    document.querySelectorAll('.chapter').forEach((chapter, i) => {
+        chapter.classList.add('reveal');
+        chapter.style.transitionDelay = (i * 0.15) + 's';
+    });
+    document.querySelectorAll('.chapter-card').forEach((card, i) => {
+        card.classList.add('reveal');
+        card.style.transitionDelay = (i * 0.07) + 's';
     });
 
     // Stagger delays
@@ -713,11 +718,11 @@ const GALLERY_CHART_DEFAULTS = {
     plugins: {
         legend: { display: false },
         tooltip: {
-            backgroundColor: '#1E293B',
-            borderColor: 'rgba(20,184,166,0.3)',
+            backgroundColor: '#F7F5F0',
+            borderColor: 'rgba(26,58,42,0.2)',
             borderWidth: 1,
-            titleColor: '#14B8A6',
-            bodyColor: '#94A3B8'
+            titleColor: '#1A3A2A',
+            bodyColor: '#8A9A8F'
         }
     }
 };
@@ -725,11 +730,11 @@ const GALLERY_CHART_DEFAULTS = {
 function buildGalleryCharts() {
     if (typeof Chart === 'undefined') return;
 
-    const darkGrid = { color: 'rgba(148,163,184,0.07)' };
-    const axisTick = { color: '#475569', font: { family: "'JetBrains Mono', monospace", size: 9 } };
+    const lightGrid = { color: 'rgba(26,58,42,0.07)' };
+    const axisTick = { color: '#8A9A8F', font: { family: "'JetBrains Mono', monospace", size: 9 } };
     const commonScales = {
-        x: { grid: darkGrid, ticks: axisTick, border: { color: 'transparent' } },
-        y: { grid: darkGrid, ticks: axisTick, border: { color: 'transparent' } }
+        x: { grid: lightGrid, ticks: axisTick, border: { color: 'transparent' } },
+        y: { grid: lightGrid, ticks: axisTick, border: { color: 'transparent' } }
     };
 
     /* — Chart 1: Fraud Event Study — CAR line — */
@@ -743,8 +748,8 @@ function buildGalleryCharts() {
                 labels: days,
                 datasets: [{
                     data: car,
-                    borderColor: '#F59E0B',
-                    backgroundColor: 'rgba(245,158,11,0.08)',
+                    borderColor: '#8A9A8F',
+                    backgroundColor: 'rgba(138,154,143,0.08)',
                     borderWidth: 2,
                     pointRadius: 0,
                     fill: true,
@@ -763,13 +768,13 @@ function buildGalleryCharts() {
             data: {
                 labels: ['1st Class', '2nd Class', '3rd Class'],
                 datasets: [
-                    { label: 'Survived', data: [63, 47, 24], backgroundColor: '#14B8A6', borderRadius: 4, barPercentage: 0.6 },
-                    { label: 'Perished', data: [37, 53, 76], backgroundColor: 'rgba(139,92,246,0.5)', borderRadius: 4, barPercentage: 0.6 }
+                    { label: 'Survived', data: [63, 47, 24], backgroundColor: '#1A3A2A', borderRadius: 4, barPercentage: 0.6 },
+                    { label: 'Perished', data: [37, 53, 76], backgroundColor: 'rgba(44,92,63,0.4)', borderRadius: 4, barPercentage: 0.6 }
                 ]
             },
             options: {
                 ...GALLERY_CHART_DEFAULTS,
-                plugins: { ...GALLERY_CHART_DEFAULTS.plugins, legend: { display: true, labels: { color: '#94A3B8', font: { family: "'JetBrains Mono', monospace", size: 9 } } } },
+                plugins: { ...GALLERY_CHART_DEFAULTS.plugins, legend: { display: true, labels: { color: '#8A9A8F', font: { family: "'JetBrains Mono', monospace", size: 9 } } } },
                 scales: commonScales
             }
         });
@@ -784,14 +789,14 @@ function buildGalleryCharts() {
             data: {
                 labels: months,
                 datasets: [
-                    { label: 'Weekday', data: [420,445,460,430,410,390,350,355,455,475,440,390], borderColor: '#14B8A6', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 3, pointBackgroundColor: '#14B8A6', tension: 0.4 },
-                    { label: 'Holiday', data: [180,160,200,195,170,165,195,200,185,175,160,175], borderColor: '#F59E0B', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 3, pointBackgroundColor: '#F59E0B', tension: 0.4 }
+                    { label: 'Weekday', data: [420,445,460,430,410,390,350,355,455,475,440,390], borderColor: '#1A3A2A', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 3, pointBackgroundColor: '#1A3A2A', tension: 0.4 },
+                    { label: 'Holiday', data: [180,160,200,195,170,165,195,200,185,175,160,175], borderColor: '#8A9A8F', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 3, pointBackgroundColor: '#8A9A8F', tension: 0.4 }
                 ]
             },
             options: {
                 ...GALLERY_CHART_DEFAULTS,
-                plugins: { ...GALLERY_CHART_DEFAULTS.plugins, legend: { display: true, labels: { color: '#94A3B8', font: { family: "'JetBrains Mono', monospace", size: 9 } } } },
-                scales: { ...commonScales, y: { ...commonScales.y, title: { display: true, text: 'Avg. Daily Riders (k)', color: '#475569', font: { size: 9 } } } }
+                plugins: { ...GALLERY_CHART_DEFAULTS.plugins, legend: { display: true, labels: { color: '#8A9A8F', font: { family: "'JetBrains Mono', monospace", size: 9 } } } },
+                scales: { ...commonScales, y: { ...commonScales.y, title: { display: true, text: 'Avg. Daily Riders (k)', color: '#8A9A8F', font: { size: 9 } } } }
             }
         });
     }
@@ -806,15 +811,15 @@ function buildGalleryCharts() {
                 datasets: [{
                     data: [62, 85, 112, 135, 165, 210],
                     backgroundColor: [
-                        'rgba(20,184,166,0.5)', 'rgba(20,184,166,0.6)', 'rgba(20,184,166,0.7)',
-                        'rgba(139,92,246,0.6)', 'rgba(139,92,246,0.7)', 'rgba(245,158,11,0.7)'
+                        'rgba(26,58,42,0.4)', 'rgba(26,58,42,0.5)', 'rgba(26,58,42,0.65)',
+                        'rgba(44,92,63,0.6)', 'rgba(44,92,63,0.75)', 'rgba(26,58,42,0.9)'
                     ],
                     borderRadius: 4, barPercentage: 0.7
                 }]
             },
             options: {
                 ...GALLERY_CHART_DEFAULTS,
-                scales: { ...commonScales, y: { ...commonScales.y, title: { display: true, text: 'Median Salary ($k)', color: '#475569', font: { size: 9 } } } }
+                scales: { ...commonScales, y: { ...commonScales.y, title: { display: true, text: 'Median Salary ($k)', color: '#8A9A8F', font: { size: 9 } } } }
             }
         });
     }
@@ -827,14 +832,14 @@ function buildGalleryCharts() {
             data: {
                 labels: ['Python/SQL', 'ML/AI', 'Visualization', 'Finance', 'Communication'],
                 datasets: [
-                    { label: 'High-Salary Bundle', data: [90, 85, 70, 60, 75], borderColor: '#14B8A6', backgroundColor: 'rgba(20,184,166,0.1)', borderWidth: 2, pointBackgroundColor: '#14B8A6' },
-                    { label: 'Avg. Bundle', data: [55, 50, 60, 45, 65], borderColor: '#F59E0B', backgroundColor: 'rgba(245,158,11,0.07)', borderWidth: 2, pointBackgroundColor: '#F59E0B' }
+                    { label: 'High-Salary Bundle', data: [90, 85, 70, 60, 75], borderColor: '#1A3A2A', backgroundColor: 'rgba(26,58,42,0.1)', borderWidth: 2, pointBackgroundColor: '#1A3A2A' },
+                    { label: 'Avg. Bundle', data: [55, 50, 60, 45, 65], borderColor: '#8A9A8F', backgroundColor: 'rgba(138,154,143,0.07)', borderWidth: 2, pointBackgroundColor: '#8A9A8F' }
                 ]
             },
             options: {
                 ...GALLERY_CHART_DEFAULTS,
-                plugins: { ...GALLERY_CHART_DEFAULTS.plugins, legend: { display: true, labels: { color: '#94A3B8', font: { family: "'JetBrains Mono', monospace", size: 9 } } } },
-                scales: { r: { min: 0, max: 100, grid: { color: 'rgba(148,163,184,0.08)' }, angleLines: { color: 'rgba(148,163,184,0.08)' }, ticks: { display: false }, pointLabels: { color: '#94A3B8', font: { size: 9 } } } }
+                plugins: { ...GALLERY_CHART_DEFAULTS.plugins, legend: { display: true, labels: { color: '#8A9A8F', font: { family: "'JetBrains Mono', monospace", size: 9 } } } },
+                scales: { r: { min: 0, max: 100, grid: { color: 'rgba(26,58,42,0.08)' }, angleLines: { color: 'rgba(26,58,42,0.08)' }, ticks: { display: false }, pointLabels: { color: '#8A9A8F', font: { size: 9 } } } }
             }
         });
     }
@@ -852,16 +857,16 @@ function buildGalleryCharts() {
             type: 'scatter',
             data: {
                 datasets: [
-                    { label: 'Tracks', data: scatterData, backgroundColor: 'rgba(20,184,166,0.4)', pointRadius: 3, pointHoverRadius: 5 },
-                    { label: 'Trend', data: trendData, type: 'line', borderColor: '#F59E0B', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 0, tension: 0.3 }
+                    { label: 'Tracks', data: scatterData, backgroundColor: 'rgba(26,58,42,0.35)', pointRadius: 3, pointHoverRadius: 5 },
+                    { label: 'Trend', data: trendData, type: 'line', borderColor: '#8A9A8F', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 0, tension: 0.3 }
                 ]
             },
             options: {
                 ...GALLERY_CHART_DEFAULTS,
                 plugins: { ...GALLERY_CHART_DEFAULTS.plugins, legend: { display: false } },
                 scales: {
-                    x: { ...commonScales.x, title: { display: true, text: 'Valence', color: '#475569', font: { size: 9 } } },
-                    y: { ...commonScales.y, title: { display: true, text: 'Energy', color: '#475569', font: { size: 9 } } }
+                    x: { ...commonScales.x, title: { display: true, text: 'Valence', color: '#8A9A8F', font: { size: 9 } } },
+                    y: { ...commonScales.y, title: { display: true, text: 'Energy', color: '#8A9A8F', font: { size: 9 } } }
                 }
             }
         });
