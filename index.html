@@ -208,10 +208,7 @@
                 <button class="filter-pill active" data-filter="all">All <span class="pill-count">7</span></button>
                 <button class="filter-pill" data-filter="python">Python</button>
                 <button class="filter-pill" data-filter="r">R</button>
-                <button class="filter-pill" data-filter="ml">ML</button>
-                <button class="filter-pill" data-filter="finance">Finance</button>
-                <button class="filter-pill" data-filter="statistics">Statistics</button>
-                <button class="filter-pill" data-filter="fraud">Fraud</button>
+                <button class="filter-pill" data-filter="sql">SQL</button>
             </div>
 
             <!-- Bento grid -->
@@ -235,11 +232,11 @@
                             <span class="metric-icon" aria-hidden="true">◈</span>
                             <span class="metric-val">Fama-French r² = 0.87 · CAR significant at p&lt;0.01</span>
                         </div>
-                        <div class="gallery-canvas-wrap" style="margin-top:1rem;" aria-hidden="true">
+                        <div class="gallery-canvas-wrap project-media" aria-hidden="true">
                             <canvas id="gallery-chart-1" class="gallery-canvas" aria-label="Line chart showing cumulative abnormal returns around fraud disclosure dates"></canvas>
                         </div>
                         <div class="card-footer">
-                            <button class="card-btn-details" data-project="fraud-disclosure">View Details</button>
+                            <button type="button" class="card-btn-details" data-project="fraud-disclosure">View Details</button>
                             <a href="https://github.com/shaneeza-hasnani/fraud-disclosure-event-study" target="_blank" rel="noopener noreferrer" class="card-btn-github" aria-label="View Fraud Disclosure Event Study on GitHub">
                                 GitHub ↗
                             </a>
@@ -248,7 +245,7 @@
                 </article>
 
                 <!-- Fraud Detection (Snowflake) -->
-                <article class="project-card project-card-wide" data-filter="python ml fraud finance" aria-label="Fraud Detection in Snowflake project">
+                <article class="project-card project-card-wide" data-filter="python sql ml fraud finance" aria-label="Fraud Detection in Snowflake project">
 
                     <div class="card-inner">
                         <div class="card-top">
@@ -265,11 +262,11 @@
                             <span class="metric-icon" aria-hidden="true">◈</span>
                             <span class="metric-val">Snowflake feature engineering · Risk scoring pipeline</span>
                         </div>
-                        <div class="gallery-canvas-wrap" style="margin-top:1rem;" aria-hidden="true">
-                            <canvas id="gallery-chart-7" class="gallery-canvas" aria-label="Bar chart showing fraud risk tiers in Snowflake scoring pipeline"></canvas>
+                        <div class="gallery-canvas-wrap project-media" aria-hidden="true">
+                            <img src="assets/fraud-detection-snowflake.svg" alt="Snowflake fraud detection risk scoring thumbnail" class="project-thumb" loading="lazy">
                         </div>
                         <div class="card-footer">
-                            <button class="card-btn-details" data-project="fraud-detection-snowflake">View Details</button>
+                            <button type="button" class="card-btn-details" data-project="fraud-detection-snowflake">View Details</button>
                             <a href="https://github.com/shaneeza-hasnani/fraud-detection-snowflake" target="_blank" rel="noopener noreferrer" class="card-btn-github" aria-label="View Fraud Detection in Snowflake on GitHub">GitHub ↗</a>
                         </div>
                     </div>
@@ -292,11 +289,11 @@
                             <span class="metric-icon" aria-hidden="true">◈</span>
                             <span class="metric-val">Accuracy: 82% · AUC: 0.89 · F1: 0.81</span>
                         </div>
-                        <div class="gallery-canvas-wrap" style="margin-top:1rem;" aria-hidden="true">
+                        <div class="gallery-canvas-wrap project-media" aria-hidden="true">
                             <canvas id="gallery-chart-2" class="gallery-canvas" aria-label="Grouped bar chart showing survival rates by passenger class and gender"></canvas>
                         </div>
                         <div class="card-footer">
-                            <button class="card-btn-details" data-project="titanic-survival">View Details</button>
+                            <button type="button" class="card-btn-details" data-project="titanic-survival">View Details</button>
                             <a href="https://github.com/shaneeza-hasnani/titanic-survival-prediction" target="_blank" rel="noopener noreferrer" class="card-btn-github" aria-label="View Titanic project on GitHub">GitHub ↗</a>
                         </div>
                     </div>
@@ -320,11 +317,11 @@
                             <span class="metric-icon" aria-hidden="true">◈</span>
                             <span class="metric-val">5-year dataset · R² = 0.93 · Seasonal decomposition</span>
                         </div>
-                        <div class="gallery-canvas-wrap" style="margin-top:1rem;" aria-hidden="true">
+                        <div class="gallery-canvas-wrap project-media" aria-hidden="true">
                             <canvas id="gallery-chart-3" class="gallery-canvas" aria-label="Multi-line chart comparing weekday and holiday metro ridership"></canvas>
                         </div>
                         <div class="card-footer">
-                            <button class="card-btn-details" data-project="wmata-ridership">View Details</button>
+                            <button type="button" class="card-btn-details" data-project="wmata-ridership">View Details</button>
                             <a href="https://github.com/shaneeza-hasnani/wmata-ridership-analysis" target="_blank" rel="noopener noreferrer" class="card-btn-github" aria-label="View WMATA project on GitHub">GitHub ↗</a>
                         </div>
                     </div>
@@ -347,11 +344,11 @@
                             <span class="metric-icon" aria-hidden="true">◈</span>
                             <span class="metric-val">Adj. R² = 0.71 · n=2,400 jobs · p&lt;0.001</span>
                         </div>
-                        <div class="gallery-canvas-wrap" style="margin-top:1rem;" aria-hidden="true">
+                        <div class="gallery-canvas-wrap project-media" aria-hidden="true">
                             <canvas id="gallery-chart-4" class="gallery-canvas" aria-label="Bar chart showing median salary by career level in NYC job market"></canvas>
                         </div>
                         <div class="card-footer">
-                            <button class="card-btn-details" data-project="nyc-job-salary">View Details</button>
+                            <button type="button" class="card-btn-details" data-project="nyc-job-salary">View Details</button>
                             <a href="https://github.com/shaneeza-hasnani/nyc-job-salary-career-analysis" target="_blank" rel="noopener noreferrer" class="card-btn-github" aria-label="View NYC Salary project on GitHub">GitHub ↗</a>
                         </div>
                     </div>
@@ -374,11 +371,11 @@
                             <span class="metric-icon" aria-hidden="true">◈</span>
                             <span class="metric-val">k=5 clusters · Silhouette = 0.68</span>
                         </div>
-                        <div class="gallery-canvas-wrap" style="margin-top:1rem;" aria-hidden="true">
+                        <div class="gallery-canvas-wrap project-media" aria-hidden="true">
                             <canvas id="gallery-chart-5" class="gallery-canvas" aria-label="Radar chart showing top skill clusters from LinkedIn job postings"></canvas>
                         </div>
                         <div class="card-footer">
-                            <button class="card-btn-details" data-project="linkedin-skills">View Details</button>
+                            <button type="button" class="card-btn-details" data-project="linkedin-skills">View Details</button>
                             <a href="https://github.com/shaneeza-hasnani/linkedin-job-skills-salary-analytics" target="_blank" rel="noopener noreferrer" class="card-btn-github" aria-label="View LinkedIn Skills project on GitHub">GitHub ↗</a>
                         </div>
                     </div>
@@ -401,11 +398,11 @@
                             <span class="metric-icon" aria-hidden="true">◈</span>
                             <span class="metric-val">RMSE = 0.09 · 5k tracks · R² = 0.76</span>
                         </div>
-                        <div class="gallery-canvas-wrap" style="margin-top:1rem;" aria-hidden="true">
+                        <div class="gallery-canvas-wrap project-media" aria-hidden="true">
                             <canvas id="gallery-chart-6" class="gallery-canvas" aria-label="Scatter chart showing relationship between audio energy and valence in Spotify tracks"></canvas>
                         </div>
                         <div class="card-footer">
-                            <button class="card-btn-details" data-project="spotify-analysis">View Details</button>
+                            <button type="button" class="card-btn-details" data-project="spotify-analysis">View Details</button>
                             <a href="https://github.com/shaneeza-hasnani/spotify-audio-features-analysis" target="_blank" rel="noopener noreferrer" class="card-btn-github" aria-label="View Spotify project on GitHub">GitHub ↗</a>
                         </div>
                     </div>
