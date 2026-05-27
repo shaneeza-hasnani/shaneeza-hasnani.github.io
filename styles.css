@@ -504,8 +504,8 @@ ul, ol { list-style: none; }
 .pill-count { font-size: 0.65rem; background: rgba(255,255,255,0.15); padding: 0 5px; border-radius: 10px; }
 
 .bento-grid {
-    display: grid; grid-template-columns: repeat(12, 1fr);
-    grid-auto-rows: minmax(180px, auto); gap: 1.25rem;
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
 }
 
 .project-card {
@@ -549,10 +549,13 @@ ul, ol { list-style: none; }
 }
 .card-btn-github:hover { background: var(--gold); color: #F7F5F0; }
 
-.project-card-featured { grid-column: span 7; grid-row: span 2; }
-.project-card-tall     { grid-column: span 5; grid-row: span 2; }
-.project-card-wide     { grid-column: span 6; }
-.project-card-small    { grid-column: span 4; }
+.project-card-featured,
+.project-card-tall,
+.project-card-wide,
+.project-card-small {
+    grid-column: span 1;
+    grid-row: span 1;
+}
 
 /* ----------------------------------------------------------------
    TIMELINE — Chapter-based design
@@ -915,10 +918,14 @@ ul, ol { list-style: none; }
    RESPONSIVE
    ---------------------------------------------------------------- */
 @media (max-width: 1024px) {
-    .project-card-featured { grid-column: span 12; }
-    .project-card-tall     { grid-column: span 12; }
-    .project-card-wide     { grid-column: span 6; }
-    .project-card-small    { grid-column: span 6; }
+    .bento-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .project-card-featured,
+    .project-card-tall,
+    .project-card-wide,
+    .project-card-small {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
     .credentials-grid { grid-template-columns: 1fr 1fr; }
     .skill-tags-grid-3 { grid-template-columns: 1fr 1fr; }
 }
@@ -939,8 +946,11 @@ ul, ol { list-style: none; }
     .project-card-featured,
     .project-card-tall,
     .project-card-wide,
-    .project-card-small { grid-column: span 12; }
-    .bento-grid { grid-auto-rows: auto; }
+    .project-card-small {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+    .bento-grid { grid-template-columns: 1fr; }
 
     .chapter-grid { grid-template-columns: 1fr; }
     .chapter-header { gap: 0.75rem; }
