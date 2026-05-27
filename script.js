@@ -80,6 +80,40 @@ const PROJECT_DATA = {
             }
         ]
     },
+    'fraud-detection-snowflake': {
+        title: 'Fraud Detection in Snowflake',
+        badge: 'Fraud Detection',
+        tech: ['Snowflake', 'SQL', 'Python', 'Feature Engineering', 'Risk Scoring'],
+        githubLink: 'https://github.com/shaneeza-hasnani/fraud-detection-snowflake',
+        sections: [
+            {
+                title: 'What this is',
+                content: `<p>A Snowflake-native fraud detection workflow built to keep sensitive transaction data in the warehouse. The pipeline engineers behavioral features, scores risk, and outputs tiered alerts for investigator review.</p>`
+            },
+            {
+                title: 'What I built',
+                content: `<ul>
+                    <li>Warehouse-first ingestion and transformation with SQL and Snowflake tasks</li>
+                    <li>Feature engineering for velocity, merchant behavior, and account risk</li>
+                    <li>Scoring logic that blends statistical rules with model-driven signals</li>
+                    <li>Alert tables designed for downstream dashboards and case management</li>
+                </ul>`
+            },
+            {
+                title: 'Signals I prioritized',
+                content: `<ul>
+                    <li><strong>Velocity spikes:</strong> Short-window bursts that indicate automated abuse</li>
+                    <li><strong>Merchant anomalies:</strong> Outliers in category frequency and spend patterns</li>
+                    <li><strong>Geo distance:</strong> Transactions that jump across improbable locations</li>
+                    <li><strong>Device mismatch:</strong> New device + high-value transaction combos</li>
+                </ul>`
+            },
+            {
+                title: 'Why it matters',
+                content: `<p>Keeping fraud detection inside Snowflake reduces data movement, preserves governance, and speeds analyst response. It is a practical way to operationalize fraud analytics without spinning up a separate ML stack.</p>`
+            }
+        ]
+    },
     'wmata-ridership': {
         title: 'WMATA Ridership Analysis',
         badge: 'Data Analysis',
@@ -868,6 +902,27 @@ function buildGalleryCharts() {
                     x: { ...commonScales.x, title: { display: true, text: 'Valence', color: '#8A9A8F', font: { size: 9 } } },
                     y: { ...commonScales.y, title: { display: true, text: 'Energy', color: '#8A9A8F', font: { size: 9 } } }
                 }
+            }
+        });
+    }
+
+    /* — Chart 7: Snowflake fraud detection — risk tiers — */
+    const c7 = document.getElementById('gallery-chart-7');
+    if (c7) {
+        new Chart(c7, {
+            type: 'bar',
+            data: {
+                labels: ['Low', 'Medium', 'High'],
+                datasets: [{
+                    data: [72, 21, 7],
+                    backgroundColor: ['rgba(26,58,42,0.4)', 'rgba(44,92,63,0.6)', 'rgba(138,154,143,0.8)'],
+                    borderRadius: 4,
+                    barPercentage: 0.6
+                }]
+            },
+            options: {
+                ...GALLERY_CHART_DEFAULTS,
+                scales: { ...commonScales, y: { ...commonScales.y, title: { display: true, text: 'Alert Share (%)', color: '#8A9A8F', font: { size: 9 } } } }
             }
         });
     }
