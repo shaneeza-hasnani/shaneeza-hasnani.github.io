@@ -114,6 +114,39 @@ const PROJECT_DATA = {
             }
         ]
     },
+    'fraud-etl-pipeline': {
+        title: 'Fraud ETL Pipeline',
+        badge: 'ETL Pipeline',
+        tech: ['Python', 'SQL', 'Airflow', 'Data Quality', 'Feature Engineering'],
+        githubLink: 'https://github.com/shaneeza-hasnani/fraud-etl-pipeline',
+        sections: [
+            {
+                title: 'What this is',
+                content: `<p>An end-to-end fraud ETL pipeline that ingests transaction, customer, device, and merchant feeds, standardizes identity signals, and lands curated tables for analytics and investigations. The goal was to make fraud-ready data available without manual cleanup.</p>`
+            },
+            {
+                title: 'What I built',
+                content: `<ul>
+                    <li>Incremental ingestion with schema validation and late-arriving data handling</li>
+                    <li>Entity resolution logic that ties accounts, devices, and merchants together</li>
+                    <li>Feature tables for velocity, geo distance, and merchant anomalies</li>
+                    <li>Orchestrated workflows with retry logic and SLA-based alerting</li>
+                </ul>`
+            },
+            {
+                title: 'Quality and monitoring',
+                content: `<ul>
+                    <li>Row-level checks for nulls, duplicates, and schema drift</li>
+                    <li>Volume anomaly alerts to catch missing or delayed feeds</li>
+                    <li>Data lineage tracking to keep downstream models explainable</li>
+                </ul>`
+            },
+            {
+                title: 'Why it matters',
+                content: `<p>Fraud teams move faster when data is clean, consistent, and explainable. This pipeline turns messy transactional feeds into trusted inputs for risk scoring and case management.</p>`
+            }
+        ]
+    },
     'wmata-ridership': {
         title: 'WMATA Ridership Analysis',
         badge: 'Data Analysis',
