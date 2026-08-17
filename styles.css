@@ -9,5 +9,5 @@
 @media(max-width:900px){.case-grid{grid-template-columns:1fr}.story.featured{grid-column:auto;display:flex}.story.featured::before{height:auto;aspect-ratio:1.52;border-right:0;border-bottom:1px solid var(--line)}}
 
 /* Keep the About-to-Projects transition compact. */
-.about{padding-bottom:clamp(3rem,5vw,5rem)}
-.work{padding-top:clamp(3rem,5vw,5rem)}
+.about{padding-bottom:clamp(2.5rem,3vw,3rem)}
+.work{padding-top:clamp(2.5rem,3vw,3rem)}
