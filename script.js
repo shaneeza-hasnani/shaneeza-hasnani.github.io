@@ -81,5 +81,5 @@ if (caseGrid && projectCards.length) {
 
 const freshStyles = document.createElement('link');
 freshStyles.rel = 'stylesheet';
-freshStyles.href = 'styles.css?v=5';
+freshStyles.href = 'styles.css?v=6';
 document.head.append(freshStyles);
