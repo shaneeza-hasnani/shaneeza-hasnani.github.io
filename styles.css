@@ -7,3 +7,65 @@
 .hero{grid-template-columns:minmax(0,1fr);max-width:690px}.hero-copy{grid-column:1;grid-row:1}.intro{max-width:none}
 
 .certificates{max-width:var(--max);margin:auto;padding:48px 24px 70px;min-height:calc(100svh - 150px)}.certificates h2{font:500 32px/1.3 var(--sans);letter-spacing:-.04em;margin:12px 0 32px}.certificate-list{max-width:800px}.certificate-list article{border-top:1px solid var(--line);padding:22px 0}.certificate-list h3{font-size:15px;line-height:1.6;font-weight:600;margin:0 0 5px}.certificate-issuer{font-size:13px;color:var(--muted);margin:0 0 6px}.certificate-meta,.certificate-id{font-size:11px;color:var(--muted);margin:3px 0;overflow-wrap:anywhere}header nav{flex-wrap:wrap;gap:14px 20px}@media(max-width:700px){.certificates{padding-top:32px}}
+
+/* Warm editorial refinement */
+:root{--paper:#f5f1e9;--ink:#302c35;--muted:#69636d;--purple:#765b91;--line:#ded7d2}
+body{font-size:16px}
+header{padding-top:25px;padding-bottom:25px;gap:32px}
+.brand{font-size:13px;letter-spacing:.035em}
+header nav{gap:18px 24px}
+nav a{font-size:13px;padding-bottom:5px}
+nav a[aria-current="page"]{border-bottom:1px solid var(--purple)}
+nav a:last-child{border:0;padding:0 0 5px}
+.hero{max-width:760px;min-height:calc(100svh - 180px);padding-top:55px;padding-bottom:110px}
+.hero-copy{max-width:650px}
+h1{font:400 clamp(36px,4.5vw,48px)/1.2 var(--serif);letter-spacing:-.04em;margin:0 0 25px}
+.kicker,.section-label{font-family:var(--sans);font-size:11px;letter-spacing:.09em}
+.kicker{margin-bottom:20px}
+.intro{font-size:17px;line-height:1.9;max-width:620px;margin-bottom:24px}
+.home-detail{font-size:13px;line-height:2}
+.hero-actions{margin-top:34px;gap:26px}
+.hero-actions a,.hero-actions a:first-child,.hero-actions a:last-child{font-size:13px}
+.work,.experience,.education,.certificates{padding-top:50px;padding-bottom:90px}
+.work-intro h2,.experience h2,.certificates h2,.contact h2{font:400 38px/1.25 var(--serif);letter-spacing:-.035em}
+.work-intro>p:last-child{font-size:14px;line-height:1.8;margin-top:16px}
+.project-filters{gap:24px;margin-top:35px}
+.filter{font-size:13px}
+.filter-status{font-size:12px;margin-bottom:28px}
+.case-grid{grid-template-columns:1fr;gap:0}
+.story-copy{display:grid;grid-template-columns:minmax(0,1fr) 245px;column-gap:50px;row-gap:12px;padding:30px 0}
+.story h3{grid-column:1;grid-row:1;font-size:20px;line-height:1.5;margin:0}
+.story-type{grid-column:2;grid-row:1;font:500 11px/1.8 var(--sans);letter-spacing:.025em;margin:4px 0 0}
+.project-summary{grid-column:1;grid-row:2;font-size:14px;line-height:1.85;margin:0}
+.story .repo,.story:not(.is-open) .repo{display:block;grid-column:2;grid-row:2;font-size:12px;line-height:1.8;margin:0}
+.story-toggle{grid-column:1;grid-row:3;width:fit-content;font-size:12px;padding:3px 0 0;margin:0}
+.story-toggle::after{float:none;margin-left:15px}
+.story-beats{grid-column:1/-1;grid-row:4;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 35px;margin-top:10px}
+.story-beats p{font-size:14px;line-height:1.85}
+.story-beats h4{font-size:12px}
+.roles h3{font-size:19px;font-weight:600}
+.roles p,.roles ul{font-size:14px;line-height:1.9}
+.roles time,.education article>span{font-size:11px}
+.education h3{font-size:18px}
+.education p{font-size:14px;line-height:1.9}
+.certificate-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 45px;max-width:none}
+.certificate-list article{padding:25px 0}
+.certificate-list h3{font-size:15px;line-height:1.7}
+.certificate-issuer{font-size:13px;line-height:1.8}
+.certificate-meta,.certificate-id{font-size:12px;line-height:1.8}
+.contact-email{font-size:17px}
+.contact div{font-size:14px;gap:28px}
+footer{font-size:11px}
+@media(max-width:700px){
+ header{padding:24px;gap:20px}header nav{gap:14px 22px}header nav a{font-size:12px}
+ .hero{padding-top:42px;padding-bottom:75px;min-height:calc(100svh - 200px)}
+ h1{font-size:36px}.intro{font-size:16px}.home-detail{font-size:12px}
+ .hero-actions{gap:18px 24px}
+ .work,.experience,.education,.certificates{padding-top:32px;padding-bottom:60px}
+ .work-intro h2,.experience h2,.certificates h2,.contact h2{font-size:32px}
+ .story-copy{grid-template-columns:1fr;gap:12px;padding:26px 0}
+ .story h3{grid-row:2;font-size:19px}.story-type{grid-column:1;grid-row:1;margin:0}
+ .project-summary{grid-row:3}.story .repo,.story:not(.is-open) .repo{grid-column:1;grid-row:4}
+ .story-toggle{grid-row:5}.story-beats{grid-row:6;grid-template-columns:1fr}
+ .certificate-list{grid-template-columns:1fr}.certificate-list article{padding:23px 0}
+}
