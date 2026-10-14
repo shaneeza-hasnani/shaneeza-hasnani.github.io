@@ -53,8 +53,16 @@ if (caseGrid && projectCards.length) {
     toggle.addEventListener('click', () => {
       const open = card.classList.toggle('is-open');
       toggle.setAttribute('aria-expanded', String(open));
+      const details = card.querySelector('.story-beats');
+      if (details) details.hidden = !open;
       toggle.textContent = open ? 'Close the story' : 'Read the story';
     });
+    const details = card.querySelector('.story-beats');
+    if (details) {
+      details.id = `project-details-${index + 1}`;
+      toggle.setAttribute('aria-controls', details.id);
+      details.hidden = true;
+    }
     card.querySelector('.story-copy')?.append(toggle);
   });
 
@@ -79,7 +87,3 @@ if (caseGrid && projectCards.length) {
   });
 }
 
-const freshStyles = document.createElement('link');
-freshStyles.rel = 'stylesheet';
-freshStyles.href = 'styles.css?v=6';
-document.head.append(freshStyles);
