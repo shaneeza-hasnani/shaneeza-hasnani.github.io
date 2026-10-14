@@ -5,3 +5,5 @@
 
 /* Text-only introduction */
 .hero{grid-template-columns:minmax(0,1fr);max-width:690px}.hero-copy{grid-column:1;grid-row:1}.intro{max-width:none}
+
+.certificates{max-width:var(--max);margin:auto;padding:48px 24px 70px;min-height:calc(100svh - 150px)}.certificates h2{font:500 32px/1.3 var(--sans);letter-spacing:-.04em;margin:12px 0 32px}.certificate-list{max-width:800px}.certificate-list article{border-top:1px solid var(--line);padding:22px 0}.certificate-list h3{font-size:15px;line-height:1.6;font-weight:600;margin:0 0 5px}.certificate-issuer{font-size:13px;color:var(--muted);margin:0 0 6px}.certificate-meta,.certificate-id{font-size:11px;color:var(--muted);margin:3px 0;overflow-wrap:anywhere}header nav{flex-wrap:wrap;gap:14px 20px}@media(max-width:700px){.certificates{padding-top:32px}}
