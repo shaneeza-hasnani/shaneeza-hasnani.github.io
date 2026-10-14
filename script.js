@@ -1,23 +1,17 @@
-const progress = document.querySelector('.progress i');
-const navLinks = [...document.querySelectorAll('header nav a[href^="#"]')];
-const sections = [...document.querySelectorAll('main section[id]')];
-
-function updateProgress() {
-  const max = document.documentElement.scrollHeight - innerHeight;
-  const percent = max > 0 ? (scrollY / max) * 100 : 0;
-  progress.style.width = `${Math.min(100, Math.max(0, percent))}%`;
+const pages = [...document.querySelectorAll('main > section')];
+const links = [...document.querySelectorAll('header nav a[href^="#"]')];
+function showPage() {
+  const hash = location.hash.slice(1) || 'top';
+  const active = pages.find(page => page.id === hash) || pages[0];
+  pages.forEach(page => { page.hidden = page !== active; });
+  links.forEach(link => {
+    if (link.hash === `#${active.id}`) link.setAttribute('aria-current', 'page');
+    else link.removeAttribute('aria-current');
+  });
+  window.scrollTo({top: 0, behavior: 'instant'});
 }
-
-const sectionObserver = new IntersectionObserver(entries => {
-  const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-  if (!visible) return;
-  navLinks.forEach(link => link.toggleAttribute('aria-current', link.getAttribute('href') === `#${visible.target.id}`));
-}, { rootMargin: '-30% 0px -55%', threshold: [0, .25, .5] });
-
-sections.forEach(section => sectionObserver.observe(section));
-addEventListener('scroll', updateProgress, { passive: true });
-addEventListener('resize', updateProgress);
-updateProgress();
+addEventListener('hashchange', showPage);
+showPage();
 
 const projectCards = [...document.querySelectorAll('.story')];
 const caseGrid = document.querySelector('.case-grid');
