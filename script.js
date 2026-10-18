@@ -1,3 +1,4 @@
+// Portfolio navigation and accessible project filtering.
 const pages = [...document.querySelectorAll('main > section')];
 const links = [...document.querySelectorAll('header nav a[href^="#"]')];
 function showPage() {
@@ -13,140 +14,98 @@ function showPage() {
 addEventListener('hashchange', showPage);
 showPage();
 
-const projectCards = [...document.querySelectorAll('.story')];
-const caseGrid = document.querySelector('.case-grid');
-
+const projectCards = [...document.querySelectorAll('.work .story')];
+const caseGrid = document.querySelector('.work .case-grid');
 if (caseGrid && projectCards.length) {
   const filters = document.createElement('div');
   filters.className = 'project-filters';
   filters.setAttribute('role', 'group');
-  filters.setAttribute('aria-label', 'Filter projects by language');
-  filters.innerHTML = ['all', 'python', 'sql', 'r', 'typescript'].map((name, index) =>
-    `<button type="button" class="filter${index === 0 ? ' active' : ''}" data-filter="${name}" aria-pressed="${index === 0}">${name}</button>`
+  filters.setAttribute('aria-label', 'Filter projects by technology');
+  const filterNames = ['all', 'python', 'sql', 'r', 'typescript'];
+  filters.innerHTML = filterNames.map((name, index) =>
+    `<button type="button" class="filter${index === 0 ? ' active' : ''}" data-filter="${name}" aria-pressed="${index === 0}">${name === 'all' ? 'All projects' : name === 'typescript' ? 'TypeScript' : name.toUpperCase()}</button>`
   ).join('');
-
   const status = document.createElement('p');
   status.className = 'filter-status';
   status.setAttribute('aria-live', 'polite');
-  status.textContent = `Showing all ${projectCards.length} projects`;
   caseGrid.before(filters, status);
-  const viewport = document.createElement('div');
-  viewport.className = 'marquee-viewport';
-  caseGrid.parentNode.insertBefore(viewport, caseGrid);
-  viewport.append(caseGrid);
-  caseGrid.classList.add('marquee-track');
-  const firstSet = document.createElement('div');
-  firstSet.className = 'marquee-set';
-  projectCards.forEach(card => firstSet.append(card));
-  caseGrid.append(firstSet);
-  const secondSet = document.createElement('div');
-  secondSet.className = 'marquee-set marquee-duplicate';
-  secondSet.setAttribute('aria-hidden', 'true');
-  secondSet.inert = true;
-  caseGrid.append(secondSet);
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let hovering = false;
-  let visibleCards = [...projectCards];
-  let offset = 0;
-  let previousFrame = 0;
-  let dragging = false;
-  let dragStartX = 0;
-  let dragStartOffset = 0;
-  const maxOffset = () => Math.max(0, firstSet.scrollWidth - viewport.clientWidth);
-  const clampOffset = value => Math.max(0, Math.min(maxOffset(), value));
-  function animateMarquee(time) {
-    const delta = previousFrame ? Math.min(time - previousFrame, 60) : 0;
-    previousFrame = time;
-    if (!hovering && !reduceMotion.matches && !dragging && !document.hidden && visibleCards.length > 1) {
-      offset = clampOffset(offset + delta * 0.035);
-    }
-    caseGrid.style.transform = 'translate3d(' + (-offset) + 'px,0,0)';
-    requestAnimationFrame(animateMarquee);
-  }
-  requestAnimationFrame(animateMarquee);
-  viewport.addEventListener('mouseenter', () => { hovering = true; });
-  viewport.addEventListener('mouseleave', () => { hovering = false; });
-  viewport.addEventListener('focusin', () => { hovering = true; });
-  viewport.addEventListener('focusout', event => { if (!viewport.contains(event.relatedTarget)) hovering = false; });
-  viewport.addEventListener('pointerdown', event => {
-    if (event.button !== 0 || event.target.closest('button,a')) return;
-    dragging = true;
-    event.preventDefault();
-    dragStartX = event.clientX;
-    dragStartOffset = offset;
-    viewport.setPointerCapture(event.pointerId);
-    viewport.classList.add('is-dragging');
-  });
-  viewport.addEventListener('pointermove', event => {
-    if (!dragging) return;
-    offset = clampOffset(dragStartOffset + dragStartX - event.clientX);
-  });
-  const finishDrag = () => { dragging = false; viewport.classList.remove('is-dragging'); };
-  viewport.addEventListener('pointerup', finishDrag);
-  viewport.addEventListener('pointercancel', finishDrag);
-  viewport.addEventListener('wheel', event => {
-    const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
-    const next = clampOffset(offset + delta);
-    if (next !== offset) {
-      event.preventDefault();
-      offset = next;
-    }
-  }, {passive:false});
-
-  function renderMarquee() {
-    firstSet.replaceChildren(...visibleCards);
-    secondSet.replaceChildren();
-    offset = 0;
-    const shouldAnimate = visibleCards.length > 1 && !reduceMotion.matches;
-    viewport.classList.toggle('marquee-static', !shouldAnimate);
-    caseGrid.style.setProperty('--marquee-duration', `${Math.max(18, visibleCards.length * 7)}s`);
-  }
-  reduceMotion.addEventListener('change', renderMarquee);
-  window.addEventListener('resize', () => { offset = clampOffset(offset); });
 
   projectCards.forEach((card, index) => {
-    const title = card.querySelector('h3')?.textContent || `project ${index + 1}`;
+    const title = card.querySelector('h3')?.textContent || `Project ${index + 1}`;
     const type = card.querySelector('.story-type')?.textContent.toLowerCase() || '';
     card.dataset.tech = ['python', 'sql', 'r', 'typescript'].filter(language =>
       language === 'r' ? /(^|[^a-z])r([^a-z]|$)/.test(type) : type.includes(language)
     ).join(' ');
-
-    const toggle = document.createElement('button');
-    toggle.type = 'button';
-    toggle.className = 'story-toggle';
-    toggle.setAttribute('aria-expanded', 'false');
-    toggle.setAttribute('aria-label', `Read the story for ${title}`);
-    toggle.textContent = 'Read the story';
-    toggle.addEventListener('click', () => {
-      const open = card.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', String(open));
-      const details = card.querySelector('.story-beats');
-      if (details) details.hidden = !open;
-      toggle.textContent = open ? 'Close the story' : 'Read the story';
-    });
+    const demo = card.querySelector('.demo-link');
+    if (demo) {
+      const preview = document.createElement('a');
+      preview.className = 'project-preview';
+      preview.href = demo.getAttribute('href');
+      preview.target = '_blank';
+      preview.rel = 'noopener noreferrer';
+      preview.setAttribute('aria-label', `Open interactive demo: ${title}`);
+      const frame = document.createElement('iframe');
+      frame.src = demo.getAttribute('href');
+      frame.title = `Preview of ${title}`;
+      frame.loading = index < 2 ? 'eager' : 'lazy';
+      frame.tabIndex = -1;
+      frame.setAttribute('aria-hidden', 'true');
+      frame.setAttribute('sandbox', 'allow-scripts allow-same-origin');
+      preview.append(frame);
+      const pill = document.createElement('span');
+      pill.className = 'preview-pill';
+      pill.textContent = 'LIVE DEMO ↗';
+      preview.append(pill);
+      card.prepend(preview);
+    }
+    const typeLine = card.querySelector('.story-type');
+    if (typeLine) {
+      const tech = document.createElement('div');
+      tech.className = 'tech-tags';
+      typeLine.textContent.split('·').slice(1).join('·').split(/[+,·]/).map(s => s.trim()).filter(Boolean).slice(0,4).forEach(tag => {
+        const chip = document.createElement('span');
+        chip.textContent = tag;
+        tech.append(chip);
+      });
+      if (tech.childElementCount) card.querySelector('.project-summary')?.after(tech);
+    }
     const details = card.querySelector('.story-beats');
     if (details) {
-      details.id = `project-details-${index + 1}`;
-      toggle.setAttribute('aria-controls', details.id);
       details.hidden = true;
+      details.id = `project-details-${index + 1}`;
+      const toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.className = 'story-toggle';
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-controls', details.id);
+      toggle.textContent = 'Read the case study +';
+      toggle.addEventListener('click', () => {
+        const open = details.hidden;
+        details.hidden = !open;
+        card.classList.toggle('is-open', open);
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.textContent = open ? 'Close case study −' : 'Read the case study +';
+      });
+      card.querySelector('.story-copy')?.append(toggle);
     }
-    card.querySelector('.story-copy')?.append(toggle);
   });
-
-  filters.addEventListener('click', event => {
-    const button = event.target.closest('.filter');
-    if (!button) return;
-    const selected = button.dataset.filter;
-    filters.querySelectorAll('.filter').forEach(item => {
-      const active = item === button;
-      item.classList.toggle('active', active);
-      item.setAttribute('aria-pressed', String(active));
+  function filterProjects(selected) {
+    let count = 0;
+    projectCards.forEach(card => {
+      const show = selected === 'all' || card.dataset.tech.split(' ').includes(selected);
+      card.hidden = !show;
+      if (show) count++;
     });
-    visibleCards = projectCards.filter(card => selected === 'all' || card.dataset.tech.split(' ').includes(selected));
-    status.textContent = selected === 'all'
-      ? `Showing all ${visibleCards.length} projects`
-      : `Showing ${visibleCards.length} ${selected.toUpperCase()} project${visibleCards.length === 1 ? '' : 's'}`;
-    renderMarquee();
+    status.textContent = selected === 'all' ? `Showing all ${count} projects` : `Showing ${count} ${selected.toUpperCase()} project${count === 1 ? '' : 's'}`;
+    filters.querySelectorAll('.filter').forEach(button => {
+      const active = button.dataset.filter === selected;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
+  }
+  filters.addEventListener('click', event => {
+    const button = event.target.closest('button[data-filter]');
+    if (button) filterProjects(button.dataset.filter);
   });
-  renderMarquee();
+  filterProjects('all');
 }
