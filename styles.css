@@ -239,3 +239,24 @@ footer{font-size:11px}
 .work .project-filters{margin-bottom:4px!important}
 @media(max-width:520px){.work .story{grid-template-columns:78px minmax(0,1fr)!important;column-gap:15px!important}.work .story .editorial-visual{width:78px;height:78px}.work .editorial-visual svg{padding:8px}.work .story h3{font-size:20px!important}}
 @media(prefers-reduced-motion:reduce){.work .story .editorial-visual{transition:none}}
+
+/* Editorial v2: restore readable title width, place quiet visual above copy. */
+.work .case-grid{column-gap:44px!important;row-gap:4px!important}
+.work .story{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:0!important;padding:30px 0 36px!important}
+.work .story .story-index{position:static!important;display:block!important;order:0!important;margin:0 0 13px!important;padding:0!important}
+.work .story .editorial-visual{order:1!important;grid-column:auto!important;grid-row:auto!important;width:100%!important;height:132px!important;display:flex!important;align-items:center!important;justify-content:center!important;margin:0 0 22px!important;border:1px solid #e9e5e4!important;background:#f1eeed!important;border-radius:2px!important}
+.work .story .editorial-visual svg{width:190px!important;max-width:68%!important;height:116px!important;padding:10px!important;opacity:.8}
+.work .story .story-copy{order:2!important;grid-column:auto!important;grid-row:auto!important;width:100%!important;display:flex!important;align-items:flex-start!important}
+.work .story h3{font-size:clamp(23px,2.25vw,30px)!important;max-width:520px!important;line-height:1.18!important;margin:0 0 12px!important}
+.work .story .project-summary{font-size:14px!important;max-width:520px!important;line-height:1.65!important;margin:0 0 15px!important}
+.work .story .story-type{margin:0 0 10px!important}
+.work .story .tech-tags{order:4!important;margin:0 0 17px!important}
+.work .story .demo-link{order:5!important;margin:0 20px 0 0!important;font-size:12px!important}
+.work .story .repo{order:6!important;margin:0!important;font-size:12px!important}
+.work .story .story-toggle{display:none!important}
+.work .story .story-beats{display:none!important}
+.work .story .story-beats[hidden]{display:none!important}
+.work .story .repo,.work .story .demo-link{line-height:1.6!important}
+.work .story .story-copy{position:relative!important}
+.work .story .demo-link,.work .story .repo{display:inline-block!important}
+@media(max-width:760px){.work .story .editorial-visual{height:115px!important}.work .story h3{font-size:24px!important}}
