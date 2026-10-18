@@ -29,52 +29,50 @@ if (caseGrid && projectCards.length) {
   status.className = 'filter-status';
   status.setAttribute('aria-live', 'polite');
   status.textContent = `Showing all ${projectCards.length} projects`;
-  const carouselNav = document.createElement('div');
-  carouselNav.className = 'carousel-nav';
-  carouselNav.setAttribute('aria-label', 'Project carousel navigation');
-  carouselNav.innerHTML = '<span class="carousel-count" aria-live="polite"></span><div class="carousel-buttons"><button type="button" class="carousel-prev" aria-label="Previous projects">←</button><button type="button" class="carousel-next" aria-label="Next projects">→</button></div>';
   caseGrid.before(filters, status);
-  caseGrid.after(carouselNav);
-  const prevButton = carouselNav.querySelector('.carousel-prev');
-  const nextButton = carouselNav.querySelector('.carousel-next');
-  const count = carouselNav.querySelector('.carousel-count');
-  let visibleCards = [...projectCards];
-  let activeIndex = 0;
-  let autoAdvance;
+  const viewport = document.createElement('div');
+  viewport.className = 'marquee-viewport';
+  caseGrid.parentNode.insertBefore(viewport, caseGrid);
+  viewport.append(caseGrid);
+  caseGrid.classList.add('marquee-track');
+  const firstSet = document.createElement('div');
+  firstSet.className = 'marquee-set';
+  projectCards.forEach(card => firstSet.append(card));
+  caseGrid.append(firstSet);
+  const secondSet = document.createElement('div');
+  secondSet.className = 'marquee-set marquee-duplicate';
+  secondSet.setAttribute('aria-hidden', 'true');
+  secondSet.inert = true;
+  caseGrid.append(secondSet);
+  const controls = document.createElement('div');
+  controls.className = 'marquee-controls';
+  controls.innerHTML = '<span>SCROLLING PROJECTS</span><button type="button" class="marquee-pause" aria-pressed="false" aria-label="Pause automatic scrolling">Pause ⏸</button>';
+  viewport.after(controls);
+  const pauseButton = controls.querySelector('button');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const workPage = caseGrid.closest('section');
-  function stopAutoAdvance() { clearInterval(autoAdvance); }
-  function startAutoAdvance() {
-    stopAutoAdvance();
-    if (reduceMotion.matches || document.hidden || (workPage && workPage.hidden) || visibleCards.length <= cardsPerView()) return;
-    autoAdvance = setInterval(() => {
-      if (caseGrid.querySelector('.story.is-open:not([hidden])')) return;
-      activeIndex = activeIndex >= visibleCards.length - cardsPerView() ? 0 : activeIndex + 1;
-      renderCarousel();
-    }, 5000);
+  let manuallyPaused = false;
+  let visibleCards = [...projectCards];
+  function renderMarquee() {
+    firstSet.replaceChildren(...visibleCards);
+    secondSet.replaceChildren();
+    visibleCards.forEach(card => {
+      const clone = card.cloneNode(true);
+      clone.removeAttribute('id');
+      clone.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+      secondSet.append(clone);
+    });
+    const shouldAnimate = visibleCards.length > 1 && !reduceMotion.matches && !manuallyPaused;
+    viewport.classList.toggle('marquee-static', !shouldAnimate);
+    caseGrid.style.setProperty('--marquee-duration', `${Math.max(18, visibleCards.length * 7)}s`);
+    pauseButton.disabled = reduceMotion.matches || visibleCards.length <= 1;
+    pauseButton.textContent = manuallyPaused ? 'Play ▶' : 'Pause ⏸';
+    pauseButton.setAttribute('aria-pressed', String(manuallyPaused));
   }
-  const cardsPerView = () => window.matchMedia('(max-width: 700px)').matches ? 1 : 2;
-  function renderCarousel() {
-    const pageSize = cardsPerView();
-    activeIndex = Math.min(activeIndex, Math.max(0, visibleCards.length - pageSize));
-    projectCards.forEach(card => { card.hidden = true; });
-    visibleCards.slice(activeIndex, activeIndex + pageSize).forEach(card => { card.hidden = false; });
-    const end = Math.min(activeIndex + pageSize, visibleCards.length);
-    count.textContent = visibleCards.length ? `${String(activeIndex + 1).padStart(2, '0')}–${String(end).padStart(2, '0')} / ${String(visibleCards.length).padStart(2, '0')}` : '00 / 00';
-    prevButton.disabled = activeIndex === 0;
-    nextButton.disabled = activeIndex >= visibleCards.length - pageSize;
-  }
-  prevButton.addEventListener('click', () => { activeIndex = Math.max(0, activeIndex - 1); renderCarousel(); startAutoAdvance(); });
-  nextButton.addEventListener('click', () => { activeIndex = Math.min(Math.max(0, visibleCards.length - cardsPerView()), activeIndex + 1); renderCarousel(); startAutoAdvance(); });
-  window.addEventListener('resize', () => { renderCarousel(); startAutoAdvance(); });
-  caseGrid.addEventListener('mouseenter', stopAutoAdvance);
-  caseGrid.addEventListener('mouseleave', startAutoAdvance);
-  caseGrid.addEventListener('focusin', stopAutoAdvance);
-  caseGrid.addEventListener('focusout', event => { if (!caseGrid.contains(event.relatedTarget)) startAutoAdvance(); });
-  document.addEventListener('visibilitychange', startAutoAdvance);
-  window.addEventListener('hashchange', startAutoAdvance);
-  reduceMotion.addEventListener('change', startAutoAdvance);
-
+  pauseButton.addEventListener('click', () => {
+    manuallyPaused = !manuallyPaused;
+    renderMarquee();
+  });
+  reduceMotion.addEventListener('change', renderMarquee);
 
   projectCards.forEach((card, index) => {
     const title = card.querySelector('h3')?.textContent || `project ${index + 1}`;
@@ -115,13 +113,10 @@ if (caseGrid && projectCards.length) {
       item.setAttribute('aria-pressed', String(active));
     });
     visibleCards = projectCards.filter(card => selected === 'all' || card.dataset.tech.split(' ').includes(selected));
-    activeIndex = 0;
     status.textContent = selected === 'all'
       ? `Showing all ${visibleCards.length} projects`
       : `Showing ${visibleCards.length} ${selected.toUpperCase()} project${visibleCards.length === 1 ? '' : 's'}`;
-    renderCarousel();
-    startAutoAdvance();
+    renderMarquee();
   });
-  renderCarousel();
-  startAutoAdvance();
+  renderMarquee();
 }
