@@ -57,8 +57,6 @@ if (caseGrid && projectCards.length) {
   let dragging = false;
   let dragStartX = 0;
   let dragStartOffset = 0;
-  let hoverPaused = false;
-  let focusPaused = false;
   const wrapOffset = value => {
     const width = firstSet.getBoundingClientRect().width;
     return width ? ((value % width) + width) % width : 0;
@@ -66,7 +64,7 @@ if (caseGrid && projectCards.length) {
   function animateMarquee(time) {
     const delta = previousFrame ? Math.min(time - previousFrame, 60) : 0;
     previousFrame = time;
-    if (!manuallyPaused && !reduceMotion.matches && !dragging && !hoverPaused && !focusPaused && !document.hidden && visibleCards.length > 1) {
+    if (!manuallyPaused && !reduceMotion.matches && !dragging && !document.hidden && visibleCards.length > 1) {
       offset = wrapOffset(offset + delta * 0.035);
     }
     caseGrid.style.transform = 'translate3d(' + (-offset) + 'px,0,0)';
@@ -76,6 +74,7 @@ if (caseGrid && projectCards.length) {
   viewport.addEventListener('pointerdown', event => {
     if (event.button !== 0 || event.target.closest('button,a')) return;
     dragging = true;
+    event.preventDefault();
     dragStartX = event.clientX;
     dragStartOffset = offset;
     viewport.setPointerCapture(event.pointerId);
@@ -88,10 +87,6 @@ if (caseGrid && projectCards.length) {
   const finishDrag = () => { dragging = false; viewport.classList.remove('is-dragging'); };
   viewport.addEventListener('pointerup', finishDrag);
   viewport.addEventListener('pointercancel', finishDrag);
-  viewport.addEventListener('mouseenter', () => { hoverPaused = true; });
-  viewport.addEventListener('mouseleave', () => { hoverPaused = false; });
-  viewport.addEventListener('focusin', () => { focusPaused = true; });
-  viewport.addEventListener('focusout', event => { if (!viewport.contains(event.relatedTarget)) focusPaused = false; });
   viewport.addEventListener('wheel', event => {
     if (Math.abs(event.deltaX) <= Math.abs(event.deltaY) && !event.shiftKey) return;
     event.preventDefault();
