@@ -126,3 +126,66 @@ footer{font-size:11px}
 @media(prefers-reduced-motion:reduce){.marquee-viewport{overflow-x:auto!important}}
 
 .work .story .demo-link{order:3;display:inline-block;font-size:12px;font-weight:600;color:var(--purple);margin:0 0 12px;text-decoration:underline;text-underline-offset:4px}
+
+
+/* Projects redesign: editorial, static and fully navigable */
+.work{padding-block:clamp(76px,9vw,132px);background:linear-gradient(180deg,#f8f7fa 0%,#fff 65%)}
+.work-intro{max-width:940px;margin-bottom:42px;grid-template-columns:1fr}
+.work-intro .section-label{color:#765c92;font-weight:700;letter-spacing:.16em}
+.work-intro h2{font-size:clamp(40px,5vw,72px);letter-spacing:-.055em;margin-bottom:16px}
+.work-intro>p:last-child{max-width:620px;font-size:16px;line-height:1.75}
+.marquee-viewport,.marquee-viewport.marquee-static{overflow:visible!important;cursor:auto!important;touch-action:auto}
+.work .case-grid,.work .case-grid.marquee-track{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:28px!important;transform:none!important;animation:none!important;width:100%!important;will-change:auto!important}
+.work .story{min-width:0!important;width:auto!important;max-width:none!important;border-radius:18px;box-shadow:0 10px 35px rgba(32,23,43,.055);transition:transform .25s ease,box-shadow .25s ease;border:1px solid #e7e1eb}
+.work .story:hover{transform:translateY(-5px);box-shadow:0 22px 55px rgba(32,23,43,.12)}
+.work .story::before{aspect-ratio:16/9;background-color:#ede7f1;background-size:cover;background-position:center}
+.work .story-copy{padding:clamp(24px,3vw,36px);gap:0}
+.work .story-type{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#775b8b;font-weight:700}
+.work .story h3{font-size:clamp(23px,2.5vw,32px);line-height:1.22;letter-spacing:-.035em}
+.work .story .project-summary{font-size:14px;line-height:1.7;margin-bottom:22px}
+.work .story .repo,.work .story .demo-link{display:inline-flex!important;align-items:center;justify-content:center;text-decoration:none!important;border-radius:9px;padding:12px 18px;margin:0 9px 10px 0;font-size:12px;font-weight:700;width:fit-content;min-height:42px}
+.work .story .repo{background:#f1edf4;color:#34263f}
+.work .story .demo-link{background:#34263f;color:#fff}
+.work .story .repo:hover{background:#e4d9eb}
+.work .story .demo-link:hover{background:#604476}
+.work .story .story-beats{font-size:13px}
+.work .story.featured{grid-column:span 2}
+.work .story.featured::before{aspect-ratio:2.7}
+.work .story-index{display:block;position:absolute;top:16px;left:16px;z-index:1;padding:7px 10px;background:rgba(255,255,255,.9);border-radius:6px;font:600 11px var(--mono)}
+@media(max-width:760px){.work .case-grid,.work .case-grid.marquee-track{grid-template-columns:1fr!important}.work .story.featured{grid-column:auto}.work .story.featured::before{aspect-ratio:16/9}.work-intro{display:block}.work .story:hover{transform:none}}
+@media(prefers-reduced-motion:reduce){.work .story{transition:none}}
+
+/* Project cards: real interactive-app previews, accessible grid and clear actions */
+.work .case-grid{align-items:start!important}
+.work .story{position:relative;display:flex;flex-direction:column;height:100%!important}
+.work .story.featured{grid-column:auto}
+.work .story::before{display:none!important}
+.work .story .story-visual{display:none!important}
+.work .story .project-preview{display:block;position:relative;width:100%;height:clamp(205px,23vw,320px);overflow:hidden;background:#f0edf3;border-bottom:1px solid #e7e1eb;isolation:isolate}
+.work .project-preview iframe{position:absolute;left:0;top:0;width:1440px;height:850px;border:0;transform:scale(.36);transform-origin:top left;pointer-events:none;background:#fff}
+.work .project-preview::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 65%,rgba(32,23,43,.12));pointer-events:none}
+.work .project-preview .preview-pill{position:absolute;bottom:16px;right:16px;z-index:2;background:#fff;color:#32263d;padding:9px 12px;border-radius:7px;font:700 10px var(--mono);letter-spacing:.08em;box-shadow:0 5px 20px #24142a24}
+.work .project-preview:hover .preview-pill,.work .project-preview:focus-visible .preview-pill{background:#34263f;color:#fff}
+.work .story .story-copy{height:auto;flex:1}
+.work .story .story-index{top:14px;left:14px}
+.work .story .tech-tags{order:3;display:flex;flex-wrap:wrap;gap:7px;margin:0 0 20px}
+.work .tech-tags span{font:600 10px var(--mono);color:#5d4b6d;background:#f3eff6;border:1px solid #e8e0ed;border-radius:5px;padding:7px 9px}
+.work .story .demo-link{order:4}
+.work .story .repo{order:5}
+.work .story .story-toggle{order:6;cursor:pointer;background:none;color:#53445f;text-align:left;font:600 12px var(--mono);border:0;border-top:1px solid #e7e1eb;margin-top:auto;padding:20px 0 0}
+.work .story .story-beats{order:7;margin-top:18px}
+.work .story .story-beats[hidden]{display:none!important}
+.work .story[hidden]{display:none!important}
+.work .marquee-viewport,.work .marquee-controls,.work .carousel-nav{overflow:visible!important}
+.work .project-filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:14px}
+.work .project-filters button{border-radius:30px;padding:10px 16px;border:1px solid #ddd5e4;background:#fff;color:#574963;font:600 11px var(--mono);cursor:pointer}
+.work .project-filters button.active{background:#34263f;color:#fff;border-color:#34263f}
+.work .filter-status{font:500 11px var(--mono);color:#82768a;margin:0 0 24px}
+@media(min-width:1400px){.work .project-preview iframe{transform:scale(.48)}}
+@media(max-width:760px){.work .project-preview{height:245px}.work .project-preview iframe{transform:scale(.34)}}
+@media(max-width:440px){.work .project-preview{height:195px}.work .project-preview iframe{transform:scale(.26)}}
+
+/* Keep the embedded demo viewport proportional to each responsive card. */
+.work .project-preview iframe{width:250%;height:1100px;transform:scale(.4)}
+@media(max-width:760px){.work .project-preview iframe{width:250%;transform:scale(.4)}}
+@media(max-width:440px){.work .project-preview iframe{width:250%;transform:scale(.4)}}
