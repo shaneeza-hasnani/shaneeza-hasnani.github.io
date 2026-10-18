@@ -44,13 +44,8 @@ if (caseGrid && projectCards.length) {
   secondSet.setAttribute('aria-hidden', 'true');
   secondSet.inert = true;
   caseGrid.append(secondSet);
-  const controls = document.createElement('div');
-  controls.className = 'marquee-controls';
-  controls.innerHTML = '<span>SCROLLING PROJECTS</span><button type="button" class="marquee-pause" aria-pressed="false" aria-label="Pause automatic scrolling">Pause ⏸</button>';
-  viewport.after(controls);
-  const pauseButton = controls.querySelector('button');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let manuallyPaused = false;
+  let hovering = false;
   let visibleCards = [...projectCards];
   let offset = 0;
   let previousFrame = 0;
@@ -59,23 +54,20 @@ if (caseGrid && projectCards.length) {
   let dragStartOffset = 0;
   const maxOffset = () => Math.max(0, firstSet.scrollWidth - viewport.clientWidth);
   const clampOffset = value => Math.max(0, Math.min(maxOffset(), value));
-  const updateControls = () => {
-    const end = offset >= maxOffset() - 1;
-    pauseButton.textContent = manuallyPaused ? 'Play ▶' : end ? 'At end' : 'Pause ⏸';
-    pauseButton.disabled = reduceMotion.matches || visibleCards.length <= 1 || (end && !manuallyPaused);
-    pauseButton.setAttribute('aria-pressed', String(manuallyPaused));
-  };
   function animateMarquee(time) {
     const delta = previousFrame ? Math.min(time - previousFrame, 60) : 0;
     previousFrame = time;
-    if (!manuallyPaused && !reduceMotion.matches && !dragging && !document.hidden && visibleCards.length > 1) {
+    if (!hovering && !reduceMotion.matches && !dragging && !document.hidden && visibleCards.length > 1) {
       offset = clampOffset(offset + delta * 0.035);
     }
     caseGrid.style.transform = 'translate3d(' + (-offset) + 'px,0,0)';
-    updateControls();
     requestAnimationFrame(animateMarquee);
   }
   requestAnimationFrame(animateMarquee);
+  viewport.addEventListener('mouseenter', () => { hovering = true; });
+  viewport.addEventListener('mouseleave', () => { hovering = false; });
+  viewport.addEventListener('focusin', () => { hovering = true; });
+  viewport.addEventListener('focusout', event => { if (!viewport.contains(event.relatedTarget)) hovering = false; });
   viewport.addEventListener('pointerdown', event => {
     if (event.button !== 0 || event.target.closest('button,a')) return;
     dragging = true;
@@ -93,27 +85,24 @@ if (caseGrid && projectCards.length) {
   viewport.addEventListener('pointerup', finishDrag);
   viewport.addEventListener('pointercancel', finishDrag);
   viewport.addEventListener('wheel', event => {
-    if (Math.abs(event.deltaX) <= Math.abs(event.deltaY) && !event.shiftKey) return;
-    event.preventDefault();
-    offset = clampOffset(offset + (event.deltaX || event.deltaY));
+    const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+    const next = clampOffset(offset + delta);
+    if (next !== offset) {
+      event.preventDefault();
+      offset = next;
+    }
   }, {passive:false});
 
   function renderMarquee() {
     firstSet.replaceChildren(...visibleCards);
     secondSet.replaceChildren();
     offset = 0;
-    const shouldAnimate = visibleCards.length > 1 && !reduceMotion.matches && !manuallyPaused;
+    const shouldAnimate = visibleCards.length > 1 && !reduceMotion.matches;
     viewport.classList.toggle('marquee-static', !shouldAnimate);
     caseGrid.style.setProperty('--marquee-duration', `${Math.max(18, visibleCards.length * 7)}s`);
-    updateControls();
   }
-  pauseButton.addEventListener('click', () => {
-    if (!manuallyPaused && offset >= maxOffset() - 1) return;
-    manuallyPaused = !manuallyPaused;
-    updateControls();
-  });
   reduceMotion.addEventListener('change', renderMarquee);
-  window.addEventListener('resize', () => { offset = clampOffset(offset); updateControls(); });
+  window.addEventListener('resize', () => { offset = clampOffset(offset); });
 
   projectCards.forEach((card, index) => {
     const title = card.querySelector('h3')?.textContent || `project ${index + 1}`;
