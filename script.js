@@ -57,17 +57,22 @@ if (caseGrid && projectCards.length) {
   let dragging = false;
   let dragStartX = 0;
   let dragStartOffset = 0;
-  const wrapOffset = value => {
-    const width = firstSet.getBoundingClientRect().width;
-    return width ? ((value % width) + width) % width : 0;
+  const maxOffset = () => Math.max(0, firstSet.scrollWidth - viewport.clientWidth);
+  const clampOffset = value => Math.max(0, Math.min(maxOffset(), value));
+  const updateControls = () => {
+    const end = offset >= maxOffset() - 1;
+    pauseButton.textContent = manuallyPaused ? 'Play ▶' : end ? 'At end' : 'Pause ⏸';
+    pauseButton.disabled = reduceMotion.matches || visibleCards.length <= 1 || (end && !manuallyPaused);
+    pauseButton.setAttribute('aria-pressed', String(manuallyPaused));
   };
   function animateMarquee(time) {
     const delta = previousFrame ? Math.min(time - previousFrame, 60) : 0;
     previousFrame = time;
     if (!manuallyPaused && !reduceMotion.matches && !dragging && !document.hidden && visibleCards.length > 1) {
-      offset = wrapOffset(offset + delta * 0.035);
+      offset = clampOffset(offset + delta * 0.035);
     }
     caseGrid.style.transform = 'translate3d(' + (-offset) + 'px,0,0)';
+    updateControls();
     requestAnimationFrame(animateMarquee);
   }
   requestAnimationFrame(animateMarquee);
@@ -82,7 +87,7 @@ if (caseGrid && projectCards.length) {
   });
   viewport.addEventListener('pointermove', event => {
     if (!dragging) return;
-    offset = wrapOffset(dragStartOffset + dragStartX - event.clientX);
+    offset = clampOffset(dragStartOffset + dragStartX - event.clientX);
   });
   const finishDrag = () => { dragging = false; viewport.classList.remove('is-dragging'); };
   viewport.addEventListener('pointerup', finishDrag);
@@ -90,31 +95,25 @@ if (caseGrid && projectCards.length) {
   viewport.addEventListener('wheel', event => {
     if (Math.abs(event.deltaX) <= Math.abs(event.deltaY) && !event.shiftKey) return;
     event.preventDefault();
-    offset = wrapOffset(offset + (event.deltaX || event.deltaY));
+    offset = clampOffset(offset + (event.deltaX || event.deltaY));
   }, {passive:false});
 
   function renderMarquee() {
     firstSet.replaceChildren(...visibleCards);
     secondSet.replaceChildren();
-    visibleCards.forEach(card => {
-      const clone = card.cloneNode(true);
-      clone.removeAttribute('id');
-      clone.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
-      secondSet.append(clone);
-    });
     offset = 0;
     const shouldAnimate = visibleCards.length > 1 && !reduceMotion.matches && !manuallyPaused;
     viewport.classList.toggle('marquee-static', !shouldAnimate);
     caseGrid.style.setProperty('--marquee-duration', `${Math.max(18, visibleCards.length * 7)}s`);
-    pauseButton.disabled = reduceMotion.matches || visibleCards.length <= 1;
-    pauseButton.textContent = manuallyPaused ? 'Play ▶' : 'Pause ⏸';
-    pauseButton.setAttribute('aria-pressed', String(manuallyPaused));
+    updateControls();
   }
   pauseButton.addEventListener('click', () => {
+    if (!manuallyPaused && offset >= maxOffset() - 1) return;
     manuallyPaused = !manuallyPaused;
-    renderMarquee();
+    updateControls();
   });
   reduceMotion.addEventListener('change', renderMarquee);
+  window.addEventListener('resize', () => { offset = clampOffset(offset); updateControls(); });
 
   projectCards.forEach((card, index) => {
     const title = card.querySelector('h3')?.textContent || `project ${index + 1}`;
