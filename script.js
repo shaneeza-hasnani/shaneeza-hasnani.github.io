@@ -36,28 +36,6 @@ if (caseGrid && projectCards.length) {
     card.dataset.tech = ['python', 'sql', 'r', 'typescript'].filter(language =>
       language === 'r' ? /(^|[^a-z])r([^a-z]|$)/.test(type) : type.includes(language)
     ).join(' ');
-    const demo = card.querySelector('.demo-link');
-    if (demo) {
-      const preview = document.createElement('a');
-      preview.className = 'project-preview';
-      preview.href = demo.getAttribute('href');
-      preview.target = '_blank';
-      preview.rel = 'noopener noreferrer';
-      preview.setAttribute('aria-label', `Open interactive demo: ${title}`);
-      const frame = document.createElement('iframe');
-      frame.src = demo.getAttribute('href');
-      frame.title = `Preview of ${title}`;
-      frame.loading = index < 2 ? 'eager' : 'lazy';
-      frame.tabIndex = -1;
-      frame.setAttribute('aria-hidden', 'true');
-      frame.setAttribute('sandbox', 'allow-scripts allow-same-origin');
-      preview.append(frame);
-      const pill = document.createElement('span');
-      pill.className = 'preview-pill';
-      pill.textContent = 'LIVE DEMO ↗';
-      preview.append(pill);
-      card.prepend(preview);
-    }
     const typeLine = card.querySelector('.story-type');
     if (typeLine) {
       const tech = document.createElement('div');
