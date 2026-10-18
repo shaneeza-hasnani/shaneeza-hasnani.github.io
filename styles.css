@@ -92,3 +92,19 @@ footer{font-size:11px}
 .carousel-buttons button:hover:not(:disabled){background:var(--ink);color:var(--paper)}
 .carousel-buttons button:disabled{opacity:.3;cursor:default}
 @media(max-width:700px){.work .case-grid{grid-template-columns:minmax(0,1fr)}.work .story-copy{padding:25px}.work .story h3{font-size:23px}}
+
+
+/* Seamless right-to-left project marquee */
+.marquee-viewport{width:100%;overflow:hidden;position:relative}
+.work .case-grid.marquee-track{display:flex;flex-wrap:nowrap;gap:0;width:max-content;max-width:none;animation:project-marquee var(--marquee-duration,63s) linear infinite;will-change:transform}
+.marquee-set{display:flex;align-items:stretch;gap:22px;padding-right:22px;flex:0 0 auto}
+.work .marquee-set .story{width:min(390px,calc(100vw - 68px));flex:0 0 auto;height:auto}
+.marquee-viewport:hover .marquee-track,.marquee-viewport:focus-within .marquee-track{animation-play-state:paused}
+.marquee-viewport.marquee-static .marquee-track{animation:none;transform:none}
+.marquee-viewport.marquee-static .marquee-duplicate{display:none}
+.marquee-viewport.marquee-static{overflow-x:auto}
+.marquee-controls{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:20px;font:500 11px var(--mono);letter-spacing:.06em;color:var(--muted)}
+.marquee-pause{background:none;border:1px solid var(--line);border-radius:5px;padding:9px 14px;color:var(--ink);cursor:pointer;font:inherit;letter-spacing:0}
+.marquee-pause:disabled{opacity:.4;cursor:default}
+@keyframes project-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.work .case-grid.marquee-track{animation:none!important}.marquee-duplicate{display:none!important}.marquee-viewport{overflow-x:auto}}
