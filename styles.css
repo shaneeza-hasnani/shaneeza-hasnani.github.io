@@ -116,3 +116,11 @@ footer{font-size:11px}
 .marquee-viewport.is-dragging{cursor:grabbing;user-select:none}
 .marquee-viewport.marquee-static{overflow:hidden}
 @media(prefers-reduced-motion:reduce){.marquee-viewport.marquee-static{overflow-x:auto}.work .case-grid.marquee-track{transform:none!important}}
+
+
+/* Finite project carousel: no duplicated cards or wraparound */
+.marquee-duplicate{display:none!important}
+.marquee-viewport,.marquee-viewport.marquee-static{overflow:hidden}
+.work .case-grid.marquee-track{animation:none!important}
+.marquee-viewport.marquee-static .marquee-track{transform:translate3d(0,0,0)}
+@media(prefers-reduced-motion:reduce){.marquee-viewport{overflow-x:auto!important}}
