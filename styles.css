@@ -217,3 +217,25 @@ footer{font-size:11px}
 .work .filter-status{display:none!important}
 .work .project-preview{display:none!important}
 @media(max-width:760px){.work .case-grid{grid-template-columns:1fr!important}.work .story{padding:24px 0 28px!important}}
+
+/* Editorial project tiles, refined: small quiet illustrations and compact content. */
+.work{background:#f9f8f6!important}
+.work .case-grid{gap:16px 36px!important}
+.work .story{display:grid!important;grid-template-columns:112px minmax(0,1fr)!important;column-gap:21px!important;align-content:start!important;align-items:start!important;padding:25px 0 29px!important}
+.work .story .story-index{grid-column:1/-1!important;margin:0 0 14px!important;font-size:10px!important}
+.work .story .editorial-visual{grid-column:1!important;grid-row:2!important;width:112px;height:94px;border:1px solid #e7e2e3;background:#f1eeed;border-radius:3px;display:grid;place-items:center;overflow:hidden;color:#84758e;transition:background .2s ease,color .2s ease}
+.work .editorial-visual svg{display:block;width:100%;height:100%;padding:13px}
+.work .story:nth-child(3n+2) .editorial-visual{background:#f0eee8;color:#8c8274}
+.work .story:nth-child(3n+3) .editorial-visual{background:#eeeef0;color:#79798b}
+.work .story:hover .editorial-visual{background:#e9e3eb;color:#5c4a66}
+.work .story .story-copy{grid-column:2!important;grid-row:2!important;min-width:0!important}
+.work .story h3{font-size:clamp(20px,2vw,26px)!important;margin-bottom:9px!important}
+.work .story .project-summary{font-size:13px!important;line-height:1.65!important;margin-bottom:13px!important}
+.work .story .tech-tags{margin-bottom:12px!important}
+.work .story .story-type{font-size:9px!important;line-height:1.5!important;margin-bottom:9px!important}
+.work .story .demo-link,.work .story .repo{font-size:11px!important;margin-bottom:10px!important}
+.work .story .story-toggle{font-size:10px!important}
+.work .story .story-beats{width:100%!important}
+.work .project-filters{margin-bottom:4px!important}
+@media(max-width:520px){.work .story{grid-template-columns:78px minmax(0,1fr)!important;column-gap:15px!important}.work .story .editorial-visual{width:78px;height:78px}.work .editorial-visual svg{padding:8px}.work .story h3{font-size:20px!important}}
+@media(prefers-reduced-motion:reduce){.work .story .editorial-visual{transition:none}}
