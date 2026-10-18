@@ -25,5 +25,18 @@ $('inject').onclick=()=>{const amount=Number($('amount').value),age=Number($('ag
 function parseCSV(text){const result=[];let row=[],field='',quoted=false;for(let i=0;i<text.length;i++){const c=text[i];if(c==='"'){if(quoted&&text[i+1]==='"'){field+='"';i++;}else quoted=!quoted;}else if(c===','&&!quoted){row.push(field);field='';}else if((c==='\n'||c==='\r')&&!quoted){if(c==='\r'&&text[i+1]==='\n')i++;row.push(field);field='';if(row.some(x=>x.trim()))result.push(row);row=[];}else field+=c;}row.push(field);if(row.some(x=>x.trim()))result.push(row);const head=(result.shift()||[]).map(x=>x.trim());return result.map(r=>Object.fromEntries(head.map((h,i)=>[h,(r[i]||'').trim()])));}
 $('csv').onchange=async e=>{const file=e.target.files[0];if(!file)return;try{const data=parseCSV(await file.text());let count=0;for(const r of data){const amount=Number(r.amount),age=Number(r.accountAgeDays),hour=Number(r.hour),velocity=Number(r.velocity1h);if(!r.id||r.amount===''||r.accountAgeDays===''||r.hour===''||r.velocity1h===''||!r.type||!r.country||!Number.isFinite(amount)||amount<0||!Number.isInteger(age)||age<0||!Number.isInteger(hour)||hour<0||hour>23||!Number.isInteger(velocity)||velocity<0)continue;const truth=String(r.isFraud||'').toLowerCase();rows.unshift(score({id:r.id,amount,type:r.type,country:r.country,accountAgeDays:age,hour,velocity1h:velocity,deviceChanged:['true','1','yes'].includes(String(r.deviceChanged).toLowerCase()),...(truth==='true'||truth==='1'?{isFraud:true}:truth==='false'||truth==='0'?{isFraud:false}:{})}));count++;}rows=rows.slice(0,1200);active=rows[0]?.id||null;$('message').textContent='Imported '+count+' of '+data.length+' rows.';render();}catch(error){$('message').textContent='CSV import failed: '+error.message;}e.target.value='';};
 $('export').onclick=()=>{const keys=['id','amount','type','country','accountAgeDays','hour','velocity1h','deviceChanged','riskScore','status','isFraud'];const content=[keys.join(','),...rows.map(t=>keys.map(k=>'"'+String(t[k]??'').replace(/"/g,'""')+'"').join(','))].join('\n');const url=URL.createObjectURL(new Blob([content],{type:'text/csv'})),a=document.createElement('a');a.href=url;a.download='fraud-investigations.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
+const scenarios={
+routine:{amount:42,type:'PAYMENT',country:'US',accountAgeDays:950,hour:13,velocity1h:1,deviceChanged:false},
+suspicious:{amount:14800,type:'TRANSFER',country:'GB',accountAgeDays:3,hour:2,velocity1h:9,deviceChanged:true},
+borderline:{amount:5200,type:'TRANSFER',country:'US',accountAgeDays:180,hour:14,velocity1h:2,deviceChanged:false}
+};
+document.querySelectorAll('[data-scenario]').forEach(button=>button.addEventListener('click',()=>{
+const p=scenarios[button.dataset.scenario];if(!p)return;
+$('amount').value=p.amount;$('type').value=p.type;$('country').value=p.country;
+$('age').value=p.accountAgeDays;$('hour').value=p.hour;$('velocity').value=p.velocity1h;
+$('device').checked=p.deviceChanged;
+document.querySelectorAll('[data-scenario]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+$('message').textContent='Scenario loaded. Select Evaluate transaction to score it.';
+}));
 for(let i=0;i<18;i++)rows.unshift(sample());active=rows[0].id;render();
 })();
