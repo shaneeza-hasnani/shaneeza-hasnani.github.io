@@ -21,7 +21,7 @@ if (caseGrid && projectCards.length) {
   filters.className = 'project-filters';
   filters.setAttribute('role', 'group');
   filters.setAttribute('aria-label', 'Filter projects by language');
-  filters.innerHTML = ['all', 'python', 'sql', 'r'].map((name, index) =>
+  filters.innerHTML = ['all', 'python', 'sql', 'r', 'typescript'].map((name, index) =>
     `<button type="button" class="filter${index === 0 ? ' active' : ''}" data-filter="${name}" aria-pressed="${index === 0}">${name}</button>`
   ).join('');
 
@@ -34,7 +34,7 @@ if (caseGrid && projectCards.length) {
   projectCards.forEach((card, index) => {
     const title = card.querySelector('h3')?.textContent || `project ${index + 1}`;
     const type = card.querySelector('.story-type')?.textContent.toLowerCase() || '';
-    card.dataset.tech = ['python', 'sql', 'r'].filter(language =>
+    card.dataset.tech = ['python', 'sql', 'r', 'typescript'].filter(language =>
       language === 'r' ? /(^|[^a-z])r([^a-z]|$)/.test(type) : type.includes(language)
     ).join(' ');
 
