@@ -260,3 +260,15 @@ footer{font-size:11px}
 .work .story .story-copy{position:relative!important}
 .work .story .demo-link,.work .story .repo{display:inline-block!important}
 @media(max-width:760px){.work .story .editorial-visual{height:115px!important}.work .story h3{font-size:24px!important}}
+
+/* Seamless warm-paper project section: remove white slab and excess top whitespace. */
+html,body{background:#f8f6f1!important}
+body main,main,main#main{background:transparent!important}
+main#main>.work,section#work.work,.work{background:transparent!important;background-color:transparent!important;background-image:none!important;box-shadow:none!important;border:0!important;outline:0!important}
+.work{padding-top:clamp(32px,4vw,58px)!important;padding-bottom:80px!important}
+.work-intro{margin-bottom:26px!important}
+.work-intro h2{font-size:clamp(38px,4.4vw,62px)!important}
+.work-intro>p:last-child{max-width:580px!important}
+.work .story .editorial-visual{background:#efede8!important;border-color:#e6e0da!important}
+.work .story:nth-child(3n+2) .editorial-visual{background:#efede8!important}
+.work .story:nth-child(3n+3) .editorial-visual{background:#efede8!important}
