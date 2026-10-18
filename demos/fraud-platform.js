@@ -1,1 +1,12 @@
 'use strict';
+(()=>{const $=id=>document.getElementById(id);let rows=[],active=null,timer=null,seq=1000,log=[];
+const rules=[['Large amount',25,t=>t.amount>=5000],['International',20,t=>t.country!=='US'],['New account',15,t=>t.accountAgeDays<30],['High velocity',25,t=>t.velocity1h>=5],['Late night',5,t=>t.hour<5],['Device change',10,t=>t.deviceChanged]];
+const limit=()=>Number($('threshold').value),flag=t=>t.riskScore>=limit();
+const score=t=>({...t,riskScore:rules.reduce((n,r)=>n+(r[2](t)?r[1]:0),0),signals:rules.filter(r=>r[2](t)).map(r=>r[0]+' +'+r[1]),status:t.status||'PENDING'});
+const rand=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+const sample=()=>{const odd=Math.random()<.24;return score({id:'TX-'+(++seq),amount:odd?rand(5000,19000):rand(10,4300),type:odd?'TRANSFER':'PAYMENT',country:odd?'GB':'US',accountAgeDays:odd?rand(1,28):rand(35,1500),hour:odd?rand(0,4):rand(6,23),velocity1h:odd?rand(5,10):rand(1,4),deviceChanged:odd&&Math.random()<.7,source:'Synthetic'});};
+const esc=s=>String(s??'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const money=n=>'$'+Number(n).toLocaleString('en-US',{maximumFractionDigits:0});
+function add(t){rows.unshift(score(t));rows=rows.slice(0,1200);active=rows[0].id;render();}
+function stop(){clearInterval(timer);timer=null;$('start').textContent='Start stream';$('streamstatus').textContent='Stream paused';$('dot').classList.remove('live');}
+function toggle(){if(timer){stop();return;}timer=setInterval(()=>add(sample()),Number($('speed').value));$('start').textContent='Pause stream';$('streamstatus').textContent='Live synthetic stream';$('dot').classList.add('live');}
