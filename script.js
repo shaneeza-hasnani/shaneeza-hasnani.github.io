@@ -52,6 +52,52 @@ if (caseGrid && projectCards.length) {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let manuallyPaused = false;
   let visibleCards = [...projectCards];
+  let offset = 0;
+  let previousFrame = 0;
+  let dragging = false;
+  let dragStartX = 0;
+  let dragStartOffset = 0;
+  let hoverPaused = false;
+  let focusPaused = false;
+  const wrapOffset = value => {
+    const width = firstSet.getBoundingClientRect().width;
+    return width ? ((value % width) + width) % width : 0;
+  };
+  function animateMarquee(time) {
+    const delta = previousFrame ? Math.min(time - previousFrame, 60) : 0;
+    previousFrame = time;
+    if (!manuallyPaused && !reduceMotion.matches && !dragging && !hoverPaused && !focusPaused && !document.hidden && visibleCards.length > 1) {
+      offset = wrapOffset(offset + delta * 0.035);
+    }
+    caseGrid.style.transform = 'translate3d(' + (-offset) + 'px,0,0)';
+    requestAnimationFrame(animateMarquee);
+  }
+  requestAnimationFrame(animateMarquee);
+  viewport.addEventListener('pointerdown', event => {
+    if (event.button !== 0 || event.target.closest('button,a')) return;
+    dragging = true;
+    dragStartX = event.clientX;
+    dragStartOffset = offset;
+    viewport.setPointerCapture(event.pointerId);
+    viewport.classList.add('is-dragging');
+  });
+  viewport.addEventListener('pointermove', event => {
+    if (!dragging) return;
+    offset = wrapOffset(dragStartOffset + dragStartX - event.clientX);
+  });
+  const finishDrag = () => { dragging = false; viewport.classList.remove('is-dragging'); };
+  viewport.addEventListener('pointerup', finishDrag);
+  viewport.addEventListener('pointercancel', finishDrag);
+  viewport.addEventListener('mouseenter', () => { hoverPaused = true; });
+  viewport.addEventListener('mouseleave', () => { hoverPaused = false; });
+  viewport.addEventListener('focusin', () => { focusPaused = true; });
+  viewport.addEventListener('focusout', event => { if (!viewport.contains(event.relatedTarget)) focusPaused = false; });
+  viewport.addEventListener('wheel', event => {
+    if (Math.abs(event.deltaX) <= Math.abs(event.deltaY) && !event.shiftKey) return;
+    event.preventDefault();
+    offset = wrapOffset(offset + (event.deltaX || event.deltaY));
+  }, {passive:false});
+
   function renderMarquee() {
     firstSet.replaceChildren(...visibleCards);
     secondSet.replaceChildren();
@@ -61,6 +107,7 @@ if (caseGrid && projectCards.length) {
       clone.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
       secondSet.append(clone);
     });
+    offset = 0;
     const shouldAnimate = visibleCards.length > 1 && !reduceMotion.matches && !manuallyPaused;
     viewport.classList.toggle('marquee-static', !shouldAnimate);
     caseGrid.style.setProperty('--marquee-duration', `${Math.max(18, visibleCards.length * 7)}s`);
