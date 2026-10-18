@@ -272,3 +272,13 @@ main#main>.work,section#work.work,.work{background:transparent!important;backgro
 .work .story .editorial-visual{background:#efede8!important;border-color:#e6e0da!important}
 .work .story:nth-child(3n+2) .editorial-visual{background:#efede8!important}
 .work .story:nth-child(3n+3) .editorial-visual{background:#efede8!important}
+
+/* Single-surface monochrome editorial palette. */
+:root{--paper:#f8f6f1;--paper2:#f8f6f1;--purple:#5b535d;--line:#dedbd6}
+html,body,body main,main#main,main#main>section,main#main>.work,section#work.work{background:#f8f6f1!important;background-image:none!important}
+header,header nav,.hero,.about,.work,.experience,.education,.certificates,.contact,footer{background-color:transparent!important;background-image:none!important}
+.work .story,.work .story:hover{background:transparent!important}
+.work .story .editorial-visual,.work .story:nth-child(3n+2) .editorial-visual,.work .story:nth-child(3n+3) .editorial-visual,.work .story:hover .editorial-visual{background:transparent!important;border:1px solid #dedbd6!important;color:#7e777f!important}
+.work .story .story-type,.work .work-intro .section-label{color:#6c646c!important}
+.work .project-filters button.active{color:#292331!important;border-color:#292331!important}
+.work .story .tech-tags span{color:#756e75!important}
