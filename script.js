@@ -29,7 +29,32 @@ if (caseGrid && projectCards.length) {
   status.className = 'filter-status';
   status.setAttribute('aria-live', 'polite');
   status.textContent = `Showing all ${projectCards.length} projects`;
+  const carouselNav = document.createElement('div');
+  carouselNav.className = 'carousel-nav';
+  carouselNav.setAttribute('aria-label', 'Project carousel navigation');
+  carouselNav.innerHTML = '<span class="carousel-count" aria-live="polite"></span><div class="carousel-buttons"><button type="button" class="carousel-prev" aria-label="Previous projects">←</button><button type="button" class="carousel-next" aria-label="Next projects">→</button></div>';
   caseGrid.before(filters, status);
+  caseGrid.after(carouselNav);
+  const prevButton = carouselNav.querySelector('.carousel-prev');
+  const nextButton = carouselNav.querySelector('.carousel-next');
+  const count = carouselNav.querySelector('.carousel-count');
+  let visibleCards = [...projectCards];
+  let activeIndex = 0;
+  const cardsPerView = () => window.matchMedia('(max-width: 700px)').matches ? 1 : 2;
+  function renderCarousel() {
+    const pageSize = cardsPerView();
+    activeIndex = Math.min(activeIndex, Math.max(0, visibleCards.length - pageSize));
+    projectCards.forEach(card => { card.hidden = true; });
+    visibleCards.slice(activeIndex, activeIndex + pageSize).forEach(card => { card.hidden = false; });
+    const end = Math.min(activeIndex + pageSize, visibleCards.length);
+    count.textContent = visibleCards.length ? `${String(activeIndex + 1).padStart(2, '0')}–${String(end).padStart(2, '0')} / ${String(visibleCards.length).padStart(2, '0')}` : '00 / 00';
+    prevButton.disabled = activeIndex === 0;
+    nextButton.disabled = activeIndex >= visibleCards.length - pageSize;
+  }
+  prevButton.addEventListener('click', () => { activeIndex = Math.max(0, activeIndex - 1); renderCarousel(); });
+  nextButton.addEventListener('click', () => { activeIndex = Math.min(Math.max(0, visibleCards.length - cardsPerView()), activeIndex + 1); renderCarousel(); });
+  window.addEventListener('resize', renderCarousel);
+
 
   projectCards.forEach((card, index) => {
     const title = card.querySelector('h3')?.textContent || `project ${index + 1}`;
@@ -69,15 +94,12 @@ if (caseGrid && projectCards.length) {
       item.classList.toggle('active', active);
       item.setAttribute('aria-pressed', String(active));
     });
-    let visible = 0;
-    projectCards.forEach(card => {
-      const match = selected === 'all' || card.dataset.tech.split(' ').includes(selected);
-      card.hidden = !match;
-      if (match) visible += 1;
-    });
+    visibleCards = projectCards.filter(card => selected === 'all' || card.dataset.tech.split(' ').includes(selected));
+    activeIndex = 0;
     status.textContent = selected === 'all'
-      ? `Showing all ${visible} projects`
-      : `Showing ${visible} ${selected.toUpperCase()} project${visible === 1 ? '' : 's'}`;
+      ? `Showing all ${visibleCards.length} projects`
+      : `Showing ${visibleCards.length} ${selected.toUpperCase()} project${visibleCards.length === 1 ? '' : 's'}`;
+    renderCarousel();
   });
+  renderCarousel();
 }
-
