@@ -108,3 +108,11 @@ footer{font-size:11px}
 .marquee-pause:disabled{opacity:.4;cursor:default}
 @keyframes project-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media(prefers-reduced-motion:reduce){.work .case-grid.marquee-track{animation:none!important}.marquee-duplicate{display:none!important}.marquee-viewport{overflow-x:auto}}
+
+
+/* Manual interaction with the continuously moving track */
+.work .case-grid.marquee-track{animation:none!important;will-change:transform}
+.marquee-viewport{cursor:grab;touch-action:pan-y}
+.marquee-viewport.is-dragging{cursor:grabbing;user-select:none}
+.marquee-viewport.marquee-static{overflow:hidden}
+@media(prefers-reduced-motion:reduce){.marquee-viewport.marquee-static{overflow-x:auto}.work .case-grid.marquee-track{transform:none!important}}
