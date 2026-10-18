@@ -124,3 +124,5 @@ footer{font-size:11px}
 .work .case-grid.marquee-track{animation:none!important}
 .marquee-viewport.marquee-static .marquee-track{transform:translate3d(0,0,0)}
 @media(prefers-reduced-motion:reduce){.marquee-viewport{overflow-x:auto!important}}
+
+.work .story .demo-link{order:3;display:inline-block;font-size:12px;font-weight:600;color:var(--purple);margin:0 0 12px;text-decoration:underline;text-underline-offset:4px}
