@@ -40,6 +40,19 @@ if (caseGrid && projectCards.length) {
   const count = carouselNav.querySelector('.carousel-count');
   let visibleCards = [...projectCards];
   let activeIndex = 0;
+  let autoAdvance;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const workPage = caseGrid.closest('section');
+  function stopAutoAdvance() { clearInterval(autoAdvance); }
+  function startAutoAdvance() {
+    stopAutoAdvance();
+    if (reduceMotion.matches || document.hidden || (workPage && workPage.hidden) || visibleCards.length <= cardsPerView()) return;
+    autoAdvance = setInterval(() => {
+      if (caseGrid.querySelector('.story.is-open:not([hidden])')) return;
+      activeIndex = activeIndex >= visibleCards.length - cardsPerView() ? 0 : activeIndex + 1;
+      renderCarousel();
+    }, 5000);
+  }
   const cardsPerView = () => window.matchMedia('(max-width: 700px)').matches ? 1 : 2;
   function renderCarousel() {
     const pageSize = cardsPerView();
@@ -51,9 +64,16 @@ if (caseGrid && projectCards.length) {
     prevButton.disabled = activeIndex === 0;
     nextButton.disabled = activeIndex >= visibleCards.length - pageSize;
   }
-  prevButton.addEventListener('click', () => { activeIndex = Math.max(0, activeIndex - 1); renderCarousel(); });
-  nextButton.addEventListener('click', () => { activeIndex = Math.min(Math.max(0, visibleCards.length - cardsPerView()), activeIndex + 1); renderCarousel(); });
-  window.addEventListener('resize', renderCarousel);
+  prevButton.addEventListener('click', () => { activeIndex = Math.max(0, activeIndex - 1); renderCarousel(); startAutoAdvance(); });
+  nextButton.addEventListener('click', () => { activeIndex = Math.min(Math.max(0, visibleCards.length - cardsPerView()), activeIndex + 1); renderCarousel(); startAutoAdvance(); });
+  window.addEventListener('resize', () => { renderCarousel(); startAutoAdvance(); });
+  caseGrid.addEventListener('mouseenter', stopAutoAdvance);
+  caseGrid.addEventListener('mouseleave', startAutoAdvance);
+  caseGrid.addEventListener('focusin', stopAutoAdvance);
+  caseGrid.addEventListener('focusout', event => { if (!caseGrid.contains(event.relatedTarget)) startAutoAdvance(); });
+  document.addEventListener('visibilitychange', startAutoAdvance);
+  window.addEventListener('hashchange', startAutoAdvance);
+  reduceMotion.addEventListener('change', startAutoAdvance);
 
 
   projectCards.forEach((card, index) => {
@@ -100,6 +120,8 @@ if (caseGrid && projectCards.length) {
       ? `Showing all ${visibleCards.length} projects`
       : `Showing ${visibleCards.length} ${selected.toUpperCase()} project${visibleCards.length === 1 ? '' : 's'}`;
     renderCarousel();
+    startAutoAdvance();
   });
   renderCarousel();
+  startAutoAdvance();
 }
