@@ -184,3 +184,8 @@ footer{font-size:11px}
 @media(min-width:1400px){.work .project-preview iframe{transform:scale(.48)}}
 @media(max-width:760px){.work .project-preview{height:245px}.work .project-preview iframe{transform:scale(.34)}}
 @media(max-width:440px){.work .project-preview{height:195px}.work .project-preview iframe{transform:scale(.26)}}
+
+/* Keep the embedded demo viewport proportional to each responsive card. */
+.work .project-preview iframe{width:250%;height:1100px;transform:scale(.4)}
+@media(max-width:760px){.work .project-preview iframe{width:250%;transform:scale(.4)}}
+@media(max-width:440px){.work .project-preview iframe{width:250%;transform:scale(.4)}}
