@@ -30,5 +30,14 @@ case 7:{const dance=Number(val('dance')?.value||0);const energy=Math.min(100,Mat
 case 8:{const age=Number(val('age')?.value);const reasons=[];let score=0;if(v>=5000){score+=35;reasons.push('High transaction amount (+35)');}if(checked('international')){score+=25;reasons.push('International transaction (+25)');}if(Number.isFinite(age)&&age<30){score+=15;reasons.push('New account (+15)');}const level=score>=60?'HIGH':score>=30?'MEDIUM':'LOW';metric=score+'/100 · '+level;label='Transaction risk score';detail=(reasons.length?reasons.join(' · '):'No risk rules triggered')+'. '+(level==='HIGH'?'Flagged for review.':'Not flagged for high-risk review.');bars=[score];break;}
 }
 $('resultlabel').textContent=label;$('metric').textContent=metric;$('detail').textContent=detail;$('chart').replaceChildren(...bars.map(n=>{const b=document.createElement('div');b.className='bar';b.style.height=Math.max(3,Math.min(100,n))+'%';return b;}));}
-document.querySelectorAll('[data-id]').forEach(b=>b.addEventListener('click',()=>choose(Number(b.dataset.id))));range.addEventListener('input',render);const id=Number(new URLSearchParams(location.search).get('project'));choose(Number.isInteger(id)&&id>=0&&id<9?id:0);
+document.querySelectorAll('[data-id]').forEach(b=>b.addEventListener('click',()=>choose(Number(b.dataset.id))));range.addEventListener('input',render);const params=new URLSearchParams(location.search);const hasProject=params.has('project');const id=Number(params.get('project'));choose(Number.isInteger(id)&&id>=0&&id<9?id:0);
+if(hasProject){
+ document.querySelector('.menu').hidden=true;
+ document.querySelector('.layout').style.gridTemplateColumns='minmax(0,1fr)';
+ document.querySelector('.layout').style.maxWidth='780px';
+ document.querySelector('h1').textContent=projects[selected][0];
+ document.querySelector('.lede').textContent='Interactive project demonstration · Change the inputs to explore this project.';
+ document.title=projects[selected][0]+' | Live Demo';
+ document.querySelector('header span').textContent='PROJECT DEMO / '+String(selected+1).padStart(2,'0');
+}
 </script></body></html>
