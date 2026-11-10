@@ -92,3 +92,69 @@ if (caseGrid && projectCards.length) {
   });
   filterProjects('all');
 }
+
+
+/* Project case-study modal */
+(() => {
+  const cards = [...document.querySelectorAll('.work .story')];
+  if (!cards.length || document.querySelector('.case-study-dialog')) return;
+
+  const dialog = document.createElement('dialog');
+  dialog.className = 'case-study-dialog';
+  dialog.setAttribute('aria-labelledby', 'case-study-title');
+  dialog.innerHTML = `
+    <div class="case-study-shell">
+      <header class="case-study-header">
+        <div>
+          <p class="case-study-eyebrow">Project case study</p>
+          <h2 id="case-study-title"></h2>
+        </div>
+        <button class="case-study-close" type="button" aria-label="Close case study">×</button>
+      </header>
+      <div class="case-study-content">
+        <p class="case-study-summary"></p>
+        <div class="case-study-body"></div>
+        <div class="case-study-footer"><a class="case-study-github" rel="noopener" target="_blank">View code on GitHub ↗</a></div>
+      </div>
+    </div>`;
+  document.body.append(dialog);
+
+  const closeButton = dialog.querySelector('.case-study-close');
+  closeButton.addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', event => {
+    if (event.target === dialog) dialog.close();
+  });
+
+  cards.forEach(card => {
+    const details = card.querySelector('.story-beats');
+    const repo = card.querySelector('.repo');
+    const copy = card.querySelector('.story-copy');
+    if (!details || !repo || !copy) return;
+
+    details.hidden = true;
+    const oldToggle = card.querySelector('.story-toggle');
+    if (oldToggle) oldToggle.remove();
+
+    const actions = document.createElement('div');
+    actions.className = 'project-actions';
+
+    const caseStudyButton = document.createElement('button');
+    caseStudyButton.type = 'button';
+    caseStudyButton.className = 'case-study-link';
+    caseStudyButton.textContent = 'View case study';
+    caseStudyButton.setAttribute('aria-haspopup', 'dialog');
+    caseStudyButton.addEventListener('click', () => {
+      dialog.querySelector('#case-study-title').textContent = card.querySelector('h3')?.textContent || 'Project';
+      dialog.querySelector('.case-study-summary').textContent = card.querySelector('.project-summary')?.textContent || '';
+      dialog.querySelector('.case-study-body').innerHTML = details.innerHTML;
+      const githubLink = dialog.querySelector('.case-study-github');
+      githubLink.href = repo.href;
+      if (typeof dialog.showModal === 'function') dialog.showModal();
+      else dialog.setAttribute('open', '');
+      closeButton.focus();
+    });
+
+    actions.append(caseStudyButton, repo);
+    copy.append(actions);
+  });
+})();
