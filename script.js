@@ -68,22 +68,8 @@ if (caseGrid && projectCards.length) {
     }
     const details = card.querySelector('.story-beats');
     if (details) {
-      details.hidden = true;
-      details.id = `project-details-${index + 1}`;
-      const toggle = document.createElement('button');
-      toggle.type = 'button';
-      toggle.className = 'story-toggle';
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.setAttribute('aria-controls', details.id);
-      toggle.textContent = 'Read the case study +';
-      toggle.addEventListener('click', () => {
-        const open = details.hidden;
-        details.hidden = !open;
-        card.classList.toggle('is-open', open);
-        toggle.setAttribute('aria-expanded', String(open));
-        toggle.textContent = open ? 'Close case study −' : 'Read the case study +';
-      });
-      card.querySelector('.story-copy')?.append(toggle);
+      details.hidden = false;
+      details.removeAttribute('hidden');
     }
   });
   function filterProjects(selected) {

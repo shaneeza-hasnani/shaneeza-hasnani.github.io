@@ -282,3 +282,10 @@ header,header nav,.hero,.about,.work,.experience,.education,.certificates,.conta
 .work .story .story-type,.work .work-intro .section-label{color:#6c646c!important}
 .work .project-filters button.active{color:#292331!important;border-color:#292331!important}
 .work .story .tech-tags span{color:#756e75!important}
+
+
+/* Visible project case studies */
+.work .story .story-beats,
+.work .story .story-beats[hidden]{display:block!important;order:7!important;width:100%!important;margin-top:18px!important}
+.work .story .story-toggle{display:none!important}
+.work .story .story-beats section{padding:14px 0!important}
