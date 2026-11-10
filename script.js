@@ -141,7 +141,7 @@ if (caseGrid && projectCards.length) {
     const caseStudyButton = document.createElement('button');
     caseStudyButton.type = 'button';
     caseStudyButton.className = 'case-study-link';
-    caseStudyButton.textContent = 'View case study';
+    caseStudyButton.textContent = 'Case study ↗';
     caseStudyButton.setAttribute('aria-haspopup', 'dialog');
     caseStudyButton.addEventListener('click', () => {
       dialog.querySelector('#case-study-title').textContent = card.querySelector('h3')?.textContent || 'Project';
@@ -154,6 +154,7 @@ if (caseGrid && projectCards.length) {
       closeButton.focus();
     });
 
+    repo.textContent = 'GitHub ↗';
     actions.append(caseStudyButton, repo);
     copy.append(actions);
   });

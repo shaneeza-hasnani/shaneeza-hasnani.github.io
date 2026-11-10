@@ -290,40 +290,34 @@ header,header nav,.hero,.about,.work,.experience,.education,.certificates,.conta
 .work .story .story-toggle{display:none!important}
 .work .story .story-beats section{padding:14px 0!important}
 
-
-/* GitHub-style project cards and case-study modal */
-.work .case-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:18px!important}
-.work .story{display:flex!important;flex-direction:column!important;padding:0!important;background:#fff!important;border:1px solid #d0d7de!important;border-radius:8px!important;box-shadow:none!important;overflow:hidden!important;transition:border-color .16s ease,box-shadow .16s ease!important}
-.work .story:hover{transform:none!important;border-color:#8c959f!important;box-shadow:0 3px 12px rgba(31,35,40,.08)!important}
-.work .story .story-copy{display:flex!important;flex-direction:column!important;align-items:stretch!important;padding:24px!important;height:100%!important}
-.work .story .story-index{position:static!important;order:0!important;display:block!important;margin:0 0 12px!important;padding:0!important;background:none!important;color:#656d76!important;font:500 11px/1.4 var(--mono)!important}
-.work .story .editorial-visual,.work .story::before,.work .story .story-visual{display:none!important}
-.work .story .story-type{order:1!important;margin:0 0 8px!important;color:#656d76!important;font:600 10px/1.5 var(--mono)!important;letter-spacing:.06em!important}
-.work .story h3{order:2!important;margin:0 0 10px!important;color:#1f2328!important;font:600 20px/1.35 var(--sans)!important;letter-spacing:-.02em!important}
-.work .story .project-summary{order:3!important;margin:0 0 16px!important;color:#59636e!important;font-size:13px!important;line-height:1.65!important}
-.work .story .tech-tags{order:4!important;display:flex!important;flex-wrap:wrap!important;gap:6px!important;margin:0 0 18px!important}
-.work .story .tech-tags span{padding:3px 8px!important;border-radius:999px!important;background:#ddf4ff!important;color:#0969da!important;font:600 10px/1.5 var(--sans)!important}
+/* Refined editorial projects and case-study modal */
+.work .case-grid,.work .case-grid.marquee-track{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;column-gap:48px!important;row-gap:0!important;width:100%!important;transform:none!important;animation:none!important}
+.work .story{display:flex!important;flex-direction:column!important;min-width:0!important;height:100%!important;padding:30px 0 34px!important;border:0!important;border-top:1px solid #d8d3d5!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;overflow:visible!important;transition:none!important}
+.work .story:hover{transform:none!important;box-shadow:none!important}
+.work .story .story-copy{display:flex!important;flex-direction:column!important;align-items:flex-start!important;height:100%!important;padding:0!important}
+.work .story .story-index,.work .story .editorial-visual,.work .story::before,.work .story .story-visual,.work .story .tech-tags{display:none!important}
+.work .story .story-type{order:1!important;margin:0 0 10px!important;color:#746c75!important;font:500 9px/1.5 var(--mono)!important;letter-spacing:.08em!important}
+.work .story h3{order:2!important;max-width:520px!important;margin:0 0 11px!important;color:#282530!important;font:500 clamp(21px,2.15vw,27px)/1.28 var(--sans)!important;letter-spacing:-.035em!important}
+.work .story .project-summary{order:3!important;max-width:510px!important;margin:0 0 18px!important;color:#6b6570!important;font-size:13px!important;line-height:1.7!important}
 .work .story .story-beats,.work .story .story-beats[hidden],.work .story .story-toggle{display:none!important}
-.work .story .project-actions{order:5!important;display:flex!important;flex-wrap:wrap!important;gap:10px!important;margin-top:auto!important;padding-top:4px!important}
-.work .story .case-study-link,.work .story .repo{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:auto!important;min-height:36px!important;margin:0!important;padding:8px 12px!important;border:1px solid #d0d7de!important;border-radius:6px!important;background:#f6f8fa!important;color:#24292f!important;font:600 12px/1.4 var(--sans)!important;text-decoration:none!important;cursor:pointer!important}
-.work .story .case-study-link{background:#2f2751!important;border-color:#2f2751!important;color:#fff!important}
-.work .story .case-study-link:hover{background:#463b70!important}
-.work .story .repo:hover{background:#eef1f4!important;border-color:#afb8c1!important}
-.case-study-dialog{width:min(680px,calc(100vw - 32px));max-height:min(82vh,760px);padding:0;border:1px solid #d0d7de;border-radius:12px;background:#fff;color:#1f2328;box-shadow:0 24px 80px rgba(31,35,40,.28)}
-.case-study-dialog::backdrop{background:rgba(31,35,40,.62);backdrop-filter:blur(2px)}
-.case-study-shell{display:flex;flex-direction:column;max-height:min(82vh,760px)}
-.case-study-header{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;padding:24px 26px 18px;border-bottom:1px solid #d8dee4}
-.case-study-eyebrow{margin:0 0 6px;color:#656d76;font:600 10px/1.5 var(--mono);letter-spacing:.06em;text-transform:uppercase}
-.case-study-header h2{margin:0;color:#1f2328;font:600 24px/1.3 var(--sans);letter-spacing:-.025em}
-.case-study-close{flex:0 0 auto;width:34px;height:34px;border:1px solid #d0d7de;border-radius:6px;background:#f6f8fa;color:#57606a;font-size:20px;line-height:1;cursor:pointer}
-.case-study-close:hover{background:#eef1f4}
-.case-study-content{overflow:auto;padding:22px 26px 26px}
-.case-study-summary{margin:0 0 18px;color:#57606a;font-size:14px;line-height:1.7}
-.case-study-body{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.case-study-body section{padding:15px;border:1px solid #d8dee4;border-radius:7px;background:#f6f8fa}
-.case-study-body h4{margin:0 0 7px;color:#2f2751;font:700 12px/1.4 var(--sans)}
-.case-study-body p{margin:0;color:#57606a;font-size:13px;line-height:1.65}
-.case-study-footer{display:flex;justify-content:flex-end;padding-top:20px}
-.case-study-github{display:inline-flex;padding:9px 13px;border-radius:6px;background:#24292f;color:#fff;text-decoration:none;font:600 12px var(--sans)}
-.case-study-github:hover{background:#3b4148}
-@media(max-width:760px){.work .case-grid{grid-template-columns:1fr!important}.case-study-body{grid-template-columns:1fr}.case-study-header{padding:20px}.case-study-content{padding:19px 20px 22px}}
+.work .story .project-actions{order:4!important;display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:20px!important;margin-top:auto!important}
+.work .story .case-study-link,.work .story .repo{display:inline!important;width:auto!important;min-height:0!important;margin:0!important;padding:0 0 3px!important;border:0!important;border-bottom:1px solid #b8b0ba!important;border-radius:0!important;background:transparent!important;color:#4c4351!important;font:500 11px/1.5 var(--mono)!important;text-decoration:none!important;cursor:pointer!important}
+.work .story .case-study-link:hover,.work .story .repo:hover{color:#292331!important;border-color:#292331!important}
+.case-study-dialog{width:min(620px,calc(100vw - 30px));max-height:min(84vh,760px);padding:0;border:1px solid #d8d3d5;border-radius:3px;background:#fff;color:#292331;box-shadow:0 24px 70px rgba(28,23,31,.22)}
+.case-study-dialog::backdrop{background:rgba(28,23,31,.54)}
+.case-study-shell{display:flex;flex-direction:column;max-height:min(84vh,760px)}
+.case-study-header{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;padding:28px 30px 22px;border-bottom:1px solid #e6e1e7}
+.case-study-eyebrow{margin:0 0 8px;color:#7a717d;font:500 9px/1.5 var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.case-study-header h2{max-width:500px;margin:0;color:#282530;font:500 25px/1.3 var(--sans);letter-spacing:-.035em}
+.case-study-close{flex:0 0 auto;width:28px;height:28px;padding:0;border:0;background:transparent;color:#766e78;font:300 24px/1 var(--sans);cursor:pointer}
+.case-study-close:hover{color:#292331}
+.case-study-content{overflow:auto;padding:4px 30px 28px}
+.case-study-summary{margin:18px 0 6px;color:#68616c;font-size:14px;line-height:1.7}
+.case-study-body{display:block}
+.case-study-body section{padding:17px 0;border:0;border-top:1px solid #ece8ed;background:transparent}
+.case-study-body h4{margin:0 0 6px;color:#6d5a79;font:600 10px/1.5 var(--mono);letter-spacing:.03em;text-transform:uppercase}
+.case-study-body p{margin:0;color:#5f5963;font-size:13px;line-height:1.7}
+.case-study-footer{display:flex;justify-content:flex-start;padding-top:4px}
+.case-study-github{display:inline;padding:0 0 3px;border-bottom:1px solid #aaa1ad;color:#403746;text-decoration:none;font:500 11px/1.5 var(--mono)}
+.case-study-github:hover{border-color:#292331;color:#292331}
+@media(max-width:760px){.work .case-grid,.work .case-grid.marquee-track{grid-template-columns:1fr!important}.work .story{padding:25px 0 29px!important}.case-study-header{padding:23px 22px 18px}.case-study-content{padding:2px 22px 23px}.case-study-header h2{font-size:22px}}
